@@ -1,0 +1,50 @@
+{
+  "data": {
+    "type": "inAppPurchasePriceSchedules",
+    "relationships": {
+      "baseTerritory": {
+        "data": {
+          "type": "territories",
+          "id": "USA"
+        }
+      },
+      "inAppPurchase": {
+        "data": {
+          "type": "inAppPurchases",
+          "id": "6811446026"
+        }
+      },
+      "manualPrices": {
+        "data": [
+          {
+            "type": "inAppPurchasePrices",
+            "id": "${kvil-base-price}"
+          }
+        ]
+      }
+    }
+  },
+  "included": [
+    {
+      "type": "inAppPurchasePrices",
+      "id": "${kvil-base-price}",
+      "attributes": {
+        "startDate": null
+      },
+      "relationships": {
+        "inAppPurchaseV2": {
+          "data": {
+            "type": "inAppPurchases",
+            "id": "6811446026"
+          }
+        },
+        "inAppPurchasePricePoint": {
+          "data": {
+            "type": "inAppPurchasePricePoints",
+            "id": "eyJzIjoiNjgxMTQ0NjAyNiIsInQiOiJVU0EiLCJwIjoiMTAwNDkifQ"
+          }
+        }
+      }
+    }
+  ]
+}

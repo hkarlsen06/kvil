@@ -1,0 +1,34 @@
+{
+  "data": {
+    "type": "ageRatingDeclarations",
+    "id": "b0d83f83-3d66-4063-a0ed-6ba321573975",
+    "attributes": {
+      "advertising": false,
+      "alcoholTobaccoOrDrugUseOrReferences": "NONE",
+      "contests": "NONE",
+      "gambling": false,
+      "gamblingSimulated": "NONE",
+      "gunsOrOtherWeapons": "NONE",
+      "healthOrWellnessTopics": true,
+      "lootBox": false,
+      "medicalOrTreatmentInformation": "NONE",
+      "messagingAndChat": false,
+      "parentalControls": false,
+      "profanityOrCrudeHumor": "NONE",
+      "ageAssurance": false,
+      "sexualContentGraphicAndNudity": "NONE",
+      "sexualContentOrNudity": "NONE",
+      "socialMedia": false,
+      "socialMediaAgeRestricted": false,
+      "horrorOrFearThemes": "NONE",
+      "matureOrSuggestiveThemes": "NONE",
+      "unrestrictedWebAccess": false,
+      "userGeneratedContent": false,
+      "violenceCartoonOrFantasy": "NONE",
+      "violenceRealisticProlongedGraphicOrSadistic": "NONE",
+      "violenceRealistic": "NONE",
+      "ageRatingOverrideV2": "EIGHTEEN_PLUS",
+      "koreaAgeRatingOverride": "NONE"
+    }
+  }
+}

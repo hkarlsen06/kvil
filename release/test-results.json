@@ -1,0 +1,58 @@
+[
+  {
+    "status": "SUCCESS",
+    "scheme": "StoreKit",
+    "destination": "platform=iOS Simulator,id=B97101CF-5340-40EB-8C3F-CFAEFFE972E6",
+    "tests_count": 36,
+    "tests_failed": 0,
+    "test_failures": [],
+    "result_bundle_path": "/var/folders/9j/7d72xt915393rwfg7fzyvv5r0000gn/T//Kvil-test-1789253321-22174.xcresult"
+  },
+  {
+    "status": "FAILURE",
+    "scheme": "StoreKit",
+    "destination": "platform=iOS Simulator,id=93E921B8-C040-43E1-94EF-33883DABDFFC",
+    "tests_count": 36,
+    "tests_failed": 1,
+    "test_failures": [
+      "KvilUITests.testHomeScheduleAndReflectionFlow() [/Users/hkarlsen06/Repositories/kvil/ios/KvilAppUITests/KvilUITests.swift:43]: XCTAssertTrue failed"
+    ],
+    "result_bundle_path": "/var/folders/9j/7d72xt915393rwfg7fzyvv5r0000gn/T//Kvil-test-1789253865-28596.xcresult"
+  },
+  {
+    "status": "SUCCESS",
+    "scheme": "StoreKit",
+    "destination": "platform=iOS Simulator,id=93E921B8-C040-43E1-94EF-33883DABDFFC",
+    "tests_count": 1,
+    "tests_failed": 0,
+    "test_failures": [],
+    "result_bundle_path": "/var/folders/9j/7d72xt915393rwfg7fzyvv5r0000gn/T//Kvil-test-1789254094-31320.xcresult"
+  },
+  {
+    "status": "SUCCESS",
+    "scheme": "StoreKit",
+    "destination": "platform=iOS Simulator,id=B97101CF-5340-40EB-8C3F-CFAEFFE972E6",
+    "tests_count": 2,
+    "tests_failed": 0,
+    "test_failures": [],
+    "result_bundle_path": "/var/folders/9j/7d72xt915393rwfg7fzyvv5r0000gn/T//Kvil-test-1789255145-43723.xcresult"
+  },
+  {
+    "status": "SUCCESS",
+    "scheme": "StoreKit",
+    "destination": "platform=iOS Simulator,id=B97101CF-5340-40EB-8C3F-CFAEFFE972E6",
+    "tests_count": 1,
+    "tests_failed": 0,
+    "test_failures": [],
+    "result_bundle_path": "/var/folders/9j/7d72xt915393rwfg7fzyvv5r0000gn/T//Kvil-test-1789255473-47975.xcresult"
+  },
+  {
+    "status": "SUCCESS",
+    "scheme": "StoreKit",
+    "destination": "platform=iOS Simulator,id=B97101CF-5340-40EB-8C3F-CFAEFFE972E6",
+    "tests_count": 2,
+    "tests_failed": 0,
+    "test_failures": [],
+    "result_bundle_path": "/var/folders/9j/7d72xt915393rwfg7fzyvv5r0000gn/T//Kvil-test-1789255685-50460.xcresult"
+  }
+]

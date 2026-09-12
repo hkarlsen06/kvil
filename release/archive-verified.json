@@ -1,0 +1,104 @@
+{
+  "archive": "build/Kvil.xcarchive",
+  "ipa": "build/AppStore/KvilApp.ipa",
+  "sha256": "b084212d3c20afca98d42e3c95c95929618d0a0641c7101b4d88239b3e737775",
+  "bytes": 6069412,
+  "exportedBundles": [
+    {
+      "bundle": "dev.hkarlsen06.kvil",
+      "version": "1.0.0",
+      "build": "2446.23.21",
+      "minimumOS": "27.0",
+      "sdk": "iphoneos27.0",
+      "signatureValid": true,
+      "entitlements": {
+        "application-identifier": "48ZSLD4RMP.dev.hkarlsen06.kvil",
+        "beta-reports-active": true,
+        "com.apple.developer.healthkit": true,
+        "com.apple.developer.team-identifier": "48ZSLD4RMP",
+        "com.apple.developer.ubiquity-kvstore-identifier": "48ZSLD4RMP.dev.hkarlsen06.kvil",
+        "com.apple.security.application-groups": [
+          "group.dev.hkarlsen06.kvil"
+        ],
+        "get-task-allow": false
+      },
+      "privacyManifest": true,
+      "localizations": [
+        "en",
+        "nb"
+      ],
+      "profileName": "iOS Team Store Provisioning Profile: dev.hkarlsen06.kvil"
+    },
+    {
+      "bundle": "dev.hkarlsen06.kvil.watchkitapp",
+      "version": "1.0.0",
+      "build": "2446.23.21",
+      "minimumOS": "27.0",
+      "sdk": "watchos27.0",
+      "signatureValid": true,
+      "entitlements": {
+        "application-identifier": "48ZSLD4RMP.dev.hkarlsen06.kvil.watchkitapp",
+        "beta-reports-active": true,
+        "com.apple.developer.team-identifier": "48ZSLD4RMP",
+        "com.apple.security.application-groups": [
+          "group.dev.hkarlsen06.kvil"
+        ],
+        "get-task-allow": false
+      },
+      "privacyManifest": true,
+      "localizations": [
+        "en",
+        "nb"
+      ],
+      "profileName": "iOS Team Store Provisioning Profile: dev.hkarlsen06.kvil.watchkitapp"
+    },
+    {
+      "bundle": "dev.hkarlsen06.kvil.widget",
+      "version": "1.0.0",
+      "build": "2446.23.21",
+      "minimumOS": "27.0",
+      "sdk": "iphoneos27.0",
+      "signatureValid": true,
+      "entitlements": {
+        "application-identifier": "48ZSLD4RMP.dev.hkarlsen06.kvil.widget",
+        "beta-reports-active": true,
+        "com.apple.developer.team-identifier": "48ZSLD4RMP",
+        "com.apple.security.application-groups": [
+          "group.dev.hkarlsen06.kvil"
+        ],
+        "get-task-allow": false
+      },
+      "privacyManifest": true,
+      "localizations": [
+        "en",
+        "nb"
+      ],
+      "profileName": "iOS Team Store Provisioning Profile: dev.hkarlsen06.kvil.widget"
+    },
+    {
+      "bundle": "dev.hkarlsen06.kvil.watchkitapp.widget",
+      "version": "1.0.0",
+      "build": "2446.23.21",
+      "minimumOS": "27.0",
+      "sdk": "watchos27.0",
+      "signatureValid": true,
+      "entitlements": {
+        "application-identifier": "48ZSLD4RMP.dev.hkarlsen06.kvil.watchkitapp.widget",
+        "beta-reports-active": true,
+        "com.apple.developer.team-identifier": "48ZSLD4RMP",
+        "com.apple.security.application-groups": [
+          "group.dev.hkarlsen06.kvil"
+        ],
+        "get-task-allow": false
+      },
+      "privacyManifest": true,
+      "localizations": [
+        "en",
+        "nb"
+      ],
+      "profileName": "iOS Team Store Provisioning Profile: dev.hkarlsen06.kvil.watchkitapp.widget"
+    }
+  ],
+  "debugResourcesAbsent": true,
+  "uploaded": false
+}

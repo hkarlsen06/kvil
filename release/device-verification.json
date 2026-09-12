@@ -1,0 +1,14 @@
+{
+  "build": "2446.23.21",
+  "installedOnDeveloperIPhone": true,
+  "latestLaunch": "blocked by locked device",
+  "earlierRCReleaseLaunchSucceeded": true,
+  "healthHardwareVerified": false,
+  "watchTransportVerified": false,
+  "homeWidgetsRendered": [
+    "systemSmall",
+    "systemMedium"
+  ],
+  "accessoryHostVerified": false,
+  "watchOfflineFixtureRestartVerified": true
+}

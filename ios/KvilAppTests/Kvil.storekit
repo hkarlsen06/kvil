@@ -1,0 +1,39 @@
+{
+  "identifier": "D64F68A4",
+  "nonRenewingSubscriptions": [],
+  "products": [
+    {
+      "displayPrice": "3.99",
+      "familyShareable": false,
+      "internalID": "001",
+      "localizations": [
+        {
+          "description": "All your reflections and longer recaps. One purchase.",
+          "displayName": "Full History",
+          "locale": "en_US"
+        },
+        {
+          "description": "Alle refleksjoner og lengre oppsummeringer. Ett kjøp.",
+          "displayName": "Full historikk",
+          "locale": "nb_NO"
+        }
+      ],
+      "productID": "dev.hkarlsen06.kvil.history",
+      "referenceName": "Kvil Full History",
+      "type": "NonConsumable"
+    }
+  ],
+  "settings": {
+    "_applicationInternalID": "",
+    "_developerTeamID": "",
+    "_failTransactionsEnabled": false,
+    "_locale": "en_US",
+    "_storefront": "USA",
+    "_storeKitErrors": []
+  },
+  "subscriptionGroups": [],
+  "version": {
+    "major": 3,
+    "minor": 0
+  }
+}

@@ -1,0 +1,26 @@
+[
+  {
+    "path": "/v2/appAvailabilities/6811427716/territoryAvailabilities?limit=200",
+    "status": "200",
+    "count": 175,
+    "attributes": {
+      "available": true,
+      "releaseDate": null,
+      "preOrderEnabled": false,
+      "preOrderPublishDate": null,
+      "contentStatuses": [
+        "CANNOT_SELL",
+        "AVAILABLE_FOR_SALE_UNRELEASED_APP"
+      ]
+    }
+  },
+  {
+    "path": "/v3/appPricePoints/eyJzIjoiNjgxMTQyNzcxNiIsInQiOiJVU0EiLCJwIjoiMTAwMDAifQ",
+    "status": "200",
+    "count": 1,
+    "attributes": {
+      "customerPrice": "0.0",
+      "proceeds": "0.0"
+    }
+  }
+]

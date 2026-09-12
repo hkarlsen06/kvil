@@ -1,0 +1,44 @@
+{
+  "data": {
+    "type": "appPriceSchedules",
+    "relationships": {
+      "baseTerritory": {
+        "data": {
+          "type": "territories",
+          "id": "USA"
+        }
+      },
+      "app": {
+        "data": {
+          "type": "apps",
+          "id": "6811427716"
+        }
+      },
+      "manualPrices": {
+        "data": [
+          {
+            "type": "appPrices",
+            "id": "${kvil-free-price}"
+          }
+        ]
+      }
+    }
+  },
+  "included": [
+    {
+      "type": "appPrices",
+      "id": "${kvil-free-price}",
+      "attributes": {
+        "startDate": null
+      },
+      "relationships": {
+        "appPricePoint": {
+          "data": {
+            "type": "appPricePoints",
+            "id": "eyJzIjoiNjgxMTQyNzcxNiIsInQiOiJVU0EiLCJwIjoiMTAwMDAifQ"
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,3444 @@
+{
+  "sourceLanguage": "en",
+  "strings": {
+    "aboutBody": {
+      "comment": "Kvil user interface: aboutBody",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A quiet companion for a daily eating rhythm. Planned windows, gentle reminders, and a small space to reflect. Built to leave room for life."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En rolig følgesvenn for en daglig spiserytme. Planlagte spisevinduer, rolige påminnelser og litt rom for å kjenne etter. Laget for å gi plass til livet."
+          }
+        }
+      }
+    },
+    "aboutKvil": {
+      "comment": "Kvil user interface: aboutKvil",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "About Kvil"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Om Kvil"
+          }
+        }
+      }
+    },
+    "addWeightOptional": {
+      "comment": "Kvil user interface: addWeightOptional",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add weight logging, if you like"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Legg til vektlogging hvis du vil"
+          }
+        }
+      }
+    },
+    "adjusted": {
+      "comment": "Kvil user interface: adjusted",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Adjusted for today"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tilpasset i dag"
+          }
+        }
+      }
+    },
+    "aLittleStructure": {
+      "comment": "Kvil user interface: aLittleStructure",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A little structure,\nwith room for life."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Litt struktur,\nmed rom for livet."
+          }
+        }
+      }
+    },
+    "allTime": {
+      "comment": "Kvil user interface: allTime",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "All time"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hele perioden"
+          }
+        }
+      }
+    },
+    "aMomentToLookBack": {
+      "comment": "Kvil user interface: aMomentToLookBack",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A moment\nto look back."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Et øyeblikk\ntil å se tilbake."
+          }
+        }
+      }
+    },
+    "appleWatch": {
+      "comment": "Kvil user interface: appleWatch",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Watch"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Watch"
+          }
+        }
+      }
+    },
+    "applyAllDays": {
+      "comment": "Kvil user interface: applyAllDays",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Use these times every day"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bruk disse tidene hver dag"
+          }
+        }
+      }
+    },
+    "atYourPace": {
+      "comment": "Kvil user interface: atYourPace",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "AT YOUR PACE"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I DITT TEMPO"
+          }
+        }
+      }
+    },
+    "back": {
+      "comment": "Kvil user interface: back",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Back"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tilbake"
+          }
+        }
+      }
+    },
+    "cancel": {
+      "comment": "Kvil user interface: cancel",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancel"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Avbryt"
+          }
+        }
+      }
+    },
+    "changeToday": {
+      "comment": "Kvil user interface: changeToday",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Change today"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Endre i dag"
+          }
+        }
+      }
+    },
+    "chooseDay": {
+      "comment": "Kvil user interface: chooseDay",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choose a day"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Velg en dag"
+          }
+        }
+      }
+    },
+    "closesNextDay": {
+      "comment": "Kvil user interface: closesNextDay",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Closes the following day"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lukker dagen etter"
+          }
+        }
+      }
+    },
+    "closingReminder": {
+      "comment": "Kvil user interface: closingReminder",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "When the window closes"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Når spisevinduet lukker"
+          }
+        }
+      }
+    },
+    "cloudAccountChanged": {
+      "comment": "Kvil interface: cloudAccountChanged",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your iCloud account changed. Schedule sync is paused. Enable it again in Settings if you want to use this account."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iCloud-kontoen er endret. Plansynkronisering er satt på pause. Slå den på igjen i Innstillinger hvis du vil bruke denne kontoen."
+          }
+        }
+      }
+    },
+    "cloudConflict": {
+      "comment": "Kvil interface: cloudConflict",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your local schedule is safe. iCloud changes could not be merged. Review your week and try syncing again."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Den lokale planen er lagret. iCloud-endringer kunne ikke slås sammen. Se gjennom uken og prøv å synkronisere igjen."
+          }
+        }
+      }
+    },
+    "cloudEnabled": {
+      "comment": "Kvil interface: cloudEnabled",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schedule sync enabled"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plansynkronisering er på"
+          }
+        }
+      }
+    },
+    "cloudNeedsAttention": {
+      "comment": "Kvil interface: cloudNeedsAttention",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schedule sync needs attention"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plansynkronisering trenger hjelp"
+          }
+        }
+      }
+    },
+    "cloudSchedule": {
+      "comment": "Kvil interface: cloudSchedule",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sync schedule with iCloud"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Synkroniser planen med iCloud"
+          }
+        }
+      }
+    },
+    "cloudScheduleHelp": {
+      "comment": "Kvil interface: cloudScheduleHelp",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Only your planned times sync with iCloud. Reflections stay on this device; use a backup to recover them. Weight uses Apple Health when you choose to share it."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bare planlagte tider synkroniseres med iCloud. Refleksjoner blir på denne enheten. Bruk en sikkerhetskopi for å gjenopprette dem. Vekt bruker Apple Helse når du velger å dele den."
+          }
+        }
+      }
+    },
+    "cloudUnavailable": {
+      "comment": "Kvil interface: cloudUnavailable",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iCloud is unavailable. Your schedule works on this device."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iCloud er ikke tilgjengelig. Planen fungerer på denne enheten."
+          }
+        }
+      }
+    },
+    "comfortable": {
+      "comment": "Kvil user interface: comfortable",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Comfortable"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Behagelig"
+          }
+        }
+      }
+    },
+    "connectHealth": {
+      "comment": "Kvil user interface: connectHealth",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Connect Apple Health"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Koble til Apple Helse"
+          }
+        }
+      }
+    },
+    "contactSupport": {
+      "comment": "Kvil interface: contactSupport",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Email support"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Send e-post til brukerstøtte"
+          }
+        }
+      }
+    },
+    "date": {
+      "comment": "Kvil user interface: date",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Date"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dato"
+          }
+        }
+      }
+    },
+    "delete": {
+      "comment": "Kvil user interface: delete",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Slett"
+          }
+        }
+      }
+    },
+    "deleteReflection": {
+      "comment": "Kvil user interface: deleteReflection",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete reflection?"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Slette refleksjonen?"
+          }
+        }
+      }
+    },
+    "deleteReflectionBody": {
+      "comment": "Kvil user interface: deleteReflectionBody",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This check-in will be removed from your history and recaps."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Denne innsjekken fjernes fra historikken og oppsummeringene dine."
+          }
+        }
+      }
+    },
+    "deleteWeight": {
+      "comment": "Kvil user interface: deleteWeight",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete weight?"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Slette vektoppføringen?"
+          }
+        }
+      }
+    },
+    "deleteWeightBody": {
+      "comment": "Kvil user interface: deleteWeightBody",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This measurement will be removed from Kvil."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Denne målingen fjernes fra Kvil."
+          }
+        }
+      }
+    },
+    "deleteWeightHealthBody": {
+      "comment": "Kvil user interface: deleteWeightHealthBody",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This measurement will be removed from Kvil and its copy in Apple Health. If Health is unavailable, Kvil will retry when you reconnect."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Denne målingen fjernes fra Kvil og Apple Helse. Hvis Helse ikke er tilgjengelig, prøver Kvil igjen når du kobler til på nytt."
+          }
+        }
+      }
+    },
+    "difficult": {
+      "comment": "Kvil user interface: difficult",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Difficult"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vanskelig"
+          }
+        }
+      }
+    },
+    "dismiss": {
+      "comment": "Kvil user interface: dismiss",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dismiss"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lukk"
+          }
+        }
+      }
+    },
+    "dismissReflection": {
+      "comment": "Kvil user interface: dismissReflection",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Skip this check-in"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hopp over denne innsjekken"
+          }
+        }
+      }
+    },
+    "done": {
+      "comment": "Kvil user interface: done",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Done"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ferdig"
+          }
+        }
+      }
+    },
+    "edit": {
+      "comment": "Kvil user interface: edit",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Edit"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rediger"
+          }
+        }
+      }
+    },
+    "editWeek": {
+      "comment": "Kvil user interface: editWeek",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Edit usual week"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rediger ukeplan"
+          }
+        }
+      }
+    },
+    "erase": {
+      "comment": "Kvil user interface: erase",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Erase"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Slett"
+          }
+        }
+      }
+    },
+    "eraseData": {
+      "comment": "Kvil user interface: eraseData",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Erase Kvil data?"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Slette Kvil-data?"
+          }
+        }
+      }
+    },
+    "eraseDataBody": {
+      "comment": "Kvil user interface: eraseDataBody",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your local schedule, reflections, and Kvil weight entries will be permanently removed. Reminders and device snapshots will be cleared. Entries already saved to Apple Health and exported backups remain. Your purchase stays available to restore."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Den lokale planen, refleksjonene og vektoppføringene i Kvil slettes permanent. Påminnelser og enhetskopier tømmes. Oppføringer som er lagret i Apple Helse og eksporterte sikkerhetskopier beholdes. Kjøpet kan fortsatt gjenopprettes."
+          }
+        }
+      }
+    },
+    "exploreFullHistory": {
+      "comment": "Kvil user interface: exploreFullHistory",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Explore full history"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Se full historikk"
+          }
+        }
+      }
+    },
+    "exportData": {
+      "comment": "Kvil user interface: exportData",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Export a backup"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eksporter en sikkerhetskopi"
+          }
+        }
+      }
+    },
+    "exportFailed": {
+      "comment": "Kvil user interface: exportFailed",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The backup couldn’t be exported. Your data is still in Kvil."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sikkerhetskopien kunne ikke eksporteres. Dataene er fortsatt i Kvil."
+          }
+        }
+      }
+    },
+    "externalWeightHelp": {
+      "comment": "Kvil user interface: externalWeightHelp",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Entries from other apps can be managed in Apple Health."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Oppføringer fra andre apper kan administreres i Apple Helse."
+          }
+        }
+      }
+    },
+    "findMyRhythm": {
+      "comment": "Kvil user interface: findMyRhythm",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Find my rhythm"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Finn min rytme"
+          }
+        }
+      }
+    },
+    "findYourRhythm": {
+      "comment": "Kvil user interface: findYourRhythm",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A little rhythm. A little room."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Litt rytme. Litt rom."
+          }
+        }
+      }
+    },
+    "freeHistoryExplanation": {
+      "comment": "Kvil user interface: freeHistoryExplanation",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your latest seven days and a simple weekly recap are free. Older reflections are kept safely. Unlock full history once to browse further back."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "De siste sju dagene og en enkel ukeoppsummering er gratis. Eldre refleksjoner beholdes. Lås opp full historikk én gang for å se lenger tilbake."
+          }
+        }
+      }
+    },
+    "fromHealth": {
+      "comment": "Kvil user interface: fromHealth",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "From Apple Health"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fra Apple Helse"
+          }
+        }
+      }
+    },
+    "fullHistory": {
+      "comment": "Kvil user interface: fullHistory",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Full history"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Full historikk"
+          }
+        }
+      }
+    },
+    "gentleReminders": {
+      "comment": "Kvil user interface: gentleReminders",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gentle reminders"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rolige påminnelser"
+          }
+        }
+      }
+    },
+    "healthEditPermission": {
+      "comment": "Kvil interface: healthEditPermission",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "To update this measurement in Health, enable Save to Health and allow write access in Settings."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "For å oppdatere denne målingen i Helse må du slå på Lagre i Helse og gi skrivetilgang i Innstillinger."
+          }
+        }
+      }
+    },
+    "healthPending": {
+      "comment": "Kvil user interface: healthPending",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Saved in Kvil · Health pending"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lagret i Kvil · Venter på Helse"
+          }
+        }
+      }
+    },
+    "healthReadNote": {
+      "comment": "Kvil user interface: healthReadNote",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Only measurements Apple Health makes available are shown. An empty list can also mean access is limited."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bare målinger som Apple Helse gjør tilgjengelige, vises. En tom liste kan også bety at tilgangen er begrenset."
+          }
+        }
+      }
+    },
+    "healthSettingsHelp": {
+      "comment": "Kvil user interface: healthSettingsHelp",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Health is optional. Read access and write access are separate. Disconnecting here stops reads and future writes; manage permissions and existing Health entries in system settings."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Helse er valgfritt. Lese- og skrivetilgang er adskilt. Frakobling stopper lesing og nye lagringer. Administrer tillatelser og eksisterende Helse-oppføringer i systeminnstillingene."
+          }
+        }
+      }
+    },
+    "healthSyncFailed": {
+      "comment": "Kvil user interface: healthSyncFailed",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your entry is safe in Kvil. Health couldn’t finish syncing. Check Health access, then try again."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Oppføringen er lagret i Kvil. Helse kunne ikke fullføre synkroniseringen. Sjekk Helse-tilgangen og prøv igjen."
+          }
+        }
+      }
+    },
+    "healthUnavailable": {
+      "comment": "Kvil user interface: healthUnavailable",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Health couldn’t connect. Your entries in Kvil are still available."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kunne ikke koble til Apple Helse. Oppføringene i Kvil er fortsatt tilgjengelige."
+          }
+        }
+      }
+    },
+    "history": {
+      "comment": "Kvil user interface: history",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "History"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Historikk"
+          }
+        }
+      }
+    },
+    "historyIntro": {
+      "comment": "Kvil user interface: historyIntro",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Notice how your days feel, without keeping score."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Legg merke til hvordan dagene føles, uten å telle poeng."
+          }
+        }
+      }
+    },
+    "historyUnlocked": {
+      "comment": "Kvil user interface: historyUnlocked",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Full history is yours"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Full historikk er din"
+          }
+        }
+      }
+    },
+    "home": {
+      "comment": "Kvil user interface: home",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Home"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hjem"
+          }
+        }
+      }
+    },
+    "homeQuietNote": {
+      "comment": "Kvil user interface: homeQuietNote",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your schedule is here to support you. There’s room to adjust."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Planen er her for å støtte deg. Det er rom for å justere."
+          }
+        }
+      }
+    },
+    "homeWidgets": {
+      "comment": "Kvil user interface: homeWidgets",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Home Screen widgets"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Widgeter på Hjem-skjermen"
+          }
+        }
+      }
+    },
+    "howDidItFeel": {
+      "comment": "Kvil user interface: howDidItFeel",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "How did it feel?"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hvordan føltes det?"
+          }
+        }
+      }
+    },
+    "howToday": {
+      "comment": "Kvil user interface: howToday",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "How did today feel?"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hvordan var dagen?"
+          }
+        }
+      }
+    },
+    "howYesterday": {
+      "comment": "Kvil user interface: howYesterday",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "How did yesterday feel?"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hvordan var gårsdagen?"
+          }
+        }
+      }
+    },
+    "importData": {
+      "comment": "Kvil user interface: importData",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Restore from a backup"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gjenopprett fra sikkerhetskopi"
+          }
+        }
+      }
+    },
+    "importInvalid": {
+      "comment": "Kvil user interface: importInvalid",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This backup couldn’t be read or isn’t compatible with this version of Kvil. Your existing data hasn’t changed."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sikkerhetskopien kunne ikke leses eller er ikke kompatibel med denne versjonen av Kvil. Eksisterende data er ikke endret."
+          }
+        }
+      }
+    },
+    "invalidTime": {
+      "comment": "Kvil user interface: invalidTime",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choose different opening and closing times. Each day needs one valid window."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Velg ulike åpnings- og lukketider. Hver dag trenger ett gyldig spisevindu."
+          }
+        }
+      }
+    },
+    "invalidWeight": {
+      "comment": "Kvil user interface: invalidWeight",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enter a valid positive weight up to 1,000 kg, with a date that isn’t in the future."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Skriv inn en gyldig positiv vekt opptil 1 000 kg, med en dato som ikke er i fremtiden."
+          }
+        }
+      }
+    },
+    "keepTheBiggerPicture": {
+      "comment": "Kvil user interface: keepTheBiggerPicture",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Keep the bigger picture."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Behold det større bildet."
+          }
+        }
+      }
+    },
+    "localStorageNotice": {
+      "comment": "Kvil interface: localStorageNotice",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your schedule can sync with iCloud. Reflections and Kvil weight entries are stored on this device. Export a backup for recovery. Weight shared with Apple Health follows your Health settings."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Planen kan synkroniseres med iCloud. Refleksjoner og vektoppføringer i Kvil lagres på denne enheten. Eksporter en sikkerhetskopi for gjenoppretting. Vekt delt med Apple Helse følger Helse-innstillingene dine."
+          }
+        }
+      }
+    },
+    "lockWidgetHelp": {
+      "comment": "Kvil user interface: lockWidgetHelp",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Touch and hold the Lock Screen, choose Customize, then tap the widget area. Add Kvil to see your next window at a glance."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Trykk og hold på låseskjermen, velg Tilpass, og trykk på widgetområdet. Legg til Kvil for å se neste spisevindu med et blikk."
+          }
+        }
+      }
+    },
+    "lockWidgets": {
+      "comment": "Kvil user interface: lockWidgets",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lock Screen widgets"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Widgeter på låseskjermen"
+          }
+        }
+      }
+    },
+    "logWeight": {
+      "comment": "Kvil user interface: logWeight",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Log weight"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Logg vekt"
+          }
+        }
+      }
+    },
+    "makeRoom": {
+      "comment": "Kvil user interface: makeRoom",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Make room for your day."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gi dagen litt rom."
+          }
+        }
+      }
+    },
+    "makeSpace": {
+      "comment": "Kvil user interface: makeSpace",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Make it my own"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gjør den til min"
+          }
+        }
+      }
+    },
+    "mixed": {
+      "comment": "Kvil user interface: mixed",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mixed"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Blandet"
+          }
+        }
+      }
+    },
+    "month": {
+      "comment": "Kvil user interface: month",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Month"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Måned"
+          }
+        }
+      }
+    },
+    "nextDayShort": {
+      "comment": "Kvil user interface: nextDayShort",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "+1 day"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "+1 dag"
+          }
+        }
+      }
+    },
+    "nextWindow": {
+      "comment": "Kvil user interface: nextWindow",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Next eating window"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Neste spisevindu"
+          }
+        }
+      }
+    },
+    "noPurchases": {
+      "comment": "Kvil user interface: noPurchases",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No full history purchase was found for this Apple Account."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fant ikke noe kjøp av full historikk for denne Apple-kontoen."
+          }
+        }
+      }
+    },
+    "noWeights": {
+      "comment": "Kvil user interface: noWeights",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A space for your measurements"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plass til målingene dine"
+          }
+        }
+      }
+    },
+    "noWeightsBody": {
+      "comment": "Kvil user interface: noWeightsBody",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Log a weight when it suits you, or read the entries you choose to share from Apple Health."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Logg vekt når det passer, eller les oppføringene du velger å dele fra Apple Helse."
+          }
+        }
+      }
+    },
+    "onboardingBody": {
+      "comment": "Kvil user interface: onboardingBody",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A gentle daily eating schedule. A little space to reflect. Kvil keeps the time, so you can get on with your day."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En rolig spiseplan for hverdagen. Litt rom for å kjenne etter. Kvil holder tiden, så du kan leve dagen din."
+          }
+        }
+      }
+    },
+    "onboardingSafety": {
+      "comment": "Kvil user interface: onboardingSafety",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kvil is a planning tool for adults, not medical advice. Choose what feels right for you and seek professional guidance if you’re unsure whether fasting suits your health."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kvil er et planleggingsverktøy for voksne, ikke medisinske råd. Velg det som passer deg, og søk faglige råd hvis du er usikker på om faste passer helsen din."
+          }
+        }
+      }
+    },
+    "onboardingTitle": {
+      "comment": "Kvil user interface: onboardingTitle",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Find a rhythm\nthat feels like you."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Finn en rytme\nsom passer deg."
+          }
+        }
+      }
+    },
+    "oneTimePurchase": {
+      "comment": "Kvil user interface: oneTimePurchase",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "One purchase. No subscription."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ett kjøp. Ingen abonnement."
+          }
+        }
+      }
+    },
+    "openingReminder": {
+      "comment": "Kvil user interface: openingReminder",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "When the window opens"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Når spisevinduet åpner"
+          }
+        }
+      }
+    },
+    "openKvilOnPhone": {
+      "comment": "Kvil user interface: openKvilOnPhone",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open Kvil on your iPhone to set up your schedule."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Åpne Kvil på iPhone for å sette opp planen."
+          }
+        }
+      }
+    },
+    "openKvilToSetUp": {
+      "comment": "Kvil user interface: openKvilToSetUp",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open Kvil to set up"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Åpne Kvil for å sette opp"
+          }
+        }
+      }
+    },
+    "opensAtPrefix": {
+      "comment": "Kvil user interface: opensAtPrefix",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Opens at "
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Åpner kl. "
+          }
+        }
+      }
+    },
+    "openShort": {
+      "comment": "Kvil user interface: openShort",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Åpent"
+          }
+        }
+      }
+    },
+    "opensToday": {
+      "comment": "Kvil user interface: opensToday",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Opens today at"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Åpner i dag kl."
+          }
+        }
+      }
+    },
+    "opensTomorrow": {
+      "comment": "Kvil user interface: opensTomorrow",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Opens tomorrow at"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Åpner i morgen kl."
+          }
+        }
+      }
+    },
+    "openSystemSettings": {
+      "comment": "Kvil user interface: openSystemSettings",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open system settings"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Åpne systeminnstillinger"
+          }
+        }
+      }
+    },
+    "overlappingWindows": {
+      "comment": "Kvil user interface: overlappingWindows",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "These windows overlap. Adjust the opening or closing time so neighboring days leave room for each other."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Disse spisevinduene overlapper. Juster tidene slik at nabodagene får plass."
+          }
+        }
+      }
+    },
+    "privacy": {
+      "comment": "Kvil user interface: privacy",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Privacy"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Personvern"
+          }
+        }
+      }
+    },
+    "privacyControl": {
+      "comment": "Kvil user interface: privacyControl",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You can export, restore, or erase Kvil’s local data in Settings at any time, without a purchase. Exported files contain personal data; keep them somewhere you trust. Erasing Kvil does not erase Apple Health records or copies you exported."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du kan når som helst eksportere, gjenopprette eller slette lokale Kvil-data i Innstillinger, uten å kjøpe noe. Eksporterte filer inneholder personlige data. Oppbevar dem et sted du stoler på. Sletting i Kvil sletter ikke Apple Helse-oppføringer eller kopier du har eksportert."
+          }
+        }
+      }
+    },
+    "privacyDevices": {
+      "comment": "Kvil user interface: privacyDevices",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kvil shares a copy of your schedule with its widgets and paired Apple Watch. These copies contain no weight or reflection history. Lock Screen widgets may show your planned eating times to anyone who can see your screen."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kvil deler en kopi av planen med widgetene og din sammenkoblede Apple Watch. Kopiene inneholder ingen vekt- eller refleksjonshistorikk. Widgeter på låseskjermen kan vise planlagte spisetider til andre som ser skjermen."
+          }
+        }
+      }
+    },
+    "privacyHealth": {
+      "comment": "Kvil user interface: privacyHealth",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Health access is optional and limited to body weight. Kvil reads the entries you choose to share and saves new Kvil entries only with your permission. Health data is not used for advertising or analytics. Apple manages any synchronization you enable for Health."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tilgang til Apple Helse er valgfri og begrenset til kroppsvekt. Kvil leser oppføringene du velger å dele, og lagrer nye Kvil-oppføringer bare med tillatelse. Helsedata brukes ikke til reklame eller analyse. Apple administrerer synkronisering du slår på for Helse."
+          }
+        }
+      }
+    },
+    "privacyLocal": {
+      "comment": "Kvil interface: privacyLocal",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kvil can sync your planned eating times through your own iCloud account. Reflections and weights entered in Kvil stay on your device and are not included in Kvil’s iCloud data. The local store is excluded from automatic device backups. Use Export a backup for recovery."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kvil kan synkronisere planlagte spisetider via din egen iCloud-konto. Refleksjoner og vekter du legger inn i Kvil, blir på enheten og er ikke inkludert i Kvils iCloud-data. Det lokale lageret er utelatt fra automatiske enhetssikkerhetskopier. Bruk Eksporter en sikkerhetskopi for gjenoppretting."
+          }
+        }
+      }
+    },
+    "privacyPurchase": {
+      "comment": "Kvil user interface: privacyPurchase",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple processes the optional one-time purchase. Kvil checks Apple’s signed purchase information to unlock full history. No Kvil account, advertising identifier, third-party analytics, or tracking SDK is used."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple behandler det valgfrie engangskjøpet. Kvil sjekker Apples signerte kjøpsinformasjon for å låse opp full historikk. Kvil bruker ingen egen konto, reklameidentifikator, tredjepartsanalyse eller sporingsverktøy."
+          }
+        }
+      }
+    },
+    "privacyTitle": {
+      "comment": "Kvil user interface: privacyTitle",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A private place\nfor your rhythm."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Et privat sted\nfor rytmen din."
+          }
+        }
+      }
+    },
+    "purchaseAllHistory": {
+      "comment": "Kvil user interface: purchaseAllHistory",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Browse and edit every reflection"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Se og rediger alle refleksjoner"
+          }
+        }
+      }
+    },
+    "purchaseBody": {
+      "comment": "Kvil user interface: purchaseBody",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Keep your reflections within reach, and see how your days felt over a longer stretch of time."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ha refleksjonene innen rekkevidde, og se hvordan dagene føltes over en lengre periode."
+          }
+        }
+      }
+    },
+    "purchaseFreePromise": {
+      "comment": "Kvil user interface: purchaseFreePromise",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your timer, reminders, artwork, weight logging, Health, Watch, and widgets are always included for free."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tidtakeren, påminnelser, illustrasjoner, vektlogging, Helse, Watch og widgeter er alltid inkludert gratis."
+          }
+        }
+      }
+    },
+    "purchasePending": {
+      "comment": "Kvil user interface: purchasePending",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your purchase is awaiting approval. Your history will unlock once Apple confirms it."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kjøpet venter på godkjenning. Historikken låses opp når Apple bekrefter det."
+          }
+        }
+      }
+    },
+    "purchaseRecaps": {
+      "comment": "Kvil user interface: purchaseRecaps",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Monthly and long-term recaps"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Månedlige og langsiktige oppsummeringer"
+          }
+        }
+      }
+    },
+    "purchaseUnavailable": {
+      "comment": "Kvil user interface: purchaseUnavailable",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The purchase isn’t available right now. Your free features are ready to use."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kjøpet er ikke tilgjengelig akkurat nå. Gratisfunksjonene er klare til bruk."
+          }
+        }
+      }
+    },
+    "purchaseUnverified": {
+      "comment": "Kvil user interface: purchaseUnverified",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The purchase couldn’t be verified. Try restoring purchases."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kjøpet kunne ikke bekreftes. Prøv å gjenopprette kjøp."
+          }
+        }
+      }
+    },
+    "recapEmpty": {
+      "comment": "Kvil user interface: recapEmpty",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your reflections will gather here. There’s no need to fill every day."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Refleksjonene samles her. Du trenger ikke fylle ut hver dag."
+          }
+        }
+      }
+    },
+    "recapNote": {
+      "comment": "Kvil user interface: recapNote",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Based only on your check-ins, through yesterday. Unanswered days are left out."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Basert bare på innsjekkene dine til og med i går. Ubesvarte dager er ikke tatt med."
+          }
+        }
+      }
+    },
+    "recapRange": {
+      "comment": "Kvil user interface: recapRange",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Recap period"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Oppsummeringsperiode"
+          }
+        }
+      }
+    },
+    "recentDays": {
+      "comment": "Kvil user interface: recentDays",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your recent days"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dagene dine"
+          }
+        }
+      }
+    },
+    "recentWeightChart": {
+      "comment": "Kvil user interface: recentWeightChart",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Weight measurements from the last 30 days"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vektmålinger fra de siste 30 dagene"
+          }
+        }
+      }
+    },
+    "reflectionHelp": {
+      "comment": "Kvil user interface: reflectionHelp",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A small check-in, whenever it suits you."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En liten innsjekk, når det passer deg."
+          }
+        }
+      }
+    },
+    "reflectionsEmpty": {
+      "comment": "Kvil user interface: reflectionsEmpty",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "After your eating window closes, Home offers a small check-in. Come back when you feel like it."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Etter at spisevinduet lukker, finner du en liten innsjekk på Hjem. Kom tilbake når du har lyst."
+          }
+        }
+      }
+    },
+    "reflectionsLabel": {
+      "comment": "Kvil user interface: reflectionsLabel",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "check-ins"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "innsjekker"
+          }
+        }
+      }
+    },
+    "refresh": {
+      "comment": "Kvil user interface: refresh",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Refresh"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Oppdater"
+          }
+        }
+      }
+    },
+    "reminderCloseBody": {
+      "comment": "Kvil user interface: reminderCloseBody",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A quiet reminder of your schedule. Make room for what your day needs."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En rolig påminnelse om planen din. Gi rom for det dagen trenger."
+          }
+        }
+      }
+    },
+    "reminderCloseTitle": {
+      "comment": "Kvil user interface: reminderCloseTitle",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your planned window has closed"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Det planlagte spisevinduet har lukket"
+          }
+        }
+      }
+    },
+    "reminderFailure": {
+      "comment": "Kvil user interface: reminderFailure",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your schedule is saved, but reminders couldn’t be updated. Open Settings and try again."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Planen er lagret, men påminnelsene kunne ikke oppdateres. Åpne Innstillinger og prøv igjen."
+          }
+        }
+      }
+    },
+    "reminderHorizonHelp": {
+      "comment": "Kvil user interface: reminderHorizonHelp",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reminders are scheduled about four weeks ahead and renewed when Kvil runs. Open Kvil occasionally to keep them going. Focus and system settings control delivery."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Påminnelser planlegges omtrent fire uker frem og fornyes når Kvil kjører. Åpne Kvil av og til for å holde dem i gang. Fokus og systeminnstillinger styrer leveringen."
+          }
+        }
+      }
+    },
+    "reminderOpenBody": {
+      "comment": "Kvil user interface: reminderOpenBody",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "There’s room for your next meal. Adjust today’s plan whenever you need to."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Det er rom for neste måltid. Juster dagens plan når du trenger det."
+          }
+        }
+      }
+    },
+    "reminderOpenTitle": {
+      "comment": "Kvil user interface: reminderOpenTitle",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your eating window is open"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Spisevinduet er åpent"
+          }
+        }
+      }
+    },
+    "reminders": {
+      "comment": "Kvil user interface: reminders",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reminders"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Påminnelser"
+          }
+        }
+      }
+    },
+    "remindersDenied": {
+      "comment": "Kvil user interface: remindersDenied",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reminders are off in system settings. You can enable them there whenever you want."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Påminnelser er slått av i systeminnstillingene. Du kan slå dem på der når du vil."
+          }
+        }
+      }
+    },
+    "replace": {
+      "comment": "Kvil user interface: replace",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Replace"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Erstatt"
+          }
+        }
+      }
+    },
+    "replaceData": {
+      "comment": "Kvil user interface: replaceData",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Replace local data?"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Erstatte lokale data?"
+          }
+        }
+      }
+    },
+    "replaceDataBody": {
+      "comment": "Kvil user interface: replaceDataBody",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This replaces your schedule, reflections, and Kvil weight entries with the backup. Export your current data first if you want to keep it. Reminders and Health will be off until you enable them again."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dette erstatter planen, refleksjonene og vektoppføringene i Kvil med sikkerhetskopien. Eksporter nåværende data først hvis du vil beholde dem. Påminnelser og Helse er av til du slår dem på igjen."
+          }
+        }
+      }
+    },
+    "restored": {
+      "comment": "Kvil user interface: restored",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your full history purchase is restored."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kjøpet av full historikk er gjenopprettet."
+          }
+        }
+      }
+    },
+    "restoreFailed": {
+      "comment": "Kvil user interface: restoreFailed",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Purchases couldn’t be restored. Check your connection and try again."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kjøpene kunne ikke gjenopprettes. Sjekk tilkoblingen og prøv igjen."
+          }
+        }
+      }
+    },
+    "restorePurchases": {
+      "comment": "Kvil user interface: restorePurchases",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Restore purchases"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gjenopprett kjøp"
+          }
+        }
+      }
+    },
+    "retryHealth": {
+      "comment": "Kvil user interface: retryHealth",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Retry Health sync"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prøv Helse-synkronisering igjen"
+          }
+        }
+      }
+    },
+    "save": {
+      "comment": "Kvil user interface: save",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Save"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lagre"
+          }
+        }
+      }
+    },
+    "saveFailed": {
+      "comment": "Kvil user interface: saveFailed",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your change couldn’t be saved. Your previous data is still here. Try again."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Endringen kunne ikke lagres. De tidligere dataene er fortsatt her. Prøv igjen."
+          }
+        }
+      }
+    },
+    "saveToHealth": {
+      "comment": "Kvil user interface: saveToHealth",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Save new weights to Health"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lagre nye vektmålinger i Helse"
+          }
+        }
+      }
+    },
+    "schedule": {
+      "comment": "Kvil user interface: schedule",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schedule"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plan"
+          }
+        }
+      }
+    },
+    "scheduledThrough": {
+      "comment": "Kvil user interface: scheduledThrough",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Scheduled through"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Planlagt til og med"
+          }
+        }
+      }
+    },
+    "scheduleIntro": {
+      "comment": "Kvil user interface: scheduleIntro",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A usual week you can make your own. Change today whenever you need to."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En vanlig uke du kan gjøre til din egen. Endre dagen når du trenger det."
+          }
+        }
+      }
+    },
+    "scheduleNoTracking": {
+      "comment": "Kvil user interface: scheduleNoTracking",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "These are planned times. Kvil doesn’t assume when you eat or record completed fasts."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dette er planlagte tider. Kvil antar ikke når du spiser eller registrerer gjennomførte faster."
+          }
+        }
+      }
+    },
+    "scheduleUnavailable": {
+      "comment": "Kvil user interface: scheduleUnavailable",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your schedule needs a moment"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Planen trenger litt hjelp"
+          }
+        }
+      }
+    },
+    "scheduleUnavailableBody": {
+      "comment": "Kvil user interface: scheduleUnavailableBody",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open Schedule to review your eating windows."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Åpne Plan for å se gjennom spisevinduene dine."
+          }
+        }
+      }
+    },
+    "settings": {
+      "comment": "Kvil user interface: settings",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Settings"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Innstillinger"
+          }
+        }
+      }
+    },
+    "setupReminderHelp": {
+      "comment": "Kvil user interface: setupReminderHelp",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A reminder when your window opens and closes. Nothing to start or stop."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En påminnelse når spisevinduet åpner og lukker. Ingenting å starte eller stoppe."
+          }
+        }
+      }
+    },
+    "setupWindowHelp": {
+      "comment": "Kvil user interface: setupWindowHelp",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choose the times that suit your life. We’ll use them every day to begin with. You can change each weekday later."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Velg tider som passer livet ditt. Vi bruker dem hver dag til å begynne med. Du kan endre hver ukedag senere."
+          }
+        }
+      }
+    },
+    "showWeight": {
+      "comment": "Kvil user interface: showWeight",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show weight logging"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vis vektlogging"
+          }
+        }
+      }
+    },
+    "skipped": {
+      "comment": "Kvil user interface: skipped",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Skipped"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hoppet over"
+          }
+        }
+      }
+    },
+    "stopReadingHealth": {
+      "comment": "Kvil user interface: stopReadingHealth",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Disconnect Health in Kvil"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Koble fra Helse i Kvil"
+          }
+        }
+      }
+    },
+    "storageUnavailable": {
+      "comment": "Kvil user interface: storageUnavailable",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your data couldn’t be opened"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dataene kunne ikke åpnes"
+          }
+        }
+      }
+    },
+    "storageUnavailableBody": {
+      "comment": "Kvil user interface: storageUnavailableBody",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kvil hasn’t erased or replaced anything. Try again after unlocking your device, or contact support if this continues."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kvil har ikke slettet eller erstattet noe. Prøv igjen etter at du har låst opp enheten, eller kontakt brukerstøtte hvis det fortsetter."
+          }
+        }
+      }
+    },
+    "supportBody": {
+      "comment": "Kvil interface: supportBody",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Questions or feedback? Contact hjalmar@hkarlsen06.dev. Include your app version and describe what happened. You never need to send your weight or reflection history."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Spørsmål eller tilbakemeldinger? Kontakt hjalmar@hkarlsen06.dev. Ta med appversjonen og beskriv hva som skjedde. Du trenger aldri sende vekt- eller refleksjonshistorikken din."
+          }
+        }
+      }
+    },
+    "theBiggerPicture": {
+      "comment": "Kvil user interface: theBiggerPicture",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A little more\nperspective."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Litt mer\nperspektiv."
+          }
+        }
+      }
+    },
+    "today": {
+      "comment": "Kvil user interface: today",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Today"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I dag"
+          }
+        }
+      }
+    },
+    "todayEditorIntro": {
+      "comment": "Kvil user interface: todayEditorIntro",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Make today fit. Your usual week stays the same."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tilpass dagen. Den vanlige ukeplanen beholdes."
+          }
+        }
+      }
+    },
+    "tryAgain": {
+      "comment": "Kvil user interface: tryAgain",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Try again"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prøv igjen"
+          }
+        }
+      }
+    },
+    "unlockHistory": {
+      "comment": "Kvil user interface: unlockHistory",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unlock full history"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lås opp full historikk"
+          }
+        }
+      }
+    },
+    "untilEatingWindow": {
+      "comment": "Kvil user interface: untilEatingWindow",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Until your eating window"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Til spisevinduet åpner"
+          }
+        }
+      }
+    },
+    "useUsualSchedule": {
+      "comment": "Kvil user interface: useUsualSchedule",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Use usual schedule today"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bruk vanlig plan i dag"
+          }
+        }
+      }
+    },
+    "usualWeek": {
+      "comment": "Kvil user interface: usualWeek",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your usual week"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Din vanlige uke"
+          }
+        }
+      }
+    },
+    "version": {
+      "comment": "Kvil user interface: version",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Version"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Versjon"
+          }
+        }
+      }
+    },
+    "watchAndWidgets": {
+      "comment": "Kvil user interface: watchAndWidgets",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Watch & widgets"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Watch og widgeter"
+          }
+        }
+      }
+    },
+    "watchConnected": {
+      "comment": "Kvil user interface: watchConnected",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schedule connected to iPhone"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Planen er koblet til iPhone"
+          }
+        }
+      }
+    },
+    "watchHelp": {
+      "comment": "Kvil user interface: watchHelp",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Install Kvil through the Watch app on iPhone, then open both apps once. Your Watch keeps the latest schedule so its timer works without your phone. Later changes arrive when the devices reconnect. Add Kvil to your watch face or Smart Stack."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Installer Kvil via Watch-appen på iPhone, og åpne begge appene én gang. Klokken beholder den nyeste planen, slik at tidtakeren virker uten telefonen. Senere endringer kommer når enhetene kobles til igjen. Legg Kvil til på urskiven eller i Smart stabel."
+          }
+        }
+      }
+    },
+    "watchOffline": {
+      "comment": "Kvil user interface: watchOffline",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Using the last schedule from iPhone"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bruker siste plan fra iPhone"
+          }
+        }
+      }
+    },
+    "watchRefreshFailed": {
+      "comment": "Kvil user interface: watchRefreshFailed",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Couldn’t refresh. Open Kvil on iPhone and try again."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kunne ikke oppdatere. Åpne Kvil på iPhone og prøv igjen."
+          }
+        }
+      }
+    },
+    "week": {
+      "comment": "Kvil user interface: week",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Week"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uke"
+          }
+        }
+      }
+    },
+    "weekday": {
+      "comment": "Kvil user interface: weekday",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Weekday"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ukedag"
+          }
+        }
+      }
+    },
+    "weekEditorIntro": {
+      "comment": "Kvil user interface: weekEditorIntro",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choose a window for each weekday. Your changes begin tomorrow."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Velg et spisevindu for hver ukedag. Endringene gjelder fra i morgen."
+          }
+        }
+      }
+    },
+    "weekEffectiveTomorrow": {
+      "comment": "Kvil user interface: weekEffectiveTomorrow",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Changes to your usual week apply from tomorrow. Today stays as it is."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Endringer i ukeplanen gjelder fra i morgen. Dagen i dag beholdes som den er."
+          }
+        }
+      }
+    },
+    "weight": {
+      "comment": "Kvil user interface: weight",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Weight"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vekt"
+          }
+        }
+      }
+    },
+    "weightActions": {
+      "comment": "Kvil interface: weightActions",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Weight entry actions"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Handlinger for vektoppføring"
+          }
+        }
+      }
+    },
+    "weightAndHealth": {
+      "comment": "Kvil user interface: weightAndHealth",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Weight & Apple Health"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vekt og Apple Helse"
+          }
+        }
+      }
+    },
+    "weightIntro": {
+      "comment": "Kvil user interface: weightIntro",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Another way to notice change. No targets, judgments, or daily requirements."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En annen måte å legge merke til endring på. Ingen mål, vurderinger eller daglige krav."
+          }
+        }
+      }
+    },
+    "weightNoTarget": {
+      "comment": "Kvil user interface: weightNoTarget",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A measurement, simply as it is."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En måling, akkurat som den er."
+          }
+        }
+      }
+    },
+    "weightUnit": {
+      "comment": "Kvil user interface: weightUnit",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Weight unit"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vektenhet"
+          }
+        }
+      }
+    },
+    "widgetDescription": {
+      "comment": "Kvil user interface: widgetDescription",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A quiet view of your next eating window."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En rolig oversikt over neste spisevindu."
+          }
+        }
+      }
+    },
+    "widgetHelp": {
+      "comment": "Kvil user interface: widgetHelp",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Touch and hold your Home Screen, choose Edit, then Add Widget. Search for Kvil and choose a size. Tap the widget to open Home."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Trykk og hold på Hjem-skjermen, velg Rediger og deretter Legg til widget. Søk etter Kvil og velg en størrelse. Trykk på widgeten for å åpne Hjem."
+          }
+        }
+      }
+    },
+    "widgetSaveFailed": {
+      "comment": "Kvil user interface: widgetSaveFailed",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your schedule is saved. Widgets couldn’t update yet; open Kvil again to retry."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Planen er lagret. Widgetene kunne ikke oppdateres ennå. Åpne Kvil igjen for å prøve på nytt."
+          }
+        }
+      }
+    },
+    "willSaveToHealth": {
+      "comment": "Kvil user interface: willSaveToHealth",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Also saves to Apple Health"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lagres også i Apple Helse"
+          }
+        }
+      }
+    },
+    "windowCloses": {
+      "comment": "Kvil user interface: windowCloses",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Closes"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lukker"
+          }
+        }
+      }
+    },
+    "windowOpen": {
+      "comment": "Kvil user interface: windowOpen",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your window\nis open"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Spisevinduet\ner åpent"
+          }
+        }
+      }
+    },
+    "windowOpens": {
+      "comment": "Kvil user interface: windowOpens",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Opens"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Åpner"
+          }
+        }
+      }
+    },
+    "yourDailyWindow": {
+      "comment": "Kvil user interface: yourDailyWindow",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Make a little\nspace in your day."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lag litt\nrom i dagen."
+          }
+        }
+      }
+    },
+    "yourData": {
+      "comment": "Kvil user interface: yourData",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your data"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dine data"
+          }
+        }
+      }
+    },
+    "yourEatingRhythm": {
+      "comment": "Kvil user interface: yourEatingRhythm",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your eating rhythm"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Din spiserytme"
+          }
+        }
+      }
+    },
+    "yourReflections": {
+      "comment": "Kvil user interface: yourReflections",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your reflections"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Refleksjonene dine"
+          }
+        }
+      }
+    },
+    "yoursToKeep": {
+      "comment": "Kvil user interface: yoursToKeep",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unlocked. Thank you for supporting Kvil."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Låst opp. Takk for at du støtter Kvil."
+          }
+        }
+      }
+    },
+    "yourWindow": {
+      "comment": "Kvil user interface: yourWindow",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "YOUR WINDOW"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "DITT SPISEVINDU"
+          }
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}

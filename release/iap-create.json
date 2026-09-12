@@ -1,0 +1,20 @@
+{
+  "data": {
+    "type": "inAppPurchases",
+    "attributes": {
+      "name": "Kvil Full History",
+      "productId": "dev.hkarlsen06.kvil.history",
+      "inAppPurchaseType": "NON_CONSUMABLE",
+      "familySharable": false,
+      "reviewNote": "Home > History > Explore full history. One purchase unlocks reflections older than 7 days and longer recaps. Core timer, reminders, artwork, Apple Health, weight, Watch and widgets remain free. Restore Purchases is available in Settings and on the purchase screen."
+    },
+    "relationships": {
+      "app": {
+        "data": {
+          "type": "apps",
+          "id": "6811427716"
+        }
+      }
+    }
+  }
+}

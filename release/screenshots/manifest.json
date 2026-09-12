@@ -1,0 +1,72 @@
+[
+  {
+    "path": "release/screenshots/en-US/01-home.png",
+    "width": 1320,
+    "height": 2868,
+    "sha256": "542532224811698ded57227b74899f912c2d3c11a4bfbd2f4a1ff9f1ac6a7943",
+    "source": "native simulator capture; fictional schedule/reflections"
+  },
+  {
+    "path": "release/screenshots/en-US/02-schedule.png",
+    "width": 1320,
+    "height": 2868,
+    "sha256": "4af6a5eb61ee491dcb105c0128cfc799fb46f0c40c3325ed133825f90a4e552e",
+    "source": "native simulator capture; fictional schedule/reflections"
+  },
+  {
+    "path": "release/screenshots/en-US/03-history.png",
+    "width": 1320,
+    "height": 2868,
+    "sha256": "055ee823869d9e803f2206380d34292c0dab622dded7272d5bf311b6a99a266e",
+    "source": "native simulator capture; fictional schedule/reflections"
+  },
+  {
+    "path": "release/screenshots/en-US/04-welcome.png",
+    "width": 1320,
+    "height": 2868,
+    "sha256": "bf79cb8307312ed44174b6673114aa4b294cabe1d6f9e60a148eb7754e068803",
+    "source": "native simulator capture; fictional schedule/reflections"
+  },
+  {
+    "path": "release/screenshots/en-US/watch/01-timer.png",
+    "width": 410,
+    "height": 502,
+    "sha256": "b8bebf25de1a356b706fd548e701f455f8f4a43182d0f43a7077a4a5304bee43",
+    "source": "native simulator capture; fictional schedule/reflections"
+  },
+  {
+    "path": "release/screenshots/no/01-home.png",
+    "width": 1320,
+    "height": 2868,
+    "sha256": "3e0daabb86030c449e36c96eb2950600d827b591484ccd52b22d6385cd2dc0d3",
+    "source": "native simulator capture; fictional schedule/reflections"
+  },
+  {
+    "path": "release/screenshots/no/02-schedule.png",
+    "width": 1320,
+    "height": 2868,
+    "sha256": "ab399954b2f229d02c7ed76e0a229a9fafd2360a6d3aad5c21a16a2c36fcd98b",
+    "source": "native simulator capture; fictional schedule/reflections"
+  },
+  {
+    "path": "release/screenshots/no/03-history.png",
+    "width": 1320,
+    "height": 2868,
+    "sha256": "da51a1c061feaf7dcca424143fcb5bc6f9eed080c562704c9388c769f0f10e61",
+    "source": "native simulator capture; fictional schedule/reflections"
+  },
+  {
+    "path": "release/screenshots/no/watch/01-timer.png",
+    "width": 410,
+    "height": 502,
+    "sha256": "c761e0bf7213c21f8f52be96304aa4005871c88659379b2b6113fc10947db49e",
+    "source": "native simulator capture; fictional schedule/reflections"
+  },
+  {
+    "path": "release/screenshots/review/purchase.png",
+    "width": 1320,
+    "height": 2868,
+    "sha256": "994a7c15af5000fe44702f6205fe1109e4891150f19417b30eea8f0ece14d7e5",
+    "source": "native simulator capture; fictional schedule/reflections"
+  }
+]

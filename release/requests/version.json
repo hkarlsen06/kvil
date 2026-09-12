@@ -1,0 +1,11 @@
+{
+  "data": {
+    "type": "appStoreVersions",
+    "id": "ff9a978c-ce76-410f-8e2e-439fbbda7446",
+    "attributes": {
+      "versionString": "1.0.0",
+      "copyright": "2026 Hjalmar Karlsen",
+      "releaseType": "MANUAL"
+    }
+  }
+}

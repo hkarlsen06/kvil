@@ -1,0 +1,3522 @@
+{
+  "data": {
+    "type": "appAvailabilities",
+    "attributes": {
+      "availableInNewTerritories": true
+    },
+    "relationships": {
+      "app": {
+        "data": {
+          "type": "apps",
+          "id": "6811427716"
+        }
+      },
+      "territoryAvailabilities": {
+        "data": [
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-AFG}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-AGO}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-AIA}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-ALB}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-ARE}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-ARG}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-ARM}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-ATG}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-AUS}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-AUT}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-AZE}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-BEL}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-BEN}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-BFA}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-BGR}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-BHR}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-BHS}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-BIH}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-BLR}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-BLZ}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-BMU}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-BOL}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-BRA}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-BRB}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-BRN}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-BTN}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-BWA}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-CAN}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-CHE}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-CHL}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-CHN}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-CIV}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-CMR}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-COD}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-COG}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-COL}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-CPV}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-CRI}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-CYM}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-CYP}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-CZE}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-DEU}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-DMA}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-DNK}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-DOM}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-DZA}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-ECU}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-EGY}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-ESP}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-EST}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-FIN}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-FJI}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-FRA}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-FSM}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-GAB}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-GBR}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-GEO}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-GHA}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-GMB}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-GNB}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-GRC}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-GRD}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-GTM}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-GUY}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-HKG}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-HND}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-HRV}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-HUN}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-IDN}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-IND}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-IRL}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-IRQ}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-ISL}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-ISR}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-ITA}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-JAM}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-JOR}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-JPN}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-KAZ}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-KEN}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-KGZ}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-KHM}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-KNA}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-KOR}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-KWT}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-LAO}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-LBN}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-LBR}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-LBY}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-LCA}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-LKA}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-LTU}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-LUX}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-LVA}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-MAC}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-MAR}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-MDA}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-MDG}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-MDV}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-MEX}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-MKD}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-MLI}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-MLT}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-MMR}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-MNE}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-MNG}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-MOZ}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-MRT}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-MSR}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-MUS}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-MWI}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-MYS}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-NAM}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-NER}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-NGA}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-NIC}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-NLD}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-NOR}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-NPL}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-NRU}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-NZL}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-OMN}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-PAK}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-PAN}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-PER}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-PHL}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-PLW}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-PNG}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-POL}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-PRT}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-PRY}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-QAT}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-ROU}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-RUS}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-RWA}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-SAU}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-SEN}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-SGP}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-SLB}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-SLE}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-SLV}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-SRB}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-STP}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-SUR}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-SVK}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-SVN}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-SWE}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-SWZ}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-SYC}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-TCA}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-TCD}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-THA}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-TJK}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-TKM}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-TON}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-TTO}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-TUN}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-TUR}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-TWN}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-TZA}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-UGA}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-UKR}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-URY}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-USA}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-UZB}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-VCT}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-VEN}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-VGB}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-VNM}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-VUT}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-XKS}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-YEM}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-ZAF}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-ZMB}"
+          },
+          {
+            "type": "territoryAvailabilities",
+            "id": "${kvil-ZWE}"
+          }
+        ]
+      }
+    }
+  },
+  "included": [
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-AFG}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "AFG"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-AGO}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "AGO"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-AIA}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "AIA"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-ALB}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "ALB"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-ARE}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "ARE"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-ARG}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "ARG"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-ARM}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "ARM"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-ATG}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "ATG"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-AUS}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "AUS"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-AUT}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "AUT"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-AZE}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "AZE"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-BEL}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "BEL"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-BEN}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "BEN"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-BFA}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "BFA"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-BGR}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "BGR"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-BHR}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "BHR"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-BHS}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "BHS"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-BIH}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "BIH"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-BLR}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "BLR"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-BLZ}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "BLZ"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-BMU}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "BMU"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-BOL}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "BOL"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-BRA}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "BRA"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-BRB}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "BRB"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-BRN}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "BRN"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-BTN}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "BTN"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-BWA}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "BWA"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-CAN}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "CAN"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-CHE}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "CHE"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-CHL}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "CHL"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-CHN}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "CHN"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-CIV}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "CIV"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-CMR}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "CMR"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-COD}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "COD"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-COG}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "COG"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-COL}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "COL"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-CPV}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "CPV"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-CRI}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "CRI"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-CYM}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "CYM"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-CYP}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "CYP"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-CZE}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "CZE"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-DEU}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "DEU"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-DMA}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "DMA"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-DNK}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "DNK"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-DOM}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "DOM"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-DZA}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "DZA"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-ECU}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "ECU"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-EGY}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "EGY"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-ESP}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "ESP"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-EST}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "EST"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-FIN}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "FIN"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-FJI}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "FJI"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-FRA}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "FRA"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-FSM}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "FSM"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-GAB}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "GAB"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-GBR}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "GBR"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-GEO}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "GEO"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-GHA}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "GHA"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-GMB}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "GMB"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-GNB}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "GNB"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-GRC}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "GRC"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-GRD}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "GRD"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-GTM}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "GTM"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-GUY}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "GUY"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-HKG}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "HKG"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-HND}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "HND"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-HRV}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "HRV"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-HUN}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "HUN"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-IDN}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "IDN"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-IND}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "IND"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-IRL}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "IRL"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-IRQ}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "IRQ"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-ISL}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "ISL"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-ISR}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "ISR"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-ITA}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "ITA"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-JAM}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "JAM"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-JOR}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "JOR"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-JPN}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "JPN"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-KAZ}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "KAZ"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-KEN}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "KEN"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-KGZ}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "KGZ"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-KHM}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "KHM"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-KNA}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "KNA"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-KOR}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "KOR"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-KWT}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "KWT"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-LAO}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "LAO"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-LBN}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "LBN"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-LBR}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "LBR"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-LBY}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "LBY"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-LCA}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "LCA"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-LKA}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "LKA"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-LTU}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "LTU"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-LUX}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "LUX"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-LVA}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "LVA"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-MAC}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "MAC"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-MAR}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "MAR"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-MDA}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "MDA"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-MDG}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "MDG"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-MDV}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "MDV"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-MEX}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "MEX"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-MKD}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "MKD"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-MLI}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "MLI"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-MLT}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "MLT"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-MMR}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "MMR"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-MNE}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "MNE"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-MNG}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "MNG"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-MOZ}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "MOZ"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-MRT}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "MRT"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-MSR}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "MSR"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-MUS}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "MUS"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-MWI}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "MWI"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-MYS}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "MYS"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-NAM}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "NAM"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-NER}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "NER"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-NGA}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "NGA"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-NIC}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "NIC"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-NLD}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "NLD"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-NOR}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "NOR"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-NPL}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "NPL"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-NRU}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "NRU"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-NZL}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "NZL"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-OMN}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "OMN"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-PAK}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "PAK"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-PAN}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "PAN"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-PER}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "PER"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-PHL}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "PHL"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-PLW}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "PLW"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-PNG}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "PNG"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-POL}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "POL"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-PRT}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "PRT"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-PRY}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "PRY"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-QAT}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "QAT"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-ROU}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "ROU"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-RUS}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "RUS"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-RWA}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "RWA"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-SAU}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "SAU"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-SEN}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "SEN"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-SGP}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "SGP"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-SLB}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "SLB"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-SLE}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "SLE"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-SLV}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "SLV"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-SRB}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "SRB"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-STP}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "STP"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-SUR}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "SUR"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-SVK}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "SVK"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-SVN}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "SVN"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-SWE}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "SWE"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-SWZ}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "SWZ"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-SYC}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "SYC"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-TCA}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "TCA"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-TCD}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "TCD"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-THA}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "THA"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-TJK}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "TJK"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-TKM}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "TKM"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-TON}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "TON"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-TTO}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "TTO"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-TUN}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "TUN"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-TUR}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "TUR"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-TWN}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "TWN"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-TZA}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "TZA"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-UGA}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "UGA"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-UKR}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "UKR"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-URY}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "URY"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-USA}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "USA"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-UZB}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "UZB"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-VCT}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "VCT"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-VEN}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "VEN"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-VGB}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "VGB"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-VNM}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "VNM"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-VUT}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "VUT"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-XKS}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "XKS"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-YEM}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "YEM"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-ZAF}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "ZAF"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-ZMB}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "ZMB"
+          }
+        }
+      }
+    },
+    {
+      "type": "territoryAvailabilities",
+      "id": "${kvil-ZWE}",
+      "attributes": {
+        "available": true,
+        "preOrderEnabled": false
+      },
+      "relationships": {
+        "territory": {
+          "data": {
+            "type": "territories",
+            "id": "ZWE"
+          }
+        }
+      }
+    }
+  ]
+}

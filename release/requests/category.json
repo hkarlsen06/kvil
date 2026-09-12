@@ -1,0 +1,14 @@
+{
+  "data": {
+    "type": "appInfos",
+    "id": "b0d83f83-3d66-4063-a0ed-6ba321573975",
+    "relationships": {
+      "primaryCategory": {
+        "data": {
+          "type": "appCategories",
+          "id": "HEALTH_AND_FITNESS"
+        }
+      }
+    }
+  }
+}

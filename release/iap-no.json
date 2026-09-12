@@ -1,0 +1,18 @@
+{
+  "data": {
+    "type": "inAppPurchaseLocalizations",
+    "attributes": {
+      "locale": "no",
+      "name": "Full historikk",
+      "description": "Alle refleksjoner og lengre oppsummeringer. Ett kjøp."
+    },
+    "relationships": {
+      "inAppPurchaseV2": {
+        "data": {
+          "type": "inAppPurchases",
+          "id": "6811446026"
+        }
+      }
+    }
+  }
+}
