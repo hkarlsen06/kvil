@@ -1,6 +1,6 @@
 # Kvil release candidate
 
-Checked 13 September 2026. Version 1.0.0, archive build 2446.23.21, Xcode 27 RC (27A266a). This is a prepared release candidate, not a submitted or approved App Store release.
+Checked 13 September 2026. Version 1.0.0, archive build 2446.23.21, Xcode 27 RC (27A266a). The App Store version and Full History purchase are in one READY_FOR_REVIEW draft. This is a prepared release candidate, not a submitted or approved App Store release.
 
 ## Completed
 
@@ -12,23 +12,22 @@ Checked 13 September 2026. Version 1.0.0, archive build 2446.23.21, Xcode 27 RC 
 - The latest development-signed Release build installed on the developer iPhone; an earlier RC build launched successfully. Installation, launch, and actual Health/Watch behavior are separate checks. The latest remote launch was refused because the phone is locked; no unlock was attempted.
 - App Store Connect contains the English/Norwegian draft copy, Health & Fitness category, adult age rating, free app price, and a US $3.99 non-consumable purchase with localized descriptions. Availability is configured in 175 territories. Version release is manual.
 - The user's App Review contact is saved, with sign-in disabled and review notes saved/read back. The phone number is intentionally absent from the repository. `review-detail-verified.json` records presence only.
-- All ten native screenshots are uploaded and processed as COMPLETE, with matching Apple checksums: seven iPhone screenshots, two Watch screenshots, and the purchase review image. `apple-media-verified.json` records delivery proof. Full History is READY_TO_SUBMIT.
+- All ten native screenshots are uploaded and processed as COMPLETE, with matching Apple checksums: seven iPhone screenshots, two Watch screenshots, and the purchase review image. `apple-media-verified.json` records delivery proof. Full History is included in the version’s review draft.
 - Kvil is live at https://hkarlsen06.dev/kvil/ with separate support and privacy pages. Both English and Norwegian portfolio listings include Kvil. Production build and TypeScript checks pass; desktop and small-phone layouts were visually inspected. Live routes/assets and the preserved Tidex artwork were verified in `website-verified.json`. The authored pages contain no scripts; the existing host adds Cloudflare email protection.
 - Apple accepted build 2446.23.21, finished processing it as VALID, and reports READY_FOR_BETA_TESTING for internal TestFlight. The build is attached to version 1.0.0. English/Norwegian beta metadata is saved. `apple-upload-verified.json` verifies the build and both locales’ marketing, support, and privacy URLs. No testers were invited.
 - Source and release materials are pushed to the private GitHub repository https://github.com/hkarlsen06/kvil. Website changes are committed and pushed separately to hkarlsen06/hkarlsen06.dev.
 - Content rights is saved as DOES_NOT_USE_THIRD_PARTY_CONTENT. App Information confirms Kvil is not a regulated medical device in any country or region.
-- The App Privacy questionnaire has a saved “Data Not Collected” draft. Publishing opens Apple’s agreement about accuracy, legal compliance, and future updates; the final confirmation is pending.
+- The user accepted Apple’s privacy declaration and published “Data Not Collected”. App Store Connect publication was verified on 13 September 2026.
+- Apple’s listing validation passes. Draft `a4c0f5cf-b652-42b2-b2d1-adb9a35dc0a1` contains iOS 1.0.0 (2446.23.21) and Kvil Full History, both READY_FOR_REVIEW. The UI displays “Items Ready to Submit (2)”; the API reports a null submittedDate. `apple-review-draft-verified.json` records the readback.
 
 ## Remaining before App Review
 
 | Check | Current state and next action |
 | --- | --- |
-| First purchase in the review draft | Build and media upload are complete. Add Full History and version 1.0.0 to the same App Review draft after the remaining listing confirmation. Current App Store Connect uses Add for Review on the purchase page. |
 | Live StoreKit product | Local StoreKit tests pass. Check product loading, purchase, and restore from the processed TestFlight build using Apple's sandbox. |
 | Lock Screen widgets and Watch complications | Implemented and compiled; actual accessory-host layouts remain unverified. Device Hub repeatedly timed out through computer controls, including after reopening it. Add each supported family through the system UI when Device Hub responds or on hardware. |
 | Device transport | Verify a schedule edit reaches the paired Watch and a second signed-in iPhone; then check the Watch timer with the phone unavailable. Simulator fixture persistence does not prove this. |
 | Health and reminders on hardware | Verify permission denial, optional body-weight read/write with an intentional test entry, and opening/closing notification delivery. Mock reconciliation and simulator UI tests do not replace these checks. |
-| App Privacy and final listing | The reviewed answers await the user’s confirmation of Apple’s publishing declaration. Public URLs, build, and screenshot delivery are verified. No App Review submission or public App Store release has occurred. |
 
 Only planned schedule preferences sync through iCloud. Reflection and weight records are excluded. Apple has not issued an app-specific determination about whether these planned times fall under its health-data iCloud restriction; review notes describe the payload explicitly.
 

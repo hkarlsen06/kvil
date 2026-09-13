@@ -75,7 +75,8 @@
   },
   "privacyResponses": {
     "value": "Data Not Collected",
-    "published": false,
-    "reason": "Apple publishing agreement awaits user confirmation"
+    "published": true,
+    "verification": "App Store Connect displays Published a few seconds ago by Hjalmar Karlsen; publication completed by the user",
+    "verifiedAt": "2026-09-13T00:08:15.731076+00:00"
   }
 }

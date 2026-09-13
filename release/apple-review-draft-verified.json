@@ -1,0 +1,89 @@
+{
+  "verifiedAt": "2026-09-13 00:09:56 UTC",
+  "appVersion": {
+    "id": "ff9a978c-ce76-410f-8e2e-439fbbda7446",
+    "type": "appStoreVersions",
+    "attributes": {
+      "platform": "IOS",
+      "versionString": "1.0.0",
+      "appStoreState": "READY_FOR_REVIEW",
+      "appVersionState": "READY_FOR_REVIEW",
+      "copyright": "2026 Hjalmar Karlsen",
+      "reviewType": "APP_STORE",
+      "releaseType": "MANUAL",
+      "earliestReleaseDate": null,
+      "usesIdfa": null,
+      "downloadable": true,
+      "createdDate": "2026-09-12T13:24:30-07:00"
+    }
+  },
+  "purchase": {
+    "id": "6811446026",
+    "type": "inAppPurchases",
+    "attributes": {
+      "name": "Kvil Full History",
+      "productId": "dev.hkarlsen06.kvil.history",
+      "inAppPurchaseType": "NON_CONSUMABLE",
+      "state": "READY_TO_SUBMIT",
+      "reviewNote": "Home > History > Explore full history. One purchase unlocks reflections older than 7 days and longer recaps. Core timer, reminders, artwork, Apple Health, weight, Watch and widgets remain free. Restore Purchases is available in Settings and on the purchase screen.",
+      "familySharable": false,
+      "contentHosting": false
+    }
+  },
+  "drafts": [
+    {
+      "submission": {
+        "type": "reviewSubmissions",
+        "id": "a4c0f5cf-b652-42b2-b2d1-adb9a35dc0a1",
+        "attributes": {
+          "platform": "IOS",
+          "submittedDate": null,
+          "state": "READY_FOR_REVIEW"
+        },
+        "relationships": {
+          "items": {
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v1/reviewSubmissions/a4c0f5cf-b652-42b2-b2d1-adb9a35dc0a1/relationships/items",
+              "related": "https://api.appstoreconnect.apple.com/v1/reviewSubmissions/a4c0f5cf-b652-42b2-b2d1-adb9a35dc0a1/items"
+            }
+          }
+        },
+        "links": {
+          "self": "https://api.appstoreconnect.apple.com/v1/reviewSubmissions/a4c0f5cf-b652-42b2-b2d1-adb9a35dc0a1"
+        }
+      },
+      "items": [
+        {
+          "type": "reviewSubmissionItems",
+          "id": "YTRjMGY1Y2YtYjY1Mi00MmIyLWIyZDEtYWRiOWEzNWRjMGExfDZ8ODkxMjY2NTcy",
+          "attributes": {
+            "state": "READY_FOR_REVIEW"
+          },
+          "links": {
+            "self": "https://api.appstoreconnect.apple.com/v1/reviewSubmissionItems/YTRjMGY1Y2YtYjY1Mi00MmIyLWIyZDEtYWRiOWEzNWRjMGExfDZ8ODkxMjY2NTcy"
+          }
+        },
+        {
+          "type": "reviewSubmissionItems",
+          "id": "YTRjMGY1Y2YtYjY1Mi00MmIyLWIyZDEtYWRiOWEzNWRjMGExfDE3fGQ5ZGQ5NzdkLWQ5YTQtNGE1OS1iODE4LWQxYzdjYjliZGZmYw",
+          "attributes": {
+            "state": "READY_FOR_REVIEW"
+          },
+          "links": {
+            "self": "https://api.appstoreconnect.apple.com/v1/reviewSubmissionItems/YTRjMGY1Y2YtYjY1Mi00MmIyLWIyZDEtYWRiOWEzNWRjMGExfDE3fGQ5ZGQ5NzdkLWQ5YTQtNGE1OS1iODE4LWQxYzdjYjliZGZmYw"
+          }
+        }
+      ]
+    }
+  ],
+  "submittedForReview": false,
+  "uiVerification": {
+    "heading": "Items Ready to Submit (2)",
+    "items": [
+      "iOS App 1.0.0 (2446.23.21)",
+      "Kvil Full History"
+    ],
+    "submitForReviewButtonEnabled": true,
+    "submitForReviewClicked": false
+  }
+}
