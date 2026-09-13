@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160" viewBox="112 74 800 800" role="img" aria-labelledby="title description">
+  <title id="title">Kvil</title>
+  <desc id="description">An open ivory circle shelters two sage hills and a small sun against a forest-green sky.</desc>
+  <defs>
+    <radialGradient id="forest" cx="50%" cy="44%" r="76%">
+      <stop offset="0" stop-color="#244F43" />
+      <stop offset="1" stop-color="#1D443A" />
+    </radialGradient>
+    <linearGradient id="distant-sage" x1="536" y1="526" x2="758" y2="666" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#A9BB9B" />
+      <stop offset="1" stop-color="#9DB394" />
+    </linearGradient>
+    <linearGradient id="near-sage" x1="304" y1="539" x2="644" y2="774" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#8CA67D" />
+      <stop offset="1" stop-color="#8BA47D" />
+    </linearGradient>
+  </defs>
+  <g id="mark">
+    <g id="open-circle" fill="none" stroke="#F1F0E4" stroke-width="31" stroke-linecap="round">
+      <path d="M 309.522 744.945 A 319 319 0 1 1 714.478 744.945" />
+    </g>
+    <g id="sun" fill="#F1F0E4">
+      <circle cx="612" cy="409" r="50" />
+    </g>
+    <g id="distant-hill" fill="url(#distant-sage)">
+      <path d="M 535 550 C 621 504 699 507 786 570 Q 791 573 789 580 C 782 615 765 650 748 665 Q 744 670 737 669 C 685 663 620 615 574 585 C 559 575 546 565 535 559 Q 528 554 535 550 Z" />
+    </g>
+    <g id="near-hill" fill="url(#near-sage)">
+      <path d="M 245 592 C 289 552 344 526 392 526 C 502 526 588 630 660 663 C 687 676 708 683 724 686 Q 734 688 727 696 C 669 751 590 770 509 770 C 389 770 289 715 243 606 Q 239 598 245 592 Z" />
+    </g>
+  </g>
+</svg>

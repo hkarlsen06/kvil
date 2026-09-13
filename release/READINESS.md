@@ -1,10 +1,21 @@
-# Kvil release candidate
+# Kvil release readiness
 
-Checked 13 September 2026. Version 1.0.0, archive build 2446.23.21, Xcode 27 RC (27A266a). The App Store version and Full History purchase are in one READY_FOR_REVIEW draft. This is a prepared release candidate, not a submitted or approved App Store release.
+Updated 13 September 2026. The current working tree and live website include visual changes made after the last Apple upload. This is not a submitted or approved App Store release.
 
-## Completed
+## Current visual revision
 
-- The native iPhone app, Watch companion, widgets, original landscape art, English/Norwegian localization, optional weight and Health integration, schedule-only iCloud integration, local-history recovery, and non-consumable purchase flow are implemented. Product and architecture decisions are in `MVP_PLAN.md`.
+- The app's shared Landscape asset and all website landscape placements now use Kayvan Mazhar's licensed Rice Lake photograph. The old day/night landscape files are removed. Home, onboarding, the History empty state, Settings About, purchase artwork, and the medium Home Screen widget share the native asset. Both appearances use the same photograph with existing semantic fades.
+- Three focused UI tests passed: release captures, open-window/Norwegian layouts, and Home accessibility. Home, onboarding, and purchase captures were visually inspected; Home and onboarding also passed visual inspection on the smaller phone in dark mode. Existing StoreKitTest deprecation and XCTest actor-isolation warnings remain. The medium widget's new image is compiled through the shared asset but was not recaptured in its system host.
+- Seven iPhone screenshots and the purchase review capture are refreshed locally. The Watch screenshots are unchanged. `screenshots/manifest.json` records the current files; `photography-verified.json` records this revision's checks and live website deployment.
+- The website is published from the complete portfolio export, including the updated phone image, social preview, bilingual project copy, and photographer credits. Content-hashed stylesheet and phone-image URLs refresh browser caches.
+- The recent source changes are uncommitted. They are not included in archive build 2446.23.21 or its Apple screenshots. Before App Review, archive the final working tree, upload and attach the new build, replace the eight updated Apple images, and apply the current English/Norwegian listing and review-note payloads.
+- The photo is third-party content used under the Unsplash License. `requests/content-rights.json` prepares `USES_THIRD_PARTY_CONTENT` for the next candidate. The older Apple checkpoint still records `DOES_NOT_USE_THIRD_PARTY_CONTENT`; update and read back that declaration with the new candidate. The source and license are documented in `../design/photography/README.md`.
+
+## Apple checkpoint before the visual revision
+
+Version 1.0.0, archive build 2446.23.21, Xcode 27 RC (27A266a). At the checkpoint, the App Store version and Full History purchase were in one READY_FOR_REVIEW draft. The records below describe that earlier build and upload, not the current working tree or screenshot manifest.
+
+- The native iPhone app, Watch companion, widgets, original landscape art, English/Norwegian localization, optional weight and Health integration, schedule-only iCloud integration, local-history recovery, and non-consumable purchase flow were implemented. Product and architecture decisions are in `MVP_PLAN.md`.
 - The complete Xcode 27 RC run passed 36 tests. The small iPhone run passed 35, then the remaining reflection flow passed after correcting an offscreen tap in the test. The final bilingual screenshot/purchase flows and the accessibility audit after localization cleanup passed separately. All 191 English/Norwegian strings validate. `test-results.json` retains the exact result references and distinguishes the failed run from its successful focused rerun.
 - Schedule boundary/DST/overnight calculations, invalid imports, transactional persistence, cloud merges and resets, Health retry/deletion reconciliation, StoreKit pending approval/refund/restoration, optional weight, and accessibility layouts have focused coverage. StoreKit and Health reconciliation tests use controlled local fixtures, not a live purchase or the user's Health data.
 - The small and large iPhone layouts and a 42-mm Watch layout were visually inspected. Small and medium Home Screen widgets rendered through Xcode's system widget host with a persisted sample schedule. The Watch timer continued from its local sample snapshot after restart without a paired phone. This does not prove WatchConnectivity delivery.
@@ -24,6 +35,7 @@ Checked 13 September 2026. Version 1.0.0, archive build 2446.23.21, Xcode 27 RC 
 
 | Check | Current state and next action |
 | --- | --- |
+| Current visual revision | Create and validate a new archive, replace the previous Apple build and eight images, and update the listing, review notes, and third-party content declaration. The local screenshot manifest and metadata now describe the new photograph. |
 | Live StoreKit product | Local StoreKit tests pass. Check product loading, purchase, and restore from the processed TestFlight build using Apple's sandbox. |
 | Lock Screen widgets and Watch complications | Implemented and compiled; actual accessory-host layouts remain unverified. Device Hub repeatedly timed out through computer controls, including after reopening it. Add each supported family through the system UI when Device Hub responds or on hardware. |
 | Device transport | Verify a schedule edit reaches the paired Watch and a second signed-in iPhone; then check the Watch timer with the phone unavailable. Simulator fixture persistence does not prove this. |
@@ -43,4 +55,4 @@ Only planned schedule preferences sync through iCloud. Reflection and weight rec
 
 The protected local database is excluded from automatic backup; Settings provides free export/import. Verify a backup round trip before using real history as the only copy.
 
-Archive and initial store-draft JSON files are historical checkpoints. Current network upload and website state are recorded in the newer `apple-upload-verified.json`, `apple-media-verified.json`, and `website-verified.json` files.
+Archive, Apple upload, store-draft, and Apple media JSON files are historical checkpoints for build 2446.23.21 and its earlier screenshots. The current website and local photo revision are recorded in `photography-verified.json`; no new Apple upload is claimed by that file.

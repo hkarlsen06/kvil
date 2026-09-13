@@ -29,5 +29,12 @@
 	<array>
 		<string>fetch</string>
 	</array>
+	<key>UILaunchScreen</key>
+	<dict>
+		<key>UIColorName</key>
+		<string>Canvas</string>
+		<key>UIImageName</key>
+		<string>KvilLaunchLogo</string>
+	</dict>
 </dict>
 </plist>

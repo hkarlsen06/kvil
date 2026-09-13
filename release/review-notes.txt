@@ -13,3 +13,5 @@ The local SwiftData store does not use CloudKit. Only planned schedule preferenc
 The Watch receives the current schedule through WatchConnectivity and keeps calculating when the phone is unavailable. Open Kvil on the phone after setup, then open the Watch app. The phone owns notification delivery. Home and Lock Screen widgets open Kvil when tapped.
 
 English and Norwegian Bokmål are included. The iPhone follows system light/dark appearance. The Watch uses a dark palette. Kvil has no advertising, third-party analytics, or tracking SDKs.
+
+Landscape photography is by Kayvan Mazhar, used under the Unsplash License: https://unsplash.com/photos/a-body-of-water-surrounded-by-a-forest-UyPumfejEMI . License: https://unsplash.com/license .

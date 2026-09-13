@@ -18,7 +18,7 @@ Kvil helps adults keep a flexible eating rhythm without turning their day into a
 
 ## Design
 
-Warm ivory, muted green, generous space, serif headings, and quiet native controls. Painted Nordic landscapes appear on Home, onboarding, history, and the purchase screen. iPhone follows system appearance with corresponding night artwork. The Watch uses the night palette so its timer sits clearly with the native Watch clock.
+Warm ivory, muted green, generous space, serif headings, and quiet native controls. Licensed Rice Lake photography appears on Home, onboarding, history, settings, the purchase screen, and illustrated widgets. iPhone follows system appearance; the same photograph blends into the corresponding canvas. The Watch uses the night palette so its timer sits clearly with the native Watch clock.
 
 Home, Schedule, and History are the three tabs. Settings is a consistent trailing toolbar action. Weight stays inside History and can be hidden. There is no weight-loss imagery or progress pressure. Dynamic Type uses vertical layouts where needed and preserves readable text instead of squeezing it into the decorative timer arc.
 

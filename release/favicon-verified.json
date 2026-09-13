@@ -1,0 +1,121 @@
+{
+  "checkedAt": "2026-09-13T00:45:01.858242+00:00",
+  "deployment": "https://ed444812.hkarlsen06-dev.pages.dev",
+  "portfolioBaseCommit": "c72a63196b5990f51323488aa4a196012204c41d",
+  "portfolioWorkingTreeChangesDeployed": true,
+  "pages": [
+    {
+      "url": "https://hkarlsen06.dev/kvil/",
+      "iconLinks": [
+        {
+          "rel": "icon",
+          "type": "image/png",
+          "sizes": "32x32",
+          "href": "/kvil/assets/favicon-32.png"
+        },
+        {
+          "rel": "icon",
+          "type": "image/svg+xml",
+          "sizes": "any",
+          "href": "/kvil/assets/icon.svg"
+        },
+        {
+          "rel": "apple-touch-icon",
+          "sizes": "180x180",
+          "href": "/kvil/assets/apple-touch-icon.png"
+        }
+      ],
+      "matchesDeployedIconLinks": true
+    },
+    {
+      "url": "https://hkarlsen06.dev/kvil/support/",
+      "iconLinks": [
+        {
+          "rel": "icon",
+          "type": "image/png",
+          "sizes": "32x32",
+          "href": "/kvil/assets/favicon-32.png"
+        },
+        {
+          "rel": "icon",
+          "type": "image/svg+xml",
+          "sizes": "any",
+          "href": "/kvil/assets/icon.svg"
+        },
+        {
+          "rel": "apple-touch-icon",
+          "sizes": "180x180",
+          "href": "/kvil/assets/apple-touch-icon.png"
+        }
+      ],
+      "matchesDeployedIconLinks": true
+    },
+    {
+      "url": "https://hkarlsen06.dev/kvil/privacy/",
+      "iconLinks": [
+        {
+          "rel": "icon",
+          "type": "image/png",
+          "sizes": "32x32",
+          "href": "/kvil/assets/favicon-32.png"
+        },
+        {
+          "rel": "icon",
+          "type": "image/svg+xml",
+          "sizes": "any",
+          "href": "/kvil/assets/icon.svg"
+        },
+        {
+          "rel": "apple-touch-icon",
+          "sizes": "180x180",
+          "href": "/kvil/assets/apple-touch-icon.png"
+        }
+      ],
+      "matchesDeployedIconLinks": true
+    }
+  ],
+  "assets": [
+    {
+      "url": "https://hkarlsen06.dev/kvil/assets/icon.svg",
+      "sha256": "219af3985d404d214022200e3eea825399e96f6463cacc8f0dc0f75efef472c4",
+      "contentType": "image/svg+xml",
+      "matchesDeployedFile": true
+    },
+    {
+      "url": "https://hkarlsen06.dev/kvil/assets/favicon-32.png",
+      "sha256": "f3f8137dd9b40b5adc467bfe37f22f516bc6d37f6f92fc19eb122f87cf3d5ad7",
+      "contentType": "image/png",
+      "matchesDeployedFile": true
+    },
+    {
+      "url": "https://hkarlsen06.dev/kvil/assets/apple-touch-icon.png",
+      "sha256": "be91e06d7e39118038244e409695a419dd6f51f91566f10ba7499050002e5606",
+      "contentType": "image/png",
+      "matchesDeployedFile": true
+    },
+    {
+      "url": "https://hkarlsen06.dev/kvil/assets/icon.png",
+      "sha256": "dea4022bb1c414740996fb1f8ccec75cfa01ebdfb9cdaab6d183acd14e141d5c",
+      "contentType": "image/png",
+      "matchesDeployedFile": true
+    },
+    {
+      "url": "https://hkarlsen06.dev/favicon-32x32.png",
+      "sha256": "5bf5059ad2b1d2526d614a773c5994be73bd32dfaac8ad2ff1ab605eb03b2fd8",
+      "contentType": "image/png",
+      "matchesDeployedFile": true
+    },
+    {
+      "url": "https://hkarlsen06.dev/icons/tidex-app-icon.png",
+      "sha256": "ec99f1887fff7a1b6292eaea4f5ba993a69c7bc1d066cf8c28e1bf2de874ee03",
+      "contentType": "image/png",
+      "matchesDeployedFile": true
+    },
+    {
+      "url": "https://hkarlsen06.dev/icons/tidex-wordmark.webp",
+      "sha256": "4e933d31fa8d3502fefe7c85ec187d4f3ddb9d46b2dc3a000d718344c254db83",
+      "contentType": "image/webp",
+      "matchesDeployedFile": true
+    }
+  ]
+}

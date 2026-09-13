@@ -13,8 +13,9 @@ struct OnboardingView: View {
         VStack(alignment: .leading, spacing: 0) {
           KvilWordmark().padding(.horizontal, 28).padding(.top, 28)
           if page == 0 {
-            LandscapeView(height: max(210, geometry.size.height * 0.37), fade: false).padding(
-              .top, 24)
+            OnboardingLandscapeView(
+              height: max(210, geometry.size.height * 0.37)
+            ).padding(.top, 24)
             VStack(alignment: .leading, spacing: 16) {
               Text(L10n.onboardingTitle).font(.system(.largeTitle, design: .serif)).fixedSize(
                 horizontal: false, vertical: true)

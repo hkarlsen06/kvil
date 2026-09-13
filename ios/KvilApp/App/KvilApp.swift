@@ -36,7 +36,7 @@ import SwiftUI
           }
           .background(Color.kvilCanvas)
         } else {
-          Color.kvilCanvas.ignoresSafeArea()
+          KvilLaunchView()
         }
       }.tint(Color.kvilAccent).foregroundStyle(Color.kvilInk)
         .task { if model == nil { load() } }

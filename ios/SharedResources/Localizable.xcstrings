@@ -830,19 +830,19 @@
       }
     },
     "findMyRhythm": {
-      "comment": "Kvil user interface: findMyRhythm",
+      "comment": "Welcome button. Opens the daily eating-window time pickers.",
       "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Find my rhythm"
+            "value": "Set times"
           }
         },
         "nb": {
           "stringUnit": {
             "state": "translated",
-            "value": "Finn min rytme"
+            "value": "Velg tider"
           }
         }
       }
@@ -1532,55 +1532,55 @@
       }
     },
     "onboardingBody": {
-      "comment": "Kvil user interface: onboardingBody",
+      "comment": "Brief welcome description. Calm, direct explanation of the schedule tool.",
       "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "A gentle daily eating schedule. A little space to reflect. Kvil keeps the time, so you can get on with your day."
+            "value": "Set your eating window. Kvil keeps track."
           }
         },
         "nb": {
           "stringUnit": {
             "state": "translated",
-            "value": "En rolig spiseplan for hverdagen. Litt rom for å kjenne etter. Kvil holder tiden, så du kan leve dagen din."
+            "value": "Velg når du vil spise. Kvil holder oversikten."
           }
         }
       }
     },
     "onboardingSafety": {
-      "comment": "Kvil user interface: onboardingSafety",
+      "comment": "Concise welcome footnote. Preserve adult scope, non-medical purpose, and advice to consult a health professional when unsure about fasting.",
       "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Kvil is a planning tool for adults, not medical advice. Choose what feels right for you and seek professional guidance if you’re unsure whether fasting suits your health."
+            "value": "Planning for adults, not medical advice. Ask a health professional if you’re unsure about fasting."
           }
         },
         "nb": {
           "stringUnit": {
             "state": "translated",
-            "value": "Kvil er et planleggingsverktøy for voksne, ikke medisinske råd. Velg det som passer deg, og søk faglige råd hvis du er usikker på om faste passer helsen din."
+            "value": "Planlegging for voksne, ikke medisinske råd. Spør helsepersonell hvis du er usikker på faste."
           }
         }
       }
     },
     "onboardingTitle": {
-      "comment": "Kvil user interface: onboardingTitle",
+      "comment": "Short, calm welcome heading about the user's own daily rhythm.",
       "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Find a rhythm\nthat feels like you."
+            "value": "Your rhythm."
           }
         },
         "nb": {
           "stringUnit": {
             "state": "translated",
-            "value": "Finn en rytme\nsom passer deg."
+            "value": "Din rytme."
           }
         }
       }
@@ -1940,7 +1940,7 @@
         "nb": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tidtakeren, påminnelser, illustrasjoner, vektlogging, Helse, Watch og widgeter er alltid inkludert gratis."
+            "value": "Tidtakeren, påminnelser, bilder, vektlogging, Helse, Watch og widgeter er alltid inkludert gratis."
           }
         }
       }

@@ -1,0 +1,175 @@
+{
+  "checkedAt": "2026-09-13T01:12:39.259535+00:00",
+  "deployment": "https://fb0b43d7.hkarlsen06-dev.pages.dev",
+  "portfolioBaseCommit": "c72a63196b5990f51323488aa4a196012204c41d",
+  "portfolioWorkingTreeChangesDeployed": true,
+  "photograph": {
+    "source": "https://unsplash.com/photos/a-body-of-water-surrounded-by-a-forest-UyPumfejEMI",
+    "photographer": "Kayvan Mazhar",
+    "license": "https://unsplash.com/license",
+    "originalSha256": "f8eef43a93626b24cfa9880542bb366b3fab09291842e1a733b2205a1e1b5816",
+    "shippedSha256": "d42226b1f65020f768ade9d7848f4e7bcc2345661693458dd09bc469382b7981",
+    "shippedDimensions": [
+      2400,
+      1350
+    ],
+    "nativeAndWebsiteBytesMatch": true
+  },
+  "nativeConsumers": [
+    "Home",
+    "Onboarding",
+    "History empty state",
+    "Settings About",
+    "Full History purchase",
+    "Medium Home Screen widget"
+  ],
+  "nativeVerification": {
+    "testsPassed": 3,
+    "testsFailed": 0,
+    "tests": [
+      "testScreensForRelease",
+      "testOpenWindowAndNorwegianLayouts",
+      "testHomeAccessibilityAndScreenshots"
+    ],
+    "resultBundle": "Kvil-test-1789261080-42920.xcresult",
+    "resultSummary": "../build/photography-update/test-results.json",
+    "visuallyInspected": [
+      "Home light",
+      "Welcome light",
+      "Full History purchase light",
+      "History light",
+      "Small phone Home dark",
+      "Small phone onboarding dark"
+    ],
+    "mediumWidget": "Uses the same compiled Landscape asset; actual system-host rendering was not recaptured in this revision.",
+    "warnings": "Existing StoreKitTest deprecation and XCTest actor-isolation warnings."
+  },
+  "websiteVisualVerification": {
+    "browser": "Safari 27",
+    "appearance": "dark",
+    "layouts": [
+      "desktop",
+      "375 px responsive preview"
+    ],
+    "normalReloadShowsNewPhotoAndPhoneCapture": true
+  },
+  "appleRelease": {
+    "lastUploadedBuild": "2446.23.21",
+    "containsNewPhotograph": false,
+    "newArchiveScreenshotsAndMetadataPending": true
+  },
+  "live": [
+    {
+      "url": "https://hkarlsen06.dev/kvil/",
+      "contentType": "text/html; charset=utf-8",
+      "sha256": "15ed22a80f95a7830d338f878b4596578e50ee1abd72e94469b1b494c68fd070",
+      "photoCreditPresent": true,
+      "oldLandscapeReferencesAbsent": true,
+      "svgFaviconPresent": true,
+      "versionedAssetLinksPresent": true
+    },
+    {
+      "url": "https://hkarlsen06.dev/kvil/support/",
+      "contentType": "text/html; charset=utf-8",
+      "sha256": "495fc69f76d1f55df57ed60c3dfc737bab5b1021fc978e96262b91ac783d29f2",
+      "photoCreditPresent": true,
+      "oldLandscapeReferencesAbsent": true,
+      "svgFaviconPresent": true,
+      "versionedAssetLinksPresent": true
+    },
+    {
+      "url": "https://hkarlsen06.dev/kvil/privacy/",
+      "contentType": "text/html; charset=utf-8",
+      "sha256": "1010849157c0681ebc5f993dd645a0e6a02a89575803922d56d78c13e051b492",
+      "photoCreditPresent": true,
+      "oldLandscapeReferencesAbsent": true,
+      "svgFaviconPresent": true,
+      "versionedAssetLinksPresent": true
+    },
+    {
+      "url": "https://hkarlsen06.dev/kvil/style.css",
+      "contentType": "text/css; charset=utf-8",
+      "sha256": "ede61fd1a19551ff6565add3908e4d2d32d9ec7bdc07ec67af4fb7d326b8c9ae",
+      "matchesExportBytes": true
+    },
+    {
+      "url": "https://hkarlsen06.dev/kvil/assets/rice-lake.jpg",
+      "contentType": "image/jpeg",
+      "sha256": "d42226b1f65020f768ade9d7848f4e7bcc2345661693458dd09bc469382b7981",
+      "matchesExportBytes": true
+    },
+    {
+      "url": "https://hkarlsen06.dev/kvil/assets/home.png",
+      "contentType": "image/png",
+      "sha256": "fbfe761dadf7b230e27498afc8a5a8f05414310e3c2c823483f27e7c09766a0c",
+      "matchesExportBytes": true
+    },
+    {
+      "url": "https://hkarlsen06.dev/kvil/assets/icon.svg",
+      "contentType": "image/svg+xml",
+      "sha256": "219af3985d404d214022200e3eea825399e96f6463cacc8f0dc0f75efef472c4",
+      "matchesExportBytes": true
+    },
+    {
+      "url": "https://hkarlsen06.dev/kvil/assets/favicon-32.png",
+      "contentType": "image/png",
+      "sha256": "f3f8137dd9b40b5adc467bfe37f22f516bc6d37f6f92fc19eb122f87cf3d5ad7",
+      "matchesExportBytes": true
+    },
+    {
+      "url": "https://hkarlsen06.dev/kvil/assets/apple-touch-icon.png",
+      "contentType": "image/png",
+      "sha256": "be91e06d7e39118038244e409695a419dd6f51f91566f10ba7499050002e5606",
+      "matchesExportBytes": true
+    },
+    {
+      "url": "https://hkarlsen06.dev/kvil/assets/icon.png",
+      "contentType": "image/png",
+      "sha256": "dea4022bb1c414740996fb1f8ccec75cfa01ebdfb9cdaab6d183acd14e141d5c",
+      "matchesExportBytes": true
+    },
+    {
+      "url": "https://hkarlsen06.dev/favicon-32x32.png",
+      "contentType": "image/png",
+      "sha256": "5bf5059ad2b1d2526d614a773c5994be73bd32dfaac8ad2ff1ab605eb03b2fd8",
+      "matchesExportBytes": true,
+      "unchangedFromBeforeDeployment": true
+    },
+    {
+      "url": "https://hkarlsen06.dev/icons/tidex-app-icon.png",
+      "contentType": "image/png",
+      "sha256": "ec99f1887fff7a1b6292eaea4f5ba993a69c7bc1d066cf8c28e1bf2de874ee03",
+      "matchesExportBytes": true,
+      "unchangedFromBeforeDeployment": true
+    },
+    {
+      "url": "https://hkarlsen06.dev/icons/tidex-wordmark.webp",
+      "contentType": "image/webp",
+      "sha256": "4e933d31fa8d3502fefe7c85ec187d4f3ddb9d46b2dc3a000d718344c254db83",
+      "matchesExportBytes": true,
+      "unchangedFromBeforeDeployment": true
+    },
+    {
+      "url": "https://hkarlsen06.dev/en/projects/",
+      "contentType": "text/html; charset=utf-8",
+      "sha256": "6469323d61e721e0a3ad129ceb8f982849a4b69d1ab17c64acfaecb373707562",
+      "photographyCopyPresent": true
+    },
+    {
+      "url": "https://hkarlsen06.dev/no/projects/",
+      "contentType": "text/html; charset=utf-8",
+      "sha256": "c3a76b28be9b6ee1f1459080f4ea688761c3bc13a35ee5180d0903212dbca845",
+      "photographyCopyPresent": true
+    },
+    {
+      "url": "https://hkarlsen06.dev/kvil/style.css?v=ede61fd1a195",
+      "sha256": "ede61fd1a19551ff6565add3908e4d2d32d9ec7bdc07ec67af4fb7d326b8c9ae",
+      "matchesExportBytes": true
+    },
+    {
+      "url": "https://hkarlsen06.dev/kvil/assets/home.png?v=fbfe761dadf7",
+      "sha256": "fbfe761dadf7b230e27498afc8a5a8f05414310e3c2c823483f27e7c09766a0c",
+      "matchesExportBytes": true
+    }
+  ]
+}
