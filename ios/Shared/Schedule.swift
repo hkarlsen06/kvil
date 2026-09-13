@@ -237,6 +237,37 @@ struct ScheduleEngine: Sendable {
     return next
   }
 
+  func earlyBreak(at now: Date) -> DayOverride? {
+    snapshot.overrides.first {
+      $0.deleted != true && $0.adjustedOpening.map { $0 <= now } == true && now < $0.opening
+    }
+  }
+
+  func undoingEarlyBreak(at now: Date, modifiedAt: Date) throws -> ScheduleSnapshot {
+    try validate(near: now)
+    guard let item = earlyBreak(at: now),
+      let index = snapshot.overrides.firstIndex(where: { $0.id == item.id })
+    else { return snapshot }
+    var next = snapshot
+    // Restore the saved window, including any custom times for this day. Clearing a
+    // subsequent early close also prevents the restored window from ending before it opens.
+    next.overrides[index].adjustedOpening = nil
+    next.overrides[index].adjustedClosing = nil
+    var usual = self
+    usual.snapshot.overrides.removeAll { $0.id == item.id }
+    if item.timeZoneID == calendar.timeZone.identifier,
+      let window = usual.window(on: item.opening),
+      window.opening == item.opening, window.closing == item.closing
+    {
+      // Remove a redundant exception while retaining its deletion for offline sync.
+      next.overrides[index].deleted = true
+    }
+    next.overrides[index].modifiedAt = modifiedAt
+    next.revision = modifiedAt
+    try ScheduleEngine(snapshot: next, calendar: calendar).validate(near: now)
+    return next
+  }
+
   func eligibleReflections(at now: Date) -> [EatingWindow] {
     windows(around: now, daysBefore: 2, daysAfter: 0).filter { window in
       let c = LocalDay.calendar(

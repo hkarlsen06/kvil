@@ -2,20 +2,24 @@
   "sourceLanguage" : "en",
   "strings" : {
     "CFBundleDisplayName" : {
-      "shouldTranslate" : false,
-      "comment" : "Bundle display name",
-      "extractionState" : "extracted_with_value",
+      "comment" : "App display name. Keep the brand name kvil lowercase in every language.",
       "localizations" : {
         "en" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Kvil"
+            "state" : "translated",
+            "value" : "kvil"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "kvil"
           }
         }
-      }
+      },
+      "shouldTranslate" : false
     },
     "CFBundleName" : {
-      "shouldTranslate" : false,
       "comment" : "Bundle name",
       "extractionState" : "extracted_with_value",
       "localizations" : {
@@ -25,7 +29,8 @@
             "value" : "KvilApp"
           }
         }
-      }
+      },
+      "shouldTranslate" : false
     },
     "NSHealthShareUsageDescription" : {
       "extractionState" : "manual",

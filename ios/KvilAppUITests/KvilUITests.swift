@@ -52,9 +52,11 @@ import XCTest
   func testHomeFastingActionsAndDatePencil() throws {
     let app = app("home", language: "nb")
     let action = app.buttons["fastingAction"]
+    let undo = app.buttons["undoEarlyBreak"]
     let pencil = app.buttons["changeToday"]
     XCTAssertTrue(action.waitForExistence(timeout: 10))
     XCTAssertEqual(action.label, "Bryt fasten tidlig")
+    XCTAssertFalse(undo.exists)
     XCTAssertTrue(pencil.isHittable)
     XCTAssertLessThan(pencil.frame.maxY, action.frame.minY)
     let date = app.staticTexts["homeDate"]
@@ -65,13 +67,57 @@ import XCTest
     action.tap()
     XCTAssertTrue(app.staticTexts["Spisevinduet\ner åpent"].waitForExistence(timeout: 3))
     XCTAssertEqual(action.label, "Start fasten nå")
+    XCTAssertTrue(undo.isHittable)
+    XCTAssertEqual(undo.label, "Angre tidlig fastebrudd")
+    XCTAssertGreaterThan(undo.frame.minX, action.frame.maxX)
+    XCTAssertEqual(undo.frame.midY, action.frame.midY, accuracy: 1)
     attach(app, name: "Eating-action-norsk")
+    try app.performAccessibilityAudit(for: [.textClipped, .hitRegion, .sufficientElementDescription])
+    app.tabBars.buttons["Plan"].tap()
+    app.tabBars.buttons["Hjem"].tap()
+    XCTAssertTrue(undo.isHittable)
+    undo.tap()
+    XCTAssertTrue(undo.waitForNonExistence(timeout: 3))
+    XCTAssertEqual(action.label, "Bryt fasten tidlig")
+    action.tap()
     action.tap()
     XCTAssertEqual(action.label, "Bryt fasten tidlig")
+    XCTAssertTrue(undo.isHittable)
+    undo.tap()
+    XCTAssertTrue(undo.waitForNonExistence(timeout: 3))
     try app.performAccessibilityAudit(for: [.textClipped, .hitRegion])
     attach(app, name: "Started-fast-norsk")
     pencil.tap()
     XCTAssertTrue(app.buttons["saveSchedule"].waitForExistence(timeout: 3))
+  }
+  func testUndoEarlyBreakAtLargestText() throws {
+    let app = app("home", largeText: true)
+    let action = app.buttons["fastingAction"]
+    let undo = app.buttons["undoEarlyBreak"]
+    XCTAssertTrue(action.waitForExistence(timeout: 10))
+    action.tap()
+    XCTAssertTrue(undo.waitForExistence(timeout: 3))
+    XCTAssertTrue(undo.isHittable)
+    XCTAssertGreaterThan(undo.frame.minX, action.frame.maxX)
+    XCTAssertLessThanOrEqual(action.frame.maxY, app.tabBars.firstMatch.frame.minY)
+    XCTAssertFalse(app.scrollViews.firstMatch.exists)
+    attach(app, name: "Undo-early-break-largest-text")
+    try app.performAccessibilityAudit(for: [.textClipped, .hitRegion, .sufficientElementDescription])
+    undo.tap()
+    XCTAssertTrue(undo.waitForNonExistence(timeout: 3))
+    XCTAssertEqual(action.label, "Break fast early")
+  }
+  func testUndoEarlyBreakExpiresWhenScheduledWindowOpens() {
+    let app = app("openingSoon")
+    let action = app.buttons["fastingAction"]
+    let undo = app.buttons["undoEarlyBreak"]
+    XCTAssertTrue(action.waitForExistence(timeout: 10))
+    action.tap()
+    XCTAssertTrue(undo.waitForExistence(timeout: 3))
+    XCTAssertEqual(action.label, "Start fast now")
+    XCTAssertTrue(undo.waitForNonExistence(timeout: 25))
+    XCTAssertEqual(action.label, "Start fast now")
+    attach(app, name: "Undo-expired-at-scheduled-opening")
   }
   func testFastingActionsAtLargestText() throws {
     let app = app("open", largeText: true)
@@ -102,7 +148,7 @@ import XCTest
     XCTAssertTrue(reflection.waitForNonExistence(timeout: 3))
     XCTAssertFalse(app.scrollViews.firstMatch.exists)
   }
-  func testHomeStaysCenteredWithoutScrolling() throws {
+  func testHomeLeavesSpaceForLandscapeWithoutScrolling() throws {
     let app = app("open", language: "nb")
     let action = app.buttons["fastingAction"]
     XCTAssertTrue(action.waitForExistence(timeout: 10))
@@ -112,13 +158,14 @@ import XCTest
     let navigationBottom = app.navigationBars.firstMatch.frame.maxY
     let tabTop = app.tabBars.firstMatch.frame.minY
     XCTAssertEqual(content.frame.midX, app.frame.midX, accuracy: 1)
-    XCTAssertEqual(content.frame.midY, (navigationBottom + tabTop) / 2, accuracy: 16)
+    XCTAssertEqual(content.frame.minY, navigationBottom + 16, accuracy: 2)
+    XCTAssertGreaterThanOrEqual(tabTop - content.frame.maxY, 100)
     let dateBeforeSwipe = app.staticTexts["homeDate"].frame
     app.swipeUp()
     XCTAssertEqual(app.staticTexts["homeDate"].frame, dateBeforeSwipe)
     XCTAssertTrue(action.isHittable)
     try app.performAccessibilityAudit(for: [.contrast, .textClipped, .hitRegion])
-    attach(app, name: "Centered-home-norsk")
+    attach(app, name: "Home-landscape-space-norsk")
   }
   func testWindowOpensWhileHomeIsVisible() throws {
     let app = app("openingSoon")

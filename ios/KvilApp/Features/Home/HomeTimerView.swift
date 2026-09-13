@@ -10,6 +10,7 @@ struct HomeTimerView: View {
   let presentationID: Int
   let isSelected: Bool
   var compact = false
+  var clockIsPaused = false
   @State private var isVisible = false
   @State private var displayedProgress = 0.0
   @State private var motionCue = 0
@@ -27,12 +28,14 @@ struct HomeTimerView: View {
 
   private var isPresented: Bool { isVisible && isSelected && scenePhase == .active }
 
-  private var remaining: Duration {
-    .seconds(max(0, state.next.opening.timeIntervalSince(now)))
+  private var countdownAnimationDuration: TimeInterval { reduceMotion ? 0 : 0.2 }
+
+  private func remaining(at date: Date) -> Duration {
+    .seconds(max(0, state.next.opening.timeIntervalSince(date)))
   }
 
-  private var countdown: AttributedString {
-    var value = remaining.formatted(
+  private func countdown(at date: Date) -> AttributedString {
+    var value = remaining(at: date).formatted(
       .time(pattern: .hourMinuteSecond(padHourToLength: 1, roundFractionalSeconds: .up))
         .locale(locale).attributed)
     // Keep the localized separator with the quieter seconds, on the same baseline.
@@ -109,21 +112,7 @@ struct HomeTimerView: View {
             .multilineTextAlignment(.center)
         } else {
           VStack(spacing: 12) {
-            Text(countdown)
-            .font(
-              typeSize.isAccessibilitySize
-                ? .system(compact ? .title : .largeTitle, design: .rounded, weight: .light)
-                : .system(size: compact ? 48 : 60, weight: .light, design: .rounded)
-            ).monospacedDigit().minimumScaleFactor(0.6).lineLimit(1)
-            .contentTransition(reduceMotion ? .opacity : .numericText(countsDown: true))
-            .animation(reduceMotion ? nil : .easeOut(duration: 0.2), value: countdown)
-            .accessibilityLabel(.untilEatingWindow)
-            .accessibilityValue(
-              Text(
-                remaining,
-                format: .units(
-                  allowed: [.hours, .minutes, .seconds], width: .wide,
-                  fractionalPart: .hide(rounded: .up))))
+            countdownText
             Text(compact ? .untilOpening : .untilEatingWindow)
               .font(compact ? .caption : .subheadline)
               .multilineTextAlignment(.center).foregroundStyle(Color.kvilSecondary)
@@ -138,5 +127,34 @@ struct HomeTimerView: View {
                 with: .opacity),
               removal: .offset(y: -8).combined(with: .opacity)))
     }.frame(maxWidth: .infinity).accessibilityElement(children: .combine)
+  }
+
+  private var countdownText: some View {
+    // Preserve the opening's second boundary, including fractional-second overrides.
+    let phase = state.next.opening.timeIntervalSinceReferenceDate.truncatingRemainder(dividingBy: 1)
+    // Start the digit transition early so it finishes on the countdown's next second.
+    return TimelineView(
+      .periodic(
+        from: Date(timeIntervalSinceReferenceDate: phase - countdownAnimationDuration), by: 1)
+    ) { _ in
+      let current = clockIsPaused ? now : Date()
+      let value = countdown(
+        at: current.addingTimeInterval(clockIsPaused ? 0 : countdownAnimationDuration))
+      Text(value)
+        .font(
+          typeSize.isAccessibilitySize
+            ? .system(compact ? .title : .largeTitle, design: .rounded, weight: .light)
+            : .system(size: compact ? 48 : 60, weight: .light, design: .rounded)
+        ).monospacedDigit().minimumScaleFactor(0.6).lineLimit(1)
+        .contentTransition(reduceMotion ? .opacity : .numericText(countsDown: true))
+        .animation(reduceMotion ? nil : .easeOut(duration: countdownAnimationDuration), value: value)
+        .accessibilityLabel(.untilEatingWindow)
+        .accessibilityValue(
+          Text(
+            remaining(at: current),
+            format: .units(
+              allowed: [.hours, .minutes, .seconds], width: .wide,
+              fractionalPart: .hide(rounded: .up))))
+    }
   }
 }

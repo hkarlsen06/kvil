@@ -31,6 +31,19 @@ import XCTest
     XCTAssertFalse(try XCTUnwrap(model.engine.state(at: model.now)).isOpen)
     XCTAssertEqual(try model.store.load(), model.data)
     XCTAssertEqual(try ScheduleMerge.merge(open, model.data.schedule), model.data.schedule)
+    let closed = model.data.schedule
+    XCTAssertTrue(model.undoEarlyBreak())
+    let reloaded = try model.store.load()
+    let restored = ScheduleEngine(snapshot: reloaded.schedule, calendar: model.calendar)
+    XCTAssertEqual(reloaded, model.data)
+    XCTAssertNil(restored.earlyBreak(at: model.now))
+    XCTAssertFalse(try XCTUnwrap(restored.state(at: model.now)).isOpen)
+    XCTAssertEqual(
+      restored.state(at: model.now)?.next.opening,
+      ScheduleEngine(snapshot: original.schedule, calendar: model.calendar)
+        .state(at: model.now)?.next.opening)
+    XCTAssertEqual(try ScheduleMerge.merge(open, reloaded.schedule), reloaded.schedule)
+    XCTAssertEqual(try ScheduleMerge.merge(reloaded.schedule, closed), reloaded.schedule)
     XCTAssertEqual(model.data.reflections, original.reflections)
     XCTAssertEqual(model.data.weights, original.weights)
     XCTAssertEqual(model.data.schedule.versions, original.schedule.versions)

@@ -573,7 +573,7 @@
 				DEVELOPMENT_TEAM = 48ZSLD4RMP;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = KvilWatchApp/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = Kvil;
+				INFOPLIST_KEY_CFBundleDisplayName = kvil;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -603,7 +603,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 48ZSLD4RMP;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = Kvil;
+				INFOPLIST_KEY_CFBundleDisplayName = kvil;
 				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -637,7 +637,7 @@
 				DEVELOPMENT_TEAM = 48ZSLD4RMP;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = KvilWatchWidget/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = Kvil;
+				INFOPLIST_KEY_CFBundleDisplayName = kvil;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -668,7 +668,7 @@
 				DEVELOPMENT_TEAM = 48ZSLD4RMP;
 				ENABLE_TESTABILITY = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = Kvil;
+				INFOPLIST_KEY_CFBundleDisplayName = kvil;
 				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -702,7 +702,7 @@
 				DEVELOPMENT_TEAM = 48ZSLD4RMP;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = KvilWidget/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = Kvil;
+				INFOPLIST_KEY_CFBundleDisplayName = kvil;
 				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -735,7 +735,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 48ZSLD4RMP;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = Kvil;
+				INFOPLIST_KEY_CFBundleDisplayName = kvil;
 				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -768,7 +768,7 @@
 				DEVELOPMENT_TEAM = 48ZSLD4RMP;
 				ENABLE_TESTABILITY = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = Kvil;
+				INFOPLIST_KEY_CFBundleDisplayName = kvil;
 				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -822,7 +822,7 @@
 				ENABLE_TESTABILITY = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = KvilApp/Supporting/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = Kvil;
+				INFOPLIST_KEY_CFBundleDisplayName = kvil;
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "Kvil reads weight measurements you choose to share to show them alongside your own entries.";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Kvil saves the weights you log to Apple Health only when you turn on Save to Health.";
@@ -863,7 +863,7 @@
 				ENABLE_TESTABILITY = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = KvilWidget/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = Kvil;
+				INFOPLIST_KEY_CFBundleDisplayName = kvil;
 				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -898,7 +898,7 @@
 				DEVELOPMENT_TEAM = 48ZSLD4RMP;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = KvilApp/Supporting/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = Kvil;
+				INFOPLIST_KEY_CFBundleDisplayName = kvil;
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "Kvil reads weight measurements you choose to share to show them alongside your own entries.";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Kvil saves the weights you log to Apple Health only when you turn on Save to Health.";
@@ -939,7 +939,7 @@
 				ENABLE_TESTABILITY = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = KvilWatchWidget/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = Kvil;
+				INFOPLIST_KEY_CFBundleDisplayName = kvil;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -991,7 +991,7 @@
 				ENABLE_TESTABILITY = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = KvilWatchApp/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = Kvil;
+				INFOPLIST_KEY_CFBundleDisplayName = kvil;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

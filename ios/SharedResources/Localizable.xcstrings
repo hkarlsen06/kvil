@@ -3959,6 +3959,42 @@
         }
       },
       "comment" : "Footnote below the draggable Today window in Plan; these controls create a date-specific adjustment without changing the usual week."
+    },
+    "undoEarlyBreak" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Undo early break"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Angre tidlig fastebrudd"
+          }
+        }
+      },
+      "comment" : "Accessibility label for the small undo button beside the fasting action. Restores the eating window after breaking a fast early; available until the originally scheduled opening."
+    },
+    "widgetWindowOpen" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Window open"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spisevindu åpent"
+          }
+        }
+      },
+      "comment" : "Single-line status for Lock Screen widgets and Watch complications when the eating window is open. Keep short; do not insert line breaks."
     }
   },
   "version" : "1.0"

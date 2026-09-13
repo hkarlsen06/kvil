@@ -65,7 +65,7 @@ struct KvilWidgetView: View {
         switch family {
         case .accessoryInline:
           if state.isOpen {
-            Text(.windowOpen)
+            Text(.widgetWindowOpen)
           } else {
             Text(
               verbatim: String(localized: .opensAtPrefix)
@@ -78,27 +78,40 @@ struct KvilWidgetView: View {
               .primary, style: StrokeStyle(lineWidth: 3, lineCap: .round)
             ).padding(5)
             VStack(spacing: 0) {
-              Image(systemName: state.isOpen ? "sun.max" : "leaf").font(.caption2)
+              Image(systemName: state.isOpen ? "sun.max" : "leaf")
+                .font(.caption2).accessibilityHidden(true)
               if state.isOpen {
                 Text(.openShort).font(.caption2)
               } else {
-                countdown(state).font(.system(.caption, design: .rounded)).minimumScaleFactor(0.7)
+                countdown(state).font(.system(.caption2, design: .rounded))
               }
-            }.padding(8)
+            }.lineLimit(1).minimumScaleFactor(0.4).padding(12)
           }
         case .accessoryRectangular:
-          VStack(alignment: .leading, spacing: 4) {
+          VStack(alignment: .leading, spacing: 2) {
             Label(
-              state.isOpen ? .windowOpen : .nextWindow,
+              state.isOpen ? .widgetWindowOpen : .untilOpening,
               systemImage: state.isOpen ? "sun.max" : "leaf"
-            ).font(.headline)
+            ).font(.caption).fontWeight(.semibold)
             if let active = state.active {
-              WindowTimeLabel(window: active).font(.caption)
+              HStack(spacing: 3) {
+                Text(active.opening, format: .dateTime.hour().minute())
+                Text(verbatim: "–")
+                Text(active.closing, format: .dateTime.hour().minute())
+              }.font(.subheadline).monospacedDigit()
+                .accessibilityElement(children: .combine)
+              if !Calendar.current.isDate(active.opening, inSameDayAs: active.closing) {
+                Text(.nextDayShort).font(.caption2)
+              }
             } else {
               countdown(state).font(.system(.title2, design: .rounded))
-              Text(state.next.opening, format: .dateTime.hour().minute()).font(.caption)
+              Text(
+                verbatim: String(localized: .opensAtPrefix)
+                  + state.next.opening.formatted(.dateTime.hour().minute())
+              ).font(.caption2)
             }
-          }
+          }.lineLimit(1).minimumScaleFactor(0.65)
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
         default:
           VStack(alignment: .leading, spacing: 10) {
             HStack(spacing: 5) {
@@ -122,10 +135,17 @@ struct KvilWidgetView: View {
       } else {
         if family == .accessoryInline {
           Text(.openKvilToSetUp)
+        } else if family == .accessoryCircular {
+          VStack(spacing: 2) {
+            Image(systemName: "leaf")
+            Text(verbatim: "Kvil").font(.caption2)
+          }.accessibilityElement(children: .ignore).accessibilityLabel(.openKvilToSetUp)
         } else {
           VStack(spacing: 6) {
             Image(systemName: "leaf")
             Text(.openKvilToSetUp).font(.caption).multilineTextAlignment(.center)
+              .lineLimit(family == .accessoryRectangular ? 2 : nil)
+              .minimumScaleFactor(family == .accessoryRectangular ? 0.65 : 1)
           }
         }
       }

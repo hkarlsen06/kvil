@@ -10,7 +10,8 @@ struct HomeView: View {
   @State private var reflecting: EatingWindow?
 
   var body: some View {
-    TimelineView(.periodic(from: .now, by: 1)) { _ in
+    // Anchor ticks to whole clock seconds, independent of when Home appears.
+    TimelineView(.periodic(from: Date(timeIntervalSinceReferenceDate: 0), by: 1)) { _ in
       let now = model.now
       let state = model.engine.state(at: now)
       let eligible = model.engine.eligibleReflections(at: now).first { window in
@@ -23,7 +24,22 @@ struct HomeView: View {
         content(state: state, now: now, eligible: eligible, compact: true)
       }
       .padding(.vertical, KvilStyle.content)
-      .frame(maxWidth: .infinity, maxHeight: .infinity)
+      .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+      .backgroundPreferenceValue(HomeContentBoundsKey.self) { contentBounds in
+        GeometryReader { geometry in
+          let contentBottom =
+            contentBounds.map { geometry[$0].maxY } ?? geometry.size.height * 0.55
+          let spaceBelowContent = max(0, geometry.size.height - contentBottom)
+          // The distant mist can sit behind controls; the foreground stays below them.
+          let horizon = contentBottom - min(160, spaceBelowContent * 0.70)
+          KvilLandscapeBackground()
+            .frame(height: max(0, geometry.size.height - horizon))
+            .frame(maxHeight: .infinity, alignment: .bottom)
+        }
+        .ignoresSafeArea(.container, edges: .bottom)
+        .allowsHitTesting(false)
+        .accessibilityHidden(true)
+      }
       .background(Color.kvilCanvas)
       .animation(KvilMotion.transition(reduceMotion: reduceMotion), value: state?.isOpen)
     }.toolbar {
@@ -92,11 +108,12 @@ struct HomeView: View {
       }
       .foregroundStyle(Color.kvilSecondary)
       .padding(.horizontal, KvilStyle.page + 44)
-      .frame(minHeight: 44).padding(.bottom, compact ? 8 : 24)
+      .padding(.bottom, compact ? 8 : 26)
       if let state {
         HomeTimerView(
           state: state, now: now, presentationID: model.homePresentationID,
-          isSelected: model.selectedTab == .home, compact: compact)
+          isSelected: model.selectedTab == .home, compact: compact,
+          clockIsPaused: model.fixedNow != nil)
         VStack(spacing: 10) {
           if !compact && !typeSize.isAccessibilitySize {
             Text(state.isOpen ? .makeRoom : .findYourRhythm)
@@ -121,18 +138,28 @@ struct HomeView: View {
         }.foregroundStyle(Color.kvilSecondary)
           .id(state.isOpen).transition(.opacity)
           .padding(.top, compact ? 8 : 4).padding(.horizontal, KvilStyle.page)
-        Button {
-          if model.setEatingWindowOpen(!state.isOpen) { actionFeedback += 1 }
-        } label: {
-          Label(
-            state.isOpen ? .startFastNow : .breakFastEarly,
-            systemImage: state.isOpen ? "leaf" : "fork.knife"
-          )
-          .font(.subheadline.weight(.medium)).multilineTextAlignment(.center)
-          .padding(.horizontal, 22).padding(.vertical, 13)
+        HStack(spacing: 10) {
+          Button {
+            if model.setEatingWindowOpen(!state.isOpen) { actionFeedback += 1 }
+          } label: {
+            Label(
+              state.isOpen ? .startFastNow : .breakFastEarly,
+              systemImage: state.isOpen ? "leaf" : "fork.knife"
+            )
+            .font(.subheadline.weight(.medium)).multilineTextAlignment(.center)
+            .padding(.horizontal, 22).padding(.vertical, 13)
+          }.accessibilityIdentifier("fastingAction")
+          if model.engine.earlyBreak(at: now) != nil {
+            Button {
+              if model.undoEarlyBreak() { actionFeedback += 1 }
+            } label: {
+              Image(systemName: "arrow.uturn.backward")
+                .font(.system(size: 17, weight: .medium)).frame(width: 44, height: 44)
+            }.accessibilityLabel(.undoEarlyBreak).accessibilityIdentifier("undoEarlyBreak")
+          }
         }.buttonStyle(KvilWindowActionButtonStyle()).padding(.top, compact ? 16 : 22)
           .sensoryFeedback(.impact(weight: .light, intensity: 0.5), trigger: actionFeedback)
-          .padding(.horizontal, KvilStyle.page).accessibilityIdentifier("fastingAction")
+          .padding(.horizontal, KvilStyle.page)
       } else {
         ContentUnavailableView {
           Label(.scheduleUnavailable, systemImage: "calendar")
@@ -161,6 +188,15 @@ struct HomeView: View {
       }
     }.fixedSize(horizontal: false, vertical: true)
       .accessibilityElement(children: .contain).accessibilityIdentifier("homeContent")
+      .anchorPreference(key: HomeContentBoundsKey.self, value: .bounds) { $0 }
+  }
+}
+
+private struct HomeContentBoundsKey: PreferenceKey {
+  static var defaultValue: Anchor<CGRect>? { nil }
+
+  static func reduce(value: inout Anchor<CGRect>?, nextValue: () -> Anchor<CGRect>?) {
+    value = nextValue() ?? value
   }
 }
 
