@@ -58,9 +58,9 @@ actor ReminderService {
       try Task.checkCancellation()
       let content = UNMutableNotificationContent()
       content.title = String(
-        localized: event.opening ? L10n.reminderOpenTitle : L10n.reminderCloseTitle)
+        localized: event.opening ? .reminderOpenTitle : .reminderCloseTitle)
       content.body = String(
-        localized: event.opening ? L10n.reminderOpenBody : L10n.reminderCloseBody)
+        localized: event.opening ? .reminderOpenBody : .reminderCloseBody)
       content.sound = .default
       var components = calendar.dateComponents(
         [.year, .month, .day, .hour, .minute, .second], from: event.date)

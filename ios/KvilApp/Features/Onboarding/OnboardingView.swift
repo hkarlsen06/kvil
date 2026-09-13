@@ -8,51 +8,70 @@ struct OnboardingView: View {
   @State private var enableReminders = true
   @State private var busy = false
   var body: some View {
+    if page == 0 {
+      welcomePage
+    } else {
+      setupPage
+    }
+  }
+
+  private var welcomePage: some View {
     GeometryReader { geometry in
       ScrollView {
         VStack(alignment: .leading, spacing: 0) {
-          KvilWordmark().padding(.horizontal, 28).padding(.top, 28)
-          if page == 0 {
-            OnboardingLandscapeView(
-              height: max(210, geometry.size.height * 0.37)
-            ).padding(.top, 24)
-            VStack(alignment: .leading, spacing: 16) {
-              Text(L10n.onboardingTitle).font(.system(.largeTitle, design: .serif)).fixedSize(
-                horizontal: false, vertical: true)
-              Text(L10n.onboardingBody).foregroundStyle(Color.kvilSecondary).lineSpacing(4)
-              Text(L10n.onboardingSafety).font(.footnote).foregroundStyle(Color.kvilSecondary)
-                .padding(.top, 2)
-            }.padding(28)
-            Button(L10n.findMyRhythm) { page = 1 }.buttonStyle(KvilPrimaryButtonStyle()).padding(
-              .horizontal, 28
-            ).accessibilityIdentifier("beginSetup")
-          } else {
-            VStack(alignment: .leading, spacing: 24) {
-              Text(L10n.yourDailyWindow).font(KvilStyle.title)
-              Text(L10n.setupWindowHelp).foregroundStyle(Color.kvilSecondary)
-              VStack(spacing: 18) {
-                DatePicker(L10n.windowOpens, selection: $opens, displayedComponents: .hourAndMinute)
-                Divider()
-                DatePicker(
-                  L10n.windowCloses, selection: $closes, displayedComponents: .hourAndMinute)
-              }.padding(20).background(Color.kvilSurface, in: RoundedRectangle(cornerRadius: 24))
-              Toggle(L10n.gentleReminders, isOn: $enableReminders)
-              Text(L10n.setupReminderHelp).font(.footnote).foregroundStyle(Color.kvilSecondary)
-              Text(L10n.localStorageNotice).font(.footnote).foregroundStyle(Color.kvilSecondary)
-              Button {
-                Task { await finish() }
-              } label: {
-                if busy { ProgressView().tint(Color.kvilInverse) } else { Text(L10n.makeSpace) }
-              }.buttonStyle(KvilPrimaryButtonStyle()).disabled(busy).accessibilityIdentifier(
-                "finishSetup")
-              Button(L10n.back) { page = 0 }.frame(maxWidth: .infinity, minHeight: 44)
-            }.padding(28)
-          }
-          Spacer(minLength: 24)
+          KvilWordmark().padding(.horizontal, KvilStyle.page).padding(.top, KvilStyle.page)
+          OnboardingLandscapeView(
+            height: max(210, geometry.size.height * 0.58)
+          ).padding(.top, KvilStyle.section)
+          VStack(alignment: .leading, spacing: KvilStyle.content) {
+            Text(.onboardingTitle).font(KvilStyle.title).fixedSize(
+              horizontal: false, vertical: true)
+            Text(.onboardingBody).foregroundStyle(Color.kvilSecondary).lineSpacing(4)
+            Text(.onboardingSafety).font(.footnote).foregroundStyle(Color.kvilSecondary)
+              .padding(.top, 2)
+          }.padding(KvilStyle.page)
+          Button(.findMyRhythm) { page = 1 }.buttonStyle(KvilPrimaryButtonStyle()).padding(
+            .horizontal, KvilStyle.page
+          ).accessibilityIdentifier("beginSetup")
+          Spacer(minLength: KvilStyle.page)
         }.frame(minHeight: geometry.size.height, alignment: .top)
       }.scrollIndicators(.hidden)
     }.background(Color.kvilCanvas)
   }
+
+  private var setupPage: some View {
+    KvilActionPage {
+      KvilWordmark()
+      VStack(alignment: .leading, spacing: KvilStyle.content) {
+        Text(.yourDailyWindow).font(KvilStyle.title)
+          .fixedSize(horizontal: false, vertical: true)
+        Text(.setupWindowHelp).foregroundStyle(Color.kvilSecondary)
+      }
+      VStack(spacing: KvilStyle.content) {
+        KvilControlRow(title: .windowOpens) {
+          DatePicker(.windowOpens, selection: $opens, displayedComponents: .hourAndMinute)
+            .labelsHidden()
+        }
+        Divider()
+        KvilControlRow(title: .windowCloses) {
+          DatePicker(.windowCloses, selection: $closes, displayedComponents: .hourAndMinute)
+            .labelsHidden()
+        }
+      }.padding(KvilStyle.cardPadding)
+        .background(Color.kvilSurface, in: RoundedRectangle(cornerRadius: KvilStyle.corner))
+      KvilDescribedToggle(
+        title: .gentleReminders, description: .setupReminderHelp, isOn: $enableReminders)
+      Text(.setupStorageHelp).font(.footnote).foregroundStyle(Color.kvilSecondary)
+    } actions: {
+      Button {
+        Task { await finish() }
+      } label: {
+        if busy { ProgressView().tint(Color.kvilInverse) } else { Text(.makeSpace) }
+      }.buttonStyle(KvilPrimaryButtonStyle()).disabled(busy).accessibilityIdentifier("finishSetup")
+      Button(.back) { page = 0 }.frame(maxWidth: .infinity, minHeight: 44)
+    }
+  }
+
   private func finish() async {
     busy = true
     defer { busy = false }

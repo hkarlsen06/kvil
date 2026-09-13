@@ -6,8 +6,6 @@
 	<array>
 		<string>dev.hkarlsen06.kvil.reminders</string>
 	</array>
-	<key>CFBundleDisplayName</key>
-	<string>Kvil</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -19,12 +17,6 @@
 			</array>
 		</dict>
 	</array>
-	<key>ITSAppUsesNonExemptEncryption</key>
-	<false/>
-	<key>NSHealthShareUsageDescription</key>
-	<string>Kvil reads weight measurements you choose to share to show them alongside your own entries.</string>
-	<key>NSHealthUpdateUsageDescription</key>
-	<string>Kvil saves the weights you log to Apple Health only when you turn on Save to Health.</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>fetch</string>

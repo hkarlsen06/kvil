@@ -40,11 +40,11 @@ struct OnboardingLandscapeView: View {
   private var extendedLandscape: some View {
     Color.clear.frame(height: height + extensionHeight)
       .overlay(alignment: .top) {
-        LandscapeView(height: height, fade: false)
+        LandscapeView(height: height)
       }
       .overlay(alignment: .bottom) {
         // Preserve the image's crop and scale in the copy flipped on both axes.
-        LandscapeView(height: height, fade: false)
+        LandscapeView(height: height)
           .scaleEffect(x: -1, y: -1)
           .frame(height: extensionHeight + overlap, alignment: .top)
           .clipped()

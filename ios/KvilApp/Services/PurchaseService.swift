@@ -35,7 +35,7 @@ import StoreKit
     error = nil
     await refreshEntitlements()
     do { product = try await Product.products(for: [Self.productID]).first } catch {
-      self.error = String(localized: L10n.purchaseUnavailable)
+      self.error = String(localized: .purchaseUnavailable)
     }
     loaded = true
   }
@@ -61,7 +61,7 @@ import StoreKit
       switch try await product.purchase() {
       case .success(let result):
         guard case .verified(let transaction) = result else {
-          error = String(localized: L10n.purchaseUnverified)
+          error = String(localized: .purchaseUnverified)
           return
         }
         await refreshEntitlements()
@@ -69,9 +69,9 @@ import StoreKit
         pending = false
       case .pending: pending = true
       case .userCancelled: break
-      @unknown default: error = String(localized: L10n.purchaseUnavailable)
+      @unknown default: error = String(localized: .purchaseUnavailable)
       }
-    } catch { self.error = String(localized: L10n.purchaseUnavailable) }
+    } catch { self.error = String(localized: .purchaseUnavailable) }
   }
   func restore() async {
     guard !scenario, !busy else { return }
@@ -81,6 +81,6 @@ import StoreKit
     do {
       try await AppStore.sync()
       await refreshEntitlements()
-    } catch { self.error = String(localized: L10n.restoreFailed) }
+    } catch { self.error = String(localized: .restoreFailed) }
   }
 }

@@ -36,7 +36,11 @@ enum ScheduleMerge {
         }
         if a.deleted != b.deleted { return a.deleted != true }
         if a.opening != b.opening { return a.opening < b.opening }
-        return a.closing < b.closing
+        if a.closing != b.closing { return a.closing < b.closing }
+        if a.adjustedOpening != b.adjustedOpening {
+          return (a.adjustedOpening ?? .distantPast) < (b.adjustedOpening ?? .distantPast)
+        }
+        return (a.adjustedClosing ?? .distantPast) < (b.adjustedClosing ?? .distantPast)
       }
     }
     let result = ScheduleSnapshot(

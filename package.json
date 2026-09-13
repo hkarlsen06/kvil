@@ -1,0 +1,14 @@
+{
+  "name": "kvil-tooling",
+  "private": true,
+  "scripts": {
+    "localize": "bun scripts/translate-xcstrings.mjs",
+    "localize:check": "python3 scripts/validate-localization.py",
+    "localize:test": "bun test scripts/translate-xcstrings.test.mjs"
+  },
+  "devDependencies": {
+    "dotenv": "^17.2.3",
+    "cli-progress": "^3.12.0",
+    "p-limit": "^7.3.0"
+  }
+}

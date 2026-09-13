@@ -56,6 +56,8 @@ struct KvilTimelineProvider: TimelineProvider {
 
 struct KvilWidgetView: View {
   @Environment(\.widgetFamily) private var family
+  @Environment(\.widgetRenderingMode) private var renderingMode
+  @Environment(\.showsWidgetContainerBackground) private var showsBackground
   let entry: KvilEntry
   var body: some View {
     Group {
@@ -63,10 +65,10 @@ struct KvilWidgetView: View {
         switch family {
         case .accessoryInline:
           if state.isOpen {
-            Text(L10n.windowOpen)
+            Text(.windowOpen)
           } else {
             Text(
-              verbatim: String(localized: L10n.opensAtPrefix)
+              verbatim: String(localized: .opensAtPrefix)
                 + state.next.opening.formatted(.dateTime.hour().minute()))
           }
         case .accessoryCircular:
@@ -78,7 +80,7 @@ struct KvilWidgetView: View {
             VStack(spacing: 0) {
               Image(systemName: state.isOpen ? "sun.max" : "leaf").font(.caption2)
               if state.isOpen {
-                Text(L10n.openShort).font(.caption2)
+                Text(.openShort).font(.caption2)
               } else {
                 countdown(state).font(.system(.caption, design: .rounded)).minimumScaleFactor(0.7)
               }
@@ -87,7 +89,7 @@ struct KvilWidgetView: View {
         case .accessoryRectangular:
           VStack(alignment: .leading, spacing: 4) {
             Label(
-              state.isOpen ? L10n.windowOpen : L10n.nextWindow,
+              state.isOpen ? .windowOpen : .nextWindow,
               systemImage: state.isOpen ? "sun.max" : "leaf"
             ).font(.headline)
             if let active = state.active {
@@ -98,51 +100,55 @@ struct KvilWidgetView: View {
             }
           }
         default:
-          HStack(spacing: 14) {
-            VStack(alignment: .leading, spacing: 10) {
-              HStack(spacing: 5) {
-                Image(systemName: state.isOpen ? "sun.max" : "leaf")
-                Text(verbatim: "kvil").font(.system(.subheadline, design: .serif))
-              }.font(.caption).foregroundStyle(Color.kvilSecondary)
-              if state.isOpen {
-                Text(L10n.windowOpen).font(.system(.title2, design: .serif))
-              } else {
-                countdown(state).font(.system(.largeTitle, design: .rounded, weight: .light))
-                  .minimumScaleFactor(0.75)
-              }
-              if let active = state.active {
-                WindowTimeLabel(window: active).font(.caption)
-              } else {
-                Text(L10n.untilEatingWindow).font(.caption).foregroundStyle(Color.kvilSecondary)
-                Text(state.next.opening, format: .dateTime.hour().minute()).font(.caption)
-              }
-            }.frame(maxWidth: .infinity, alignment: .leading)
-            if isMedium {
-              Image("Landscape").resizable().scaledToFill().frame(width: 118).clipped().clipShape(
-                RoundedRectangle(cornerRadius: 18)
-              ).accessibilityHidden(true)
+          VStack(alignment: .leading, spacing: 10) {
+            HStack(spacing: 5) {
+              Image(systemName: state.isOpen ? "sun.max" : "leaf")
+              Text(verbatim: "kvil").font(.system(.subheadline, design: .serif))
+            }.font(.caption).foregroundStyle(secondaryColor)
+            if state.isOpen {
+              Text(.windowOpen).font(.system(.title2, design: .serif))
+            } else {
+              countdown(state).font(.system(.largeTitle, design: .rounded, weight: .light))
+                .minimumScaleFactor(0.75)
             }
-          }.foregroundStyle(Color.kvilInk)
+            if let active = state.active {
+              WindowTimeLabel(window: active).font(.caption)
+            } else {
+              Text(.untilEatingWindow).font(.caption).foregroundStyle(secondaryColor)
+              Text(state.next.opening, format: .dateTime.hour().minute()).font(.caption)
+            }
+          }.frame(maxWidth: .infinity, alignment: .leading)
         }
       } else {
         if family == .accessoryInline {
-          Text(L10n.openKvilToSetUp)
+          Text(.openKvilToSetUp)
         } else {
           VStack(spacing: 6) {
             Image(systemName: "leaf")
-            Text(L10n.openKvilToSetUp).font(.caption).multilineTextAlignment(.center)
+            Text(.openKvilToSetUp).font(.caption).multilineTextAlignment(.center)
           }
         }
       }
-    }.containerBackground(for: .widget) { Color.kvilCanvas }
+    }.foregroundStyle(usesPhotoBackground ? Color.kvilOnPhoto : Color.primary)
+      .containerBackground(for: .widget) {
+        if usesPhotoBackground {
+          KvilWidgetPhotoBackground()
+        } else {
+          Color.kvilCanvas
+        }
+      }
       .widgetURL(URL(string: "kvil://home"))
   }
-  private var isMedium: Bool {
+  private var usesPhotoBackground: Bool {
     #if os(iOS)
-      family == .systemMedium
+      (family == .systemSmall || family == .systemMedium)
+        && showsBackground && renderingMode == .fullColor
     #else
       false
     #endif
+  }
+  private var secondaryColor: Color {
+    usesPhotoBackground ? .kvilOnPhotoSecondary : .secondary
   }
   private func countdown(_ state: ScheduleState) -> some View {
     Text(

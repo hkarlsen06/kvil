@@ -3,111 +3,164 @@ import SwiftUI
 struct HomeView: View {
   @Environment(AppModel.self) private var model
   @Environment(\.dynamicTypeSize) private var typeSize
+  @Environment(\.accessibilityReduceMotion) private var reduceMotion
+  @State private var actionFeedback = 0
   @State private var editingToday = false
+  @State private var loggingWeight = false
+  @State private var reflecting: EatingWindow?
+
   var body: some View {
-    TimelineView(.periodic(from: .now, by: 30)) { context in
-      let now = model.fixedNow ?? context.date
+    TimelineView(.periodic(from: .now, by: 1)) { _ in
+      let now = model.now
       let state = model.engine.state(at: now)
-      ScrollView {
-        VStack(spacing: 0) {
-          Text(now, format: .dateTime.weekday(.wide).month(.wide).day())
-            .font(typeSize.isAccessibilitySize ? .caption : .subheadline).foregroundStyle(
-              Color.kvilSecondary
-            ).multilineTextAlignment(.center).padding(.horizontal, 24).padding(.top, 18).padding(
-              .bottom, 26)
-          if let state {
-            timer(state: state, now: now)
-            VStack(spacing: 10) {
-              if !typeSize.isAccessibilitySize {
-                Text(state.isOpen ? L10n.makeRoom : L10n.findYourRhythm)
-                  .font(KvilStyle.heading).multilineTextAlignment(.center)
-              }
-              if let active = state.active {
-                WindowTimeLabel(window: active).foregroundStyle(Color.kvilSecondary)
-              } else {
-                let layout =
-                  typeSize.isAccessibilitySize
-                  ? AnyLayout(VStackLayout(spacing: 5)) : AnyLayout(HStackLayout(spacing: 5))
-                layout {
-                  Text(
-                    Calendar.current.isDate(state.next.opening, inSameDayAs: now)
-                      ? L10n.opensToday : L10n.opensTomorrow)
-                  Text(state.next.opening, format: .dateTime.hour().minute()).fontWeight(.medium)
-                }.font(.subheadline).foregroundStyle(Color.kvilSecondary).multilineTextAlignment(
-                  .center)
-              }
-            }.padding(.top, 4).padding(.horizontal, KvilStyle.page)
-            Button {
-              editingToday = true
-            } label: {
-              Label(L10n.changeToday, systemImage: "slider.horizontal.3").font(
-                .subheadline.weight(.medium)
-              ).padding(.horizontal, 22).padding(.vertical, 13)
-            }.buttonStyle(.plain).background(Color.kvilSurface, in: Capsule()).padding(.top, 22)
-              .accessibilityIdentifier("changeToday")
-          } else {
-            ContentUnavailableView {
-              Label(L10n.scheduleUnavailable, systemImage: "calendar")
-            } description: {
-              Text(L10n.scheduleUnavailableBody)
-            }
-            Button(L10n.schedule) { model.selectedTab = 1 }.buttonStyle(.bordered)
-          }
-          let eligible = model.engine.eligibleReflections(at: now).first { w in
-            !model.data.reflections.contains {
-              $0.dayKey == w.dayKey && $0.timeZoneID == w.timeZoneID
-            }
-          }
-          if let eligible {
-            ReflectionPrompt(window: eligible).padding(.horizontal, KvilStyle.page).padding(
-              .top, 28)
-          }
-          LandscapeView(height: eligible == nil ? 240 : 170).padding(.top, 16)
+      let eligible = model.engine.eligibleReflections(at: now).first { window in
+        !model.data.reflections.contains {
+          $0.dayKey == window.dayKey && $0.timeZoneID == window.timeZoneID
         }
-      }.scrollIndicators(.hidden).background(Color.kvilCanvas)
+      }
+      ViewThatFits(in: .vertical) {
+        content(state: state, now: now, eligible: eligible, compact: false)
+        content(state: state, now: now, eligible: eligible, compact: true)
+      }
+      .padding(.vertical, KvilStyle.content)
+      .frame(maxWidth: .infinity, maxHeight: .infinity)
+      .background(Color.kvilCanvas)
+      .animation(KvilMotion.transition(reduceMotion: reduceMotion), value: state?.isOpen)
     }.toolbar {
       ToolbarItem(placement: .topBarLeading) { KvilWordmark().fixedSize() }
         .sharedBackgroundVisibility(.hidden)
-      ToolbarItem(placement: .topBarTrailing) { SettingsLink() }
-    }.navigationBarTitleDisplayMode(.inline)
-      .sheet(isPresented: $editingToday) { ScheduleEditor(mode: .today) }
-  }
-  @ViewBuilder private func timer(state: ScheduleState, now: Date) -> some View {
-    if typeSize.isAccessibilitySize {
-      timerContent(state: state, now: now).padding(24)
-    } else {
-      ZStack {
-        OpenArc().stroke(Color.kvilTrack, style: StrokeStyle(lineWidth: 8, lineCap: .round))
-        OpenArc(progress: state.progress).stroke(
-          Color.kvilAccent, style: StrokeStyle(lineWidth: 8, lineCap: .round))
-        timerContent(state: state, now: now)
-        Text(state.isOpen ? L10n.yourWindow : L10n.atYourPace).font(.caption).tracking(1.1)
-          .foregroundStyle(Color.kvilSecondary).offset(y: 118)
-      }.frame(width: 272, height: 272).padding(.horizontal, 18).padding(.bottom, 4)
-    }
-  }
-  private func timerContent(state: ScheduleState, now: Date) -> some View {
-    VStack(spacing: 12) {
-      Image(systemName: state.isOpen ? "sun.max" : "leaf").font(.title3.weight(.light))
-        .foregroundStyle(Color.kvilAccent).accessibilityHidden(true)
-      if state.isOpen {
-        Text(L10n.windowOpen).font(.system(.largeTitle, design: .serif)).multilineTextAlignment(
-          .center)
-      } else {
-        Text(
-          Duration.seconds(max(0, state.next.opening.timeIntervalSince(now))),
-          format: .time(pattern: .hourMinute)
-        )
-        .font(
-          typeSize.isAccessibilitySize
-            ? .system(.largeTitle, design: .rounded, weight: .light)
-            : .system(size: 60, weight: .light, design: .rounded)
-        ).monospacedDigit().minimumScaleFactor(0.6).lineLimit(1)
-        .accessibilityLabel(L10n.untilEatingWindow).accessibilityValue(
-          Text(state.next.opening, style: .relative))
-        Text(L10n.untilEatingWindow).font(.subheadline).foregroundStyle(Color.kvilSecondary)
+      if model.data.preferences.weightEnabled {
+        ToolbarItem(placement: .topBarTrailing) {
+          Button {
+            loggingWeight = true
+          } label: {
+            Label(.logWeight, systemImage: "scalemass")
+          }.labelStyle(.iconOnly).accessibilityIdentifier("logWeight")
+        }
       }
-    }.frame(maxWidth: .infinity).accessibilityElement(children: .combine)
+    }.navigationBarTitleDisplayMode(.inline)
+      .sheet(isPresented: $editingToday) { ScheduleEditor() }
+      .sheet(isPresented: $loggingWeight) { WeightEditor() }
+      .sheet(item: $reflecting) { window in
+        NavigationStack {
+          ScrollView {
+            ReflectionPrompt(window: window).padding(KvilStyle.page)
+          }.background(Color.kvilCanvas)
+            .navigationTitle(.yourReflections).navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+              ToolbarItem(placement: .confirmationAction) {
+                Button(.done) { reflecting = nil }
+              }
+            }
+        }.modifier(AppMessageModifier())
+          .onChange(of: model.data.reflections) { _, reflections in
+            if reflections.contains(where: {
+              $0.dayKey == window.dayKey && $0.timeZoneID == window.timeZoneID
+            }) {
+              reflecting = nil
+            }
+          }
+      }
+  }
+
+  private func content(
+    state: ScheduleState?, now: Date, eligible: EatingWindow?, compact: Bool
+  ) -> some View {
+    VStack(spacing: 0) {
+      Text(
+        now,
+        format: compact
+          ? .dateTime.month(.abbreviated).day()
+          : .dateTime.weekday(.wide).month(.wide).day()
+      )
+      .font(typeSize.isAccessibilitySize ? .caption : .subheadline)
+      .multilineTextAlignment(.center)
+      .fixedSize(horizontal: false, vertical: true)
+      .accessibilityIdentifier("homeDate")
+      .overlay(alignment: .trailing) {
+        if state != nil {
+          Button {
+            editingToday = true
+          } label: {
+            Image(systemName: "pencil").font(.subheadline)
+              .padding(.leading, 4)
+              .frame(width: 44, height: 44, alignment: .leading)
+              .contentShape(Rectangle())
+          }.buttonStyle(.plain).accessibilityLabel(.changeToday)
+            .accessibilityIdentifier("changeToday").offset(x: 44)
+        }
+      }
+      .foregroundStyle(Color.kvilSecondary)
+      .padding(.horizontal, KvilStyle.page + 44)
+      .frame(minHeight: 44).padding(.bottom, compact ? 8 : 24)
+      if let state {
+        HomeTimerView(
+          state: state, now: now, presentationID: model.homePresentationID,
+          isSelected: model.selectedTab == .home, compact: compact)
+        VStack(spacing: 10) {
+          if !compact && !typeSize.isAccessibilitySize {
+            Text(state.isOpen ? .makeRoom : .findYourRhythm)
+              .font(KvilStyle.heading).multilineTextAlignment(.center)
+              .foregroundStyle(Color.kvilInk)
+          }
+          if let active = state.active {
+            WindowTimeLabel(window: active, stacksForAccessibility: !compact)
+              .font(compact ? .caption : .body)
+          } else {
+            let layout =
+              typeSize.isAccessibilitySize
+              ? AnyLayout(VStackLayout(spacing: 5)) : AnyLayout(HStackLayout(spacing: 5))
+            layout {
+              Text(
+                Calendar.current.isDate(state.next.opening, inSameDayAs: now)
+                  ? (compact ? .opensTodayCompact : .opensToday)
+                  : (compact ? .opensTomorrowCompact : .opensTomorrow))
+              Text(state.next.opening, format: .dateTime.hour().minute()).fontWeight(.medium)
+            }.font(compact ? .caption : .subheadline).multilineTextAlignment(.center)
+          }
+        }.foregroundStyle(Color.kvilSecondary)
+          .id(state.isOpen).transition(.opacity)
+          .padding(.top, compact ? 8 : 4).padding(.horizontal, KvilStyle.page)
+        Button {
+          if model.setEatingWindowOpen(!state.isOpen) { actionFeedback += 1 }
+        } label: {
+          Label(
+            state.isOpen ? .startFastNow : .breakFastEarly,
+            systemImage: state.isOpen ? "leaf" : "fork.knife"
+          )
+          .font(.subheadline.weight(.medium)).multilineTextAlignment(.center)
+          .padding(.horizontal, 22).padding(.vertical, 13)
+        }.buttonStyle(KvilWindowActionButtonStyle()).padding(.top, compact ? 16 : 22)
+          .sensoryFeedback(.impact(weight: .light, intensity: 0.5), trigger: actionFeedback)
+          .padding(.horizontal, KvilStyle.page).accessibilityIdentifier("fastingAction")
+      } else {
+        ContentUnavailableView {
+          Label(.scheduleUnavailable, systemImage: "calendar")
+        } description: {
+          Text(.scheduleUnavailableBody)
+        }
+        Button(.schedule) { model.selectedTab = .schedule }.buttonStyle(.bordered)
+      }
+      if let eligible {
+        Group {
+          if compact {
+            Button {
+              reflecting = eligible
+            } label: {
+              Label(.reflectOnDay, systemImage: "text.bubble")
+                .font(.caption.weight(.medium)).multilineTextAlignment(.center).frame(minHeight: 44)
+            }.buttonStyle(.plain).accessibilityIdentifier("openReflection")
+              .accessibilityHint(
+                Text(
+                  Calendar.current.isDate(eligible.opening, inSameDayAs: now)
+                    ? .howToday : .howYesterday))
+          } else {
+            ReflectionPrompt(window: eligible)
+          }
+        }.padding(.horizontal, KvilStyle.page).padding(.top, compact ? 12 : 28)
+      }
+    }.fixedSize(horizontal: false, vertical: true)
+      .accessibilityElement(children: .contain).accessibilityIdentifier("homeContent")
   }
 }
 
@@ -121,9 +174,9 @@ struct ReflectionPrompt: View {
         VStack(alignment: .leading, spacing: 5) {
           Text(
             Calendar.current.isDate(window.opening, inSameDayAs: model.now)
-              ? L10n.howToday : L10n.howYesterday
+              ? .howToday : .howYesterday
           ).font(KvilStyle.heading)
-          Text(L10n.reflectionHelp).font(.footnote).foregroundStyle(Color.kvilSecondary)
+          Text(.reflectionHelp).font(.footnote).foregroundStyle(Color.kvilSecondary)
         }
         Spacer(minLength: 8)
         Button {
@@ -131,7 +184,7 @@ struct ReflectionPrompt: View {
         } label: {
           Image(systemName: "xmark").frame(width: 44, height: 44)
         }
-        .buttonStyle(.plain).accessibilityLabel(L10n.dismissReflection)
+        .buttonStyle(.plain).accessibilityLabel(.dismissReflection)
       }
       if typeSize.isAccessibilitySize {
         VStack(alignment: .leading, spacing: 8) { feelingButtons }

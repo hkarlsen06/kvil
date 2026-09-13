@@ -11,15 +11,15 @@ struct HistoryView: View {
       VStack(alignment: .leading, spacing: 28) {
         if !typeSize.isAccessibilitySize {
           VStack(alignment: .leading, spacing: 8) {
-            Text(L10n.aMomentToLookBack).font(KvilStyle.title)
-            Text(L10n.historyIntro).foregroundStyle(Color.kvilSecondary)
+            Text(.aMomentToLookBack).font(KvilStyle.title)
+            Text(.historyIntro).foregroundStyle(Color.kvilSecondary)
           }
         }
         if model.purchases.unlocked {
-          Picker(L10n.recapRange, selection: $days) {
-            Text(L10n.week).tag(7)
-            Text(L10n.month).tag(30)
-            Text(L10n.allTime).tag(36500)
+          Picker(.recapRange, selection: $days) {
+            Text(.week).tag(7)
+            Text(.month).tag(30)
+            Text(.allTime).tag(36500)
           }.pickerStyle(.segmented)
         }
         recap
@@ -28,7 +28,7 @@ struct HistoryView: View {
             WeightView()
           } label: {
             HStack {
-              Label(L10n.weight, systemImage: "chart.xyaxis.line")
+              Label(.weight, systemImage: "chart.xyaxis.line")
               Spacer()
               Image(systemName: "chevron.right").font(.caption)
             }.padding(.vertical, 8)
@@ -37,15 +37,15 @@ struct HistoryView: View {
           Button {
             model.preferences { $0.weightEnabled = true }
           } label: {
-            Label(L10n.addWeightOptional, systemImage: "plus.circle").font(.subheadline)
+            Label(.addWeightOptional, systemImage: "plus.circle").font(.subheadline)
           }
         }
         VStack(alignment: .leading, spacing: 8) {
-          Text(L10n.yourReflections).font(KvilStyle.heading)
+          Text(.yourReflections).font(KvilStyle.heading)
           if visible.isEmpty {
             Image(systemName: "leaf").font(.largeTitle.weight(.ultraLight)).padding(.top, 16)
               .accessibilityHidden(true)
-            Text(L10n.reflectionsEmpty).foregroundStyle(Color.kvilSecondary).padding(.vertical, 8)
+            Text(.reflectionsEmpty).foregroundStyle(Color.kvilSecondary).padding(.vertical, 8)
           } else {
             ForEach(visible) { reflection in
               Button {
@@ -59,7 +59,7 @@ struct HistoryView: View {
                       reflectionDate(reflection),
                       format: .dateTime.weekday(.wide).month(.abbreviated).day()
                     ).font(.subheadline.weight(.medium))
-                    Text(reflection.feeling?.title ?? L10n.skipped).font(.footnote).foregroundStyle(
+                    Text(reflection.feeling?.title ?? .skipped).font(.footnote).foregroundStyle(
                       Color.kvilSecondary)
                   }
                   Spacer()
@@ -72,18 +72,17 @@ struct HistoryView: View {
         }
         if !model.purchases.unlocked {
           VStack(alignment: .leading, spacing: 12) {
-            Text(L10n.keepTheBiggerPicture).font(KvilStyle.heading)
-            Text(L10n.freeHistoryExplanation).font(.subheadline).foregroundStyle(
+            Text(.keepTheBiggerPicture).font(KvilStyle.heading)
+            Text(.freeHistoryExplanation).font(.subheadline).foregroundStyle(
               Color.kvilSecondary)
-            Button(L10n.exploreFullHistory) { showingPurchase = true }.font(
+            Button(.exploreFullHistory) { showingPurchase = true }.font(
               .subheadline.weight(.semibold)
             ).frame(minHeight: 44)
               .accessibilityIdentifier("exploreHistory")
           }.padding(.vertical, 8)
         }
-        LandscapeView(height: 150).clipShape(RoundedRectangle(cornerRadius: 20))
       }.padding(KvilStyle.page)
-    }.background(Color.kvilCanvas).navigationTitle(L10n.history).navigationBarTitleDisplayMode(
+    }.background(Color.kvilCanvas).navigationTitle(.history).navigationBarTitleDisplayMode(
       .inline
     )
     .toolbar { ToolbarItem(placement: .topBarTrailing) { SettingsLink() } }
@@ -108,15 +107,15 @@ struct HistoryView: View {
         typeSize.isAccessibilitySize
         ? AnyLayout(VStackLayout(alignment: .leading, spacing: 8)) : AnyLayout(HStackLayout())
       layout {
-        Text(L10n.recentDays).font(KvilStyle.heading)
+        Text(.recentDays).font(KvilStyle.heading)
         if !typeSize.isAccessibilitySize { Spacer() }
         HStack {
           Text(recap.answerCount, format: .number).font(.title2).monospacedDigit()
-          Text(L10n.reflectionsLabel).font(.caption)
+          Text(.reflectionsLabel).font(.caption)
         }
       }
       if recap.answerCount == 0 {
-        Text(L10n.recapEmpty).font(.subheadline).foregroundStyle(Color.kvilSecondary)
+        Text(.recapEmpty).font(.subheadline).foregroundStyle(Color.kvilSecondary)
       } else {
         ForEach(DayFeeling.allCases, id: \.self) { feeling in
           VStack(spacing: 8) {
@@ -134,7 +133,7 @@ struct HistoryView: View {
           }
         }
       }
-      Text(L10n.recapNote).font(.caption).foregroundStyle(Color.kvilSecondary)
+      Text(.recapNote).font(.caption).foregroundStyle(Color.kvilSecondary)
     }.padding(20).background(
       Color.kvilSurface, in: RoundedRectangle(cornerRadius: KvilStyle.corner))
   }
@@ -161,22 +160,22 @@ struct ReflectionEditor: View {
             }
           }
         } header: {
-          Text(L10n.howDidItFeel)
+          Text(.howDidItFeel)
         } footer: {
-          Text(L10n.reflectionHelp)
+          Text(.reflectionHelp)
         }
-        Section { Button(L10n.deleteReflection, role: .destructive) { confirmDelete = true } }
+        Section { Button(.deleteReflection, role: .destructive) { confirmDelete = true } }
       }.scrollContentBackground(.hidden).background(Color.kvilCanvas)
         .navigationTitle(Text(reflection.opening, format: .dateTime.month(.abbreviated).day()))
         .navigationBarTitleDisplayMode(.inline)
-        .toolbar { ToolbarItem(placement: .cancellationAction) { Button(L10n.done) { dismiss() } } }
-        .alert(L10n.deleteReflection, isPresented: $confirmDelete) {
-          Button(L10n.delete, role: .destructive) {
+        .toolbar { ToolbarItem(placement: .cancellationAction) { Button(.done) { dismiss() } } }
+        .alert(.deleteReflection, isPresented: $confirmDelete) {
+          Button(.delete, role: .destructive) {
             if model.deleteReflection(reflection.id) { dismiss() }
           }
-          Button(L10n.cancel, role: .cancel) {}
+          Button(.cancel, role: .cancel) {}
         } message: {
-          Text(L10n.deleteReflectionBody)
+          Text(.deleteReflectionBody)
         }
     }.tint(Color.kvilAccent).modifier(AppMessageModifier())
   }

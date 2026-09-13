@@ -23,7 +23,7 @@ import SwiftUI
                     Image(systemName: state.isOpen ? "sun.max" : "leaf").foregroundStyle(
                       Color.kvilAccent)
                     if state.isOpen {
-                      Text(L10n.windowOpen).font(.system(.title3, design: .serif))
+                      Text(.windowOpen).font(.system(.title3, design: .serif))
                         .multilineTextAlignment(.center)
                     } else {
                       Text(
@@ -38,16 +38,16 @@ import SwiftUI
                   WindowTimeLabel(window: active).font(.caption)
                 } else {
                   HStack(spacing: 2) {
-                    Text(L10n.opensAtPrefix)
+                    Text(.opensAtPrefix)
                     Text(state.next.opening, format: .dateTime.hour().minute())
                   }.font(.caption).accessibilityElement(children: .combine)
                 }
-                Text(bridge.reachable ? L10n.watchConnected : L10n.watchOffline).font(.caption2)
+                Text(bridge.reachable ? .watchConnected : .watchOffline).font(.caption2)
                   .foregroundStyle(Color.kvilSecondary).multilineTextAlignment(.center)
                 Button {
                   bridge.refresh()
                 } label: {
-                  Label(L10n.refresh, systemImage: "arrow.clockwise")
+                  Label(.refresh, systemImage: "arrow.clockwise")
                 }.disabled(!bridge.reachable)
                 if let snapshot {
                   Text(
@@ -56,11 +56,11 @@ import SwiftUI
                 }
               } else {
                 Image(systemName: "leaf").font(.largeTitle).padding()
-                Text(L10n.openKvilOnPhone).multilineTextAlignment(.center)
-                Button(L10n.refresh) { bridge.refresh() }.disabled(!bridge.reachable)
+                Text(.openKvilOnPhone).multilineTextAlignment(.center)
+                Button(.refresh) { bridge.refresh() }.disabled(!bridge.reachable)
               }
               if bridge.error {
-                Text(L10n.watchRefreshFailed).font(.caption).foregroundStyle(Color.kvilWarning)
+                Text(.watchRefreshFailed).font(.caption).foregroundStyle(Color.kvilWarning)
               }
             }.padding(.horizontal, 4)
           }

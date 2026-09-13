@@ -2,6 +2,7 @@ import BackgroundTasks
 import SwiftUI
 
 @main struct KvilApp: App {
+  @UIApplicationDelegateAdaptor(KvilAppDelegate.self) private var appDelegate
   @State private var model: AppModel?
   @State private var storageFailure = false
   @Environment(\.scenePhase) private var scenePhase
@@ -25,14 +26,14 @@ import SwiftUI
     WindowGroup {
       Group {
         if let model {
-          RootView().environment(model)
+          RootView(reminderResponse: appDelegate.reminderResponse).environment(model)
         } else if storageFailure {
           ContentUnavailableView {
-            Label(L10n.storageUnavailable, systemImage: "externaldrive.badge.exclamationmark")
+            Label(.storageUnavailable, systemImage: "externaldrive.badge.exclamationmark")
           } description: {
-            Text(L10n.storageUnavailableBody)
+            Text(.storageUnavailableBody)
           } actions: {
-            Button(L10n.tryAgain) { load() }
+            Button(.tryAgain) { load() }
           }
           .background(Color.kvilCanvas)
         } else {
@@ -65,28 +66,40 @@ import SwiftUI
 
 struct RootView: View {
   @Environment(AppModel.self) private var model
+  var reminderResponse: UUID?
   var body: some View {
     @Bindable var model = model
     Group {
       if model.isConfigured {
         TabView(selection: $model.selectedTab) {
-          Tab(L10n.home, systemImage: "sun.horizon", value: 0) { NavigationStack { HomeView() } }
-          Tab(L10n.schedule, systemImage: "calendar", value: 1) {
+          Tab(.home, systemImage: "sun.horizon", value: AppTab.home) {
+            NavigationStack { HomeView() }
+          }
+          Tab(.schedule, systemImage: "calendar", value: AppTab.schedule) {
             NavigationStack { ScheduleView() }
           }
-          Tab(L10n.history, systemImage: "leaf", value: 2) { NavigationStack { HistoryView() } }
+          Tab(.history, systemImage: "leaf", value: AppTab.history) {
+            NavigationStack { HistoryView() }
+          }
         }
       } else {
         OnboardingView()
       }
     }.background(Color.kvilCanvas).modifier(AppMessageModifier())
+      .onChange(of: reminderResponse, initial: true) { _, response in
+        if response != nil { model.presentHome() }
+      }
       .task {
         await model.refresh()
         await model.purchases.load()
       }
       .onOpenURL { url in
         guard url.scheme == "kvil" else { return }
-        model.selectedTab = url.host == "schedule" ? 1 : 0
+        if url.host == "schedule" {
+          model.selectedTab = .schedule
+        } else {
+          model.presentHome()
+        }
       }
       .onReceive(NotificationCenter.default.publisher(for: .NSSystemTimeZoneDidChange)) { _ in
         model.updateSurfaces()
@@ -109,7 +122,7 @@ struct AppMessageModifier: ViewModifier {
             model.message = nil
           } label: {
             Image(systemName: "xmark").frame(width: 44, height: 44)
-          }.accessibilityLabel(L10n.dismiss)
+          }.accessibilityLabel(.dismiss)
         }.padding(.leading, 20).padding(.vertical, 8)
           .foregroundStyle(Color.kvilInk).background(Color.kvilSurface)
           .accessibilityElement(children: .contain)

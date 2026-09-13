@@ -2,83 +2,322 @@ import SwiftUI
 
 struct ScheduleView: View {
   @Environment(AppModel.self) private var model
+  @Environment(\.locale) private var locale
   @Environment(\.dynamicTypeSize) private var typeSize
-  @State private var editor: ScheduleEditor.Mode?
+  @State private var editingToday = false
+  @State private var editingDay: DayPlan?
+  @State private var slidingDay: DayPlan?
+  @State private var slidingToday: DayPlan?
+  @State private var todayDragOrigin: EatingWindow?
+  @State private var copiedTimes: (opens: WallTime, closes: WallTime)?
   var body: some View {
     ScrollView {
       VStack(alignment: .leading, spacing: KvilStyle.section) {
-        if !typeSize.isAccessibilitySize {
-          VStack(alignment: .leading, spacing: 8) {
-            Text(L10n.aLittleStructure).font(KvilStyle.title)
-            Text(L10n.scheduleIntro).foregroundStyle(Color.kvilSecondary)
-          }
-        }
         if let today = model.engine.window(on: model.now) {
-          VStack(alignment: .leading, spacing: 14) {
-            HStack {
-              Label(L10n.today, systemImage: "sun.max")
-              Spacer()
-              if today.isOverride {
-                Text(L10n.adjusted).font(.caption).foregroundStyle(Color.kvilSecondary)
-              }
-            }
-            WindowTimeLabel(window: today).font(.title2).foregroundStyle(Color.kvilInk)
-            Button(L10n.changeToday) { editor = .today }.font(.subheadline.weight(.medium))
-          }.padding(20).frame(maxWidth: .infinity, alignment: .leading).background(
-            Color.kvilSurface, in: RoundedRectangle(cornerRadius: KvilStyle.corner))
+          todayCard(today)
         }
-        VStack(alignment: .leading, spacing: 12) {
-          let headerLayout =
-            typeSize.isAccessibilitySize
-            ? AnyLayout(VStackLayout(alignment: .leading, spacing: 12)) : AnyLayout(HStackLayout())
-          headerLayout {
-            Text(L10n.usualWeek).font(KvilStyle.heading).fixedSize(
-              horizontal: false, vertical: true)
-            if !typeSize.isAccessibilitySize { Spacer() }
-            Button(L10n.edit) { editor = .week }.accessibilityIdentifier("editWeek")
-          }
-          let days =
-            model.data.schedule.versions.max(by: { $0.effectiveDay < $1.effectiveDay })?.days
-            ?? DayPlan.initial
-          ForEach(ordered(days)) { day in
-            let layout =
-              typeSize.isAccessibilitySize
-              ? AnyLayout(VStackLayout(alignment: .leading, spacing: 8)) : AnyLayout(HStackLayout())
-            layout {
-              Text(weekday(day.weekday)).fontWeight(.medium).fixedSize(
-                horizontal: false, vertical: true)
-              if !typeSize.isAccessibilitySize { Spacer() }
-              if typeSize.isAccessibilitySize {
-                VStack(alignment: .leading, spacing: 4) {
-                  wallTime(day.opens)
-                  wallTime(day.closes)
-                }
-              } else {
-                HStack {
-                  wallTime(day.opens)
-                  Text(verbatim: "–")
-                  wallTime(day.closes)
-                }
-              }
-              if day.overnight { Text(L10n.nextDayShort).font(.caption2) }
-            }.font(.subheadline).padding(.vertical, 13).accessibilityElement(children: .combine)
-            if day.id != ordered(days).last?.id { Divider().overlay(Color.kvilLine) }
-          }
-          Text(L10n.weekEffectiveTomorrow).font(.footnote).foregroundStyle(Color.kvilSecondary)
-        }
-        Text(L10n.scheduleNoTracking).font(.footnote).foregroundStyle(Color.kvilSecondary)
-      }.padding(KvilStyle.page)
-    }.background(Color.kvilCanvas).navigationTitle(L10n.schedule).navigationBarTitleDisplayMode(
+        usualWeek
+        Text(.scheduleNoTracking).font(.footnote).foregroundStyle(Color.kvilSecondary)
+          .fixedSize(horizontal: false, vertical: true)
+      }.padding(KvilStyle.page).frame(maxWidth: 640)
+        .frame(maxWidth: .infinity)
+    }.background(Color.kvilCanvas).navigationTitle(.schedule).navigationBarTitleDisplayMode(
       .inline
     )
     .toolbar { ToolbarItem(placement: .topBarTrailing) { SettingsLink() } }
-    .sheet(item: $editor) { ScheduleEditor(mode: $0) }
+    .sheet(isPresented: $editingToday) { ScheduleEditor() }
+    .sheet(item: $editingDay) { ScheduleEditor(day: $0) }
   }
+
+  private func todayCard(_ today: EatingWindow) -> some View {
+    let day = DayPlan(
+      weekday: model.calendar.component(.weekday, from: model.now),
+      opens: wall(today.opening), closes: wall(today.closing))
+    let shown = slidingToday ?? day
+    return VStack(alignment: .leading, spacing: 16) {
+      VStack(alignment: .leading, spacing: 8) {
+        HStack {
+          Text(.today).font(KvilStyle.heading)
+          Spacer(minLength: 12)
+          Menu {
+            windowLengthPicker(selected: day.windowMinutes) { minutes in
+              if let updated = try? day.resized(to: minutes) {
+                saveToday(updated, replacing: today)
+              }
+            }
+            Button(.editWindowTimes, systemImage: "clock") { editingToday = true }
+            if today.isOverride {
+              Button(.useUsualSchedule, systemImage: "arrow.uturn.backward") {
+                _ = model.removeTodayOverride()
+              }
+            }
+          } label: {
+            Image(systemName: "ellipsis").font(.system(size: 17, weight: .medium))
+              .frame(width: 44, height: 44)
+              .background(Color.kvilCanvas, in: Circle())
+          }.buttonStyle(.plain).foregroundStyle(Color.kvilAccent)
+            .accessibilityLabel(.changeToday)
+            .accessibilityIdentifier("todayMenu")
+        }
+        Label(.adjusted, systemImage: "slider.horizontal.3")
+          .font(.caption).foregroundStyle(Color.kvilSecondary)
+          .opacity(today.isOverride ? 1 : 0).accessibilityHidden(!today.isOverride)
+      }
+      VStack(alignment: .leading, spacing: 4) {
+        Group {
+          if typeSize.isAccessibilitySize {
+            stackedTodayTimes(shown)
+          } else {
+            ViewThatFits(in: .horizontal) {
+              HStack(alignment: .top, spacing: 4) {
+                todayTime(shown.opens, title: .windowOpens)
+                Spacer(minLength: 0)
+                Image(systemName: "arrow.right").font(.subheadline)
+                  .foregroundStyle(Color.kvilSecondary).padding(.top, 32)
+                  .accessibilityHidden(true)
+                Spacer(minLength: 0)
+                todayTime(shown.closes, title: .windowCloses)
+              }
+              stackedTodayTimes(shown)
+            }
+          }
+        }
+        Text(.closesNextDay).font(.caption).foregroundStyle(Color.kvilSecondary)
+          .fixedSize(horizontal: false, vertical: true)
+          .opacity(shown.overnight ? 1 : 0).accessibilityHidden(!shown.overnight)
+      }.accessibilityElement(children: .combine)
+        .accessibilityIdentifier("todayWindow")
+      VStack(alignment: .leading, spacing: 10) {
+        KvilWindowSlider(
+          day: day, title: String(localized: .today), value: windowSummary(shown),
+          onMove: { _, updated in saveToday(updated, replacing: todayDragOrigin ?? today) },
+          onEdit: { editingToday = true },
+          onPreview: { preview in
+            if preview != nil && todayDragOrigin == nil { todayDragOrigin = today }
+            slidingToday = preview
+            if preview == nil { todayDragOrigin = nil }
+          }
+        ).accessibilityIdentifier("todayWindowSlider")
+        KvilDayAxis()
+      }
+      Text(.todayOnlyChanges).font(.footnote).foregroundStyle(Color.kvilSecondary)
+        .fixedSize(horizontal: false, vertical: true)
+    }.padding(KvilStyle.cardPadding)
+      .frame(maxWidth: .infinity, alignment: .leading)
+      .background(Color.kvilSurface, in: RoundedRectangle(cornerRadius: KvilStyle.corner))
+  }
+
+  private func saveToday(_ day: DayPlan, replacing original: EatingWindow) {
+    guard day.opens != wall(original.opening) || day.closes != wall(original.closing) else {
+      return
+    }
+    _ = model.saveToday(opens: day.opens, closes: day.closes, replacing: original)
+  }
+
+  private func stackedTodayTimes(_ today: DayPlan) -> some View {
+    VStack(alignment: .leading, spacing: 20) {
+      todayTime(today.opens, title: .windowOpens)
+      todayTime(today.closes, title: .windowCloses)
+    }
+  }
+
+  private func todayTime(_ time: WallTime, title: LocalizedStringResource) -> some View {
+    VStack(alignment: .leading, spacing: 6) {
+      Text(title).font(.subheadline).foregroundStyle(Color.kvilSecondary)
+      ZStack(alignment: .leading) {
+        // Reserve two-digit hours in both periods, so dragging cannot switch the time layout.
+        Text(verbatim: wallTimeString(WallTime(hour: 10))).hidden().accessibilityHidden(true)
+        Text(verbatim: wallTimeString(WallTime(hour: 22))).hidden().accessibilityHidden(true)
+        Text(verbatim: wallTimeString(time))
+      }.font(.system(.title, design: .serif)).monospacedDigit().fixedSize()
+    }
+  }
+
+  private var usualWeek: some View {
+    VStack(alignment: .leading, spacing: 16) {
+      VStack(alignment: .leading, spacing: 8) {
+        HStack {
+          Text(.usualWeek).font(KvilStyle.heading)
+            .fixedSize(horizontal: false, vertical: true)
+          Spacer(minLength: 8)
+          Menu {
+            lengthPicker()
+          } label: {
+            Image(systemName: "slider.horizontal.3").font(.system(size: 17))
+              .frame(width: 44, height: 44).contentShape(Rectangle())
+          }.accessibilityLabel(.weekOptions).accessibilityIdentifier("weekOptions")
+        }
+        Text(.dragWindowHelp).font(.subheadline).foregroundStyle(Color.kvilSecondary)
+          .fixedSize(horizontal: false, vertical: true)
+      }
+      VStack(alignment: .leading, spacing: 0) {
+        Label {
+          Text(.eatingWindow).fixedSize(horizontal: false, vertical: true)
+        } icon: {
+          Capsule().fill(Color.kvilAccent).frame(width: 16, height: 6)
+        }.font(.caption).foregroundStyle(Color.kvilSecondary).padding(.bottom, 16)
+        KvilDayAxis().padding(.bottom, 8)
+        let days = ordered(model.usualDays)
+        ForEach(days) { day in
+          weekRow(day)
+          if day.id != days.last?.id { Divider().overlay(Color.kvilLine) }
+        }
+      }.padding(KvilStyle.cardPadding)
+        .background(Color.kvilSurface, in: RoundedRectangle(cornerRadius: KvilStyle.corner))
+      Text(.weekEffectiveTomorrow).font(.footnote).foregroundStyle(Color.kvilSecondary)
+        .fixedSize(horizontal: false, vertical: true)
+    }
+  }
+
+  private func weekRow(_ day: DayPlan) -> some View {
+    let shown = slidingDay?.weekday == day.weekday ? slidingDay ?? day : day
+    return VStack(alignment: .leading, spacing: 0) {
+      HStack(alignment: .top, spacing: 8) {
+        let title = Text(weekday(day.weekday)).font(.subheadline.weight(.medium))
+          .fixedSize(horizontal: !typeSize.isAccessibilitySize, vertical: true)
+        let times = VStack(alignment: .leading, spacing: 4) {
+          if typeSize.isAccessibilitySize {
+            stackedTimes(shown)
+          } else {
+            HStack(spacing: 3) {
+              wallTime(shown.opens)
+              Text(verbatim: "–")
+              wallTime(shown.closes)
+            }.fixedSize()
+          }
+          if shown.overnight { Text(.nextDayShort).font(.caption) }
+        }.font(.footnote).foregroundStyle(Color.kvilSecondary)
+        Group {
+          if typeSize.isAccessibilitySize {
+            VStack(alignment: .leading, spacing: 8) {
+              title
+              times
+            }
+          } else {
+            ViewThatFits(in: .horizontal) {
+              HStack(spacing: 8) {
+                title
+                Spacer(minLength: 0)
+                times
+              }
+              VStack(alignment: .leading, spacing: 4) {
+                title
+                times
+              }
+            }
+          }
+        }.frame(maxWidth: .infinity, minHeight: 44, alignment: .leading)
+          .accessibilityElement(children: .combine)
+          .accessibilityIdentifier("dayTimes.\(day.weekday)")
+        dayMenu(day)
+      }
+      KvilWindowSlider(
+        day: day, title: weekday(day.weekday), value: windowSummary(shown),
+        onMove: { original, updated in _ = model.saveWeekDay(updated, replacing: original) },
+        onEdit: { editingDay = day }, onPreview: { slidingDay = $0 }
+      ).accessibilityIdentifier("windowSlider.\(day.weekday)")
+    }.padding(.vertical, 8)
+  }
+
+  private func stackedTimes(_ day: DayPlan) -> some View {
+    VStack(alignment: .leading, spacing: 4) {
+      wallTime(day.opens)
+      Text(verbatim: "–")
+      wallTime(day.closes)
+    }
+  }
+
+  private func wall(_ date: Date) -> WallTime {
+    WallTime(
+      hour: model.calendar.component(.hour, from: date),
+      minute: model.calendar.component(.minute, from: date))
+  }
+  private func dayMenu(_ day: DayPlan) -> some View {
+    Menu {
+      lengthPicker(day)
+      Button(.applyLengthToAllDays, systemImage: "calendar") {
+        _ = model.setWindowLength(day.windowMinutes)
+      }
+      Button(.editWindowTimes, systemImage: "clock") { editingDay = day }
+        .accessibilityIdentifier("editDay.\(day.weekday)")
+      Divider()
+      Button(.copyTimesToAllDays, systemImage: "calendar") {
+        applyTimes(opens: day.opens, closes: day.closes)
+      }
+      Button(.copyTimes, systemImage: "doc.on.doc") {
+        copiedTimes = (day.opens, day.closes)
+      }
+      if let copiedTimes {
+        Button(.pasteTimes, systemImage: "doc.on.clipboard") {
+          applyTimes(opens: copiedTimes.opens, closes: copiedTimes.closes, weekday: day.weekday)
+        }
+      }
+    } label: {
+      Image(systemName: "ellipsis").font(.system(size: 17))
+        .frame(width: 44, height: 44).contentShape(Rectangle())
+    }.accessibilityLabel(
+      Text(verbatim: "\(String(localized: .dayOptions)), \(weekday(day.weekday))")
+    ).accessibilityIdentifier("dayMenu.\(day.weekday)")
+  }
+
+  private func lengthPicker(_ day: DayPlan? = nil) -> some View {
+    let lengths = Set(model.usualDays.map(\.windowMinutes))
+    let selected = day?.windowMinutes ?? (lengths.count == 1 ? lengths.first : nil)
+    return windowLengthPicker(
+      title: day == nil ? .windowLengthAllDays : .windowLength, selected: selected
+    ) { minutes in
+      _ = model.setWindowLength(minutes, weekday: day?.weekday)
+    }
+  }
+
+  private func windowLengthPicker(
+    title: LocalizedStringResource = .windowLength, selected: Int?,
+    onSelect: @escaping (Int) -> Void
+  ) -> some View {
+    return Picker(
+      title,
+      selection: Binding<Int?>(
+        get: { selected },
+        set: { if let minutes = $0 { onSelect(minutes) } })
+    ) {
+      if selected == nil {
+        Text(.differentWindowLengths).tag(nil as Int?).disabled(true)
+      }
+      if let selected, selected % 60 != 0 {
+        Text(verbatim: duration(selected)).tag(Optional(selected))
+      }
+      ForEach(1..<24) { hours in
+        Text(verbatim: duration(hours * 60)).tag(Optional(hours * 60))
+      }
+    }.pickerStyle(.menu)
+  }
+
+  private func applyTimes(opens: WallTime, closes: WallTime, weekday: Int? = nil) {
+    var days = model.usualDays
+    for index in days.indices where weekday == nil || days[index].weekday == weekday {
+      days[index].opens = opens
+      days[index].closes = closes
+    }
+    _ = model.saveWeek(days)
+  }
+
+  private func duration(_ minutes: Int) -> String {
+    Duration.seconds(minutes * 60).formatted(
+      .units(allowed: [.hours, .minutes], width: .abbreviated).locale(locale))
+  }
+
+  private func windowSummary(_ day: DayPlan) -> String {
+    let nextDay = day.overnight ? ", " + String(localized: .nextDayShort) : ""
+    return
+      "\(wallTimeString(day.opens)) – \(wallTimeString(day.closes))\(nextDay), \(duration(day.windowMinutes))"
+  }
+
   private func wallTime(_ time: WallTime) -> some View {
-    Text(
-      time.date(on: model.now, calendar: model.calendar) ?? model.now,
-      format: .dateTime.hour().minute()
-    ).monospacedDigit().fixedSize()
+    Text(verbatim: wallTimeString(time)).monospacedDigit().fixedSize()
+  }
+  private func wallTimeString(_ time: WallTime) -> String {
+    Date(timeIntervalSinceReferenceDate: TimeInterval(time.minute * 60)).formatted(
+      Date.FormatStyle(date: .omitted, time: .shortened, locale: locale, timeZone: .gmt))
   }
   private func weekday(_ value: Int) -> String { model.calendar.weekdaySymbols[value - 1] }
   private func ordered(_ days: [DayPlan]) -> [DayPlan] {
@@ -90,53 +329,32 @@ struct ScheduleView: View {
 }
 
 struct ScheduleEditor: View {
-  enum Mode: String, Identifiable {
-    case today, week
-    var id: String { rawValue }
-  }
+  var day: DayPlan? = nil
   @Environment(AppModel.self) private var model
   @Environment(\.dismiss) private var dismiss
-  let mode: Mode
-  @State private var days = DayPlan.initial
-  @State private var selectedDay = Calendar.current.component(.weekday, from: Date())
-  @State private var opens = Date()
-  @State private var closes = Date()
-  @State private var ready = false
+  @Environment(\.dynamicTypeSize) private var typeSize
+  @State private var opens = WallTime(hour: 0)
+  @State private var closes = WallTime(hour: 0)
   @State private var validation: String?
 
   var body: some View {
     NavigationStack {
       Form {
         Section {
-          Text(mode == .today ? L10n.todayEditorIntro : L10n.weekEditorIntro).foregroundStyle(
-            Color.kvilSecondary)
-        }.listRowBackground(Color.clear)
-        if mode == .week {
-          Section(L10n.chooseDay) {
-            Picker(L10n.weekday, selection: $selectedDay) {
-              ForEach(1...7, id: \.self) { value in
-                Text(model.calendar.weekdaySymbols[value - 1]).tag(value)
-              }
-            }.pickerStyle(.menu)
-          }
-        }
-        Section {
-          DatePicker(L10n.windowOpens, selection: $opens, displayedComponents: .hourAndMinute)
-            .accessibilityIdentifier("openingTime")
-          DatePicker(L10n.windowCloses, selection: $closes, displayedComponents: .hourAndMinute)
-            .accessibilityIdentifier("closingTime")
-          if wall(closes) < wall(opens) {
-            Label(L10n.closesNextDay, systemImage: "moon").font(.footnote).foregroundStyle(
+          Text(day == nil ? LocalizedStringResource.todayEditorIntro : .dayEditorIntro)
+            .foregroundStyle(
               Color.kvilSecondary)
-          }
-        }
-        if mode == .week {
-          Section {
-            Button(L10n.applyAllDays) {
-              days = (1...7).map { DayPlan(weekday: $0, opens: wall(opens), closes: wall(closes)) }
+        }.listRowBackground(Color.clear)
+        Section {
+          ViewThatFits(in: .horizontal) {
+            if !typeSize.isAccessibilitySize {
+              HStack(spacing: 8) { timeWheels }.fixedSize(horizontal: true, vertical: false)
             }
-          } footer: {
-            Text(L10n.weekEffectiveTomorrow)
+            VStack(spacing: 8) { timeWheels }
+          }.frame(maxWidth: .infinity)
+          if closes < opens {
+            Label(.closesNextDay, systemImage: "moon").font(.footnote).foregroundStyle(
+              Color.kvilSecondary)
           }
         }
         if let validation {
@@ -145,9 +363,9 @@ struct ScheduleEditor: View {
               "scheduleValidation")
           }
         }
-        if mode == .today, model.engine.window(on: model.now)?.isOverride == true {
+        if day == nil && model.engine.window(on: model.now)?.isOverride == true {
           Section {
-            Button(L10n.useUsualSchedule) {
+            Button(.useUsualSchedule) {
               if model.removeTodayOverride() {
                 dismiss()
               } else {
@@ -158,22 +376,27 @@ struct ScheduleEditor: View {
           }
         }
       }.scrollContentBackground(.hidden).background(Color.kvilCanvas)
-        .navigationTitle(mode == .today ? L10n.changeToday : L10n.editWeek)
+        .navigationTitle(
+          Text(
+            verbatim: day.map { model.calendar.weekdaySymbols[$0.weekday - 1] }
+              ?? String(localized: .changeToday))
+        )
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
-          ToolbarItem(placement: .cancellationAction) { Button(L10n.cancel) { dismiss() } }
+          ToolbarItem(placement: .cancellationAction) { Button(.cancel) { dismiss() } }
           ToolbarItem(placement: .confirmationAction) {
-            Button(L10n.save) { save() }.fontWeight(.semibold).accessibilityIdentifier(
+            Button(.save) { save() }.fontWeight(.semibold).accessibilityIdentifier(
               "saveSchedule")
           }
         }
         .onAppear { load() }
-        .onChange(of: selectedDay) { old, new in
-          guard ready else { return }
-          stash(day: old)
-          setTimes(day: new)
-        }
     }.tint(Color.kvilAccent)
+  }
+  @ViewBuilder private var timeWheels: some View {
+    KvilTimeWheel(title: .windowOpens, time: $opens)
+      .accessibilityIdentifier("openingTime")
+    KvilTimeWheel(title: .windowCloses, time: $closes)
+      .accessibilityIdentifier("closingTime")
   }
   private func wall(_ date: Date) -> WallTime {
     WallTime(
@@ -181,35 +404,25 @@ struct ScheduleEditor: View {
       minute: model.calendar.component(.minute, from: date))
   }
   private func load() {
-    days =
-      model.data.schedule.versions.max(by: { $0.effectiveDay < $1.effectiveDay })?.days
-      ?? DayPlan.initial
-    selectedDay = model.calendar.component(.weekday, from: model.now)
-    if mode == .today, let w = model.engine.window(on: model.now) {
-      opens = w.opening
-      closes = w.closing
-    } else {
-      setTimes(day: selectedDay)
-    }
-    ready = true
-  }
-  private func setTimes(day: Int) {
-    if let plan = days.first(where: { $0.weekday == day }) {
-      opens = plan.opens.date(on: model.now, calendar: model.calendar) ?? model.now
-      closes = plan.closes.date(on: model.now, calendar: model.calendar) ?? model.now
-    }
-  }
-  private func stash(day: Int) {
-    if let index = days.firstIndex(where: { $0.weekday == day }) {
-      days[index].opens = wall(opens)
-      days[index].closes = wall(closes)
+    if let day {
+      opens = day.opens
+      closes = day.closes
+    } else if let w = model.engine.window(on: model.now) {
+      opens = wall(w.opening)
+      closes = wall(w.closing)
     }
   }
   private func save() {
-    stash(day: selectedDay)
-    if mode == .today
-      ? model.saveToday(opens: wall(opens), closes: wall(closes)) : model.saveWeek(days)
-    {
+    let saved: Bool
+    if let day {
+      var updated = day
+      updated.opens = opens
+      updated.closes = closes
+      saved = model.saveWeekDay(updated, replacing: day)
+    } else {
+      saved = model.saveToday(opens: opens, closes: closes)
+    }
+    if saved {
       dismiss()
     } else {
       validation = model.message

@@ -1,933 +1,1085 @@
 // !$*UTF8*$!
 {
-	"archiveVersion" = 1;
-	"classes" = {
+	archiveVersion = 1;
+	classes = {
 	};
-	"objectVersion" = 77;
-	"objects" = {
-		"5CD1A383A7404637B55B9754" = {
-			"isa" = "PBXFileSystemSynchronizedRootGroup";
-			"path" = "Shared";
-			"sourceTree" = "<group>";
-			"exceptions" = ("CAF804B66302D96F64ECED3F", "95836683663F0D562D110748");
-		};
-		"A8A0C67AF08046C33331B278" = {
-			"isa" = "PBXFileSystemSynchronizedRootGroup";
-			"path" = "SharedUI";
-			"sourceTree" = "<group>";
-		};
-		"3F4C887113C1297522EEF6AB" = {
-			"isa" = "PBXFileSystemSynchronizedRootGroup";
-			"path" = "SharedResources";
-			"sourceTree" = "<group>";
-		};
-		"0A3F4A5747ADFD149636C82D" = {
-			"isa" = "PBXFileSystemSynchronizedRootGroup";
-			"path" = "SharedWidget";
-			"sourceTree" = "<group>";
-		};
-		"8DF9C199F1F5FBB91C01A877" = {
-			"isa" = "PBXFileSystemSynchronizedRootGroup";
-			"path" = "KvilApp";
-			"sourceTree" = "<group>";
-			"exceptions" = ("010B303CCB3A6158ADECAA99");
-		};
-		"17AC25CB47E029F22A35735C" = {
-			"isa" = "PBXFileSystemSynchronizedRootGroup";
-			"path" = "KvilWidget";
-			"sourceTree" = "<group>";
-			"exceptions" = ("FC7DDAE3B0CB33060D9C27F5");
-		};
-		"9B1CE149FE715A00EBBE0E02" = {
-			"isa" = "PBXFileSystemSynchronizedRootGroup";
-			"path" = "KvilWatchApp";
-			"sourceTree" = "<group>";
-			"exceptions" = ("9ABA4C4C69663CCA65CD29AC");
-		};
-		"AE21A92F7116A3357761406D" = {
-			"isa" = "PBXFileSystemSynchronizedRootGroup";
-			"path" = "KvilWatchWidget";
-			"sourceTree" = "<group>";
-			"exceptions" = ("F65E46338BFDEE02A5EF2306");
-		};
-		"09D5FB33C1300D2CF6BB7BFC" = {
-			"isa" = "PBXFileSystemSynchronizedRootGroup";
-			"path" = "KvilAppTests";
-			"sourceTree" = "<group>";
-		};
-		"09297E78958A4846E06D5D00" = {
-			"isa" = "PBXFileSystemSynchronizedRootGroup";
-			"path" = "KvilAppUITests";
-			"sourceTree" = "<group>";
-		};
-		"F4A59D9C362A9D259A8558B2" = {
-			"isa" = "PBXFileReference";
-			"lastKnownFileType" = "text.xcconfig";
-			"path" = "debug.xcconfig";
-			"sourceTree" = "<group>";
-		};
-		"436B9389B5203AE28919CA2B" = {
-			"isa" = "PBXFileReference";
-			"lastKnownFileType" = "text.xcconfig";
-			"path" = "release.xcconfig";
-			"sourceTree" = "<group>";
-		};
-		"E340E8CAAB8858B72EA3B247" = {
-			"isa" = "PBXFileReference";
-			"explicitFileType" = "wrapper.application";
-			"includeInIndex" = 0;
-			"path" = "KvilApp.app";
-			"sourceTree" = "BUILT_PRODUCTS_DIR";
-		};
-		"010B303CCB3A6158ADECAA99" = {
-			"isa" = "PBXFileSystemSynchronizedBuildFileExceptionSet";
-			"membershipExceptions" = ("Supporting/Info.plist", "Supporting/Kvil.entitlements");
-			"target" = "C491B7D549B8FE51E15D58A7";
-		};
-		"7AC6FDDDCB6D3A31F2DA4222" = {
-			"isa" = "PBXSourcesBuildPhase";
-			"buildActionMask" = 2147483647;
-			"files" = ();
-			"runOnlyForDeploymentPostprocessing" = 0;
-		};
-		"A237A12F4092A5090AC316CF" = {
-			"isa" = "PBXFrameworksBuildPhase";
-			"buildActionMask" = 2147483647;
-			"files" = ();
-			"runOnlyForDeploymentPostprocessing" = 0;
-		};
-		"D7AEE9B4A154AD2C69D5AB25" = {
-			"isa" = "PBXResourcesBuildPhase";
-			"buildActionMask" = 2147483647;
-			"files" = ();
-			"runOnlyForDeploymentPostprocessing" = 0;
-		};
-		"AB4AA2010C8257841E08B3BF" = {
-			"isa" = "XCBuildConfiguration";
-			"name" = "Debug";
-			"buildSettings" = {
-				"PRODUCT_NAME" = "$(TARGET_NAME)";
-				"PRODUCT_BUNDLE_IDENTIFIER" = "dev.hkarlsen06.kvil";
-				"SDKROOT" = "iphoneos";
-				"SUPPORTED_PLATFORMS" = "iphoneos iphonesimulator";
-				"TARGETED_DEVICE_FAMILY" = "1";
-				"SWIFT_VERSION" = "5.0";
-				"SWIFT_STRICT_CONCURRENCY" = "complete";
-				"STRING_CATALOG_GENERATE_SYMBOLS" = "YES";
-				"SWIFT_EMIT_LOC_STRINGS" = "YES";
-				"GENERATE_INFOPLIST_FILE" = "YES";
-				"CODE_SIGN_STYLE" = "Automatic";
-				"DEVELOPMENT_TEAM" = "48ZSLD4RMP";
-				"LD_RUNPATH_SEARCH_PATHS" = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				"SKIP_INSTALL" = "NO";
-				"INFOPLIST_KEY_CFBundleDisplayName" = "Kvil";
-				"IPHONEOS_DEPLOYMENT_TARGET" = "27.0";
-				"INFOPLIST_FILE" = "KvilApp/Supporting/Info.plist";
-				"CODE_SIGN_ENTITLEMENTS" = "KvilApp/Supporting/Kvil.entitlements";
-				"ASSETCATALOG_COMPILER_APPICON_NAME" = "AppIcon";
-				"SUPPORTS_MACCATALYST" = "NO";
-				"SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD" = "NO";
-				"INFOPLIST_KEY_UISupportedInterfaceOrientations" = "UIInterfaceOrientationPortrait";
-				"SWIFT_OPTIMIZATION_LEVEL" = "-Onone";
-				"SWIFT_ACTIVE_COMPILATION_CONDITIONS" = "DEBUG $(inherited)";
-				"ENABLE_TESTABILITY" = "YES";
-				"DEBUG_INFORMATION_FORMAT" = "dwarf";
-			};
-			"baseConfigurationReference" = "F4A59D9C362A9D259A8558B2";
-		};
-		"AE45620D2787EF68B6AB960D" = {
-			"isa" = "XCBuildConfiguration";
-			"name" = "Release";
-			"buildSettings" = {
-				"PRODUCT_NAME" = "$(TARGET_NAME)";
-				"PRODUCT_BUNDLE_IDENTIFIER" = "dev.hkarlsen06.kvil";
-				"SDKROOT" = "iphoneos";
-				"SUPPORTED_PLATFORMS" = "iphoneos iphonesimulator";
-				"TARGETED_DEVICE_FAMILY" = "1";
-				"SWIFT_VERSION" = "5.0";
-				"SWIFT_STRICT_CONCURRENCY" = "complete";
-				"STRING_CATALOG_GENERATE_SYMBOLS" = "YES";
-				"SWIFT_EMIT_LOC_STRINGS" = "YES";
-				"GENERATE_INFOPLIST_FILE" = "YES";
-				"CODE_SIGN_STYLE" = "Automatic";
-				"DEVELOPMENT_TEAM" = "48ZSLD4RMP";
-				"LD_RUNPATH_SEARCH_PATHS" = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				"SKIP_INSTALL" = "NO";
-				"INFOPLIST_KEY_CFBundleDisplayName" = "Kvil";
-				"IPHONEOS_DEPLOYMENT_TARGET" = "27.0";
-				"INFOPLIST_FILE" = "KvilApp/Supporting/Info.plist";
-				"CODE_SIGN_ENTITLEMENTS" = "KvilApp/Supporting/Kvil.entitlements";
-				"ASSETCATALOG_COMPILER_APPICON_NAME" = "AppIcon";
-				"SUPPORTS_MACCATALYST" = "NO";
-				"SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD" = "NO";
-				"INFOPLIST_KEY_UISupportedInterfaceOrientations" = "UIInterfaceOrientationPortrait";
-				"SWIFT_COMPILATION_MODE" = "wholemodule";
-				"DEBUG_INFORMATION_FORMAT" = "dwarf-with-dsym";
-				"VALIDATE_PRODUCT" = "YES";
-			};
-			"baseConfigurationReference" = "436B9389B5203AE28919CA2B";
-		};
-		"3190FCBF5A2BEC14A9BA7319" = {
-			"isa" = "XCConfigurationList";
-			"buildConfigurations" = ("AB4AA2010C8257841E08B3BF", "AE45620D2787EF68B6AB960D");
-			"defaultConfigurationIsVisible" = 0;
-			"defaultConfigurationName" = "Release";
-		};
-		"C491B7D549B8FE51E15D58A7" = {
-			"isa" = "PBXNativeTarget";
-			"buildConfigurationList" = "3190FCBF5A2BEC14A9BA7319";
-			"buildPhases" = ("7AC6FDDDCB6D3A31F2DA4222", "A237A12F4092A5090AC316CF", "D7AEE9B4A154AD2C69D5AB25", "836271D3AC8C153F5D18517C", "0D34236CCAE5BEB7D6D26E60");
-			"buildRules" = ();
-			"dependencies" = ("F74764A544F75FF91D60BFB7", "C769B8260BBCA99B95467DC7");
-			"fileSystemSynchronizedGroups" = ("8DF9C199F1F5FBB91C01A877", "5CD1A383A7404637B55B9754", "A8A0C67AF08046C33331B278", "3F4C887113C1297522EEF6AB");
-			"name" = "KvilApp";
-			"productName" = "KvilApp";
-			"productReference" = "E340E8CAAB8858B72EA3B247";
-			"productType" = "com.apple.product-type.application";
-		};
-		"D73732300E37086D360A1DB1" = {
-			"isa" = "PBXFileReference";
-			"explicitFileType" = "wrapper.app-extension";
-			"includeInIndex" = 0;
-			"path" = "KvilWidget.appex";
-			"sourceTree" = "BUILT_PRODUCTS_DIR";
-		};
-		"FC7DDAE3B0CB33060D9C27F5" = {
-			"isa" = "PBXFileSystemSynchronizedBuildFileExceptionSet";
-			"membershipExceptions" = ("Info.plist", "Kvil.entitlements");
-			"target" = "BDAED2E45D7AE8280B819C8A";
-		};
-		"CAF804B66302D96F64ECED3F" = {
-			"isa" = "PBXFileSystemSynchronizedBuildFileExceptionSet";
-			"membershipExceptions" = ("WatchBridge.swift");
-			"target" = "BDAED2E45D7AE8280B819C8A";
-		};
-		"80DABDAFF4972E1F02D5BA6F" = {
-			"isa" = "PBXSourcesBuildPhase";
-			"buildActionMask" = 2147483647;
-			"files" = ();
-			"runOnlyForDeploymentPostprocessing" = 0;
-		};
-		"3FAA05616CD08908B9E027DB" = {
-			"isa" = "PBXFrameworksBuildPhase";
-			"buildActionMask" = 2147483647;
-			"files" = ();
-			"runOnlyForDeploymentPostprocessing" = 0;
-		};
-		"2D50595D7C7722F43BF474C4" = {
-			"isa" = "PBXResourcesBuildPhase";
-			"buildActionMask" = 2147483647;
-			"files" = ();
-			"runOnlyForDeploymentPostprocessing" = 0;
-		};
-		"AE22E274C96CC1EC54588822" = {
-			"isa" = "XCBuildConfiguration";
-			"name" = "Debug";
-			"buildSettings" = {
-				"PRODUCT_NAME" = "$(TARGET_NAME)";
-				"PRODUCT_BUNDLE_IDENTIFIER" = "dev.hkarlsen06.kvil.widget";
-				"SDKROOT" = "iphoneos";
-				"SUPPORTED_PLATFORMS" = "iphoneos iphonesimulator";
-				"TARGETED_DEVICE_FAMILY" = "1";
-				"SWIFT_VERSION" = "5.0";
-				"SWIFT_STRICT_CONCURRENCY" = "complete";
-				"STRING_CATALOG_GENERATE_SYMBOLS" = "YES";
-				"SWIFT_EMIT_LOC_STRINGS" = "YES";
-				"GENERATE_INFOPLIST_FILE" = "YES";
-				"CODE_SIGN_STYLE" = "Automatic";
-				"DEVELOPMENT_TEAM" = "48ZSLD4RMP";
-				"LD_RUNPATH_SEARCH_PATHS" = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				"SKIP_INSTALL" = "YES";
-				"INFOPLIST_KEY_CFBundleDisplayName" = "Kvil";
-				"IPHONEOS_DEPLOYMENT_TARGET" = "27.0";
-				"INFOPLIST_FILE" = "KvilWidget/Info.plist";
-				"CODE_SIGN_ENTITLEMENTS" = "KvilWidget/Kvil.entitlements";
-				"APPLICATION_EXTENSION_API_ONLY" = "YES";
-				"SUPPORTS_MACCATALYST" = "NO";
-				"SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD" = "NO";
-				"SWIFT_OPTIMIZATION_LEVEL" = "-Onone";
-				"SWIFT_ACTIVE_COMPILATION_CONDITIONS" = "DEBUG $(inherited)";
-				"ENABLE_TESTABILITY" = "YES";
-				"DEBUG_INFORMATION_FORMAT" = "dwarf";
-			};
-			"baseConfigurationReference" = "F4A59D9C362A9D259A8558B2";
-		};
-		"446C6932EFE6010343C74638" = {
-			"isa" = "XCBuildConfiguration";
-			"name" = "Release";
-			"buildSettings" = {
-				"PRODUCT_NAME" = "$(TARGET_NAME)";
-				"PRODUCT_BUNDLE_IDENTIFIER" = "dev.hkarlsen06.kvil.widget";
-				"SDKROOT" = "iphoneos";
-				"SUPPORTED_PLATFORMS" = "iphoneos iphonesimulator";
-				"TARGETED_DEVICE_FAMILY" = "1";
-				"SWIFT_VERSION" = "5.0";
-				"SWIFT_STRICT_CONCURRENCY" = "complete";
-				"STRING_CATALOG_GENERATE_SYMBOLS" = "YES";
-				"SWIFT_EMIT_LOC_STRINGS" = "YES";
-				"GENERATE_INFOPLIST_FILE" = "YES";
-				"CODE_SIGN_STYLE" = "Automatic";
-				"DEVELOPMENT_TEAM" = "48ZSLD4RMP";
-				"LD_RUNPATH_SEARCH_PATHS" = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				"SKIP_INSTALL" = "YES";
-				"INFOPLIST_KEY_CFBundleDisplayName" = "Kvil";
-				"IPHONEOS_DEPLOYMENT_TARGET" = "27.0";
-				"INFOPLIST_FILE" = "KvilWidget/Info.plist";
-				"CODE_SIGN_ENTITLEMENTS" = "KvilWidget/Kvil.entitlements";
-				"APPLICATION_EXTENSION_API_ONLY" = "YES";
-				"SUPPORTS_MACCATALYST" = "NO";
-				"SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD" = "NO";
-				"SWIFT_COMPILATION_MODE" = "wholemodule";
-				"DEBUG_INFORMATION_FORMAT" = "dwarf-with-dsym";
-				"VALIDATE_PRODUCT" = "YES";
-			};
-			"baseConfigurationReference" = "436B9389B5203AE28919CA2B";
-		};
-		"DC09AAF34B13B8B7D613CB1C" = {
-			"isa" = "XCConfigurationList";
-			"buildConfigurations" = ("AE22E274C96CC1EC54588822", "446C6932EFE6010343C74638");
-			"defaultConfigurationIsVisible" = 0;
-			"defaultConfigurationName" = "Release";
-		};
-		"BDAED2E45D7AE8280B819C8A" = {
-			"isa" = "PBXNativeTarget";
-			"buildConfigurationList" = "DC09AAF34B13B8B7D613CB1C";
-			"buildPhases" = ("80DABDAFF4972E1F02D5BA6F", "3FAA05616CD08908B9E027DB", "2D50595D7C7722F43BF474C4");
-			"buildRules" = ();
-			"dependencies" = ();
-			"fileSystemSynchronizedGroups" = ("17AC25CB47E029F22A35735C", "5CD1A383A7404637B55B9754", "A8A0C67AF08046C33331B278", "3F4C887113C1297522EEF6AB", "0A3F4A5747ADFD149636C82D");
-			"name" = "KvilWidget";
-			"productName" = "KvilWidget";
-			"productReference" = "D73732300E37086D360A1DB1";
-			"productType" = "com.apple.product-type.app-extension";
-		};
-		"A255338F2A40872E37E6D261" = {
-			"isa" = "PBXFileReference";
-			"explicitFileType" = "wrapper.application";
-			"includeInIndex" = 0;
-			"path" = "KvilWatchApp.app";
-			"sourceTree" = "BUILT_PRODUCTS_DIR";
-		};
-		"9ABA4C4C69663CCA65CD29AC" = {
-			"isa" = "PBXFileSystemSynchronizedBuildFileExceptionSet";
-			"membershipExceptions" = ("Info.plist", "Kvil.entitlements");
-			"target" = "35131E939DDF1903BB5A9F61";
-		};
-		"0DDDC670B3EB5F5B5EB4B731" = {
-			"isa" = "PBXSourcesBuildPhase";
-			"buildActionMask" = 2147483647;
-			"files" = ();
-			"runOnlyForDeploymentPostprocessing" = 0;
-		};
-		"8FBFD3B0B7E56556ED9AA53B" = {
-			"isa" = "PBXFrameworksBuildPhase";
-			"buildActionMask" = 2147483647;
-			"files" = ();
-			"runOnlyForDeploymentPostprocessing" = 0;
-		};
-		"F14F51AB96AACE73344C50B0" = {
-			"isa" = "PBXResourcesBuildPhase";
-			"buildActionMask" = 2147483647;
-			"files" = ();
-			"runOnlyForDeploymentPostprocessing" = 0;
-		};
-		"E816849E64D9F40E5890C8D8" = {
-			"isa" = "XCBuildConfiguration";
-			"name" = "Debug";
-			"buildSettings" = {
-				"PRODUCT_NAME" = "$(TARGET_NAME)";
-				"PRODUCT_BUNDLE_IDENTIFIER" = "dev.hkarlsen06.kvil.watchkitapp";
-				"SDKROOT" = "watchos";
-				"SUPPORTED_PLATFORMS" = "watchos watchsimulator";
-				"TARGETED_DEVICE_FAMILY" = "4";
-				"SWIFT_VERSION" = "5.0";
-				"SWIFT_STRICT_CONCURRENCY" = "complete";
-				"STRING_CATALOG_GENERATE_SYMBOLS" = "YES";
-				"SWIFT_EMIT_LOC_STRINGS" = "YES";
-				"GENERATE_INFOPLIST_FILE" = "YES";
-				"CODE_SIGN_STYLE" = "Automatic";
-				"DEVELOPMENT_TEAM" = "48ZSLD4RMP";
-				"LD_RUNPATH_SEARCH_PATHS" = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				"SKIP_INSTALL" = "YES";
-				"INFOPLIST_KEY_CFBundleDisplayName" = "Kvil";
-				"WATCHOS_DEPLOYMENT_TARGET" = "27.0";
-				"INFOPLIST_FILE" = "KvilWatchApp/Info.plist";
-				"CODE_SIGN_ENTITLEMENTS" = "KvilWatchApp/Kvil.entitlements";
-				"ASSETCATALOG_COMPILER_APPICON_NAME" = "AppIcon";
-				"SWIFT_OPTIMIZATION_LEVEL" = "-Onone";
-				"SWIFT_ACTIVE_COMPILATION_CONDITIONS" = "DEBUG $(inherited)";
-				"ENABLE_TESTABILITY" = "YES";
-				"DEBUG_INFORMATION_FORMAT" = "dwarf";
-			};
-			"baseConfigurationReference" = "F4A59D9C362A9D259A8558B2";
-		};
-		"01C7E8F63BF16D6C8990D054" = {
-			"isa" = "XCBuildConfiguration";
-			"name" = "Release";
-			"buildSettings" = {
-				"PRODUCT_NAME" = "$(TARGET_NAME)";
-				"PRODUCT_BUNDLE_IDENTIFIER" = "dev.hkarlsen06.kvil.watchkitapp";
-				"SDKROOT" = "watchos";
-				"SUPPORTED_PLATFORMS" = "watchos watchsimulator";
-				"TARGETED_DEVICE_FAMILY" = "4";
-				"SWIFT_VERSION" = "5.0";
-				"SWIFT_STRICT_CONCURRENCY" = "complete";
-				"STRING_CATALOG_GENERATE_SYMBOLS" = "YES";
-				"SWIFT_EMIT_LOC_STRINGS" = "YES";
-				"GENERATE_INFOPLIST_FILE" = "YES";
-				"CODE_SIGN_STYLE" = "Automatic";
-				"DEVELOPMENT_TEAM" = "48ZSLD4RMP";
-				"LD_RUNPATH_SEARCH_PATHS" = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				"SKIP_INSTALL" = "YES";
-				"INFOPLIST_KEY_CFBundleDisplayName" = "Kvil";
-				"WATCHOS_DEPLOYMENT_TARGET" = "27.0";
-				"INFOPLIST_FILE" = "KvilWatchApp/Info.plist";
-				"CODE_SIGN_ENTITLEMENTS" = "KvilWatchApp/Kvil.entitlements";
-				"ASSETCATALOG_COMPILER_APPICON_NAME" = "AppIcon";
-				"SWIFT_COMPILATION_MODE" = "wholemodule";
-				"DEBUG_INFORMATION_FORMAT" = "dwarf-with-dsym";
-				"VALIDATE_PRODUCT" = "YES";
-			};
-			"baseConfigurationReference" = "436B9389B5203AE28919CA2B";
-		};
-		"9AC532837A5FA3799A1939A7" = {
-			"isa" = "XCConfigurationList";
-			"buildConfigurations" = ("E816849E64D9F40E5890C8D8", "01C7E8F63BF16D6C8990D054");
-			"defaultConfigurationIsVisible" = 0;
-			"defaultConfigurationName" = "Release";
-		};
-		"35131E939DDF1903BB5A9F61" = {
-			"isa" = "PBXNativeTarget";
-			"buildConfigurationList" = "9AC532837A5FA3799A1939A7";
-			"buildPhases" = ("0DDDC670B3EB5F5B5EB4B731", "8FBFD3B0B7E56556ED9AA53B", "F14F51AB96AACE73344C50B0", "67EED8422078259051681C65");
-			"buildRules" = ();
-			"dependencies" = ("AEFE6760DBFA6BF24302132C");
-			"fileSystemSynchronizedGroups" = ("9B1CE149FE715A00EBBE0E02", "5CD1A383A7404637B55B9754", "A8A0C67AF08046C33331B278", "3F4C887113C1297522EEF6AB");
-			"name" = "KvilWatchApp";
-			"productName" = "KvilWatchApp";
-			"productReference" = "A255338F2A40872E37E6D261";
-			"productType" = "com.apple.product-type.application";
-		};
-		"84ACAE9FF707B8C73D2EA94C" = {
-			"isa" = "PBXFileReference";
-			"explicitFileType" = "wrapper.app-extension";
-			"includeInIndex" = 0;
-			"path" = "KvilWatchWidget.appex";
-			"sourceTree" = "BUILT_PRODUCTS_DIR";
-		};
-		"F65E46338BFDEE02A5EF2306" = {
-			"isa" = "PBXFileSystemSynchronizedBuildFileExceptionSet";
-			"membershipExceptions" = ("Info.plist", "Kvil.entitlements");
-			"target" = "5B50C2E12C6AA406E552F978";
-		};
-		"95836683663F0D562D110748" = {
-			"isa" = "PBXFileSystemSynchronizedBuildFileExceptionSet";
-			"membershipExceptions" = ("WatchBridge.swift");
-			"target" = "5B50C2E12C6AA406E552F978";
-		};
-		"D7B7D3C01E31854980456AC5" = {
-			"isa" = "PBXSourcesBuildPhase";
-			"buildActionMask" = 2147483647;
-			"files" = ();
-			"runOnlyForDeploymentPostprocessing" = 0;
-		};
-		"9284A56B433B833CEBE18009" = {
-			"isa" = "PBXFrameworksBuildPhase";
-			"buildActionMask" = 2147483647;
-			"files" = ();
-			"runOnlyForDeploymentPostprocessing" = 0;
-		};
-		"96346D34AC6441CBC14BD817" = {
-			"isa" = "PBXResourcesBuildPhase";
-			"buildActionMask" = 2147483647;
-			"files" = ();
-			"runOnlyForDeploymentPostprocessing" = 0;
-		};
-		"AE762E1259DBD28BACEC427D" = {
-			"isa" = "XCBuildConfiguration";
-			"name" = "Debug";
-			"buildSettings" = {
-				"PRODUCT_NAME" = "$(TARGET_NAME)";
-				"PRODUCT_BUNDLE_IDENTIFIER" = "dev.hkarlsen06.kvil.watchkitapp.widget";
-				"SDKROOT" = "watchos";
-				"SUPPORTED_PLATFORMS" = "watchos watchsimulator";
-				"TARGETED_DEVICE_FAMILY" = "4";
-				"SWIFT_VERSION" = "5.0";
-				"SWIFT_STRICT_CONCURRENCY" = "complete";
-				"STRING_CATALOG_GENERATE_SYMBOLS" = "YES";
-				"SWIFT_EMIT_LOC_STRINGS" = "YES";
-				"GENERATE_INFOPLIST_FILE" = "YES";
-				"CODE_SIGN_STYLE" = "Automatic";
-				"DEVELOPMENT_TEAM" = "48ZSLD4RMP";
-				"LD_RUNPATH_SEARCH_PATHS" = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				"SKIP_INSTALL" = "YES";
-				"INFOPLIST_KEY_CFBundleDisplayName" = "Kvil";
-				"WATCHOS_DEPLOYMENT_TARGET" = "27.0";
-				"INFOPLIST_FILE" = "KvilWatchWidget/Info.plist";
-				"CODE_SIGN_ENTITLEMENTS" = "KvilWatchWidget/Kvil.entitlements";
-				"APPLICATION_EXTENSION_API_ONLY" = "YES";
-				"SWIFT_OPTIMIZATION_LEVEL" = "-Onone";
-				"SWIFT_ACTIVE_COMPILATION_CONDITIONS" = "DEBUG $(inherited)";
-				"ENABLE_TESTABILITY" = "YES";
-				"DEBUG_INFORMATION_FORMAT" = "dwarf";
-			};
-			"baseConfigurationReference" = "F4A59D9C362A9D259A8558B2";
-		};
-		"16C5B2A7C9AD0470F08E175F" = {
-			"isa" = "XCBuildConfiguration";
-			"name" = "Release";
-			"buildSettings" = {
-				"PRODUCT_NAME" = "$(TARGET_NAME)";
-				"PRODUCT_BUNDLE_IDENTIFIER" = "dev.hkarlsen06.kvil.watchkitapp.widget";
-				"SDKROOT" = "watchos";
-				"SUPPORTED_PLATFORMS" = "watchos watchsimulator";
-				"TARGETED_DEVICE_FAMILY" = "4";
-				"SWIFT_VERSION" = "5.0";
-				"SWIFT_STRICT_CONCURRENCY" = "complete";
-				"STRING_CATALOG_GENERATE_SYMBOLS" = "YES";
-				"SWIFT_EMIT_LOC_STRINGS" = "YES";
-				"GENERATE_INFOPLIST_FILE" = "YES";
-				"CODE_SIGN_STYLE" = "Automatic";
-				"DEVELOPMENT_TEAM" = "48ZSLD4RMP";
-				"LD_RUNPATH_SEARCH_PATHS" = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				"SKIP_INSTALL" = "YES";
-				"INFOPLIST_KEY_CFBundleDisplayName" = "Kvil";
-				"WATCHOS_DEPLOYMENT_TARGET" = "27.0";
-				"INFOPLIST_FILE" = "KvilWatchWidget/Info.plist";
-				"CODE_SIGN_ENTITLEMENTS" = "KvilWatchWidget/Kvil.entitlements";
-				"APPLICATION_EXTENSION_API_ONLY" = "YES";
-				"SWIFT_COMPILATION_MODE" = "wholemodule";
-				"DEBUG_INFORMATION_FORMAT" = "dwarf-with-dsym";
-				"VALIDATE_PRODUCT" = "YES";
-			};
-			"baseConfigurationReference" = "436B9389B5203AE28919CA2B";
-		};
-		"FB4CF8E70DCCB59F44896BA6" = {
-			"isa" = "XCConfigurationList";
-			"buildConfigurations" = ("AE762E1259DBD28BACEC427D", "16C5B2A7C9AD0470F08E175F");
-			"defaultConfigurationIsVisible" = 0;
-			"defaultConfigurationName" = "Release";
-		};
-		"5B50C2E12C6AA406E552F978" = {
-			"isa" = "PBXNativeTarget";
-			"buildConfigurationList" = "FB4CF8E70DCCB59F44896BA6";
-			"buildPhases" = ("D7B7D3C01E31854980456AC5", "9284A56B433B833CEBE18009", "96346D34AC6441CBC14BD817");
-			"buildRules" = ();
-			"dependencies" = ();
-			"fileSystemSynchronizedGroups" = ("AE21A92F7116A3357761406D", "5CD1A383A7404637B55B9754", "A8A0C67AF08046C33331B278", "3F4C887113C1297522EEF6AB", "0A3F4A5747ADFD149636C82D");
-			"name" = "KvilWatchWidget";
-			"productName" = "KvilWatchWidget";
-			"productReference" = "84ACAE9FF707B8C73D2EA94C";
-			"productType" = "com.apple.product-type.app-extension";
-		};
-		"6A35E77BE35140DC8D1F4025" = {
-			"isa" = "PBXFileReference";
-			"explicitFileType" = "wrapper.cfbundle";
-			"includeInIndex" = 0;
-			"path" = "KvilAppTests.xctest";
-			"sourceTree" = "BUILT_PRODUCTS_DIR";
-		};
-		"379081217225B9654E9E1C15" = {
-			"isa" = "PBXSourcesBuildPhase";
-			"buildActionMask" = 2147483647;
-			"files" = ();
-			"runOnlyForDeploymentPostprocessing" = 0;
-		};
-		"1B6E396BB183E7D475970319" = {
-			"isa" = "PBXFrameworksBuildPhase";
-			"buildActionMask" = 2147483647;
-			"files" = ();
-			"runOnlyForDeploymentPostprocessing" = 0;
-		};
-		"569723B6853F8B6ED8B79188" = {
-			"isa" = "PBXResourcesBuildPhase";
-			"buildActionMask" = 2147483647;
-			"files" = ();
-			"runOnlyForDeploymentPostprocessing" = 0;
-		};
-		"764A064F9E4D5F34E2F09EEF" = {
-			"isa" = "XCBuildConfiguration";
-			"name" = "Debug";
-			"buildSettings" = {
-				"PRODUCT_NAME" = "$(TARGET_NAME)";
-				"PRODUCT_BUNDLE_IDENTIFIER" = "dev.hkarlsen06.kvil.tests";
-				"SDKROOT" = "iphoneos";
-				"SUPPORTED_PLATFORMS" = "iphoneos iphonesimulator";
-				"TARGETED_DEVICE_FAMILY" = "1";
-				"SWIFT_VERSION" = "5.0";
-				"SWIFT_STRICT_CONCURRENCY" = "complete";
-				"STRING_CATALOG_GENERATE_SYMBOLS" = "YES";
-				"SWIFT_EMIT_LOC_STRINGS" = "YES";
-				"GENERATE_INFOPLIST_FILE" = "YES";
-				"CODE_SIGN_STYLE" = "Automatic";
-				"DEVELOPMENT_TEAM" = "48ZSLD4RMP";
-				"LD_RUNPATH_SEARCH_PATHS" = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				"SKIP_INSTALL" = "YES";
-				"INFOPLIST_KEY_CFBundleDisplayName" = "Kvil";
-				"IPHONEOS_DEPLOYMENT_TARGET" = "27.0";
-				"TEST_HOST" = "$(BUILT_PRODUCTS_DIR)/KvilApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/KvilApp";
-				"BUNDLE_LOADER" = "$(TEST_HOST)";
-				"SWIFT_OPTIMIZATION_LEVEL" = "-Onone";
-				"SWIFT_ACTIVE_COMPILATION_CONDITIONS" = "DEBUG $(inherited)";
-				"ENABLE_TESTABILITY" = "YES";
-				"DEBUG_INFORMATION_FORMAT" = "dwarf";
-			};
-			"baseConfigurationReference" = "F4A59D9C362A9D259A8558B2";
-		};
-		"48CF1F3289B930D0E1FBDDD6" = {
-			"isa" = "XCBuildConfiguration";
-			"name" = "Release";
-			"buildSettings" = {
-				"PRODUCT_NAME" = "$(TARGET_NAME)";
-				"PRODUCT_BUNDLE_IDENTIFIER" = "dev.hkarlsen06.kvil.tests";
-				"SDKROOT" = "iphoneos";
-				"SUPPORTED_PLATFORMS" = "iphoneos iphonesimulator";
-				"TARGETED_DEVICE_FAMILY" = "1";
-				"SWIFT_VERSION" = "5.0";
-				"SWIFT_STRICT_CONCURRENCY" = "complete";
-				"STRING_CATALOG_GENERATE_SYMBOLS" = "YES";
-				"SWIFT_EMIT_LOC_STRINGS" = "YES";
-				"GENERATE_INFOPLIST_FILE" = "YES";
-				"CODE_SIGN_STYLE" = "Automatic";
-				"DEVELOPMENT_TEAM" = "48ZSLD4RMP";
-				"LD_RUNPATH_SEARCH_PATHS" = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				"SKIP_INSTALL" = "YES";
-				"INFOPLIST_KEY_CFBundleDisplayName" = "Kvil";
-				"IPHONEOS_DEPLOYMENT_TARGET" = "27.0";
-				"TEST_HOST" = "$(BUILT_PRODUCTS_DIR)/KvilApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/KvilApp";
-				"BUNDLE_LOADER" = "$(TEST_HOST)";
-				"SWIFT_COMPILATION_MODE" = "wholemodule";
-				"DEBUG_INFORMATION_FORMAT" = "dwarf-with-dsym";
-				"VALIDATE_PRODUCT" = "YES";
-			};
-			"baseConfigurationReference" = "436B9389B5203AE28919CA2B";
-		};
-		"EB3DF2DE7DE1709C70D18A82" = {
-			"isa" = "XCConfigurationList";
-			"buildConfigurations" = ("764A064F9E4D5F34E2F09EEF", "48CF1F3289B930D0E1FBDDD6");
-			"defaultConfigurationIsVisible" = 0;
-			"defaultConfigurationName" = "Release";
-		};
-		"CB32F35BAE920D3D83C2E252" = {
-			"isa" = "PBXNativeTarget";
-			"buildConfigurationList" = "EB3DF2DE7DE1709C70D18A82";
-			"buildPhases" = ("379081217225B9654E9E1C15", "1B6E396BB183E7D475970319", "569723B6853F8B6ED8B79188");
-			"buildRules" = ();
-			"dependencies" = ("3AD33D3F662418573A9BC443");
-			"fileSystemSynchronizedGroups" = ("09D5FB33C1300D2CF6BB7BFC");
-			"name" = "KvilAppTests";
-			"productName" = "KvilAppTests";
-			"productReference" = "6A35E77BE35140DC8D1F4025";
-			"productType" = "com.apple.product-type.bundle.unit-test";
-		};
-		"D5562E9C4DF5FBDBA1DBA5B6" = {
-			"isa" = "PBXFileReference";
-			"explicitFileType" = "wrapper.cfbundle";
-			"includeInIndex" = 0;
-			"path" = "KvilAppUITests.xctest";
-			"sourceTree" = "BUILT_PRODUCTS_DIR";
-		};
-		"F81AE5EAFBBF2C42B0B364BD" = {
-			"isa" = "PBXSourcesBuildPhase";
-			"buildActionMask" = 2147483647;
-			"files" = ();
-			"runOnlyForDeploymentPostprocessing" = 0;
-		};
-		"3CC8B92D067E04FA16C05DC3" = {
-			"isa" = "PBXFrameworksBuildPhase";
-			"buildActionMask" = 2147483647;
-			"files" = ();
-			"runOnlyForDeploymentPostprocessing" = 0;
-		};
-		"5AA01BB237486DB56AFD3815" = {
-			"isa" = "PBXResourcesBuildPhase";
-			"buildActionMask" = 2147483647;
-			"files" = ("87C686CB5A294EE29F55D901");
-			"runOnlyForDeploymentPostprocessing" = 0;
-		};
-		"87C686CB5A294EE29F55D901" = {
-			"isa" = "PBXBuildFile";
-			"fileRef" = "87C686CB5A294EE29F55D902";
-		};
-		"87C686CB5A294EE29F55D902" = {
-			"isa" = "PBXFileReference";
-			"lastKnownFileType" = "text";
-			"path" = "KvilAppTests/Kvil.storekit";
-			"sourceTree" = "SOURCE_ROOT";
-		};
-		"4337DC73385EBB4DD86847C7" = {
-			"isa" = "XCBuildConfiguration";
-			"name" = "Debug";
-			"buildSettings" = {
-				"PRODUCT_NAME" = "$(TARGET_NAME)";
-				"PRODUCT_BUNDLE_IDENTIFIER" = "dev.hkarlsen06.kvil.uitests";
-				"SDKROOT" = "iphoneos";
-				"SUPPORTED_PLATFORMS" = "iphoneos iphonesimulator";
-				"TARGETED_DEVICE_FAMILY" = "1";
-				"SWIFT_VERSION" = "5.0";
-				"SWIFT_STRICT_CONCURRENCY" = "complete";
-				"STRING_CATALOG_GENERATE_SYMBOLS" = "YES";
-				"SWIFT_EMIT_LOC_STRINGS" = "YES";
-				"GENERATE_INFOPLIST_FILE" = "YES";
-				"CODE_SIGN_STYLE" = "Automatic";
-				"DEVELOPMENT_TEAM" = "48ZSLD4RMP";
-				"LD_RUNPATH_SEARCH_PATHS" = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				"SKIP_INSTALL" = "YES";
-				"INFOPLIST_KEY_CFBundleDisplayName" = "Kvil";
-				"IPHONEOS_DEPLOYMENT_TARGET" = "27.0";
-				"TEST_TARGET_NAME" = "KvilApp";
-				"SWIFT_OPTIMIZATION_LEVEL" = "-Onone";
-				"SWIFT_ACTIVE_COMPILATION_CONDITIONS" = "DEBUG $(inherited)";
-				"ENABLE_TESTABILITY" = "YES";
-				"DEBUG_INFORMATION_FORMAT" = "dwarf";
-			};
-			"baseConfigurationReference" = "F4A59D9C362A9D259A8558B2";
-		};
-		"0CCF2E4D82602A1EFF846126" = {
-			"isa" = "XCBuildConfiguration";
-			"name" = "Release";
-			"buildSettings" = {
-				"PRODUCT_NAME" = "$(TARGET_NAME)";
-				"PRODUCT_BUNDLE_IDENTIFIER" = "dev.hkarlsen06.kvil.uitests";
-				"SDKROOT" = "iphoneos";
-				"SUPPORTED_PLATFORMS" = "iphoneos iphonesimulator";
-				"TARGETED_DEVICE_FAMILY" = "1";
-				"SWIFT_VERSION" = "5.0";
-				"SWIFT_STRICT_CONCURRENCY" = "complete";
-				"STRING_CATALOG_GENERATE_SYMBOLS" = "YES";
-				"SWIFT_EMIT_LOC_STRINGS" = "YES";
-				"GENERATE_INFOPLIST_FILE" = "YES";
-				"CODE_SIGN_STYLE" = "Automatic";
-				"DEVELOPMENT_TEAM" = "48ZSLD4RMP";
-				"LD_RUNPATH_SEARCH_PATHS" = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				"SKIP_INSTALL" = "YES";
-				"INFOPLIST_KEY_CFBundleDisplayName" = "Kvil";
-				"IPHONEOS_DEPLOYMENT_TARGET" = "27.0";
-				"TEST_TARGET_NAME" = "KvilApp";
-				"SWIFT_COMPILATION_MODE" = "wholemodule";
-				"DEBUG_INFORMATION_FORMAT" = "dwarf-with-dsym";
-				"VALIDATE_PRODUCT" = "YES";
-			};
-			"baseConfigurationReference" = "436B9389B5203AE28919CA2B";
-		};
-		"7DC816BCC355F05281A998DE" = {
-			"isa" = "XCConfigurationList";
-			"buildConfigurations" = ("4337DC73385EBB4DD86847C7", "0CCF2E4D82602A1EFF846126");
-			"defaultConfigurationIsVisible" = 0;
-			"defaultConfigurationName" = "Release";
-		};
-		"FA11AC55D55EEFCB63C29E06" = {
-			"isa" = "PBXNativeTarget";
-			"buildConfigurationList" = "7DC816BCC355F05281A998DE";
-			"buildPhases" = ("F81AE5EAFBBF2C42B0B364BD", "3CC8B92D067E04FA16C05DC3", "5AA01BB237486DB56AFD3815");
-			"buildRules" = ();
-			"dependencies" = ("895CDCA7D96C4830E9C07E3B");
-			"fileSystemSynchronizedGroups" = ("09297E78958A4846E06D5D00");
-			"name" = "KvilAppUITests";
-			"productName" = "KvilAppUITests";
-			"productReference" = "D5562E9C4DF5FBDBA1DBA5B6";
-			"productType" = "com.apple.product-type.bundle.ui-testing";
-		};
-		"B1E1D47B1AE55DA977B04C27" = {
-			"isa" = "PBXContainerItemProxy";
-			"containerPortal" = "98F54143AB4E86B28C3AFEE0";
-			"proxyType" = 1;
-			"remoteGlobalIDString" = "BDAED2E45D7AE8280B819C8A";
-			"remoteInfo" = "KvilWidget";
-		};
-		"F74764A544F75FF91D60BFB7" = {
-			"isa" = "PBXTargetDependency";
-			"target" = "BDAED2E45D7AE8280B819C8A";
-			"targetProxy" = "B1E1D47B1AE55DA977B04C27";
-		};
-		"C57AB850C7BE6E10E51BFE04" = {
-			"isa" = "PBXBuildFile";
-			"fileRef" = "D73732300E37086D360A1DB1";
-			"settings" = {
-				"ATTRIBUTES" = ("RemoveHeadersOnCopy");
-			};
-		};
-		"836271D3AC8C153F5D18517C" = {
-			"isa" = "PBXCopyFilesBuildPhase";
-			"buildActionMask" = 2147483647;
-			"dstPath" = "";
-			"dstSubfolderSpec" = 13;
-			"files" = ("C57AB850C7BE6E10E51BFE04");
-			"name" = "Embed KvilWidget";
-			"runOnlyForDeploymentPostprocessing" = 0;
-		};
-		"79C9DC833FC711985E498F8C" = {
-			"isa" = "PBXContainerItemProxy";
-			"containerPortal" = "98F54143AB4E86B28C3AFEE0";
-			"proxyType" = 1;
-			"remoteGlobalIDString" = "35131E939DDF1903BB5A9F61";
-			"remoteInfo" = "KvilWatchApp";
-		};
-		"C769B8260BBCA99B95467DC7" = {
-			"isa" = "PBXTargetDependency";
-			"target" = "35131E939DDF1903BB5A9F61";
-			"targetProxy" = "79C9DC833FC711985E498F8C";
-		};
-		"B55906B77F532CB3FA09FA42" = {
-			"isa" = "PBXBuildFile";
-			"fileRef" = "A255338F2A40872E37E6D261";
-			"settings" = {
-				"ATTRIBUTES" = ("RemoveHeadersOnCopy");
-			};
-		};
-		"0D34236CCAE5BEB7D6D26E60" = {
-			"isa" = "PBXCopyFilesBuildPhase";
-			"buildActionMask" = 2147483647;
-			"dstPath" = "$(CONTENTS_FOLDER_PATH)/Watch";
-			"dstSubfolderSpec" = 16;
-			"files" = ("B55906B77F532CB3FA09FA42");
-			"name" = "Embed KvilWatchApp";
-			"runOnlyForDeploymentPostprocessing" = 0;
-		};
-		"31AAA45342F1989EED0A6C30" = {
-			"isa" = "PBXContainerItemProxy";
-			"containerPortal" = "98F54143AB4E86B28C3AFEE0";
-			"proxyType" = 1;
-			"remoteGlobalIDString" = "5B50C2E12C6AA406E552F978";
-			"remoteInfo" = "KvilWatchWidget";
-		};
-		"AEFE6760DBFA6BF24302132C" = {
-			"isa" = "PBXTargetDependency";
-			"target" = "5B50C2E12C6AA406E552F978";
-			"targetProxy" = "31AAA45342F1989EED0A6C30";
-		};
-		"AD54B737A49C5F7D60FF1DFB" = {
-			"isa" = "PBXBuildFile";
-			"fileRef" = "84ACAE9FF707B8C73D2EA94C";
-			"settings" = {
-				"ATTRIBUTES" = ("RemoveHeadersOnCopy");
-			};
-		};
-		"67EED8422078259051681C65" = {
-			"isa" = "PBXCopyFilesBuildPhase";
-			"buildActionMask" = 2147483647;
-			"dstPath" = "";
-			"dstSubfolderSpec" = 13;
-			"files" = ("AD54B737A49C5F7D60FF1DFB");
-			"name" = "Embed KvilWatchWidget";
-			"runOnlyForDeploymentPostprocessing" = 0;
-		};
-		"BC980610BAC19522AFB5D857" = {
-			"isa" = "PBXContainerItemProxy";
-			"containerPortal" = "98F54143AB4E86B28C3AFEE0";
-			"proxyType" = 1;
-			"remoteGlobalIDString" = "C491B7D549B8FE51E15D58A7";
-			"remoteInfo" = "KvilApp";
-		};
-		"3AD33D3F662418573A9BC443" = {
-			"isa" = "PBXTargetDependency";
-			"target" = "C491B7D549B8FE51E15D58A7";
-			"targetProxy" = "BC980610BAC19522AFB5D857";
-		};
-		"645BD6897F72C57F40F803FB" = {
-			"isa" = "PBXContainerItemProxy";
-			"containerPortal" = "98F54143AB4E86B28C3AFEE0";
-			"proxyType" = 1;
-			"remoteGlobalIDString" = "C491B7D549B8FE51E15D58A7";
-			"remoteInfo" = "KvilApp";
-		};
-		"895CDCA7D96C4830E9C07E3B" = {
-			"isa" = "PBXTargetDependency";
-			"target" = "C491B7D549B8FE51E15D58A7";
-			"targetProxy" = "645BD6897F72C57F40F803FB";
-		};
-		"FBDC4F23F93125BBEEAE800C" = {
-			"isa" = "PBXGroup";
-			"children" = ("E340E8CAAB8858B72EA3B247", "D73732300E37086D360A1DB1", "A255338F2A40872E37E6D261", "84ACAE9FF707B8C73D2EA94C", "6A35E77BE35140DC8D1F4025", "D5562E9C4DF5FBDBA1DBA5B6");
-			"name" = "Products";
-			"sourceTree" = "<group>";
-		};
-		"B28B7AF69320201D1CF206EB" = {
-			"isa" = "PBXGroup";
-			"children" = ("5CD1A383A7404637B55B9754", "A8A0C67AF08046C33331B278", "3F4C887113C1297522EEF6AB", "0A3F4A5747ADFD149636C82D", "8DF9C199F1F5FBB91C01A877", "17AC25CB47E029F22A35735C", "9B1CE149FE715A00EBBE0E02", "AE21A92F7116A3357761406D", "09D5FB33C1300D2CF6BB7BFC", "09297E78958A4846E06D5D00", "F4A59D9C362A9D259A8558B2", "436B9389B5203AE28919CA2B", "FBDC4F23F93125BBEEAE800C");
-			"sourceTree" = "<group>";
-		};
-		"89E1FD6268CC0F221A2BE178" = {
-			"isa" = "XCBuildConfiguration";
-			"name" = "Debug";
-			"buildSettings" = {
-				"CLANG_ENABLE_MODULES" = "YES";
-				"CLANG_ENABLE_OBJC_ARC" = "YES";
-				"GCC_C_LANGUAGE_STANDARD" = "gnu17";
-				"CLANG_CXX_LANGUAGE_STANDARD" = "gnu++20";
-				"ENABLE_USER_SCRIPT_SANDBOXING" = "YES";
-				"SWIFT_VERSION" = "5.0";
-				"SWIFT_STRICT_CONCURRENCY" = "complete";
-				"ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS" = "YES";
-				"SWIFT_OPTIMIZATION_LEVEL" = "-Onone";
-				"SWIFT_ACTIVE_COMPILATION_CONDITIONS" = "DEBUG $(inherited)";
-				"ENABLE_TESTABILITY" = "YES";
-				"DEBUG_INFORMATION_FORMAT" = "dwarf";
-			};
-			"baseConfigurationReference" = "F4A59D9C362A9D259A8558B2";
-		};
-		"E6DE6C99132752C914FEF632" = {
-			"isa" = "XCBuildConfiguration";
-			"name" = "Release";
-			"buildSettings" = {
-				"CLANG_ENABLE_MODULES" = "YES";
-				"CLANG_ENABLE_OBJC_ARC" = "YES";
-				"GCC_C_LANGUAGE_STANDARD" = "gnu17";
-				"CLANG_CXX_LANGUAGE_STANDARD" = "gnu++20";
-				"ENABLE_USER_SCRIPT_SANDBOXING" = "YES";
-				"SWIFT_VERSION" = "5.0";
-				"SWIFT_STRICT_CONCURRENCY" = "complete";
-				"ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS" = "YES";
-				"SWIFT_COMPILATION_MODE" = "wholemodule";
-				"DEBUG_INFORMATION_FORMAT" = "dwarf-with-dsym";
-				"VALIDATE_PRODUCT" = "YES";
-			};
-			"baseConfigurationReference" = "436B9389B5203AE28919CA2B";
-		};
-		"862894B703A6DEDF96A9DD6C" = {
-			"isa" = "XCConfigurationList";
-			"buildConfigurations" = ("89E1FD6268CC0F221A2BE178", "E6DE6C99132752C914FEF632");
-			"defaultConfigurationIsVisible" = 0;
-			"defaultConfigurationName" = "Release";
-		};
-		"98F54143AB4E86B28C3AFEE0" = {
-			"isa" = "PBXProject";
-			"attributes" = {
-				"BuildIndependentTargetsInParallel" = "YES";
-				"LastUpgradeCheck" = "2700";
-				"TargetAttributes" = {
-					"C491B7D549B8FE51E15D58A7" = {
-						"CreatedOnToolsVersion" = "27.0";
+	objectVersion = 71;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		87C686CB5A294EE29F55D901 /* KvilAppTests/Kvil.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 87C686CB5A294EE29F55D902 /* KvilAppTests/Kvil.storekit */; };
+		AD54B737A49C5F7D60FF1DFB /* KvilWatchWidget.appex in Embed KvilWatchWidget */ = {isa = PBXBuildFile; fileRef = 84ACAE9FF707B8C73D2EA94C /* KvilWatchWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		B55906B77F532CB3FA09FA42 /* KvilWatchApp.app in Embed KvilWatchApp */ = {isa = PBXBuildFile; fileRef = A255338F2A40872E37E6D261 /* KvilWatchApp.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		C57AB850C7BE6E10E51BFE04 /* KvilWidget.appex in Embed KvilWidget */ = {isa = PBXBuildFile; fileRef = D73732300E37086D360A1DB1 /* KvilWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		31AAA45342F1989EED0A6C30 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 98F54143AB4E86B28C3AFEE0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5B50C2E12C6AA406E552F978;
+			remoteInfo = KvilWatchWidget;
+		};
+		645BD6897F72C57F40F803FB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 98F54143AB4E86B28C3AFEE0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C491B7D549B8FE51E15D58A7;
+			remoteInfo = KvilApp;
+		};
+		79C9DC833FC711985E498F8C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 98F54143AB4E86B28C3AFEE0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 35131E939DDF1903BB5A9F61;
+			remoteInfo = KvilWatchApp;
+		};
+		B1E1D47B1AE55DA977B04C27 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 98F54143AB4E86B28C3AFEE0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BDAED2E45D7AE8280B819C8A;
+			remoteInfo = KvilWidget;
+		};
+		BC980610BAC19522AFB5D857 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 98F54143AB4E86B28C3AFEE0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C491B7D549B8FE51E15D58A7;
+			remoteInfo = KvilApp;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		0D34236CCAE5BEB7D6D26E60 /* Embed KvilWatchApp */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				B55906B77F532CB3FA09FA42 /* KvilWatchApp.app in Embed KvilWatchApp */,
+			);
+			name = "Embed KvilWatchApp";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		67EED8422078259051681C65 /* Embed KvilWatchWidget */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				AD54B737A49C5F7D60FF1DFB /* KvilWatchWidget.appex in Embed KvilWatchWidget */,
+			);
+			name = "Embed KvilWatchWidget";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		836271D3AC8C153F5D18517C /* Embed KvilWidget */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				C57AB850C7BE6E10E51BFE04 /* KvilWidget.appex in Embed KvilWidget */,
+			);
+			name = "Embed KvilWidget";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		436B9389B5203AE28919CA2B /* release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = release.xcconfig; sourceTree = "<group>"; };
+		6A35E77BE35140DC8D1F4025 /* KvilAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KvilAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		84ACAE9FF707B8C73D2EA94C /* KvilWatchWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = KvilWatchWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		87C686CB5A294EE29F55D902 /* KvilAppTests/Kvil.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = KvilAppTests/Kvil.storekit; sourceTree = SOURCE_ROOT; };
+		A255338F2A40872E37E6D261 /* KvilWatchApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KvilWatchApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D5562E9C4DF5FBDBA1DBA5B6 /* KvilAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KvilAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D73732300E37086D360A1DB1 /* KvilWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = KvilWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		E340E8CAAB8858B72EA3B247 /* KvilApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KvilApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F4A59D9C362A9D259A8558B2 /* debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = debug.xcconfig; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		010B303CCB3A6158ADECAA99 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Supporting/Info.plist,
+			);
+			target = C491B7D549B8FE51E15D58A7 /* KvilApp */;
+		};
+		95836683663F0D562D110748 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				WatchBridge.swift,
+			);
+			target = 5B50C2E12C6AA406E552F978 /* KvilWatchWidget */;
+		};
+		9ABA4C4C69663CCA65CD29AC /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 35131E939DDF1903BB5A9F61 /* KvilWatchApp */;
+		};
+		CAF804B66302D96F64ECED3F /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				WatchBridge.swift,
+			);
+			target = BDAED2E45D7AE8280B819C8A /* KvilWidget */;
+		};
+		F65E46338BFDEE02A5EF2306 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 5B50C2E12C6AA406E552F978 /* KvilWatchWidget */;
+		};
+		FC7DDAE3B0CB33060D9C27F5 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = BDAED2E45D7AE8280B819C8A /* KvilWidget */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		09297E78958A4846E06D5D00 /* KvilAppUITests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = KvilAppUITests; sourceTree = "<group>"; };
+		09D5FB33C1300D2CF6BB7BFC /* KvilAppTests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = KvilAppTests; sourceTree = "<group>"; };
+		0A3F4A5747ADFD149636C82D /* SharedWidget */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = SharedWidget; sourceTree = "<group>"; };
+		17AC25CB47E029F22A35735C /* KvilWidget */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (FC7DDAE3B0CB33060D9C27F5 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = KvilWidget; sourceTree = "<group>"; };
+		3F4C887113C1297522EEF6AB /* SharedResources */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = SharedResources; sourceTree = "<group>"; };
+		5CD1A383A7404637B55B9754 /* Shared */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (CAF804B66302D96F64ECED3F /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 95836683663F0D562D110748 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Shared; sourceTree = "<group>"; };
+		8DF9C199F1F5FBB91C01A877 /* KvilApp */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (010B303CCB3A6158ADECAA99 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = KvilApp; sourceTree = "<group>"; };
+		9B1CE149FE715A00EBBE0E02 /* KvilWatchApp */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (9ABA4C4C69663CCA65CD29AC /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = KvilWatchApp; sourceTree = "<group>"; };
+		A8A0C67AF08046C33331B278 /* SharedUI */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = SharedUI; sourceTree = "<group>"; };
+		AE21A92F7116A3357761406D /* KvilWatchWidget */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (F65E46338BFDEE02A5EF2306 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = KvilWatchWidget; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1B6E396BB183E7D475970319 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3CC8B92D067E04FA16C05DC3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3FAA05616CD08908B9E027DB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8FBFD3B0B7E56556ED9AA53B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9284A56B433B833CEBE18009 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A237A12F4092A5090AC316CF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4AFDE00830563ABA006438FA /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				87C686CB5A294EE29F55D902 /* KvilAppTests/Kvil.storekit */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+		B28B7AF69320201D1CF206EB = {
+			isa = PBXGroup;
+			children = (
+				5CD1A383A7404637B55B9754 /* Shared */,
+				A8A0C67AF08046C33331B278 /* SharedUI */,
+				3F4C887113C1297522EEF6AB /* SharedResources */,
+				0A3F4A5747ADFD149636C82D /* SharedWidget */,
+				8DF9C199F1F5FBB91C01A877 /* KvilApp */,
+				17AC25CB47E029F22A35735C /* KvilWidget */,
+				9B1CE149FE715A00EBBE0E02 /* KvilWatchApp */,
+				AE21A92F7116A3357761406D /* KvilWatchWidget */,
+				09D5FB33C1300D2CF6BB7BFC /* KvilAppTests */,
+				09297E78958A4846E06D5D00 /* KvilAppUITests */,
+				F4A59D9C362A9D259A8558B2 /* debug.xcconfig */,
+				436B9389B5203AE28919CA2B /* release.xcconfig */,
+				FBDC4F23F93125BBEEAE800C /* Products */,
+				4AFDE00830563ABA006438FA /* Recovered References */,
+			);
+			sourceTree = "<group>";
+		};
+		FBDC4F23F93125BBEEAE800C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E340E8CAAB8858B72EA3B247 /* KvilApp.app */,
+				D73732300E37086D360A1DB1 /* KvilWidget.appex */,
+				A255338F2A40872E37E6D261 /* KvilWatchApp.app */,
+				84ACAE9FF707B8C73D2EA94C /* KvilWatchWidget.appex */,
+				6A35E77BE35140DC8D1F4025 /* KvilAppTests.xctest */,
+				D5562E9C4DF5FBDBA1DBA5B6 /* KvilAppUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		35131E939DDF1903BB5A9F61 /* KvilWatchApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9AC532837A5FA3799A1939A7 /* Build configuration list for PBXNativeTarget "KvilWatchApp" */;
+			buildPhases = (
+				0DDDC670B3EB5F5B5EB4B731 /* Sources */,
+				8FBFD3B0B7E56556ED9AA53B /* Frameworks */,
+				F14F51AB96AACE73344C50B0 /* Resources */,
+				67EED8422078259051681C65 /* Embed KvilWatchWidget */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AEFE6760DBFA6BF24302132C /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				3F4C887113C1297522EEF6AB /* SharedResources */,
+				5CD1A383A7404637B55B9754 /* Shared */,
+				9B1CE149FE715A00EBBE0E02 /* KvilWatchApp */,
+				A8A0C67AF08046C33331B278 /* SharedUI */,
+			);
+			name = KvilWatchApp;
+			productName = KvilWatchApp;
+			productReference = A255338F2A40872E37E6D261 /* KvilWatchApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		5B50C2E12C6AA406E552F978 /* KvilWatchWidget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FB4CF8E70DCCB59F44896BA6 /* Build configuration list for PBXNativeTarget "KvilWatchWidget" */;
+			buildPhases = (
+				D7B7D3C01E31854980456AC5 /* Sources */,
+				9284A56B433B833CEBE18009 /* Frameworks */,
+				96346D34AC6441CBC14BD817 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				0A3F4A5747ADFD149636C82D /* SharedWidget */,
+				3F4C887113C1297522EEF6AB /* SharedResources */,
+				5CD1A383A7404637B55B9754 /* Shared */,
+				A8A0C67AF08046C33331B278 /* SharedUI */,
+				AE21A92F7116A3357761406D /* KvilWatchWidget */,
+			);
+			name = KvilWatchWidget;
+			productName = KvilWatchWidget;
+			productReference = 84ACAE9FF707B8C73D2EA94C /* KvilWatchWidget.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		BDAED2E45D7AE8280B819C8A /* KvilWidget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DC09AAF34B13B8B7D613CB1C /* Build configuration list for PBXNativeTarget "KvilWidget" */;
+			buildPhases = (
+				80DABDAFF4972E1F02D5BA6F /* Sources */,
+				3FAA05616CD08908B9E027DB /* Frameworks */,
+				2D50595D7C7722F43BF474C4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				0A3F4A5747ADFD149636C82D /* SharedWidget */,
+				17AC25CB47E029F22A35735C /* KvilWidget */,
+				3F4C887113C1297522EEF6AB /* SharedResources */,
+				5CD1A383A7404637B55B9754 /* Shared */,
+				A8A0C67AF08046C33331B278 /* SharedUI */,
+			);
+			name = KvilWidget;
+			productName = KvilWidget;
+			productReference = D73732300E37086D360A1DB1 /* KvilWidget.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		C491B7D549B8FE51E15D58A7 /* KvilApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3190FCBF5A2BEC14A9BA7319 /* Build configuration list for PBXNativeTarget "KvilApp" */;
+			buildPhases = (
+				7AC6FDDDCB6D3A31F2DA4222 /* Sources */,
+				A237A12F4092A5090AC316CF /* Frameworks */,
+				D7AEE9B4A154AD2C69D5AB25 /* Resources */,
+				836271D3AC8C153F5D18517C /* Embed KvilWidget */,
+				0D34236CCAE5BEB7D6D26E60 /* Embed KvilWatchApp */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F74764A544F75FF91D60BFB7 /* PBXTargetDependency */,
+				C769B8260BBCA99B95467DC7 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				3F4C887113C1297522EEF6AB /* SharedResources */,
+				5CD1A383A7404637B55B9754 /* Shared */,
+				8DF9C199F1F5FBB91C01A877 /* KvilApp */,
+				A8A0C67AF08046C33331B278 /* SharedUI */,
+			);
+			name = KvilApp;
+			productName = KvilApp;
+			productReference = E340E8CAAB8858B72EA3B247 /* KvilApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		CB32F35BAE920D3D83C2E252 /* KvilAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EB3DF2DE7DE1709C70D18A82 /* Build configuration list for PBXNativeTarget "KvilAppTests" */;
+			buildPhases = (
+				379081217225B9654E9E1C15 /* Sources */,
+				1B6E396BB183E7D475970319 /* Frameworks */,
+				569723B6853F8B6ED8B79188 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3AD33D3F662418573A9BC443 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				09D5FB33C1300D2CF6BB7BFC /* KvilAppTests */,
+			);
+			name = KvilAppTests;
+			productName = KvilAppTests;
+			productReference = 6A35E77BE35140DC8D1F4025 /* KvilAppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		FA11AC55D55EEFCB63C29E06 /* KvilAppUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7DC816BCC355F05281A998DE /* Build configuration list for PBXNativeTarget "KvilAppUITests" */;
+			buildPhases = (
+				F81AE5EAFBBF2C42B0B364BD /* Sources */,
+				3CC8B92D067E04FA16C05DC3 /* Frameworks */,
+				5AA01BB237486DB56AFD3815 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				895CDCA7D96C4830E9C07E3B /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				09297E78958A4846E06D5D00 /* KvilAppUITests */,
+			);
+			name = KvilAppUITests;
+			productName = KvilAppUITests;
+			productReference = D5562E9C4DF5FBDBA1DBA5B6 /* KvilAppUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		98F54143AB4E86B28C3AFEE0 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 2700;
+				TargetAttributes = {
+					35131E939DDF1903BB5A9F61 = {
+						CreatedOnToolsVersion = 27.0;
 					};
-					"BDAED2E45D7AE8280B819C8A" = {
-						"CreatedOnToolsVersion" = "27.0";
+					5B50C2E12C6AA406E552F978 = {
+						CreatedOnToolsVersion = 27.0;
 					};
-					"35131E939DDF1903BB5A9F61" = {
-						"CreatedOnToolsVersion" = "27.0";
+					BDAED2E45D7AE8280B819C8A = {
+						CreatedOnToolsVersion = 27.0;
 					};
-					"5B50C2E12C6AA406E552F978" = {
-						"CreatedOnToolsVersion" = "27.0";
+					C491B7D549B8FE51E15D58A7 = {
+						CreatedOnToolsVersion = 27.0;
 					};
-					"CB32F35BAE920D3D83C2E252" = {
-						"CreatedOnToolsVersion" = "27.0";
+					CB32F35BAE920D3D83C2E252 = {
+						CreatedOnToolsVersion = 27.0;
 					};
-					"FA11AC55D55EEFCB63C29E06" = {
-						"CreatedOnToolsVersion" = "27.0";
+					FA11AC55D55EEFCB63C29E06 = {
+						CreatedOnToolsVersion = 27.0;
 					};
 				};
 			};
-			"buildConfigurationList" = "862894B703A6DEDF96A9DD6C";
-			"compatibilityVersion" = "Xcode 16.0";
-			"developmentRegion" = "en";
-			"hasScannedForEncodings" = 0;
-			"knownRegions" = ("en", "nb", "Base");
-			"mainGroup" = "B28B7AF69320201D1CF206EB";
-			"productRefGroup" = "FBDC4F23F93125BBEEAE800C";
-			"projectDirPath" = "";
-			"projectRoot" = "";
-			"targets" = ("C491B7D549B8FE51E15D58A7", "BDAED2E45D7AE8280B819C8A", "35131E939DDF1903BB5A9F61", "5B50C2E12C6AA406E552F978", "CB32F35BAE920D3D83C2E252", "FA11AC55D55EEFCB63C29E06");
-			"preferredProjectObjectVersion" = 77;
+			buildConfigurationList = 862894B703A6DEDF96A9DD6C /* Build configuration list for PBXProject "Kvil" */;
+			compatibilityVersion = "Xcode 16.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				nb,
+				Base,
+			);
+			mainGroup = B28B7AF69320201D1CF206EB;
+			productRefGroup = FBDC4F23F93125BBEEAE800C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C491B7D549B8FE51E15D58A7 /* KvilApp */,
+				BDAED2E45D7AE8280B819C8A /* KvilWidget */,
+				35131E939DDF1903BB5A9F61 /* KvilWatchApp */,
+				5B50C2E12C6AA406E552F978 /* KvilWatchWidget */,
+				CB32F35BAE920D3D83C2E252 /* KvilAppTests */,
+				FA11AC55D55EEFCB63C29E06 /* KvilAppUITests */,
+			);
 		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2D50595D7C7722F43BF474C4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		569723B6853F8B6ED8B79188 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5AA01BB237486DB56AFD3815 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				87C686CB5A294EE29F55D901 /* KvilAppTests/Kvil.storekit in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		96346D34AC6441CBC14BD817 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D7AEE9B4A154AD2C69D5AB25 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F14F51AB96AACE73344C50B0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0DDDC670B3EB5F5B5EB4B731 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		379081217225B9654E9E1C15 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7AC6FDDDCB6D3A31F2DA4222 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		80DABDAFF4972E1F02D5BA6F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D7B7D3C01E31854980456AC5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F81AE5EAFBBF2C42B0B364BD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3AD33D3F662418573A9BC443 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C491B7D549B8FE51E15D58A7 /* KvilApp */;
+			targetProxy = BC980610BAC19522AFB5D857 /* PBXContainerItemProxy */;
+		};
+		895CDCA7D96C4830E9C07E3B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C491B7D549B8FE51E15D58A7 /* KvilApp */;
+			targetProxy = 645BD6897F72C57F40F803FB /* PBXContainerItemProxy */;
+		};
+		AEFE6760DBFA6BF24302132C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5B50C2E12C6AA406E552F978 /* KvilWatchWidget */;
+			targetProxy = 31AAA45342F1989EED0A6C30 /* PBXContainerItemProxy */;
+		};
+		C769B8260BBCA99B95467DC7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 35131E939DDF1903BB5A9F61 /* KvilWatchApp */;
+			targetProxy = 79C9DC833FC711985E498F8C /* PBXContainerItemProxy */;
+		};
+		F74764A544F75FF91D60BFB7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BDAED2E45D7AE8280B819C8A /* KvilWidget */;
+			targetProxy = B1E1D47B1AE55DA977B04C27 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		01C7E8F63BF16D6C8990D054 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 436B9389B5203AE28919CA2B /* release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = KvilWatchApp/Kvil.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 48ZSLD4RMP;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = KvilWatchApp/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Kvil;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = dev.hkarlsen06.kvil.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "watchos watchsimulator";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 27.0;
+			};
+			name = Release;
+		};
+		0CCF2E4D82602A1EFF846126 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 436B9389B5203AE28919CA2B /* release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 48ZSLD4RMP;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Kvil;
+				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = dev.hkarlsen06.kvil.uitests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				TEST_TARGET_NAME = KvilApp;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		16C5B2A7C9AD0470F08E175F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 436B9389B5203AE28919CA2B /* release.xcconfig */;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_ENTITLEMENTS = KvilWatchWidget/Kvil.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 48ZSLD4RMP;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = KvilWatchWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Kvil;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = dev.hkarlsen06.kvil.watchkitapp.widget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "watchos watchsimulator";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 27.0;
+			};
+			name = Release;
+		};
+		4337DC73385EBB4DD86847C7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F4A59D9C362A9D259A8558B2 /* debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 48ZSLD4RMP;
+				ENABLE_TESTABILITY = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Kvil;
+				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = dev.hkarlsen06.kvil.uitests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				TEST_TARGET_NAME = KvilApp;
+			};
+			name = Debug;
+		};
+		446C6932EFE6010343C74638 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 436B9389B5203AE28919CA2B /* release.xcconfig */;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_ENTITLEMENTS = KvilWidget/Kvil.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 48ZSLD4RMP;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = KvilWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Kvil;
+				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = dev.hkarlsen06.kvil.widget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		48CF1F3289B930D0E1FBDDD6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 436B9389B5203AE28919CA2B /* release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 48ZSLD4RMP;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Kvil;
+				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = dev.hkarlsen06.kvil.tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KvilApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/KvilApp";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		764A064F9E4D5F34E2F09EEF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F4A59D9C362A9D259A8558B2 /* debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 48ZSLD4RMP;
+				ENABLE_TESTABILITY = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Kvil;
+				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = dev.hkarlsen06.kvil.tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KvilApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/KvilApp";
+			};
+			name = Debug;
+		};
+		89E1FD6268CC0F221A2BE178 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F4A59D9C362A9D259A8558B2 /* debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		AB4AA2010C8257841E08B3BF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F4A59D9C362A9D259A8558B2 /* debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = KvilApp/Supporting/Kvil.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 48ZSLD4RMP;
+				ENABLE_TESTABILITY = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = KvilApp/Supporting/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Kvil;
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "Kvil reads weight measurements you choose to share to show them alongside your own entries.";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Kvil saves the weights you log to Apple Health only when you turn on Save to Health.";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = dev.hkarlsen06.kvil;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = NO;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		AE22E274C96CC1EC54588822 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F4A59D9C362A9D259A8558B2 /* debug.xcconfig */;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_ENTITLEMENTS = KvilWidget/Kvil.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 48ZSLD4RMP;
+				ENABLE_TESTABILITY = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = KvilWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Kvil;
+				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = dev.hkarlsen06.kvil.widget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		AE45620D2787EF68B6AB960D /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 436B9389B5203AE28919CA2B /* release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = KvilApp/Supporting/Kvil.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 48ZSLD4RMP;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = KvilApp/Supporting/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Kvil;
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "Kvil reads weight measurements you choose to share to show them alongside your own entries.";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Kvil saves the weights you log to Apple Health only when you turn on Save to Health.";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = dev.hkarlsen06.kvil;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = NO;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		AE762E1259DBD28BACEC427D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F4A59D9C362A9D259A8558B2 /* debug.xcconfig */;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_ENTITLEMENTS = KvilWatchWidget/Kvil.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 48ZSLD4RMP;
+				ENABLE_TESTABILITY = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = KvilWatchWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Kvil;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = dev.hkarlsen06.kvil.watchkitapp.widget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "watchos watchsimulator";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 27.0;
+			};
+			name = Debug;
+		};
+		E6DE6C99132752C914FEF632 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 436B9389B5203AE28919CA2B /* release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 5.0;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E816849E64D9F40E5890C8D8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F4A59D9C362A9D259A8558B2 /* debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = KvilWatchApp/Kvil.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 48ZSLD4RMP;
+				ENABLE_TESTABILITY = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = KvilWatchApp/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Kvil;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = dev.hkarlsen06.kvil.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "watchos watchsimulator";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 27.0;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3190FCBF5A2BEC14A9BA7319 /* Build configuration list for PBXNativeTarget "KvilApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AB4AA2010C8257841E08B3BF /* Debug */,
+				AE45620D2787EF68B6AB960D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7DC816BCC355F05281A998DE /* Build configuration list for PBXNativeTarget "KvilAppUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4337DC73385EBB4DD86847C7 /* Debug */,
+				0CCF2E4D82602A1EFF846126 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		862894B703A6DEDF96A9DD6C /* Build configuration list for PBXProject "Kvil" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				89E1FD6268CC0F221A2BE178 /* Debug */,
+				E6DE6C99132752C914FEF632 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9AC532837A5FA3799A1939A7 /* Build configuration list for PBXNativeTarget "KvilWatchApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E816849E64D9F40E5890C8D8 /* Debug */,
+				01C7E8F63BF16D6C8990D054 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DC09AAF34B13B8B7D613CB1C /* Build configuration list for PBXNativeTarget "KvilWidget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AE22E274C96CC1EC54588822 /* Debug */,
+				446C6932EFE6010343C74638 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EB3DF2DE7DE1709C70D18A82 /* Build configuration list for PBXNativeTarget "KvilAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				764A064F9E4D5F34E2F09EEF /* Debug */,
+				48CF1F3289B930D0E1FBDDD6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FB4CF8E70DCCB59F44896BA6 /* Build configuration list for PBXNativeTarget "KvilWatchWidget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AE762E1259DBD28BACEC427D /* Debug */,
+				16C5B2A7C9AD0470F08E175F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
 	};
-	"rootObject" = "98F54143AB4E86B28C3AFEE0";
+	rootObject = 98F54143AB4E86B28C3AFEE0 /* Project object */;
 }

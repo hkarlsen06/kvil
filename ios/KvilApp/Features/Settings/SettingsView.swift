@@ -9,7 +9,7 @@ struct SettingsLink: View {
     } label: {
       Image(systemName: "gearshape").font(.body.weight(.regular))
     }
-    .accessibilityLabel(L10n.settings).accessibilityIdentifier("settings")
+    .accessibilityLabel(.settings).accessibilityIdentifier("settings")
     .sheet(isPresented: $showing) { SettingsView() }
   }
 }
@@ -28,40 +28,40 @@ struct SettingsView: View {
       Form {
         Section {
           Toggle(
-            L10n.openingReminder,
+            .openingReminder,
             isOn: Binding(
               get: { model.data.preferences.openingReminder },
               set: { enabled in Task { await model.setReminder(opening: true, enabled: enabled) } })
           )
           Toggle(
-            L10n.closingReminder,
+            .closingReminder,
             isOn: Binding(
               get: { model.data.preferences.closingReminder },
               set: { enabled in Task { await model.setReminder(opening: false, enabled: enabled) } }
             ))
           if model.notificationStatus == .denied {
-            Button(L10n.openSystemSettings) {
+            Button(.openSystemSettings) {
               if let url = URL(string: "app-settings:") { openURL(url) }
             }
-            Text(L10n.remindersDenied).font(.footnote).foregroundStyle(Color.kvilSecondary)
+            Text(.remindersDenied).font(.footnote).foregroundStyle(Color.kvilSecondary)
           }
           if let through = model.remindersThrough {
             LabeledContent {
               Text(through, format: .dateTime.month(.abbreviated).day())
             } label: {
-              Text(L10n.scheduledThrough)
+              Text(.scheduledThrough)
             }
           }
         } header: {
-          Text(L10n.reminders)
+          Text(.reminders)
         } footer: {
-          Text(L10n.reminderHorizonHelp)
+          Text(.reminderHorizonHelp)
         }
         Section {
-          Toggle(L10n.showWeight, isOn: binding(\.weightEnabled))
+          Toggle(.showWeight, isOn: binding(\.weightEnabled))
           if model.data.preferences.weightEnabled {
             Picker(
-              L10n.weightUnit,
+              .weightUnit,
               selection: Binding(
                 get: { model.data.preferences.weightUnit },
                 set: { unit in model.preferences { $0.weightUnit = unit } })
@@ -72,7 +72,7 @@ struct SettingsView: View {
           }
           if model.data.preferences.healthEnabled {
             Toggle(
-              L10n.saveToHealth,
+              .saveToHealth,
               isOn: Binding(
                 get: { model.data.preferences.healthWritesEnabled },
                 set: { enabled in
@@ -82,26 +82,26 @@ struct SettingsView: View {
                     model.preferences { $0.healthWritesEnabled = false }
                   }
                 }))
-            Button(L10n.stopReadingHealth) {
+            Button(.stopReadingHealth) {
               model.preferences {
                 $0.healthEnabled = false
                 $0.healthWritesEnabled = false
               }
             }
           } else {
-            Button(L10n.connectHealth) { Task { await model.connectHealth(write: false) } }
+            Button(.connectHealth) { Task { await model.connectHealth(write: false) } }
               .disabled(!model.health.available)
           }
         } header: {
-          Text(L10n.weightAndHealth)
+          Text(.weightAndHealth)
         } footer: {
-          Text(L10n.healthSettingsHelp)
+          Text(.healthSettingsHelp)
         }
         Section {
           NavigationLink {
             DeviceHelpView()
           } label: {
-            Label(L10n.watchAndWidgets, systemImage: "applewatch")
+            Label(.watchAndWidgets, systemImage: "applewatch")
           }
         }
         Section {
@@ -109,51 +109,51 @@ struct SettingsView: View {
             showingPurchase = true
           } label: {
             Label(
-              model.purchases.unlocked ? L10n.historyUnlocked : L10n.fullHistory,
+              model.purchases.unlocked ? .historyUnlocked : .fullHistory,
               systemImage: "leaf")
           }
-          Button(L10n.restorePurchases) {
+          Button(.restorePurchases) {
             Task {
               await model.purchases.restore()
               model.message =
                 model.purchases.error
-                ?? String(localized: model.purchases.unlocked ? L10n.restored : L10n.noPurchases)
+                ?? String(localized: model.purchases.unlocked ? .restored : .noPurchases)
             }
           }.disabled(model.purchases.busy)
         }
         Section {
-          Toggle(L10n.cloudSchedule, isOn: binding(\.cloudScheduleEnabled))
+          Toggle(.cloudSchedule, isOn: binding(\.cloudScheduleEnabled))
           if model.data.preferences.cloudScheduleEnabled {
             Text(
               model.cloud.status == .unavailable
-                ? L10n.cloudUnavailable
+                ? .cloudUnavailable
                 : model.cloud.status == .needsAttention
-                  ? L10n.cloudNeedsAttention : L10n.cloudEnabled
+                  ? .cloudNeedsAttention : .cloudEnabled
             )
             .font(.footnote).foregroundStyle(Color.kvilSecondary)
           }
         } footer: {
-          Text(L10n.cloudScheduleHelp)
+          Text(.cloudScheduleHelp)
         }
         Section {
-          Button(L10n.exportData) { exporting = true }.accessibilityIdentifier("exportData")
-          Button(L10n.importData) { importing = true }
-          Button(L10n.eraseData, role: .destructive) { erase = true }
+          Button(.exportData) { exporting = true }.accessibilityIdentifier("exportData")
+          Button(.importData) { importing = true }
+          Button(.eraseData, role: .destructive) { erase = true }
         } header: {
-          Text(L10n.yourData)
+          Text(.yourData)
         } footer: {
-          Text(L10n.localStorageNotice)
+          Text(.localStorageNotice)
         }
         Section {
-          NavigationLink(L10n.privacy) { PrivacyView() }
-          NavigationLink(L10n.aboutKvil) { AboutView() }
+          NavigationLink(.privacy) { PrivacyView() }
+          NavigationLink(.aboutKvil) { AboutView() }
           LabeledContent(
-            L10n.version,
+            .version,
             value: Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "1.0.0")
         }
-      }.scrollContentBackground(.hidden).background(Color.kvilCanvas).navigationTitle(L10n.settings)
+      }.scrollContentBackground(.hidden).background(Color.kvilCanvas).navigationTitle(.settings)
         .navigationBarTitleDisplayMode(.inline)
-        .toolbar { ToolbarItem(placement: .confirmationAction) { Button(L10n.done) { dismiss() } } }
+        .toolbar { ToolbarItem(placement: .confirmationAction) { Button(.done) { dismiss() } } }
         .sheet(isPresented: $showingPurchase) { PurchaseView() }
         .fileExporter(
           isPresented: $exporting, document: BackupDocument(data: model.data), contentType: .json,
@@ -162,7 +162,7 @@ struct SettingsView: View {
           if case .failure(let error) = result,
             (error as? CocoaError)?.code != .userCancelled
           {
-            model.message = String(localized: L10n.exportFailed)
+            model.message = String(localized: .exportFailed)
           }
         }
         .fileImporter(isPresented: $importing, allowedContentTypes: [.json]) { result in
@@ -176,27 +176,27 @@ struct SettingsView: View {
             guard bytes.count <= 10_000_000 else { throw CocoaError(.fileReadTooLarge) }
             imported = try JSONDecoder().decode(LocalData.self, from: bytes).validated()
           } catch let error as CocoaError where error.code == .userCancelled {
-          } catch { model.message = String(localized: L10n.importInvalid) }
+          } catch { model.message = String(localized: .importInvalid) }
         }
         .alert(
-          L10n.replaceData,
+          .replaceData,
           isPresented: Binding(get: { imported != nil }, set: { if !$0 { imported = nil } })
         ) {
-          Button(L10n.replace, role: .destructive) {
+          Button(.replace, role: .destructive) {
             if let imported, model.restore(imported) { dismiss() }
             imported = nil
           }
-          Button(L10n.cancel, role: .cancel) { imported = nil }
+          Button(.cancel, role: .cancel) { imported = nil }
         } message: {
-          Text(L10n.replaceDataBody)
+          Text(.replaceDataBody)
         }
-        .alert(L10n.eraseData, isPresented: $erase) {
-          Button(L10n.erase, role: .destructive) {
+        .alert(.eraseData, isPresented: $erase) {
+          Button(.erase, role: .destructive) {
             Task { if await model.eraseLocalData() { dismiss() } }
           }
-          Button(L10n.cancel, role: .cancel) {}
+          Button(.cancel, role: .cancel) {}
         } message: {
-          Text(L10n.eraseDataBody)
+          Text(.eraseDataBody)
         }
     }.tint(Color.kvilAccent).modifier(AppMessageModifier())
   }
@@ -211,22 +211,22 @@ struct DeviceHelpView: View {
   var body: some View {
     List {
       Section {
-        Text(L10n.widgetHelp)
+        Text(.widgetHelp)
       } header: {
-        Label(L10n.homeWidgets, systemImage: "square.grid.2x2")
+        Label(.homeWidgets, systemImage: "square.grid.2x2")
       }
       Section {
-        Text(L10n.lockWidgetHelp)
+        Text(.lockWidgetHelp)
       } header: {
-        Label(L10n.lockWidgets, systemImage: "lock")
+        Label(.lockWidgets, systemImage: "lock")
       }
       Section {
-        Text(L10n.watchHelp)
+        Text(.watchHelp)
       } header: {
-        Label(L10n.appleWatch, systemImage: "applewatch")
+        Label(.appleWatch, systemImage: "applewatch")
       }
     }.scrollContentBackground(.hidden).background(Color.kvilCanvas).navigationTitle(
-      L10n.watchAndWidgets)
+      .watchAndWidgets)
   }
 }
 
@@ -234,14 +234,14 @@ struct PrivacyView: View {
   var body: some View {
     ScrollView {
       VStack(alignment: .leading, spacing: 24) {
-        Text(L10n.privacyTitle).font(KvilStyle.title)
-        Text(L10n.privacyLocal)
-        Text(L10n.privacyHealth)
-        Text(L10n.privacyDevices)
-        Text(L10n.privacyPurchase)
-        Text(L10n.privacyControl)
+        Text(.privacyTitle).font(KvilStyle.title)
+        Text(.privacyLocal)
+        Text(.privacyHealth)
+        Text(.privacyDevices)
+        Text(.privacyPurchase)
+        Text(.privacyControl)
       }.padding(KvilStyle.page)
-    }.background(Color.kvilCanvas).navigationTitle(L10n.privacy).navigationBarTitleDisplayMode(
+    }.background(Color.kvilCanvas).navigationTitle(.privacy).navigationBarTitleDisplayMode(
       .inline)
   }
 }
@@ -250,13 +250,13 @@ struct AboutView: View {
     ScrollView {
       VStack(alignment: .leading, spacing: 24) {
         KvilWordmark()
-        Text(L10n.aboutBody).font(.title3)
-        Text(L10n.onboardingSafety).foregroundStyle(Color.kvilSecondary)
+        Text(.aboutBody).font(.title3)
+        Text(.onboardingSafety).foregroundStyle(Color.kvilSecondary)
         LandscapeView(height: 230).clipShape(RoundedRectangle(cornerRadius: 24))
-        Text(L10n.supportBody).font(.subheadline).foregroundStyle(Color.kvilSecondary)
-        Link(L10n.contactSupport, destination: URL(string: "mailto:hjalmar@hkarlsen06.dev")!)
+        Text(.supportBody).font(.subheadline).foregroundStyle(Color.kvilSecondary)
+        Link(.contactSupport, destination: URL(string: "mailto:hjalmar@hkarlsen06.dev")!)
       }.padding(KvilStyle.page)
-    }.background(Color.kvilCanvas).navigationTitle(L10n.aboutKvil).navigationBarTitleDisplayMode(
+    }.background(Color.kvilCanvas).navigationTitle(.aboutKvil).navigationBarTitleDisplayMode(
       .inline)
   }
 }

@@ -1,0 +1,142 @@
+import SwiftUI
+
+struct HomeTimerView: View {
+  @Environment(\.locale) private var locale
+  @Environment(\.dynamicTypeSize) private var typeSize
+  @Environment(\.accessibilityReduceMotion) private var reduceMotion
+  @Environment(\.scenePhase) private var scenePhase
+  let state: ScheduleState
+  let now: Date
+  let presentationID: Int
+  let isSelected: Bool
+  var compact = false
+  @State private var isVisible = false
+  @State private var displayedProgress = 0.0
+  @State private var motionCue = 0
+
+  private struct Arrival: Equatable {
+    var isOpen: Bool
+    var isActive: Bool
+    var presentationID: Int
+  }
+
+  private struct ProgressUpdate: Equatable {
+    var progress: Double
+    var isVisible: Bool
+  }
+
+  private var isPresented: Bool { isVisible && isSelected && scenePhase == .active }
+
+  private var remaining: Duration {
+    .seconds(max(0, state.next.opening.timeIntervalSince(now)))
+  }
+
+  private var countdown: AttributedString {
+    var value = remaining.formatted(
+      .time(pattern: .hourMinuteSecond(padHourToLength: 1, roundFractionalSeconds: .up))
+        .locale(locale).attributed)
+    // Keep the localized separator with the quieter seconds, on the same baseline.
+    if let minutes = value.runs.first(where: {
+      $0[AttributeScopes.FoundationAttributes.DurationFieldAttribute.self] == .minutes
+    }) {
+      let seconds = minutes.range.upperBound..<value.endIndex
+      value[seconds][AttributeScopes.SwiftUIAttributes.FontAttribute.self] =
+        typeSize.isAccessibilitySize
+        ? .system(compact ? .title3 : .title2, design: .rounded, weight: .light)
+        : .system(size: compact ? 24 : 28, weight: .light, design: .rounded)
+      value[seconds][AttributeScopes.SwiftUIAttributes.ForegroundColorAttribute.self] = .kvilSecondary
+    }
+    return value
+  }
+
+  var body: some View {
+    Group {
+      if typeSize.isAccessibilitySize {
+        timerContent.padding(compact ? 0 : 24)
+      } else {
+        ZStack {
+          LabeledProgressRing(
+            progress: displayedProgress,
+            label: state.isOpen ? .yourWindow : .atYourPace
+          )
+          .phaseAnimator([false, true, false], trigger: motionCue) { ring, pulse in
+            ring.scaleEffect(pulse && !reduceMotion ? 1.025 : 1)
+              .shadow(
+                color: Color.kvilAccent.opacity(pulse && !reduceMotion ? 0.3 : 0),
+                radius: pulse && !reduceMotion ? 12 : 0)
+          } animation: { _ in
+            .easeInOut(duration: 0.45)
+          }
+          timerContent
+        }.frame(width: compact ? 220 : 272, height: compact ? 220 : 272)
+          .padding(.horizontal, 18).padding(.bottom, 12)
+      }
+    }
+    .onAppear { isVisible = true }
+    .onDisappear { isVisible = false }
+    .task(id: ProgressUpdate(progress: state.progress, isVisible: isPresented)) {
+      guard isPresented else { return }
+      // Preserve the last visible fill until Home has rejoined the view hierarchy.
+      await Task.yield()
+      guard !Task.isCancelled else { return }
+      withAnimation(reduceMotion ? nil : .spring(response: 0.95, dampingFraction: 0.86)) {
+        displayedProgress = state.progress
+      }
+    }
+    .onChange(
+      of: Arrival(
+        isOpen: state.isOpen, isActive: isPresented, presentationID: presentationID),
+      initial: true
+    ) { _, arrival in
+      guard arrival.isActive else { return }
+      motionCue += 1
+    }
+    .animation(KvilMotion.transition(reduceMotion: reduceMotion), value: state.isOpen)
+  }
+
+  private var timerContent: some View {
+    VStack(spacing: 12) {
+      if !compact || !typeSize.isAccessibilitySize {
+        Image(systemName: state.isOpen ? "sun.max" : "leaf").font(.title3.weight(.light))
+          .foregroundStyle(Color.kvilAccent)
+          .contentTransition(reduceMotion ? .opacity : .symbolEffect(.replace))
+          .symbolEffect(.bounce, value: reduceMotion ? 0 : motionCue)
+          .accessibilityHidden(true)
+      }
+      Group {
+        if state.isOpen {
+          Text(.windowOpen).font(.system(compact ? .title2 : .largeTitle, design: .serif))
+            .multilineTextAlignment(.center)
+        } else {
+          VStack(spacing: 12) {
+            Text(countdown)
+            .font(
+              typeSize.isAccessibilitySize
+                ? .system(compact ? .title : .largeTitle, design: .rounded, weight: .light)
+                : .system(size: compact ? 48 : 60, weight: .light, design: .rounded)
+            ).monospacedDigit().minimumScaleFactor(0.6).lineLimit(1)
+            .contentTransition(reduceMotion ? .opacity : .numericText(countsDown: true))
+            .animation(reduceMotion ? nil : .easeOut(duration: 0.2), value: countdown)
+            .accessibilityLabel(.untilEatingWindow)
+            .accessibilityValue(
+              Text(
+                remaining,
+                format: .units(
+                  allowed: [.hours, .minutes, .seconds], width: .wide,
+                  fractionalPart: .hide(rounded: .up))))
+            Text(compact ? .untilOpening : .untilEatingWindow)
+              .font(compact ? .caption : .subheadline)
+              .multilineTextAlignment(.center).foregroundStyle(Color.kvilSecondary)
+          }
+        }
+      }.id(state.isOpen)
+        .transition(
+          reduceMotion
+            ? .opacity
+            : .asymmetric(
+              insertion: .offset(y: 10).combined(with: .scale(scale: 0.94)).combined(
+                with: .opacity),
+              removal: .offset(y: -8).combined(with: .opacity)))
+    }.frame(maxWidth: .infinity).accessibilityElement(children: .combine)
+  }
+}

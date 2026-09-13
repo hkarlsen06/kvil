@@ -3,6 +3,12 @@ import Observation
 import UserNotifications
 import WidgetKit
 
+enum AppTab: Hashable {
+  case home
+  case schedule
+  case history
+}
+
 @MainActor @Observable final class AppModel {
   private(set) var data: LocalData
   private(set) var healthWeights: [HealthWeight] = []
@@ -10,7 +16,8 @@ import WidgetKit
   private(set) var notificationStatus: UNAuthorizationStatus = .notDetermined
   private(set) var remindersThrough: Date?
   var message: String?
-  var selectedTab = 0
+  var selectedTab: AppTab = .home
+  private(set) var homePresentationID = 0
   let purchases: PurchaseService
   let watch: WatchBridge
   let reminders: ReminderService
@@ -26,6 +33,11 @@ import WidgetKit
   var engine: ScheduleEngine { ScheduleEngine(snapshot: data.schedule, calendar: calendar) }
   var isConfigured: Bool { !data.schedule.versions.isEmpty }
 
+  func presentHome() {
+    selectedTab = .home
+    homePresentationID += 1
+  }
+
   init(
     store: LocalStore, reminders: ReminderService = ReminderService(),
     health: any HealthAccess = HealthService(), scenario: String? = nil
@@ -35,12 +47,16 @@ import WidgetKit
     self.health = health
     self.scenario = scenario
     deviceServicesEnabled = scenario == nil && !store.isInMemory
+    #if DEBUG
     fixedNow =
-      scenario != nil
+      scenario != nil && scenario != "openingSoon" && scenario != "progressReturn"
       ? ISO8601DateFormatter().date(
         from: scenario == "open"
           ? "2026-09-12T12:00:00Z"
           : scenario == "reflection" ? "2026-09-12T18:00:00Z" : "2026-09-12T06:15:00Z") : nil
+    #else
+    fixedNow = nil
+    #endif
     var isolatedPurchases = scenario != nil
     #if DEBUG
       if ProcessInfo.processInfo.environment["KVIL_STOREKIT_TESTING"] == "1" {
@@ -53,13 +69,15 @@ import WidgetKit
     data = try store.load()
     #if DEBUG
       if let scenario, scenario != "onboarding" {
-        data = ScenarioData.make(now: fixedNow ?? Date(), calendar: LocalDay.calendar())
+        data = ScenarioData.make(
+          now: fixedNow ?? Date(), calendar: LocalDay.calendar(), openingSoon: scenario == "openingSoon",
+          progressReturn: scenario == "progressReturn")
       }
     #endif
     cloud.onChange = { [weak self] in self?.updateSurfaces() }
     cloud.onAccountChange = { [weak self] in
       self?.preferences { $0.cloudScheduleEnabled = false }
-      self?.message = String(localized: L10n.cloudAccountChanged)
+      self?.message = String(localized: .cloudAccountChanged)
     }
   }
 
@@ -71,7 +89,7 @@ import WidgetKit
       if publish { updateSurfaces() }
       return true
     } catch {
-      message = String(localized: L10n.saveFailed)
+      message = String(localized: .saveFailed)
       return false
     }
   }
@@ -95,6 +113,42 @@ import WidgetKit
       ], overrides: [], resetAt: data.schedule.resetAt)
     return commit(next, publish: true)
   }
+  var usualDays: [DayPlan] {
+    data.schedule.versions.max { $0.effectiveDay < $1.effectiveDay }?.days ?? DayPlan.initial
+  }
+
+  func saveWeekDay(_ day: DayPlan, replacing original: DayPlan) -> Bool {
+    var days = usualDays
+    guard day.weekday == original.weekday,
+      let index = days.firstIndex(where: { $0.weekday == original.weekday }),
+      days[index].opens == original.opens, days[index].closes == original.closes
+    else {
+      message = String(localized: .scheduleChangedWhileEditing)
+      return false
+    }
+    guard day.opens != original.opens || day.closes != original.closes else { return true }
+    days[index] = day
+    return saveWeek(days)
+  }
+
+  func setWindowLength(_ minutes: Int, weekday: Int? = nil) -> Bool {
+    guard (1..<1440).contains(minutes),
+      weekday == nil || usualDays.contains(where: { $0.weekday == weekday })
+    else {
+      message = String(localized: .invalidTime)
+      return false
+    }
+    do {
+      let days = try usualDays.map { day in
+        weekday == nil || day.weekday == weekday ? try day.resized(to: minutes) : day
+      }
+      return days == usualDays || saveWeek(days)
+    } catch {
+      message = errorText(error)
+      return false
+    }
+  }
+
   func saveWeek(_ days: [DayPlan]) -> Bool {
     guard let tomorrow = calendar.date(byAdding: .day, value: 1, to: now) else { return false }
     var next = data
@@ -123,12 +177,16 @@ import WidgetKit
     }
     return commit(next, publish: true)
   }
-  func saveToday(opens: WallTime, closes: WallTime) -> Bool {
+  func saveToday(opens: WallTime, closes: WallTime, replacing original: EatingWindow? = nil) -> Bool {
+    if let original, engine.window(on: now) != original {
+      message = String(localized: .scheduleChangedWhileEditing)
+      return false
+    }
     guard opens != closes, let opening = opens.date(on: now, calendar: calendar),
       let closeDay = calendar.date(byAdding: .day, value: closes < opens ? 1 : 0, to: now),
       let closing = closes.date(on: closeDay, calendar: calendar)
     else {
-      message = String(localized: L10n.invalidTime)
+      message = String(localized: .invalidTime)
       return false
     }
     var next = data
@@ -161,6 +219,16 @@ import WidgetKit
       return false
     }
     return commit(next, publish: true)
+  }
+  @discardableResult func setEatingWindowOpen(_ isOpen: Bool) -> Bool {
+    do {
+      var next = data
+      next.schedule = try engine.settingEatingWindowOpen(isOpen, at: now, modifiedAt: Date())
+      return commit(next, publish: true)
+    } catch {
+      message = errorText(error)
+      return false
+    }
   }
   @discardableResult func reflect(_ window: EatingWindow, feeling: DayFeeling?) -> Bool {
     let r = Reflection(
@@ -195,11 +263,11 @@ import WidgetKit
       do {
         guard try await reminders.requestAuthorization() else {
           notificationStatus = await reminders.status()
-          message = String(localized: L10n.remindersDenied)
+          message = String(localized: .remindersDenied)
           return
         }
       } catch {
-        message = String(localized: L10n.reminderFailure)
+        message = String(localized: .reminderFailure)
         return
       }
     }
@@ -223,13 +291,13 @@ import WidgetKit
         next.schedule = merged
         guard commit(next) else { return }
       }
-    } catch { message = String(localized: L10n.cloudConflict) }
+    } catch { message = String(localized: .cloudConflict) }
     let snapshot = data.schedule
     let preferences = data.preferences
     do {
       try SnapshotStore().write(snapshot.forDisplay(now: now, calendar: calendar))
       WidgetCenter.shared.reloadAllTimelines()
-    } catch { message = String(localized: L10n.widgetSaveFailed) }
+    } catch { message = String(localized: .widgetSaveFailed) }
     watch.publish(snapshot.forDisplay(now: now, calendar: calendar))
     let previous = derivedTask
     previous?.cancel()
@@ -240,7 +308,7 @@ import WidgetKit
         remindersThrough = try await reminders.reconcile(
           snapshot: snapshot, preferences: preferences)
         notificationStatus = await reminders.status()
-      } catch { if !Task.isCancelled { message = String(localized: L10n.reminderFailure) } }
+      } catch { if !Task.isCancelled { message = String(localized: .reminderFailure) } }
       await reminders.scheduleRefresh()
     }
   }
@@ -253,14 +321,14 @@ import WidgetKit
         if write { $0.healthWritesEnabled = health.canWrite }
       }
       await refreshHealth()
-    } catch { message = String(localized: L10n.healthUnavailable) }
+    } catch { message = String(localized: .healthUnavailable) }
   }
   func addWeight(value: Double, date: Date) async -> Bool {
     let entry = WeightEntry(
       kilograms: data.preferences.weightUnit.kilograms(value), date: date,
       saveToHealth: data.preferences.healthWritesEnabled)
     guard entry.isValid, date <= now else {
-      message = String(localized: L10n.invalidWeight)
+      message = String(localized: .invalidWeight)
       return false
     }
     var next = data
@@ -272,14 +340,14 @@ import WidgetKit
   func updateWeight(_ entry: WeightEntry, value: Double, date: Date) async -> Bool {
     guard let index = data.weights.firstIndex(where: { $0.id == entry.id }) else { return false }
     if entry.saveToHealth && (!data.preferences.healthWritesEnabled || !health.canWrite) {
-      message = String(localized: L10n.healthEditPermission)
+      message = String(localized: .healthEditPermission)
       return false
     }
     var next = data
     next.weights[index].kilograms = data.preferences.weightUnit.kilograms(value)
     next.weights[index].date = date
     guard next.weights[index].isValid, date <= now else {
-      message = String(localized: L10n.invalidWeight)
+      message = String(localized: .invalidWeight)
       return false
     }
     next.weights[index].healthVersion += 1
@@ -329,7 +397,7 @@ import WidgetKit
       next.healthAnchor = changes.anchor
       guard commit(next) else { return }
       healthWeights = measurements
-    } catch { message = String(localized: L10n.healthSyncFailed) }
+    } catch { message = String(localized: .healthSyncFailed) }
   }
   func restore(_ imported: LocalData) -> Bool {
     do {
@@ -359,7 +427,7 @@ import WidgetKit
       }
       return commit(next, publish: true)
     } catch {
-      message = String(localized: L10n.importInvalid)
+      message = String(localized: .importInvalid)
       return false
     }
   }
@@ -371,12 +439,12 @@ import WidgetKit
     guard commit(empty, publish: true) else { return false }
     healthWeights = []
     await reminders.clear()
-    selectedTab = 0
+    selectedTab = .home
     return true
   }
   func errorText(_ error: Error) -> String {
     String(
       localized: (error as? ScheduleError) == .overlappingWindows
-        ? L10n.overlappingWindows : L10n.invalidTime)
+        ? .overlappingWindows : .invalidTime)
   }
 }

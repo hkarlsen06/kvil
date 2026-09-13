@@ -2,6 +2,7 @@
   "sourceLanguage" : "en",
   "strings" : {
     "CFBundleDisplayName" : {
+      "shouldTranslate" : false,
       "comment" : "Bundle display name",
       "extractionState" : "extracted_with_value",
       "localizations" : {
@@ -14,6 +15,7 @@
       }
     },
     "CFBundleName" : {
+      "shouldTranslate" : false,
       "comment" : "Bundle name",
       "extractionState" : "extracted_with_value",
       "localizations" : {

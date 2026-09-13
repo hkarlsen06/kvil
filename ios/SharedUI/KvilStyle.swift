@@ -28,6 +28,9 @@ extension Color {
 enum KvilStyle {
   static let page: CGFloat = 24
   static let section: CGFloat = 28
+  static let related: CGFloat = 8
+  static let content: CGFloat = 16
+  static let cardPadding: CGFloat = 20
   static let corner: CGFloat = 24
   static let title: Font = .system(.largeTitle, design: .serif, weight: .regular)
   static let heading: Font = .system(.title2, design: .serif)
@@ -35,11 +38,19 @@ enum KvilStyle {
 
 struct OpenArc: Shape {
   var progress: Double = 1
+  var gapAngle: Angle = .degrees(90)
+  var animatableData: Double {
+    get { progress }
+    set { progress = newValue }
+  }
   func path(in rect: CGRect) -> Path {
     var path = Path()
+    guard progress > 0 else { return path }
+    let start = 90 + gapAngle.degrees / 2
     path.addArc(
       center: CGPoint(x: rect.midX, y: rect.midY), radius: min(rect.width, rect.height) / 2,
-      startAngle: .degrees(135), endAngle: .degrees(135 + 270 * min(1, max(0.00001, progress))),
+      startAngle: .degrees(start),
+      endAngle: .degrees(start + (360 - gapAngle.degrees) * min(1, progress)),
       clockwise: false)
     return path
   }
@@ -58,18 +69,11 @@ struct KvilWordmark: View {
 
 struct LandscapeView: View {
   var height: CGFloat = 230
-  var fade = true
   var body: some View {
     Color.clear.frame(height: height)
       .overlay { Image("Landscape").resizable().scaledToFill() }
       .clipped()
-      .overlay(alignment: .top) {
-        if fade {
-          LinearGradient(
-            colors: [.kvilCanvas, .kvilCanvas.opacity(0)], startPoint: .top, endPoint: .bottom
-          ).frame(height: 90)
-        }
-      }.accessibilityHidden(true)
+      .accessibilityHidden(true)
   }
 }
 
@@ -86,9 +90,9 @@ struct KvilPrimaryButtonStyle: ButtonStyle {
 extension DayFeeling {
   var title: LocalizedStringResource {
     switch self {
-    case .comfortable: L10n.comfortable
-    case .mixed: L10n.mixed
-    case .difficult: L10n.difficult
+    case .comfortable: .comfortable
+    case .mixed: .mixed
+    case .difficult: .difficult
     }
   }
   var symbol: String {
@@ -103,9 +107,10 @@ extension DayFeeling {
 struct WindowTimeLabel: View {
   @Environment(\.dynamicTypeSize) private var typeSize
   var window: EatingWindow
+  var stacksForAccessibility = true
   var body: some View {
     Group {
-      if typeSize.isAccessibilitySize {
+      if typeSize.isAccessibilitySize && stacksForAccessibility {
         verticalRange
       } else {
         ViewThatFits(in: .horizontal) {
@@ -130,7 +135,7 @@ struct WindowTimeLabel: View {
   }
   @ViewBuilder private var overnightLabel: some View {
     if !Calendar.current.isDate(window.opening, inSameDayAs: window.closing) {
-      Text(L10n.nextDayShort).font(.caption)
+      Text(.nextDayShort).font(.caption)
     }
   }
 }

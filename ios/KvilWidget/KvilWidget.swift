@@ -8,8 +8,8 @@ struct KvilScheduleWidget: Widget {
   let kind = "KvilSchedule"
   var body: some WidgetConfiguration {
     StaticConfiguration(kind: kind, provider: KvilTimelineProvider()) { KvilWidgetView(entry: $0) }
-      .configurationDisplayName(L10n.yourEatingRhythm)
-      .description(L10n.widgetDescription)
+      .configurationDisplayName(.yourEatingRhythm)
+      .description(.widgetDescription)
       .supportedFamilies([
         .systemSmall, .systemMedium, .accessoryInline, .accessoryCircular, .accessoryRectangular,
       ])

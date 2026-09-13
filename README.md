@@ -2,19 +2,25 @@
 
 A native iOS 27+ eating-schedule companion with a watchOS 27 app, Home Screen widgets, Lock Screen widgets, and Watch complications.
 
-Kvil follows a weekly schedule automatically. It does not record completed fasts or require start/stop controls. Weight logging and Apple Health are optional. Full reflection history and longer recaps use one non-consumable purchase; the timer, reminders, artwork, and device integrations remain free.
+Kvil follows a weekly schedule automatically. Home also lets you break a fast early or start fasting now by adjusting the current window. An early break keeps the next scheduled closing time; starting a fast keeps the next planned opening. These dated adjustments do not change the usual week or record completed fasts. Home centers its content in a fixed, non-scrolling layout. Reflections open in a sheet when the inline prompt does not fit, including at large accessibility text sizes. The main tabs have no decorative landscape images. Weight logging and Apple Health are optional. Full reflection history and longer recaps use one non-consumable purchase; the timer, reminders, artwork, and device integrations remain free.
 
 ## Development
 
-Open `ios/Kvil.xcodeproj` in Xcode 27 RC or newer. The verified toolchain is Xcode 27.0 (27A266a). The project uses filesystem-synchronized groups and has no third-party dependencies. `App` launches normal onboarding and local storage. `Scenarios` launches an isolated, in-memory Home fixture. `Watch` runs the companion. `StoreKit` connects the local test catalog for purchase tests; UI tests also initialize an isolated StoreKit Test session. The local catalog never creates a charge.
+Open `ios/Kvil.xcodeproj` in Xcode 27 RC or newer. The verified toolchain is Xcode 27.0 (27A266a). The project uses filesystem-synchronized groups and the native app has no third-party dependencies. `App` launches normal onboarding and local storage. `Scenarios` launches an isolated, in-memory Home fixture. `Watch` runs the companion. `StoreKit` connects the local test catalog for purchase tests; UI tests also initialize an isolated StoreKit Test session. The local catalog never creates a charge.
 
 ```sh
 ./scripts/xcode-build-agent.sh --json
 XCODE_TEST_AGENT_SCHEME=StoreKit XCODE_TEST_AGENT_DESTINATION='platform=iOS Simulator,id=YOUR_SIMULATOR_ID' ./scripts/xcode-test-agent.sh --json -- -only-testing:KvilAppTests -only-testing:KvilAppUITests -parallel-testing-enabled NO
-python3 scripts/localize.py
+python3 scripts/validate-localization.py
 ```
 
-Use `KVIL_SCENARIO=home`, `open`, `reflection`, `history`, or `onboarding` in Debug to explore the production views without touching real storage, Health, purchases, notifications, or iCloud. Scenarios are compiled out of Release. All UI text lives in the shared English/Norwegian String Catalog; the localization script validates it and generates `L10n` accessors.
+Use `KVIL_SCENARIO=home`, `open`, `reflection`, `history`, or `onboarding` in Debug to explore the production views without touching real storage, Health, purchases, notifications, or iCloud. Scenarios are compiled out of Release. UI copy lives in the shared English/Norwegian String Catalog. Swift code uses Xcode-generated symbols such as `Text(.cancel)` and `String(localized: .saveFailed)`; Xcode generates them during the build. Health permission descriptions live in `ios/KvilApp/Supporting/InfoPlist.xcstrings`.
+
+Add or update copy with `./scripts/xcstrings-set cancel --comment "Dismiss without saving" --en "Cancel" --nb "Avbryt"`, or use Xcode's catalog editor. The helper marks other translations `needs_review` when English or Norwegian changes. When editing source copy in Xcode, mark affected translations for review yourself. Run `python3 scripts/validate-localization.py` to check English/Norwegian completeness and compile both catalogs without writing generated source.
+
+The API translator is adapted from Tidex and is reserved for when the app's copy is ready. Install its development dependencies with `bun install --frozen-lockfile`. Set `OPENAI_API_KEY` in the ignored root `.env.local` file; `OPENAI_MODEL` and `OPENAI_REASONING_EFFORT` optionally override the script's defaults. `bun run localize --dry-run` previews pending work without API requests or file changes. Later, explicitly run `bun run localize` to translate both catalogs and register the additional Xcode languages, or append a `.xcstrings` path to translate only that catalog. It preserves existing translations, validates placeholders and response IDs, and saves completed batches atomically so interrupted work can resume. `bun run localize:test` runs the regression tests with mocked API responses. Builds, tests and commits never trigger translation automatically.
+
+`openingSoon` uses the real clock and opens an isolated window after 20 seconds to check foreground and background transitions. `progressReturn` uses a two-minute isolated window to inspect the ring catching up after time on another tab. The Reduce Motion UI test runs with that accessibility setting enabled on the test simulator.
 
 ## Ownership
 

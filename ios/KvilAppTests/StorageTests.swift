@@ -19,6 +19,22 @@ import XCTest
     XCTAssertThrowsError(try store.save(invalid))
     XCTAssertEqual(try store.load(), data)
   }
+  func testManualWindowActionsPersistAndMergeWithoutChangingPersonalData() throws {
+    let model = try AppModel(store: LocalStore(inMemory: true), scenario: "home")
+    let original = model.data
+    XCTAssertTrue(model.setEatingWindowOpen(true))
+    XCTAssertTrue(try XCTUnwrap(model.engine.state(at: model.now)).isOpen)
+    XCTAssertEqual(try model.store.load(), model.data)
+    XCTAssertEqual(try ScheduleMerge.merge(original.schedule, model.data.schedule), model.data.schedule)
+    let open = model.data.schedule
+    XCTAssertTrue(model.setEatingWindowOpen(false))
+    XCTAssertFalse(try XCTUnwrap(model.engine.state(at: model.now)).isOpen)
+    XCTAssertEqual(try model.store.load(), model.data)
+    XCTAssertEqual(try ScheduleMerge.merge(open, model.data.schedule), model.data.schedule)
+    XCTAssertEqual(model.data.reflections, original.reflections)
+    XCTAssertEqual(model.data.weights, original.weights)
+    XCTAssertEqual(model.data.schedule.versions, original.schedule.versions)
+  }
   func testPersistentStoreReopensWithoutLoss() throws {
     let folder = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
     defer { try? FileManager.default.removeItem(at: folder) }
@@ -29,6 +45,43 @@ import XCTest
     }
     let reopened = try LocalStore(directory: folder)
     XCTAssertEqual(try reopened.load(), data)
+  }
+  func testWeeklyTimeChangesPersistFromTomorrowAndRejectOverlapAtomically() throws {
+    let model = try AppModel(store: LocalStore(inMemory: true), scenario: "home")
+    let original = model.data
+    let today = try XCTUnwrap(model.engine.window(on: model.now))
+    let tomorrow = try XCTUnwrap(model.calendar.date(byAdding: .day, value: 1, to: model.now))
+    let weekday = model.calendar.component(.weekday, from: tomorrow)
+    var days = try XCTUnwrap(original.schedule.versions.last).days
+    let index = try XCTUnwrap(days.firstIndex { $0.weekday == weekday })
+    days[index].opens = WallTime(hour: 22, minute: 15)
+    days[index].closes = WallTime(hour: 6, minute: 45)
+    XCTAssertTrue(model.saveWeek(days))
+    XCTAssertEqual(model.engine.window(on: model.now), today)
+    XCTAssertEqual(model.engine.plan(on: tomorrow)?.opens, days[index].opens)
+    XCTAssertEqual(model.engine.plan(on: tomorrow)?.closes, days[index].closes)
+    XCTAssertEqual(try model.store.load(), model.data)
+    XCTAssertEqual(try ScheduleMerge.merge(original.schedule, model.data.schedule), model.data.schedule)
+
+    for day in days.indices {
+      days[day].opens = days[index].opens
+      days[day].closes = days[index].closes
+    }
+    XCTAssertTrue(model.saveWeek(days))
+    XCTAssertEqual(model.engine.window(on: model.now), today)
+    XCTAssertTrue(try XCTUnwrap(model.data.schedule.versions.last).days.allSatisfy {
+      $0.opens == WallTime(hour: 22, minute: 15) && $0.closes == WallTime(hour: 6, minute: 45)
+    })
+    let saved = model.data
+    days[index].closes = days[index].opens
+    XCTAssertFalse(model.saveWeek(days))
+    XCTAssertEqual(model.data, saved)
+    XCTAssertEqual(try model.store.load(), saved)
+    days[index].closes = WallTime(hour: 23)
+    days[index].opens = WallTime(hour: 5)
+    XCTAssertFalse(model.saveWeek(days))
+    XCTAssertEqual(model.data, saved)
+    XCTAssertEqual(try model.store.load(), saved)
   }
   func testExportRoundTripAndMalformedImport() throws {
     let data = fixture()
