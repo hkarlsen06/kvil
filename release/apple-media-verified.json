@@ -1,0 +1,165 @@
+{
+  "checkedAt": "2026-09-12 23:48:36 UTC",
+  "assets": [
+    {
+      "id": "165e963b-38df-4f67-8532-d65faa30e9b0",
+      "type": "appScreenshots",
+      "file": "release/screenshots/en-US/01-home.png",
+      "state": {
+        "errors": [],
+        "warnings": null,
+        "state": "COMPLETE"
+      },
+      "checksumMatches": true,
+      "image": {
+        "templateUrl": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/49/4b/7f/494b7fd2-eba7-5ba3-eb21-cd46b7ed6cec/01-home.png/{w}x{h}bb.{f}",
+        "width": 1320,
+        "height": 2868
+      }
+    },
+    {
+      "id": "244c1f8b-7d81-427d-b323-f77cb22b2d31",
+      "type": "appScreenshots",
+      "file": "release/screenshots/en-US/02-schedule.png",
+      "state": {
+        "errors": [],
+        "warnings": null,
+        "state": "COMPLETE"
+      },
+      "checksumMatches": true,
+      "image": {
+        "templateUrl": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/34/04/dd/3404dd6a-315b-d85b-59b0-97cc629efd72/02-schedule.png/{w}x{h}bb.{f}",
+        "width": 1320,
+        "height": 2868
+      }
+    },
+    {
+      "id": "b863db83-5909-4b9b-966a-a36df72f4739",
+      "type": "appScreenshots",
+      "file": "release/screenshots/en-US/03-history.png",
+      "state": {
+        "errors": [],
+        "warnings": null,
+        "state": "COMPLETE"
+      },
+      "checksumMatches": true,
+      "image": {
+        "templateUrl": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/53/51/6f/53516f7f-5857-1a81-3ccf-2a91f0fe6cd2/03-history.png/{w}x{h}bb.{f}",
+        "width": 1320,
+        "height": 2868
+      }
+    },
+    {
+      "id": "0184c638-73f4-4d25-b29c-1da3b3ec763e",
+      "type": "appScreenshots",
+      "file": "release/screenshots/en-US/04-welcome.png",
+      "state": {
+        "errors": [],
+        "warnings": null,
+        "state": "COMPLETE"
+      },
+      "checksumMatches": true,
+      "image": {
+        "templateUrl": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/1b/c0/88/1bc08879-d637-94c5-c4a5-97282dccc6f8/04-welcome.png/{w}x{h}bb.{f}",
+        "width": 1320,
+        "height": 2868
+      }
+    },
+    {
+      "id": "1c976760-e6dc-4c76-b699-e558b16a50df",
+      "type": "appScreenshots",
+      "file": "release/screenshots/en-US/watch/01-timer.png",
+      "state": {
+        "errors": [],
+        "warnings": null,
+        "state": "COMPLETE"
+      },
+      "checksumMatches": true,
+      "image": {
+        "templateUrl": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/7b/a7/5b/7ba75b31-8833-e5c0-62b9-27d359f20efa/01-timer.png/{w}x{h}bb.{f}",
+        "width": 410,
+        "height": 502
+      }
+    },
+    {
+      "id": "9018e4ea-a9ab-4a88-8db2-4b2f7442554f",
+      "type": "appScreenshots",
+      "file": "release/screenshots/no/01-home.png",
+      "state": {
+        "errors": [],
+        "warnings": null,
+        "state": "COMPLETE"
+      },
+      "checksumMatches": true,
+      "image": {
+        "templateUrl": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/5b/4d/9f/5b4d9f4a-f618-b805-eaeb-76c92604683d/01-home.png/{w}x{h}bb.{f}",
+        "width": 1320,
+        "height": 2868
+      }
+    },
+    {
+      "id": "d4c6bfad-ff12-432f-a3db-8d044028f911",
+      "type": "appScreenshots",
+      "file": "release/screenshots/no/02-schedule.png",
+      "state": {
+        "errors": [],
+        "warnings": null,
+        "state": "COMPLETE"
+      },
+      "checksumMatches": true,
+      "image": {
+        "templateUrl": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/45/ac/fb/45acfb21-b5e6-4286-1dc3-67e665578eb9/02-schedule.png/{w}x{h}bb.{f}",
+        "width": 1320,
+        "height": 2868
+      }
+    },
+    {
+      "id": "60298f3d-fbdb-47f6-9849-baa57573b694",
+      "type": "appScreenshots",
+      "file": "release/screenshots/no/03-history.png",
+      "state": {
+        "errors": [],
+        "warnings": null,
+        "state": "COMPLETE"
+      },
+      "checksumMatches": true,
+      "image": {
+        "templateUrl": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/68/83/f7/6883f727-cb18-19f9-2116-4bea2b2b5314/03-history.png/{w}x{h}bb.{f}",
+        "width": 1320,
+        "height": 2868
+      }
+    },
+    {
+      "id": "4659c6a2-1f87-4b5c-a9cd-1e660f2b770e",
+      "type": "appScreenshots",
+      "file": "release/screenshots/no/watch/01-timer.png",
+      "state": {
+        "errors": [],
+        "warnings": null,
+        "state": "COMPLETE"
+      },
+      "checksumMatches": true,
+      "image": {
+        "templateUrl": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/7c/c1/95/7cc1958c-e853-a632-7705-f571bcd068dd/01-timer.png/{w}x{h}bb.{f}",
+        "width": 410,
+        "height": 502
+      }
+    },
+    {
+      "id": "1d1dfcbd-286a-42c8-b21a-8c7b84454406",
+      "type": "inAppPurchaseAppStoreReviewScreenshots",
+      "file": "release/screenshots/review/purchase.png",
+      "state": {
+        "errors": null,
+        "warnings": null,
+        "state": "COMPLETE"
+      },
+      "checksumMatches": true,
+      "image": {
+        "templateUrl": "https://is1-ssl.mzstatic.com/image/thumb/Oq2KV8VKx0b4YFf8ROXJnw/{w}x{h}bb.{f}",
+        "width": 1320,
+        "height": 2868
+      }
+    }
+  ]
+}

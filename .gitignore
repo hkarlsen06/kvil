@@ -4,3 +4,4 @@ ios/BuildNumber.xcconfig
 *.xcuserstate
 xcuserdata/
 .env
+.wrangler/

@@ -1,0 +1,81 @@
+{
+  "checkedAt": "2026-09-12 23:53:31 UTC",
+  "urls": [
+    {
+      "id": "18922802-67fc-4025-bc29-2e75cf707d73",
+      "type": "appStoreVersionLocalizations",
+      "attributes": {
+        "locale": "en-US",
+        "supportUrl": "https://hkarlsen06.dev/kvil/support/",
+        "marketingUrl": "https://hkarlsen06.dev/kvil/"
+      }
+    },
+    {
+      "id": "c8fe6bf6-9d5b-4eff-98bb-7420064d7b4a",
+      "type": "appStoreVersionLocalizations",
+      "attributes": {
+        "locale": "no",
+        "supportUrl": "https://hkarlsen06.dev/kvil/support/",
+        "marketingUrl": "https://hkarlsen06.dev/kvil/"
+      }
+    },
+    {
+      "id": "41d3a32f-282a-40cc-b7df-cb443ef57143",
+      "type": "appInfoLocalizations",
+      "attributes": {
+        "locale": "en-US",
+        "privacyPolicyUrl": "https://hkarlsen06.dev/kvil/privacy/"
+      }
+    },
+    {
+      "id": "1b3f26cb-e21d-4f60-860a-059097c80afb",
+      "type": "appInfoLocalizations",
+      "attributes": {
+        "locale": "no",
+        "privacyPolicyUrl": "https://hkarlsen06.dev/kvil/privacy/"
+      }
+    }
+  ],
+  "build": {
+    "id": "7abae39d-c9d0-45fc-84fb-143144955e51",
+    "type": "builds",
+    "attributes": {
+      "version": "2446.23.21",
+      "uploadedDate": "2026-09-12T16:39:15-07:00",
+      "expirationDate": "2026-12-11T15:39:15-08:00",
+      "expired": false,
+      "minOsVersion": "27.0",
+      "lsMinimumSystemVersion": null,
+      "computedMinMacOsVersion": "27.0",
+      "computedMinVisionOsVersion": "27.0",
+      "iconAssetToken": {
+        "templateUrl": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/31/e9/bc/31e9bc36-4707-66ed-0a02-4556c41d49f0/AppIcon60x60@2x.png/{w}x{h}bb.{f}",
+        "width": 120,
+        "height": 120
+      },
+      "processingState": "VALID",
+      "buildAudienceType": "APP_STORE_ELIGIBLE",
+      "usesNonExemptEncryption": false
+    }
+  },
+  "testFlight": {
+    "id": "7abae39d-c9d0-45fc-84fb-143144955e51",
+    "type": "buildBetaDetails",
+    "attributes": {
+      "autoNotifyEnabled": true,
+      "internalBuildState": "READY_FOR_BETA_TESTING",
+      "externalBuildState": "READY_FOR_BETA_SUBMISSION"
+    }
+  },
+  "submittedForReview": false,
+  "contentRightsDeclaration": "DOES_NOT_USE_THIRD_PARTY_CONTENT",
+  "regulatedMedicalDeviceDeclaration": {
+    "value": false,
+    "verification": "App Store Connect App Information UI readback on 13 September 2026"
+  },
+  "privacyResponses": {
+    "value": "Data Not Collected",
+    "published": false,
+    "reason": "Apple publishing agreement awaits user confirmation"
+  }
+}

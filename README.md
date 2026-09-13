@@ -38,12 +38,12 @@ Opening/closing reminders use a rolling queue of about four weeks, renewed whene
 
 The Watch persists a validated schedule in its own App Group and calculates locally without the phone. WatchConnectivity transfers the latest configuration; App Groups do not transport data between devices. Widget countdowns are bounded and timelines include opening/closing transitions.
 
-Product: `dev.hkarlsen06.kvil.history`, intended US price $3.99. Support: hjalmar@hkarlsen06.dev. Release materials are under `release/`; their existence does not imply upload or submission.
+Product: `dev.hkarlsen06.kvil.history`, configured US price $3.99. Support: hjalmar@hkarlsen06.dev. Release materials are under `release/`; their existence does not imply upload or submission.
 
 ## Release preparation
 
 Use the App scheme and Release configuration for signing and archives. Set `XCODE_BUILD_AGENT_ALLOW_PROVISIONING=1` to let the signed-in Xcode account manage profiles. `XCODE_BUILD_AGENT_ACTION=archive` creates `build/Kvil.xcarchive` by default. Archive/export does not upload to Apple.
 
-The draft App Store version is 1.0.0 with manual release selected. The app is free and the non-consumable Full History record is configured at US $3.99 with localized descriptions and territorial availability. The review contact and review notes are saved. Screenshots, public-page source, and a signed App Store export are prepared locally. See `release/READINESS.md` for completed checks and remaining release gates.
+The draft App Store version is 1.0.0 with manual release selected. The app is free and the non-consumable Full History record is configured at US $3.99 with localized descriptions and territorial availability. The review contact and review notes are saved. Build 2446.23.21 has been uploaded, processed, and attached to the version; internal TestFlight reports READY_FOR_BETA_TESTING. All ten screenshots have processed successfully. Kvil’s [overview](https://hkarlsen06.dev/kvil/), [support](https://hkarlsen06.dev/kvil/support/), and [privacy](https://hkarlsen06.dev/kvil/privacy/) pages are live on the existing portfolio and saved in both App Store locales. App Privacy’s final publishing declaration awaits confirmation. No App Review submission or public App Store release has occurred. See `release/READINESS.md` for completed checks and remaining release gates.
 
 After an archive, run `./scripts/xcode-export-agent.sh` and `python3 scripts/verify-release.py`. The latter verifies all four distribution signatures, embedded profiles, minimum OS versions, localizations, privacy manifests, shared build numbers, and the absence of test resources. Neither command uploads the app.

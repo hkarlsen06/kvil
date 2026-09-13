@@ -1,0 +1,73 @@
+{
+  "checkedAt": "2026-09-12T23:54:51.122645+00:00",
+  "portfolioCommit": "c72a63196b5990f51323488aa4a196012204c41d",
+  "deployment": "https://ad9c7d82.hkarlsen06-dev.pages.dev",
+  "resources": [
+    {
+      "url": "https://hkarlsen06.dev/kvil/",
+      "matchesDeployedFile": true,
+      "cloudflareEmailProtectionNormalized": true,
+      "sha256": "998df51e3a29607888e89093f4c2c4bf6f9be31eecad5cbe9a5c1b2b2148333b"
+    },
+    {
+      "url": "https://hkarlsen06.dev/kvil/support/",
+      "matchesDeployedFile": true,
+      "cloudflareEmailProtectionNormalized": true,
+      "sha256": "7f6473eefa3448f08842a96685f644bba8b6b025d1bf2b6f17f0e3998fef654a"
+    },
+    {
+      "url": "https://hkarlsen06.dev/kvil/privacy/",
+      "matchesDeployedFile": true,
+      "cloudflareEmailProtectionNormalized": true,
+      "sha256": "41d7dc7d8ca7a4af2f491418d09999cc085f581ef1779aabad20c365a9e5833c"
+    },
+    {
+      "url": "https://hkarlsen06.dev/kvil/style.css",
+      "matchesDeployedFile": true,
+      "cloudflareEmailProtectionNormalized": false,
+      "sha256": "4970b09c2c6cb38b1eaa96f068af5daafadbd597c501d0746176569090407d8c"
+    },
+    {
+      "url": "https://hkarlsen06.dev/kvil/assets/icon.png",
+      "matchesDeployedFile": true,
+      "cloudflareEmailProtectionNormalized": false,
+      "sha256": "64fc3ed6dfe497ab8627b9dd72c857da75b4bc48de2a962376bb1849681b07a0"
+    },
+    {
+      "url": "https://hkarlsen06.dev/kvil/assets/home.png",
+      "matchesDeployedFile": true,
+      "cloudflareEmailProtectionNormalized": false,
+      "sha256": "542532224811698ded57227b74899f912c2d3c11a4bfbd2f4a1ff9f1ac6a7943"
+    },
+    {
+      "url": "https://hkarlsen06.dev/kvil/assets/landscape-day.jpg",
+      "matchesDeployedFile": true,
+      "cloudflareEmailProtectionNormalized": false,
+      "sha256": "85d01dc0432276b8e67a2c5e1d792edf20d4a57d7f0a7b435e6627b6bb423b68"
+    },
+    {
+      "url": "https://hkarlsen06.dev/kvil/assets/landscape-night.jpg",
+      "matchesDeployedFile": true,
+      "cloudflareEmailProtectionNormalized": false,
+      "sha256": "f9ad94f37bb5f6806ae65705521295b4efc143bd205e2d846d37db2fec72c576"
+    },
+    {
+      "url": "https://hkarlsen06.dev/kvil/assets/watch.png",
+      "matchesDeployedFile": true,
+      "cloudflareEmailProtectionNormalized": false,
+      "sha256": "b8bebf25de1a356b706fd548e701f455f8f4a43182d0f43a7077a4a5304bee43"
+    },
+    {
+      "url": "https://hkarlsen06.dev/icons/tidex-app-icon.png",
+      "matchesDeployedFile": true,
+      "cloudflareEmailProtectionNormalized": false,
+      "sha256": "ec99f1887fff7a1b6292eaea4f5ba993a69c7bc1d066cf8c28e1bf2de874ee03"
+    },
+    {
+      "url": "https://hkarlsen06.dev/icons/tidex-wordmark.webp",
+      "matchesDeployedFile": true,
+      "cloudflareEmailProtectionNormalized": false,
+      "sha256": "4e933d31fa8d3502fefe7c85ec187d4f3ddb9d46b2dc3a000d718344c254db83"
+    }
+  ]
+}
