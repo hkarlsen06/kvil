@@ -3,20 +3,24 @@
 
   enum ScenarioData {
     static func make(
-      now: Date, calendar: Calendar, openingSoon: Bool = false, progressReturn: Bool = false
+      now: Date, calendar: Calendar, openingSoon: Bool = false, closingSoon: Bool = false,
+      progressReturn: Bool = false
     ) -> LocalData {
       var value = LocalData()
       value.schedule = ScheduleSnapshot(
         revision: now,
         versions: [ScheduleVersion(effectiveDay: "2026-08-01", days: DayPlan.initial)],
         overrides: [])
-      if openingSoon || progressReturn {
-        let opening = now.addingTimeInterval(progressReturn ? -10 : 20)
+      if openingSoon || closingSoon || progressReturn {
+        let opening = now.addingTimeInterval(closingSoon ? -3600 : progressReturn ? -10 : 20)
         value.schedule.overrides = [
           DayOverride(
             dayKey: LocalDay.key(opening, calendar: calendar),
             timeZoneID: calendar.timeZone.identifier, opening: opening,
-            closing: opening.addingTimeInterval(progressReturn ? 120 : 3600), modifiedAt: now)
+            closing: closingSoon
+              ? now.addingTimeInterval(20)
+              : opening.addingTimeInterval(progressReturn ? 120 : 3600),
+            modifiedAt: now)
         ]
       }
       let engine = ScheduleEngine(snapshot: value.schedule, calendar: calendar)

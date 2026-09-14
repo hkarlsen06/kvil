@@ -11,6 +11,7 @@ struct HomeTimerView: View {
   let isSelected: Bool
   var compact = false
   var clockIsPaused = false
+  var daylight: CGFloat = 0
   @State private var isVisible = false
   @State private var displayedProgress = 0.0
   @State private var motionCue = 0
@@ -47,7 +48,8 @@ struct HomeTimerView: View {
         typeSize.isAccessibilitySize
         ? .system(compact ? .title3 : .title2, design: .rounded, weight: .light)
         : .system(size: compact ? 24 : 28, weight: .light, design: .rounded)
-      value[seconds][AttributeScopes.SwiftUIAttributes.ForegroundColorAttribute.self] = .kvilSecondary
+      value[seconds][AttributeScopes.SwiftUIAttributes.ForegroundColorAttribute.self] =
+        .kvilSecondary
     }
     return value
   }
@@ -60,13 +62,11 @@ struct HomeTimerView: View {
         ZStack {
           LabeledProgressRing(
             progress: displayedProgress,
-            label: state.isOpen ? .yourWindow : .atYourPace
+            label: state.isOpen ? .yourWindow : .atYourPace,
+            daylight: daylight
           )
           .phaseAnimator([false, true, false], trigger: motionCue) { ring, pulse in
             ring.scaleEffect(pulse && !reduceMotion ? 1.025 : 1)
-              .shadow(
-                color: Color.kvilAccent.opacity(pulse && !reduceMotion ? 0.3 : 0),
-                radius: pulse && !reduceMotion ? 12 : 0)
           } animation: { _ in
             .easeInOut(duration: 0.45)
           }
@@ -104,11 +104,10 @@ struct HomeTimerView: View {
   private var timerContent: some View {
     VStack(spacing: 12) {
       if !compact || !typeSize.isAccessibilitySize {
-        Image(systemName: state.isOpen ? "sun.max" : "leaf").font(.title3.weight(.light))
-          .foregroundStyle(Color.kvilAccent)
-          .contentTransition(reduceMotion ? .opacity : .symbolEffect(.replace))
-          .symbolEffect(.bounce, value: reduceMotion ? 0 : motionCue)
-          .accessibilityHidden(true)
+        ZStack {
+          Image(systemName: "moon").foregroundStyle(Color.kvilMoon).opacity(1 - daylight)
+          Image(systemName: "sun.max").foregroundStyle(Color.kvilSun).opacity(daylight)
+        }.font(.title3.weight(.light)).accessibilityHidden(true)
       }
       Group {
         if state.isOpen {
@@ -151,7 +150,9 @@ struct HomeTimerView: View {
             : .system(size: compact ? 48 : 60, weight: .light, design: .rounded)
         ).monospacedDigit().minimumScaleFactor(0.6).lineLimit(1)
         .contentTransition(reduceMotion ? .opacity : .numericText(countsDown: true))
-        .animation(reduceMotion ? nil : .easeOut(duration: countdownAnimationDuration), value: value)
+        .animation(
+          reduceMotion ? nil : .easeOut(duration: countdownAnimationDuration), value: value
+        )
         .accessibilityLabel(.untilEatingWindow)
         .accessibilityValue(
           Text(

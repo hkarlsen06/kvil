@@ -8,6 +8,7 @@ struct HomeView: View {
   @State private var editingToday = false
   @State private var loggingWeight = false
   @State private var reflecting: EatingWindow?
+  @State private var landscapeReveal: CGFloat = 0
 
   var body: some View {
     // Anchor ticks to whole clock seconds, independent of when Home appears.
@@ -26,21 +27,30 @@ struct HomeView: View {
       .padding(.vertical, KvilStyle.content)
       .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
       .backgroundPreferenceValue(HomeContentBoundsKey.self) { contentBounds in
-        GeometryReader { geometry in
-          let contentBottom =
-            contentBounds.map { geometry[$0].maxY } ?? geometry.size.height * 0.55
-          let spaceBelowContent = max(0, geometry.size.height - contentBottom)
-          // The distant mist can sit behind controls; the foreground stays below them.
-          let horizon = contentBottom - min(160, spaceBelowContent * 0.70)
-          KvilLandscapeBackground()
+        GeometryReader { safeGeometry in
+          GeometryReader { geometry in
+            let contentBottom =
+              contentBounds.map { geometry[$0].maxY } ?? geometry.size.height * 0.55
+            let spaceBelowContent = max(0, geometry.size.height - contentBottom)
+            // The distant mist can sit behind controls; the foreground stays below them.
+            let horizon = contentBottom - min(160, spaceBelowContent * 0.70)
+            let boatTop = contentBottom - horizon + 12
+            // Keep the boat above the tab bar, even when larger text leaves less water visible.
+            let boatBottom = max(boatTop, safeGeometry.size.height - horizon - 12)
+            HomeLandscapeView(
+              isOpen: state?.isOpen == true, isSelected: model.selectedTab == .home,
+              presentationID: model.homePresentationID, boatArea: boatTop...boatBottom,
+              reveal: $landscapeReveal
+            )
             .frame(height: max(0, geometry.size.height - horizon))
             .frame(maxHeight: .infinity, alignment: .bottom)
+          }
+          .ignoresSafeArea(.container, edges: .bottom)
         }
-        .ignoresSafeArea(.container, edges: .bottom)
         .allowsHitTesting(false)
         .accessibilityHidden(true)
       }
-      .background(Color.kvilCanvas)
+      .background(Color.kvilSky(daylight: Double(landscapeReveal)))
       .animation(KvilMotion.transition(reduceMotion: reduceMotion), value: state?.isOpen)
     }.toolbar {
       ToolbarItem(placement: .topBarLeading) { KvilWordmark().fixedSize() }
@@ -115,7 +125,7 @@ struct HomeView: View {
           state: state, now: now,
           highlightPending: $model.homeHighlightPending,
           isSelected: model.selectedTab == .home, compact: compact,
-          clockIsPaused: model.fixedNow != nil)
+          clockIsPaused: model.fixedNow != nil, daylight: landscapeReveal)
         VStack(spacing: 10) {
           if !compact && !typeSize.isAccessibilitySize {
             Text(state.isOpen ? .makeRoom : .findYourRhythm)
@@ -177,7 +187,8 @@ struct HomeView: View {
               reflecting = eligible
             } label: {
               Label(.reflectOnDay, systemImage: "text.bubble")
-                .font(.caption.weight(.medium)).multilineTextAlignment(.center).frame(minHeight: 44)
+                .font(.caption.weight(.medium)).multilineTextAlignment(.center)
+                .frame(minWidth: 44, minHeight: 44).contentShape(Rectangle())
             }.buttonStyle(.plain).accessibilityIdentifier("openReflection")
               .accessibilityHint(
                 Text(

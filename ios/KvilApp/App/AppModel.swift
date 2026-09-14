@@ -18,6 +18,7 @@ enum AppTab: Hashable {
   var message: String?
   var selectedTab: AppTab = .home
   var homeHighlightPending = false
+  private(set) var homePresentationID: UUID?
   let purchases: PurchaseService
   let watch: WatchBridge
   let reminders: ReminderService
@@ -36,6 +37,7 @@ enum AppTab: Hashable {
   func presentHome() {
     selectedTab = .home
     homeHighlightPending = true
+    homePresentationID = UUID()
   }
 
   init(
@@ -49,7 +51,8 @@ enum AppTab: Hashable {
     deviceServicesEnabled = scenario == nil && !store.isInMemory
     #if DEBUG
     fixedNow =
-      scenario != nil && scenario != "openingSoon" && scenario != "progressReturn"
+      scenario != nil && scenario != "openingSoon" && scenario != "closingSoon"
+      && scenario != "progressReturn"
       ? ISO8601DateFormatter().date(
         from: scenario == "open"
           ? "2026-09-12T12:00:00Z"
@@ -71,7 +74,7 @@ enum AppTab: Hashable {
       if let scenario, scenario != "onboarding" {
         data = ScenarioData.make(
           now: fixedNow ?? Date(), calendar: LocalDay.calendar(), openingSoon: scenario == "openingSoon",
-          progressReturn: scenario == "progressReturn")
+          closingSoon: scenario == "closingSoon", progressReturn: scenario == "progressReturn")
       }
     #endif
     cloud.onChange = { [weak self] in self?.updateSurfaces() }

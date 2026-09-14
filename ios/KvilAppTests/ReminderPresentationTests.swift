@@ -20,11 +20,15 @@ import XCTest
   func testPresentingHomeLeavesTheScheduleAndPersonalDataUntouched() throws {
     let model = try AppModel(store: LocalStore(inMemory: true), scenario: "home")
     let original = model.data
+    XCTAssertNil(model.homePresentationID)
     model.selectedTab = .history
     model.presentHome()
     XCTAssertEqual(model.selectedTab, .home)
+    let firstPresentation = try XCTUnwrap(model.homePresentationID)
+    // A second link while already on Home must still replay the landscape reveal.
     model.presentHome()
     XCTAssertEqual(model.selectedTab, .home)
+    XCTAssertNotEqual(model.homePresentationID, firstPresentation)
     XCTAssertEqual(model.data, original)
   }
 }

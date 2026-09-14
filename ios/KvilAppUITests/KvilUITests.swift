@@ -158,7 +158,8 @@ import XCTest
     let navigationBottom = app.navigationBars.firstMatch.frame.maxY
     let tabTop = app.tabBars.firstMatch.frame.minY
     XCTAssertEqual(content.frame.midX, app.frame.midX, accuracy: 1)
-    XCTAssertEqual(content.frame.minY, navigationBottom + 16, accuracy: 2)
+    // The date's 44-point edit target extends above the content's visual top edge.
+    XCTAssertEqual(app.staticTexts["homeDate"].frame.minY, navigationBottom + 16, accuracy: 2)
     XCTAssertGreaterThanOrEqual(tabTop - content.frame.maxY, 100)
     let dateBeforeSwipe = app.staticTexts["homeDate"].frame
     app.swipeUp()
@@ -190,6 +191,38 @@ import XCTest
     XCTAssertTrue(app.staticTexts["Your window\nis open"].waitForExistence(timeout: 5))
     XCTAssertEqual(app.buttons["fastingAction"].label, "Start fast now")
     attach(app, name: "Home-after-background-opening")
+  }
+  func testWindowClosesWhileHomeIsVisible() throws {
+    let app = app("closingSoon")
+    let action = app.buttons["fastingAction"]
+    XCTAssertTrue(action.waitForExistence(timeout: 10))
+    XCTAssertEqual(action.label, "Start fast now")
+    attach(app, name: "Landscape-before-scheduled-close")
+    let closed = NSPredicate(format: "label == %@", "Break fast early")
+    expectation(for: closed, evaluatedWith: action)
+    waitForExpectations(timeout: 30)
+    XCTAssertFalse(app.staticTexts["Your window\nis open"].exists)
+    try app.performAccessibilityAudit(for: [.textClipped, .hitRegion])
+    attach(app, name: "Landscape-after-scheduled-close")
+  }
+  func testOpenWindowHomeLinksAndReturnToLandscape() throws {
+    let app = app("open")
+    let action = app.buttons["fastingAction"]
+    XCTAssertTrue(action.waitForExistence(timeout: 10))
+    attach(app, name: "Boat-after-open-window-launch")
+    app.tabBars.buttons["Schedule"].tap()
+    XCUIDevice.shared.system.open(URL(string: "kvil://home")!)
+    XCTAssertTrue(action.waitForExistence(timeout: 5))
+    XCTAssertEqual(action.label, "Start fast now")
+    attach(app, name: "Boat-after-Home-link")
+    // Repeated links must also replay when the destination tab is already selected.
+    XCUIDevice.shared.system.open(URL(string: "kvil://home")!)
+    XCTAssertTrue(action.waitForExistence(timeout: 5))
+    attach(app, name: "Boat-after-repeated-Home-link")
+    action.tap()
+    XCTAssertEqual(action.label, "Break fast early")
+    try app.performAccessibilityAudit(for: [.textClipped, .hitRegion])
+    attach(app, name: "Landscape-after-closing-window")
   }
   func testProgressAfterTimeOnAnotherTab() {
     let app = app("progressReturn")

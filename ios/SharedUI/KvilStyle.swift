@@ -1,6 +1,17 @@
 import SwiftUI
 
 extension Color {
+  static let kvilBoatHull = Color("BoatHull")
+  static let kvilFruit = Color("Fruit")
+  static let kvilSun = Color("Sun")
+  static let kvilMoon = Color("Moon")
+  static let kvilTitaniumBronze = Color("TitaniumBronze")
+  static let kvilTitaniumViolet = Color("TitaniumViolet")
+  static let kvilTitaniumBlue = Color("TitaniumBlue")
+
+  static func kvilSky(daylight: Double) -> Color {
+    kvilCanvas.mix(with: kvilMoon.mix(with: kvilSun, by: daylight), by: 0.06)
+  }
   #if os(watchOS)
     // Keep the native Watch interface in the night palette.
     static let kvilCanvas = Color(red: 0.078431, green: 0.176471, blue: 0.160784)
