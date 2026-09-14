@@ -17,7 +17,7 @@ enum AppTab: Hashable {
   private(set) var remindersThrough: Date?
   var message: String?
   var selectedTab: AppTab = .home
-  private(set) var homePresentationID = 0
+  var homeHighlightPending = false
   let purchases: PurchaseService
   let watch: WatchBridge
   let reminders: ReminderService
@@ -35,7 +35,7 @@ enum AppTab: Hashable {
 
   func presentHome() {
     selectedTab = .home
-    homePresentationID += 1
+    homeHighlightPending = true
   }
 
   init(

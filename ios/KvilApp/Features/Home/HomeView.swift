@@ -110,8 +110,10 @@ struct HomeView: View {
       .padding(.horizontal, KvilStyle.page + 44)
       .padding(.bottom, compact ? 8 : 26)
       if let state {
+        @Bindable var model = model
         HomeTimerView(
-          state: state, now: now, presentationID: model.homePresentationID,
+          state: state, now: now,
+          highlightPending: $model.homeHighlightPending,
           isSelected: model.selectedTab == .home, compact: compact,
           clockIsPaused: model.fixedNow != nil)
         VStack(spacing: 10) {

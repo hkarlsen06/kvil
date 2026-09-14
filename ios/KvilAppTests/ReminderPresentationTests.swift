@@ -23,9 +23,8 @@ import XCTest
     model.selectedTab = .history
     model.presentHome()
     XCTAssertEqual(model.selectedTab, .home)
-    XCTAssertEqual(model.homePresentationID, 1)
     model.presentHome()
-    XCTAssertEqual(model.homePresentationID, 2)
+    XCTAssertEqual(model.selectedTab, .home)
     XCTAssertEqual(model.data, original)
   }
 }

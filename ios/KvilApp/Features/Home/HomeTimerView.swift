@@ -7,7 +7,7 @@ struct HomeTimerView: View {
   @Environment(\.scenePhase) private var scenePhase
   let state: ScheduleState
   let now: Date
-  let presentationID: Int
+  @Binding var highlightPending: Bool
   let isSelected: Bool
   var compact = false
   var clockIsPaused = false
@@ -15,10 +15,10 @@ struct HomeTimerView: View {
   @State private var displayedProgress = 0.0
   @State private var motionCue = 0
 
-  private struct Arrival: Equatable {
+  private struct PhaseUpdate: Equatable {
     var isOpen: Bool
     var isActive: Bool
-    var presentationID: Int
+    var highlightPending: Bool
   }
 
   private struct ProgressUpdate: Equatable {
@@ -87,11 +87,15 @@ struct HomeTimerView: View {
       }
     }
     .onChange(
-      of: Arrival(
-        isOpen: state.isOpen, isActive: isPresented, presentationID: presentationID),
+      of: PhaseUpdate(
+        isOpen: state.isOpen, isActive: isPresented, highlightPending: highlightPending),
       initial: true
-    ) { _, arrival in
-      guard arrival.isActive else { return }
+    ) { previous, current in
+      guard current.isActive else { return }
+      // Keep link and reminder highlights pending until Home is visible, then consume them once.
+      let windowChanged = previous.isActive && previous.isOpen != current.isOpen
+      guard current.highlightPending || windowChanged else { return }
+      highlightPending = false
       motionCue += 1
     }
     .animation(KvilMotion.transition(reduceMotion: reduceMotion), value: state.isOpen)
