@@ -74,7 +74,8 @@ enum AppTab: Hashable {
       if let scenario, scenario != "onboarding" {
         data = ScenarioData.make(
           now: fixedNow ?? Date(), calendar: LocalDay.calendar(), openingSoon: scenario == "openingSoon",
-          closingSoon: scenario == "closingSoon", progressReturn: scenario == "progressReturn")
+          closingSoon: scenario == "closingSoon", progressReturn: scenario == "progressReturn",
+          weightHistory: scenario == "weightHistory")
       }
     #endif
     cloud.onChange = { [weak self] in self?.updateSurfaces() }

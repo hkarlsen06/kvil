@@ -262,7 +262,12 @@ import XCTest
     XCTAssertFalse(app.buttons["logWeight"].exists)
     attach(app, name: "Home-weight-disabled")
     app.tabBars.buttons["History"].tap()
+    let chart = app.descendants(matching: .any).matching(identifier: "historyWeightChart").firstMatch
+    XCTAssertFalse(chart.exists)
+    XCTAssertFalse(app.buttons["historyAddWeight"].exists)
     app.buttons["Add weight logging, if you like"].tap()
+    XCTAssertFalse(chart.exists)
+    XCTAssertTrue(app.buttons["weightLog"].exists)
     app.tabBars.buttons["Home"].tap()
     XCTAssertTrue(app.buttons["logWeight"].waitForExistence(timeout: 3))
     XCTAssertTrue(app.buttons["logWeight"].isHittable)
@@ -280,8 +285,55 @@ import XCTest
     app.buttons["saveWeight"].tap()
     XCTAssertTrue(app.buttons["logWeight"].waitForExistence(timeout: 3))
     app.tabBars.buttons["History"].tap()
-    app.buttons["Weight"].tap()
+    XCTAssertFalse(chart.exists)
+    app.buttons["weightLog"].tap()
     XCTAssertTrue(app.staticTexts["75.5"].waitForExistence(timeout: 3))
+    app.buttons["Log weight"].tap()
+    XCTAssertTrue(app.textFields["weightAmount"].waitForExistence(timeout: 3))
+    app.textFields["weightAmount"].typeText("75.2")
+    app.buttons["saveWeight"].tap()
+    XCTAssertTrue(app.staticTexts["75.2"].waitForExistence(timeout: 3))
+    app.navigationBars.buttons["History"].tap()
+    XCTAssertTrue(chart.waitForExistence(timeout: 3))
+    XCTAssertTrue(app.buttons["historyAddWeight"].isHittable)
+    XCTAssertGreaterThanOrEqual(app.buttons["weightLog"].frame.minY, chart.frame.maxY)
+    attach(app, name: "History-two-weights-same-time")
+    app.buttons["historyAddWeight"].tap()
+    XCTAssertTrue(app.textFields["weightAmount"].waitForExistence(timeout: 3))
+    app.buttons["Cancel"].tap()
+    XCTAssertTrue(chart.waitForExistence(timeout: 3))
+    app.buttons["historyAddWeight"].tap()
+    XCTAssertTrue(app.textFields["weightAmount"].waitForExistence(timeout: 3))
+    app.textFields["weightAmount"].typeText("75.0")
+    app.buttons["saveWeight"].tap()
+    XCTAssertTrue(chart.waitForExistence(timeout: 3))
+    app.buttons["weightLog"].tap()
+    XCTAssertTrue(app.staticTexts["75.0"].waitForExistence(timeout: 3))
+  }
+  func testHistoryWeightChartLayout() throws {
+    for largeText in [false, true] {
+      let app = app("weightHistory", language: "nb", largeText: largeText)
+      app.tabBars.buttons["Historikk"].tap()
+      let chart = app.descendants(matching: .any).matching(identifier: "historyWeightChart").firstMatch
+      XCTAssertTrue(chart.waitForExistence(timeout: 5))
+      let add = app.buttons["historyAddWeight"]
+      for _ in 0..<10 where !add.isHittable || !app.buttons["weightLog"].isHittable {
+        app.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.75)).press(
+          forDuration: 0.1,
+          thenDragTo: app.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.67)))
+      }
+      XCTAssertTrue(add.isHittable)
+      XCTAssertEqual(add.label, "Logg vekt")
+      XCTAssertGreaterThan(add.frame.midX, chart.frame.midX)
+      XCTAssertLessThanOrEqual(add.frame.maxY, chart.frame.minY)
+      XCTAssertGreaterThanOrEqual(app.buttons["weightLog"].frame.minY, chart.frame.maxY)
+      attach(app, name: largeText ? "History-weight-largest-text" : "History-weight-norwegian")
+      try app.performAccessibilityAudit(for: [.textClipped, .hitRegion])
+      add.tap()
+      XCTAssertTrue(app.textFields["weightAmount"].waitForExistence(timeout: 3))
+      attach(app, name: largeText ? "History-weight-editor-largest-text" : "History-weight-editor")
+      app.terminate()
+    }
   }
   func testHomeAccessibilityAndScreenshots() throws {
     let app = app("home")

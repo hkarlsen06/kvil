@@ -5,6 +5,7 @@ struct HistoryView: View {
   @Environment(\.dynamicTypeSize) private var typeSize
   @State private var days = 7
   @State private var showingPurchase = false
+  @State private var addingWeight = false
   @State private var editing: Reflection?
   var body: some View {
     ScrollView {
@@ -24,15 +25,7 @@ struct HistoryView: View {
         }
         recap
         if model.data.preferences.weightEnabled {
-          NavigationLink {
-            WeightView()
-          } label: {
-            HStack {
-              Label(.weight, systemImage: "chart.xyaxis.line")
-              Spacer()
-              Image(systemName: "chevron.right").font(.caption)
-            }.padding(.vertical, 8)
-          }
+          weightHistory
         } else {
           Button {
             model.preferences { $0.weightEnabled = true }
@@ -87,7 +80,44 @@ struct HistoryView: View {
     )
     .toolbar { ToolbarItem(placement: .topBarTrailing) { SettingsLink() } }
     .sheet(isPresented: $showingPurchase) { PurchaseView() }
+    .sheet(isPresented: $addingWeight) { WeightEditor() }
     .sheet(item: $editing) { ReflectionEditor(reflection: $0) }
+    .task(id: model.data.preferences.weightEnabled && model.data.preferences.healthEnabled) {
+      if model.data.preferences.weightEnabled { await model.refreshHealth() }
+    }
+  }
+  private var weightHistory: some View {
+    let records = model.weightRecords
+    return VStack(alignment: .leading, spacing: KvilStyle.related) {
+      if records.count >= 2 {
+        VStack(alignment: .leading, spacing: KvilStyle.content) {
+          HStack {
+            Text(.weight).font(KvilStyle.heading)
+            Spacer()
+            Button {
+              addingWeight = true
+            } label: {
+              Image(systemName: "plus").frame(width: 44, height: 44)
+            }
+            .accessibilityLabel(.logWeight)
+            .accessibilityIdentifier("historyAddWeight")
+          }
+          WeightChart(records: records, unit: model.data.preferences.weightUnit)
+            .accessibilityLabel(.weightHistoryChart)
+            .accessibilityIdentifier("historyWeightChart")
+        }.padding(KvilStyle.cardPadding).background(
+          Color.kvilSurface, in: RoundedRectangle(cornerRadius: KvilStyle.corner))
+      }
+      NavigationLink {
+        WeightView()
+      } label: {
+        HStack {
+          Label(.weight, systemImage: "chart.xyaxis.line")
+          Spacer()
+          Image(systemName: "chevron.right").font(.caption)
+        }.padding(.vertical, 8).frame(minHeight: 44)
+      }.accessibilityIdentifier("weightLog")
+    }
   }
   private var visible: [Reflection] {
     Recap.recent(

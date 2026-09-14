@@ -1,4 +1,3 @@
-import Charts
 import SwiftUI
 
 struct DisplayWeight: Identifiable {
@@ -9,20 +8,16 @@ struct DisplayWeight: Identifiable {
   var local: WeightEntry?
 }
 
-struct WeightView: View {
-  @Environment(AppModel.self) private var model
-  @State private var adding = false
-  @State private var deleting: WeightEntry?
-  @State private var editing: WeightEntry?
-  private var records: [DisplayWeight] {
-    let allLocalIDs = Set(model.data.weights.map(\.id))
-    let local = model.data.weights.filter { !$0.pendingDeletion }.map {
+extension AppModel {
+  var weightRecords: [DisplayWeight] {
+    let allLocalIDs = Set(data.weights.map(\.id))
+    let local = data.weights.filter { !$0.pendingDeletion }.map {
       DisplayWeight(
         id: $0.id.uuidString, kg: $0.kilograms, date: $0.date,
         source: $0.saveToHealth && ($0.healthSampleID == nil || $0.healthNeedsUpdate)
           ? String(localized: .healthPending) : "Kvil", local: $0)
     }
-    let external = (model.data.preferences.healthEnabled ? model.healthWeights : []).filter {
+    let external = (data.preferences.healthEnabled ? healthWeights : []).filter {
       $0.localID.map { !allLocalIDs.contains($0) } ?? true
     }.map {
       DisplayWeight(
@@ -30,7 +25,15 @@ struct WeightView: View {
     }
     return (local + external).sorted { $0.date > $1.date }
   }
+}
+
+struct WeightView: View {
+  @Environment(AppModel.self) private var model
+  @State private var adding = false
+  @State private var deleting: WeightEntry?
+  @State private var editing: WeightEntry?
   var body: some View {
+    let records = model.weightRecords
     ScrollView {
       VStack(alignment: .leading, spacing: 24) {
         Text(.weightIntro).foregroundStyle(Color.kvilSecondary)
@@ -45,21 +48,7 @@ struct WeightView: View {
             $0.date >= model.calendar.date(byAdding: .day, value: -30, to: model.now) ?? model.now
           }
           if recent.count >= 2 {
-            Chart(recent) { record in
-              LineMark(
-                x: .value(String(localized: .date), record.date),
-                y: .value(
-                  model.data.preferences.weightUnit.rawValue,
-                  model.data.preferences.weightUnit.display(record.kg))
-              )
-              .foregroundStyle(Color.kvilAccent).interpolationMethod(.linear)
-              PointMark(
-                x: .value(String(localized: .date), record.date),
-                y: .value(
-                  model.data.preferences.weightUnit.rawValue,
-                  model.data.preferences.weightUnit.display(record.kg))
-              ).foregroundStyle(Color.kvilAccent)
-            }.chartYScale(domain: .automatic(includesZero: false)).frame(height: 170)
+            WeightChart(records: recent, unit: model.data.preferences.weightUnit)
               .accessibilityLabel(.recentWeightChart)
           }
           ForEach(records) { record in

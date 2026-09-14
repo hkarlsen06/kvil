@@ -3995,6 +3995,24 @@
         }
       },
       "comment" : "Single-line status for Lock Screen widgets and Watch complications when the eating window is open. Keep short; do not insert line breaks."
+    },
+    "weightHistoryChart" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Weight measurements over time"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vektmålinger over tid"
+          }
+        }
+      },
+      "comment" : "VoiceOver label for the weight chart in History, showing all available weight measurements."
     }
   },
   "version" : "1.0"

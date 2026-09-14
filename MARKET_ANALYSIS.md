@@ -1,0 +1,88 @@
+Kvil market analysis · 14 September 2026
+
+Kvil has a credible core eating-schedule product. Its largest opportunities are helping people choose a rhythm, making reflections useful over time, and accommodating days when they want no schedule. The strongest competitors provide guidance and feedback around their timers. Kvil can provide those benefits while keeping its quiet character.
+
+This is desk research against the current working tree, based on HEAD `4992c9a` plus existing local changes, including the weight chart work. Competitor evidence comes from current US App Store listings, official product/help pages, and a small amount of customer commentary. Competitor apps and paid flows were not personally tested. Ratings establish useful benchmarks, not market share, clinical effectiveness, retention, or revenue. Recommendations and expected benefits below are product judgments to validate.
+
+**The comparison set covers both large brands and simpler alternatives.**
+
+| App | US App Store snapshot | Useful capabilities beyond Kvil | Lesson for Kvil |
+| --- | --- | --- | --- |
+| [Zero](https://apps.apple.com/us/app/zero-fasting-food-tracker/id1168348542) | 4.8, approximately 445K ratings; free core and Plus subscription | Free educational articles and weekly trends; paid mood/habit insights and longer-range charts. Also offers meal analysis and protein tracking. | Give people information they can use and a reason to revisit their history. |
+| [Fastic](https://apps.apple.com/us/app/fastic-weight-loss-fasting/id1459260306) | 4.8, approximately 246K ratings; Plus subscription | Courses, recipes, personalized plans, food scanning, challenges, and fasting buddies. | A beginner gets ongoing support after choosing a time. Most of the surrounding tracking is outside Kvil's focus. |
+| [Simple](https://apps.apple.com/us/app/simple-ai-weight-loss-coach/id1467720176) | 4.7, approximately 403K ratings; Premium subscription | AI coaching, food feedback, customized daily actions, and wellbeing tracking. | Respond to what the person reports. Kvil currently collects a feeling but offers little follow-through. |
+| [BodyFast](https://apps.apple.com/us/app/bodyfast-intermittent-fasting/id1189568780) | 4.7, approximately 146K ratings; free plans and Coach subscription | Plan selection, education, personalized weekly coaching, and broader tracking. | Closest large benchmark for making a weekly plan understandable and adaptable. |
+| [FastHabit](https://apps.apple.com/us/app/fasthabit-intermittent-fasting/id974978016) | 4.8, approximately 14K ratings; Pro/Premium purchases listed | Editable fasting records, calendar views, and duration history within a relatively focused product. | Simplicity can still include a useful historical view. |
+| [FastMinder](https://apps.apple.com/us/app/easy-fast-tracker-fastminder/id1526749985) | 4.7, 337 ratings; subscription and lifetime options | Live Activities, Dynamic Island, interactive widgets, and Siri/Shortcuts. | Native convenience is a meaningful benchmark even among small competitors. |
+
+These products are not equally direct competitors. Simple and Fastic sell broader weight-management experiences. FastHabit and FastMinder compete more closely for people wanting a useful fasting utility. BodyFast matters because it also operates from an automatic weekly plan: its help explicitly says there is no start/stop button. Automatic scheduling is therefore a useful strength, but not an exclusive differentiator. [BodyFast's timing model](https://help.bodyfast.app/hc/en-001/articles/34652339210258-Is-there-any-start-stop-option-for-my-fasting-times).
+
+**Kvil already covers more than the original MVP description suggests.**
+
+The current [Schedule view](ios/KvilApp/Features/Schedule/ScheduleView.swift) supports different weekday windows, overnight windows, dragging, arbitrary window lengths, copying times, and changes just for today. The [Home view](ios/KvilApp/Features/Home/HomeView.swift) now has “Break fast early” and “Start fasting now,” implemented as dated schedule adjustments. These are already present and should not be proposed as missing features.
+
+Kvil also has opening/closing reminders, an offline-capable Watch schedule, Home and Lock Screen widgets, complications, optional weight charts and Apple Health body-mass access, schedule-only iCloud synchronization, and free JSON backup export/import. Device setup help already exists in Settings. Those capabilities were inspected in source; this analysis does not establish their current physical-device reliability or public release status. See [README](README.md), [Settings](ios/KvilApp/Features/Settings/SettingsView.swift), [Watch](ios/KvilWatchApp/KvilWatchApp.swift), and [Health service](ios/KvilApp/Services/HealthService.swift).
+
+The substantive gaps are narrower: onboarding has two time pickers defaulting to 10:00–18:00, with no explanation of how to choose; reflections store one of three feelings; recaps count those answers; reminders fire at the boundaries; and every weekday requires an eating window. There is no implemented Live Activity or App Intent. Sources: [Onboarding](ios/KvilApp/Features/Onboarding/OnboardingView.swift), [reflection model](ios/Shared/Reflection.swift), [History](ios/KvilApp/Features/History/HistoryView.swift), [reminder plan](ios/KvilApp/Services/ReminderService.swift), and [schedule model](ios/Shared/Schedule.swift).
+
+**I would prioritize the following work.** Effort is relative to this codebase, not a delivery estimate. Confidence refers to the relevance of the problem, not a proven improvement in conversion or retention.
+
+| Order | Opportunity | Expected benefit | Relative effort | Confidence |
+| --- | --- | --- | --- | --- |
+| 1 | Guided first setup and a short practical guide | Makes the product usable by someone who has not already chosen a rhythm | Small to medium, including content review | High |
+| 2 | Reflection history with context | Helps people learn from their experience; strengthens the paid offering | Medium | Medium |
+| 3 | Planned days off and a clear return date | Makes flexibility work for holidays and irregular weeks | Medium; changes shared schedule semantics | High |
+| 4 | Optional advance reminders | Makes reminders useful for planning the next meal | Small to medium | Medium |
+| 5 | Live Activity and focused Siri actions | Reduces the need to open the app | Medium | Medium; widgets already cover much of the need |
+
+1. **Help people choose their first window.** BodyFast supplies more than ten free plans and an in-app knowledge base; Fastic has short educational courses. Kvil currently expects the user to make this choice unaided. [BodyFast free features](https://help.bodyfast.app/hc/en-001/articles/34642569146514-What-features-are-included-in-the-free-app-version), [Fastic courses](https://fastic.com/en).
+
+   Offer a few explained examples such as 12:12, 14:10, and 16:8, plus Custom. These are selectable schedule examples, not personalized health recommendations or an automatic progression toward longer fasting. Show both the eating and fasting durations, and let people anchor the example around their usual meals. Kvil already supports those lengths; the gap is discovery and explanation. Preview the resulting week before saving. Add a short, professionally reviewed guide covering what the timer represents, changing plans, ordinary meal planning, and suitability for fasting. Keep it available later without making a new content feed.
+
+2. **Make a reflection worth returning to.** Simple uses check-ins to inform daily actions and offers wellbeing feedback. Kvil's comfortable/mixed/difficult answer currently leads to category totals. The transferable idea is a useful response to the person's experience. [Simple feature guide](https://help.simple.life/en/articles/9887852-simple-life-overview-of-main-features).
+
+   Begin with an optional short note, a calendar or timeline of reflections, and the planned window associated with each entry. For example, someone could see that a difficult day had a late dinner and read their own explanation. The stored reflection already contains opening and closing dates. Later, offer descriptive comparisons that show their sample size and missing answers. A statement such as “You marked 4 of your 6 check-ins comfortable” is supportable. A claim that a particular window improved health or caused weight change is not established by those records. Let users decide whether to adjust their plan. Notes remain local and belong in backup validation, never in the schedule sync payload.
+
+3. **Support an actual day off.** BodyFast Coach offers a fasting-free joker day and saved custom plans. Its joker day extends the week to retain planned fasting periods. Kvil can offer a simpler experience suited to its own positioning: take Saturday off, then resume the usual schedule Sunday, with no compensation. [BodyFast plan adjustment](https://help.bodyfast.app/hc/en-001/articles/34652209248914-How-do-I-adjust-my-fasting-plan).
+
+   Today adjustments and different weekend hours already exist. A date with no eating-window restriction does not. The current model also cannot express a full 24-hour open window through equal opening and closing times. Introduce an explicit day-off state if this direction is accepted. Later extend it to a date range with a visible resume date. Treat this as a shared product change: phone, Watch, widgets, reflections, and reminders must all agree, including overnight windows and time-zone changes. A hidden or manually disabled notification is not enough to represent a paused schedule.
+
+4. **Offer notice before a boundary.** Fastic lets users choose reminder topics and times. Kvil provides two on/off switches and notifications at opening or closing. [Fastic reminder settings](https://fastic.freshdesk.com/support/solutions/articles/47001218654-reminders-managing-your-notification-settings).
+
+   A user-selectable reminder 15 or 30 minutes before the planned closing could help someone make a practical decision before the time arrives. This should be optional and neutrally worded. It does not require a persistent closing countdown. Default to one chosen reminder per boundary to avoid multiplying notifications, and recalculate it when today's window changes. A notification action to open today's editor is a useful later extension.
+
+5. **Add native conveniences after the core gaps.** FastMinder demonstrates the Live Activity and Shortcuts opportunity. Kvil already has widgets and Watch visibility, so this is incremental convenience. A suitable first Siri action would report when the next eating window opens or open the schedule editor. It need not introduce another fasting-control model.
+
+   Prototype a Live Activity around the final part of the wait until opening. Apple's documentation limits an active Live Activity to eight hours, so a single activity cannot simply cover a typical 16-hour interval. Check activation, expiration, and schedule edits before promising automatic all-day coverage. Existing widgets should remain the dependable ongoing surface. [Apple ActivityKit constraints](https://developer.apple.com/documentation/activitykit/displaying-live-data-with-live-activities).
+
+**Several visible competitor features represent a different product choice.**
+
+Editable records of actual fasting, elapsed fasting hours, and duration statistics are an important reason people use products such as FastHabit. Kvil has planned windows and reported feelings, with no completed-fast ledger. This is a meaningful audience limitation, even with the new Home adjustment buttons. Do not describe Kvil as recording how long someone actually fasted. Adding that capability would require an explicit decision about tracking and data semantics. [FastHabit's tracking features](https://www.fasthabit.com/).
+
+Food-photo analysis, protein/calorie goals, water and step tracking, recipes, social challenges, and AI coaching expand the products described above, but would substantially broaden Kvil. I would defer them. Optional weight charts already exist, so another basic chart is not the priority. A smoothed weight trend or extra wellbeing fields could be evaluated later if users request them.
+
+I would also preserve the current exclusions of streak pressure, adherence scores, and completed-fasting claims. Competitors' body-stage displays are not measurements Kvil can derive from its planned window. The educational opportunity belongs in explanatory content with appropriate sourcing, rather than a claim about the user's current metabolism.
+
+**The commercial opportunity needs more than a low price.**
+
+Kvil's [local product configuration](release/metadata.json) is a free core and a $3.99 non-consumable purchase for older reflections and longer recaps. This is a planned/configured US price, not a checkout verified in this research. For context, BodyFast lists 12-month Coach offers at $34.99 and $69.99. FastMinder lists lifetime purchases at $29.99 and $39.99. These are visible US purchase records; offer availability and pricing can differ. [BodyFast purchases](https://apps.apple.com/us/app/bodyfast-intermittent-fasting/id1189568780), [FastMinder purchases](https://apps.apple.com/us/app/easy-fast-tracker-fastminder/id1526749985).
+
+Avoid presenting FastHabit as a guaranteed $2.99 lifetime alternative: its listing contains a $2.99 Pro purchase alongside $59.99 Premium records, without resolving current offer eligibility. Likewise, Simple's listed prices do not clearly label their billing periods. [FastHabit listing](https://apps.apple.com/us/app/fasthabit-intermittent-fasting/id974978016), [Simple listing](https://apps.apple.com/us/app/simple-ai-weight-loss-coach/id1467720176).
+
+My commercial concern is that access to older three-choice answers may not feel valuable enough to purchase, even at $3.99. Richer reflection context would strengthen the reason to buy. This is a hypothesis, not measured conversion evidence. Keep the free timer and integrations while testing what people value in history.
+
+There is some customer evidence for the quiet-product opportunity: a December 2025 discussion describes leaving Fastic over intrusive ads, objections to unclear subscriptions, and appreciation for useful free articles. This is a small, self-selected anecdotal sample and does not establish how common those preferences are. [Customer discussion](https://www.reddit.com/r/intermittentfasting/comments/1pjbe06/ad_free_fast_timer_app/).
+
+Account-free use is not unique: FastMinder also promotes it. Privacy claims need more precision than that. Its App Store privacy label discloses identifiers potentially used for tracking, despite broad on-device language in its description. This is a disclosure comparison, not an independent privacy audit. Kvil should communicate its specific local-data and schedule-sync boundaries clearly. [FastMinder positioning](https://fastminder.app/), [App Store privacy disclosure](https://apps.apple.com/us/app/easy-fast-tracker-fastminder/id1526749985).
+
+**Reach is a separate decision that may matter more than another feature.**
+
+Kvil currently requires iOS 27 and watchOS 27. The inspected competitors support older systems: Zero iOS 17, Fastic 15.6, Simple 18.3, BodyFast 15.1, FastHabit 15, and FastMinder 16.1. These minimums are shown in the App Store sources linked in the comparison table. Kvil's requirement is explicit in [the project](ios/Kvil.xcodeproj/project.pbxproj) and [MVP plan](MVP_PLAN.md). Assess the cost of supporting an earlier version against the intended audience before expanding scope. This research provides no defensible estimate of how many customers the current minimum excludes.
+
+English/Norwegian support is useful, but also not exclusive: Fastic and Simple list Norwegian Bokmål. More translation should follow a deliberate market choice, not run automatically. Acquisition copy should make Kvil's purpose easy to recognize: a possible title to test is “Kvil: Intermittent Fasting,” paired with the existing calm-rhythm positioning. Explain that it follows planned eating windows and offers optional reflections. The local store description still says there is nothing to start or stop, while the current Home screen now exposes adjustments with fasting-action labels. Align that wording with the final behavior before using it in acquisition material.
+
+**The next validation should test usefulness, not app-opening frequency.**
+
+Start with guided setup, then prototype contextual reflection history and a day-off flow. In a small voluntary study, include beginners and people who already use another fasting app. Observe whether they can choose and explain their schedule unaided, change a social evening without disrupting the week, take a day off and understand the return date, and retrieve something useful from their own reflections. Ask which existing feature would prevent them from switching. That will expose whether the absence of actual fasting records is decisive.
+
+Separately test willingness to pay for the proposed history experience, and gather device/OS compatibility needs. Use interviews or user-shared feedback without introducing silent health-data analytics. These checks have not been run, and no retention, conversion, market-size, or revenue forecast is claimed. This task produced analysis only; existing app changes were left untouched.

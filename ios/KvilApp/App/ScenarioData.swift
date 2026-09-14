@@ -4,7 +4,7 @@
   enum ScenarioData {
     static func make(
       now: Date, calendar: Calendar, openingSoon: Bool = false, closingSoon: Bool = false,
-      progressReturn: Bool = false
+      progressReturn: Bool = false, weightHistory: Bool = false
     ) -> LocalData {
       var value = LocalData()
       value.schedule = ScheduleSnapshot(
@@ -33,6 +33,15 @@
             dayKey: w.dayKey, timeZoneID: w.timeZoneID,
             feeling: offset % 5 == 0 ? .difficult : offset % 3 == 0 ? .mixed : .comfortable,
             opening: w.opening, closing: w.closing, updatedAt: w.closing))
+      }
+      if weightHistory {
+        value.preferences.weightEnabled = true
+        value.preferences.weightUnit = .kg
+        for (index, kilograms) in [75.5, 75.2, 75.4, 75.0, 75.1, 74.8, 74.9].enumerated() {
+          if let date = calendar.date(byAdding: .day, value: -42 + index * 7, to: now) {
+            value.weights.append(WeightEntry(kilograms: kilograms, date: date))
+          }
+        }
       }
       return value
     }
