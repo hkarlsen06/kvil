@@ -55,16 +55,17 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kvil saves the weights you log to Apple Health only when you turn on Save to Health."
+            "value" : "Kvil saves the weights you log to Apple Health when you allow write access. You can turn off Save to Health at any time."
           }
         },
         "nb" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kvil lagrer vekten du registrerer i Apple Helse bare når du slår på Lagre i Helse."
+            "value" : "Kvil lagrer vekten du registrerer i Apple Helse når du gir skrivetilgang. Du kan slå av Lagre i Helse når som helst."
           }
         }
-      }
+      },
+      "comment" : "Apple Health permission explanation for saving new weight logs when the user grants write access during connection."
     }
   },
   "version" : "1.0"

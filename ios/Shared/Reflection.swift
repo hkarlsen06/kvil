@@ -90,6 +90,8 @@ struct Preferences: Codable, Equatable, Sendable {
   var closingReminder = false
   var openingReminderLeadMinutes: Int? = nil
   var closingReminderLeadMinutes: Int? = nil
+  var openingReminderLead: Int { openingReminderLeadMinutes ?? 0 }
+  var closingReminderLead: Int { closingReminderLeadMinutes ?? 15 }
   var liveActivitiesEnabled: Bool? = nil
   var weightEnabled = false
   var healthEnabled = false

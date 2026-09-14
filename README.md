@@ -4,10 +4,10 @@ A native iOS 27+ eating-schedule companion with a watchOS 27 app, Home Screen wi
 
 Kvil follows a weekly schedule automatically. Home also lets you break a fast early or start fasting now by adjusting the current window. An early break keeps the next scheduled closing time; starting a fast keeps the next planned opening. These dated adjustments do not change the usual week or record completed fasts. Weight logging and Apple Health are optional. Full reflection history and longer recaps use one non-consumable purchase; the timer, reminders, artwork, and device integrations remain free.
 
-- Guided setup explains 12:12, 14:10, and 16:8 alongside Custom. Plan's draggable window sets the usual meal times, then individual weekday sliders let you adjust the week before saving. Setup and reflection actions stay at the bottom while content scrolls underneath. A short practical guide remains available in Settings. Presets are examples with no automatic progression.
+- Guided setup follows five steps: welcome, rhythm, meal times, a personal pause illustration, and the weekly preview. The interactive day diagram is the rhythm picker for 12:12, 14:10, 16:8, or Custom, with curved labels following their matching arcs. Plan's draggable window sets the usual meal times. The following noninteractive illustration shows the pause between those chosen times, including its duration and whether the next meal is tomorrow, with a caption curved above the arc. It explains that sleep counts and that Kvil has no hours to make up, with a single guide link. Individual weekday sliders then let you adjust the week before saving. Progress, native transitions, and light haptics guide the flow; Reduce Motion and large text are supported. Setup and reflection actions stay at the bottom while content scrolls underneath. A short practical guide remains available in Settings. Presets are examples with no automatic progression.
 - Home's “How did yesterday go?” button opens a sheet showing one relevant step at a time: whether the day followed the plan, optional approximate first/last meal times if it changed or the person is unsure, then a feeling and optional note. Days off go straight to the feeling. Cancel leaves the draft unsaved. History shows the planned window beside the person's answers and clearly labels meal estimates; answering “As planned” never invents actual meal times.
 - Plan supports recurring weekdays off, taking today off, and dated breaks with a resume date. Saved weekday hours remain available when scheduling resumes. The shared engine handles days off across Home, Watch, widgets, reminders, and reflections.
-- Each opening/closing reminder can arrive at the boundary or 15 or 30 minutes before it, with one chosen reminder per boundary.
+- Opening reminders default to the planned opening time; closing reminders default to 15 minutes before closing. Both support the boundary, 15 minutes, or 30 minutes before. Explicitly saved timings are preserved, with one chosen reminder per boundary.
 - Optional Live Activities show the wait until opening on the Lock Screen and Dynamic Island. Siri/Shortcuts can report the next opening or open Plan.
 
 ## Development
@@ -26,7 +26,7 @@ Add or update copy with `./scripts/xcstrings-set cancel --comment "Dismiss witho
 
 The API translator is adapted from Tidex and is reserved for when the app's copy is ready. Install its development dependencies with `bun install --frozen-lockfile`. Set `OPENAI_API_KEY` in the ignored root `.env.local` file; `OPENAI_MODEL` and `OPENAI_REASONING_EFFORT` optionally override the script's defaults. `bun run localize --dry-run` previews pending work without API requests or file changes. Later, explicitly run `bun run localize` to translate both catalogs and register the additional Xcode languages, or append a `.xcstrings` path to translate only that catalog. It preserves existing translations, validates placeholders and response IDs, and saves completed batches atomically so interrupted work can resume. `bun run localize:test` runs the regression tests with mocked API responses. Builds, tests and commits never trigger translation automatically.
 
-`openingSoon` uses the real clock and opens an isolated window after 20 seconds to check foreground and background transitions. `progressReturn` uses a two-minute isolated window to inspect the ring catching up after time on another tab. The Reduce Motion UI test runs with that accessibility setting enabled on the test simulator.
+`openingSoon` uses the real clock and opens an isolated window after 20 seconds to check foreground and background transitions. `progressReturn` uses a two-minute isolated window to inspect the ring catching up after time on another tab. `onboardingLiveClock` keeps onboarding storage and services isolated while using the real clock to check weekday dragging. The Reduce Motion UI test runs with that accessibility setting enabled on the test simulator.
 
 ## Ownership
 
@@ -41,6 +41,8 @@ The API translator is adapted from Tidex and is reserved for when the app's copy
 Dates are derived from wall-clock schedule values with a Gregorian calendar in the device time zone. Overnight windows belong to their opening day. Windows are half-open; an opening instant is open and a closing instant is closed. One engine supplies phone, Watch, reminders, and widget transitions. Weekly edits begin tomorrow; today's override is immediate. Days off are unrestricted local dates; a break's resume date is the first day using the usual schedule again. Overnight windows stop at the start of a day off. History reflects the person's answers, not inferred adherence.
 
 ## Data and integrations
+
+Connecting Apple Health requests weight read and write access together. Save to Health turns on only when write access is granted and can be switched off in Settings. Existing local-only weights remain local.
 
 SwiftData is local and explicitly disables automatic CloudKit mirroring. The protected local store and derived snapshots are excluded from automatic backup. Free JSON export/import supplies local-history recovery; imports validate before replacing any records.
 

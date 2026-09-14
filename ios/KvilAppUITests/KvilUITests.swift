@@ -270,8 +270,8 @@ import XCTest
     let app = app("onboarding")
     XCTAssertTrue(app.buttons["beginSetup"].waitForExistence(timeout: 10))
     app.buttons["beginSetup"].tap()
-    tap(app.buttons["chooseMealTimes"], in: app)
-    tap(app.buttons["previewSetup"], in: app)
+    continueIntroduction(in: app)
+    previewWeek(in: app)
     tap(app.buttons["finishSetup"], in: app)
     XCTAssertTrue(app.buttons["changeToday"].waitForExistence(timeout: 5))
     XCTAssertFalse(app.buttons["settings"].exists)
@@ -437,6 +437,131 @@ import XCTest
     XCTAssertTrue(home.buttons["unlockHistory"].waitForExistence(timeout: 10))
     attach(home, name: "Full-history")
   }
+  private func continueIntroduction(in app: XCUIApplication) {
+    tap(app.buttons["continueWindows"], in: app)
+  }
+
+  private func previewWeek(in app: XCUIApplication) {
+    tap(app.buttons["continueMealTimes"], in: app)
+    tap(app.buttons["previewSetup"], in: app)
+  }
+
+  func testOnboardingEducationAndProgress() throws {
+    let app = app("onboarding", language: "nb")
+    let progress = app.descendants(matching: .any).matching(identifier: "onboardingProgress")
+      .firstMatch
+    XCTAssertTrue(app.buttons["beginSetup"].waitForExistence(timeout: 10))
+    XCTAssertEqual(progress.value as? String, "Steg 1 av 5")
+    tap(app.buttons["beginSetup"], in: app)
+    XCTAssertTrue(app.buttons["beginSetup"].waitForNonExistence(timeout: 3))
+    XCTAssertEqual(progress.value as? String, "Steg 2 av 5")
+    XCTAssertEqual(app.buttons["continueWindows"].label, "Bruk denne rytmen")
+    attachOnboarding(app, name: "Onboarding-rhythm-picker")
+    XCTAssertLessThanOrEqual(
+      app.buttons["setupRhythm.custom"].frame.maxY, visibleContent(in: app).maxY,
+      "Every rhythm should fit above the actions without scrolling at standard text size.")
+    let explanation = app.descendants(matching: .any)
+      .matching(identifier: "onboardingWindowExplanation").firstMatch
+    XCTAssertFalse(app.descendants(matching: .any)
+      .matching(identifier: "onboardingWindowLegend").firstMatch.exists)
+    try app.performAccessibilityAudit(for: [.contrast, .textClipped, .hitRegion])
+    tap(app.buttons["setupRhythm.sixteen"], in: app)
+    XCTAssertEqual(explanation.label, "16 timer faste · 8 timer til måltider")
+    tap(app.buttons["continueWindows"], in: app)
+    XCTAssertEqual(progress.value as? String, "Steg 3 av 5")
+    let slider = app.descendants(matching: .any).matching(identifier: "setupWindowSlider")
+      .firstMatch
+    XCTAssertEqual(try clockMinutes(in: slider, app: app), [10 * 60, 18 * 60])
+    attachOnboarding(app, name: "Onboarding-meals-step-three")
+    tap(app.buttons["continueMealTimes"], in: app)
+    XCTAssertEqual(progress.value as? String, "Steg 4 av 5")
+    let pause = app.descendants(matching: .any)
+      .matching(identifier: "onboardingNightExplanation").firstMatch
+    XCTAssertEqual(try clockMinutes(in: pause, app: app), [18 * 60, 10 * 60])
+    XCTAssertTrue((pause.value as? String)?.contains("16 timer") == true)
+    XCTAssertTrue((pause.value as? String)?.contains("+1 dag") == true)
+    XCTAssertFalse(app.buttons["onboardingLateDinner"].exists)
+    XCTAssertFalse(app.buttons["onboardingUsualDinner"].exists)
+    attachOnboarding(app, name: "Onboarding-personal-pause-sixteen")
+    XCTAssertLessThanOrEqual(
+      app.buttons["onboardingSafetyGuide"].frame.maxY, visibleContent(in: app).maxY,
+      "The lesson and guide should fit above the actions at standard text size.")
+    try app.performAccessibilityAudit(for: [.contrast, .textClipped, .hitRegion])
+    tap(app.buttons["onboardingSafetyGuide"], in: app)
+    XCTAssertTrue(app.navigationBars["Faste og din rytme"].waitForExistence(timeout: 3))
+    tap(app.buttons["Ferdig"], in: app)
+    tap(app.buttons["onboardingBack"], in: app)
+    XCTAssertEqual(progress.value as? String, "Steg 3 av 5")
+    XCTAssertEqual(try clockMinutes(in: slider, app: app), [10 * 60, 18 * 60])
+    tap(app.buttons["onboardingBack"], in: app)
+    XCTAssertEqual(progress.value as? String, "Steg 2 av 5")
+    XCTAssertTrue(app.buttons["setupRhythm.sixteen"].isSelected)
+    tap(app.buttons["setupRhythm.fourteen"], in: app)
+    tap(app.buttons["continueWindows"], in: app)
+    XCTAssertEqual(try clockMinutes(in: slider, app: app), [9 * 60, 19 * 60])
+    dragWindow(slider, byDayFraction: 0.15625, in: app)
+    let edited = try clockMinutes(in: slider, app: app)
+    XCTAssertEqual(edited, [12 * 60 + 45, 22 * 60 + 45])
+    tap(app.buttons["continueMealTimes"], in: app)
+    XCTAssertEqual(try clockMinutes(in: pause, app: app), [edited[1], edited[0]])
+    XCTAssertTrue((pause.value as? String)?.contains("14 timer") == true)
+    attachOnboarding(app, name: "Onboarding-personal-pause-edited-times")
+    tap(app.buttons["onboardingBack"], in: app)
+    tap(app.buttons["onboardingBack"], in: app)
+    XCTAssertTrue(app.buttons["setupRhythm.fourteen"].isSelected)
+    // Returning to the selector, or tapping the same rhythm, must retain edited times.
+    tap(app.buttons["setupRhythm.fourteen"], in: app)
+    tap(app.buttons["continueWindows"], in: app)
+    XCTAssertEqual(try clockMinutes(in: slider, app: app), edited)
+    previewWeek(in: app)
+    XCTAssertEqual(progress.value as? String, "Steg 5 av 5")
+    tap(app.buttons["finishSetup"], in: app)
+    XCTAssertTrue(app.buttons["fastingAction"].waitForExistence(timeout: 5))
+  }
+
+  func testOnboardingEducationWithReducedMotion() throws {
+    guard UIAccessibility.isReduceMotionEnabled else {
+      throw XCTSkip("Enable Reduce Motion on the test simulator for this check.")
+    }
+    try testOnboardingEducationAndProgress()
+  }
+
+  func testOnboardingEducationAtLargestText() throws {
+    let app = app("onboarding", largeText: true)
+    tap(app.buttons["beginSetup"], in: app)
+    XCTAssertTrue(app.buttons["beginSetup"].waitForNonExistence(timeout: 3))
+    XCTAssertTrue(app.buttons["continueWindows"].isHittable)
+    try app.performAccessibilityAudit(for: [.textClipped, .hitRegion])
+    attachOnboarding(app, name: "Onboarding-windows-largest-text")
+    tap(app.buttons["setupRhythm.fourteen"], in: app)
+    try app.performAccessibilityAudit(for: [.textClipped, .hitRegion])
+    reveal(app.buttons["setupRhythm.custom"], in: app)
+    attachOnboarding(app, name: "Onboarding-windows-largest-text-scrolled")
+    tap(app.buttons["continueWindows"], in: app)
+    XCTAssertTrue(app.buttons["continueMealTimes"].isHittable)
+    tap(app.buttons["continueMealTimes"], in: app)
+    XCTAssertTrue(app.buttons["previewSetup"].isHittable)
+    try app.performAccessibilityAudit(for: [.textClipped, .hitRegion])
+    let pause = app.descendants(matching: .any)
+      .matching(identifier: "onboardingNightExplanation").firstMatch
+    XCTAssertTrue((pause.value as? String)?.contains("14 hours") == true)
+    XCTAssertFalse(app.buttons["onboardingLateDinner"].exists)
+    XCTAssertFalse(app.buttons["onboardingUsualDinner"].exists)
+    reveal(pause, in: app)
+    attachOnboarding(app, name: "Onboarding-personal-pause-largest-text")
+    tap(app.buttons["onboardingSafetyGuide"], in: app)
+    tap(app.buttons["Done"], in: app)
+    XCTAssertTrue(app.buttons["previewSetup"].isHittable)
+  }
+
+  private func attachOnboarding(_ app: XCUIApplication, name: String) {
+    // Artwork continues animating after navigation. Capture its settled composition.
+    let settling = XCTestExpectation(description: "Onboarding artwork settles")
+    settling.isInverted = true
+    XCTAssertEqual(XCTWaiter.wait(for: [settling], timeout: 1.4), .completed)
+    attach(app, name: name)
+  }
+
   private func tap(_ element: XCUIElement, in app: XCUIApplication) {
     reveal(element, in: app)
     element.tap()
@@ -452,7 +577,8 @@ import XCTest
     }
     var bottom = min(bounds.maxY, app.frame.maxY)
     let primaryActions = [
-      "beginSetup", "chooseMealTimes", "previewSetup", "finishSetup", "confirmMealTimes",
+      "beginSetup", "continueWindows", "continueMealTimes", "previewSetup",
+      "finishSetup", "confirmMealTimes",
       "saveReflection",
     ]
     for identifier in primaryActions {
@@ -486,7 +612,8 @@ import XCTest
       let bounds = visibleContent(in: app)
       if element.exists {
         let fixedActions = [
-          "beginSetup", "chooseMealTimes", "previewSetup", "finishSetup", "confirmMealTimes",
+          "beginSetup", "continueWindows", "continueMealTimes", "previewSetup",
+          "finishSetup", "confirmMealTimes",
           "skipMealTimes", "saveReflection", "reflectionBack",
         ]
         if element.isHittable
@@ -527,11 +654,7 @@ import XCTest
     let app = app("onboarding", language: "nb")
     tap(app.buttons["beginSetup"], in: app)
     tap(app.buttons["setupRhythm.fourteen"], in: app)
-    attach(app, name: "Guided-rhythm-norsk")
-    tap(app.buttons["setupGuide"], in: app)
-    attach(app, name: "Fasting-guide-norsk")
-    tap(app.buttons["Ferdig"], in: app)
-    tap(app.buttons["chooseMealTimes"], in: app)
+    continueIntroduction(in: app)
     XCTAssertFalse(app.pickerWheels.firstMatch.exists)
     XCTAssertTrue(
       app.descendants(matching: .any).matching(identifier: "setupWindowSlider").firstMatch
@@ -540,6 +663,11 @@ import XCTest
     try app.performAccessibilityAudit(for: [
       .textClipped, .hitRegion, .sufficientElementDescription,
     ])
+    tap(app.buttons["continueMealTimes"], in: app)
+    attach(app, name: "Guided-pause-norsk")
+    tap(app.buttons["onboardingSafetyGuide"], in: app)
+    attach(app, name: "Fasting-guide-norsk")
+    tap(app.buttons["Ferdig"], in: app)
     tap(app.buttons["previewSetup"], in: app)
     XCTAssertTrue(
       app.descendants(matching: .any).matching(identifier: "setupWindowSlider.1").firstMatch.exists)
@@ -556,10 +684,11 @@ import XCTest
   }
 
   func testGuidedSetupSlidersKeepLengthAndSaveWeekEdits() throws {
-    let app = app("onboarding", language: "nb")
+    // A frozen clock hides weekday rows losing their identity during drag updates.
+    let app = app("onboardingLiveClock", language: "nb")
     tap(app.buttons["beginSetup"], in: app)
     tap(app.buttons["setupRhythm.fourteen"], in: app)
-    tap(app.buttons["chooseMealTimes"], in: app)
+    continueIntroduction(in: app)
     XCTAssertFalse(app.pickerWheels.firstMatch.exists)
     let daily = app.descendants(matching: .any).matching(identifier: "setupWindowSlider").firstMatch
     XCTAssertTrue(daily.waitForExistence(timeout: 3))
@@ -572,7 +701,7 @@ import XCTest
     XCTAssertFalse(app.pickerWheels.firstMatch.exists)
     attach(app, name: "Onboarding-shifted-ten-hour-window")
 
-    tap(app.buttons["previewSetup"], in: app)
+    previewWeek(in: app)
     for day in 1...7 {
       let slider = app.descendants(matching: .any)
         .matching(identifier: "setupWindowSlider.\(day)").firstMatch
@@ -595,8 +724,9 @@ import XCTest
     XCTAssertEqual(try clockMinutes(in: sundayTimes, app: app), edited)
     attach(app, name: "Onboarding-edited-Sunday-preview")
     tap(app.buttons["Tilbake"], in: app)
+    tap(app.buttons["Tilbake"], in: app)
     XCTAssertEqual(try clockMinutes(in: daily, app: app), moved)
-    tap(app.buttons["previewSetup"], in: app)
+    previewWeek(in: app)
     for day in 1...7 {
       let retained = app.descendants(matching: .any)
         .matching(identifier: "setupWindowSlider.\(day)").firstMatch
@@ -618,7 +748,7 @@ import XCTest
     let custom = self.app("onboarding", language: "nb")
     tap(custom.buttons["beginSetup"], in: custom)
     tap(custom.buttons["setupRhythm.custom"], in: custom)
-    tap(custom.buttons["chooseMealTimes"], in: custom)
+    continueIntroduction(in: custom)
     tap(custom.buttons["setupWindowLength"], in: custom)
     let eightHours = Duration.seconds(8 * 60 * 60).formatted(
       .units(allowed: [.hours, .minutes], width: .abbreviated).locale(Locale(identifier: "nb_NO")))
@@ -632,22 +762,29 @@ import XCTest
     XCTAssertEqual(overnight, [17 * 60, 60])
     XCTAssertEqual((overnight[1] - overnight[0] + 1440) % 1440, 8 * 60)
     attach(custom, name: "Onboarding-custom-eight-hour-window-across-midnight")
+    tap(custom.buttons["continueMealTimes"], in: custom)
+    let pause = custom.descendants(matching: .any)
+      .matching(identifier: "onboardingNightExplanation").firstMatch
+    XCTAssertEqual(try clockMinutes(in: pause, app: custom), [60, 17 * 60])
+    XCTAssertTrue((pause.value as? String)?.contains("16 timer") == true)
+    XCTAssertFalse((pause.value as? String)?.contains("+1 dag") == true)
+    attachOnboarding(custom, name: "Onboarding-personal-daytime-pause")
   }
 
   func testGuidedSetupActionsStayPinnedAtLargestText() throws {
     let app = app("onboarding", language: "nb", largeText: true)
     tap(app.buttons["beginSetup"], in: app)
     assertPinnedAction(
-      app.buttons["chooseMealTimes"], whileScrolling: app.buttons["setupRhythm.twelve"], in: app)
+      app.buttons["continueWindows"], whileScrolling: app.buttons["setupRhythm.twelve"], in: app)
     attach(app, name: "Onboarding-rhythm-pinned-footer-largest-text")
-    tap(app.buttons["chooseMealTimes"], in: app)
+    continueIntroduction(in: app)
     XCTAssertFalse(app.pickerWheels.firstMatch.exists)
     let daily = app.descendants(matching: .any).matching(identifier: "setupWindowSlider").firstMatch
-    assertPinnedAction(app.buttons["previewSetup"], whileScrolling: daily, in: app)
+    assertPinnedAction(app.buttons["continueMealTimes"], whileScrolling: daily, in: app)
     XCTAssertGreaterThanOrEqual(daily.frame.minX, app.frame.minX)
     XCTAssertLessThanOrEqual(daily.frame.maxX, app.frame.maxX)
     attach(app, name: "Onboarding-slider-pinned-footer-largest-text")
-    tap(app.buttons["previewSetup"], in: app)
+    previewWeek(in: app)
     XCTAssertFalse(app.pickerWheels.firstMatch.exists)
     let firstDay = app.descendants(matching: .any)
       .matching(NSPredicate(format: "identifier BEGINSWITH %@", "setupDayTimes.")).firstMatch
@@ -660,9 +797,9 @@ import XCTest
   func testGuidedSetupAccessibilityAtLargestText() throws {
     let app = app("onboarding", language: "nb", largeText: true)
     tap(app.buttons["beginSetup"], in: app)
-    tap(app.buttons["chooseMealTimes"], in: app)
+    continueIntroduction(in: app)
     try app.performAccessibilityAudit(for: [.textClipped, .hitRegion])
-    tap(app.buttons["previewSetup"], in: app)
+    previewWeek(in: app)
     try app.performAccessibilityAudit(for: [.textClipped, .hitRegion])
   }
 
@@ -842,12 +979,22 @@ import XCTest
     tap(app.buttons["settings"], in: app)
     tap(app.switches["When the window opens"].switches.firstMatch, in: app)
     XCTAssertEqual(app.switches["When the window opens"].value as? String, "1")
+    XCTAssertEqual(app.buttons["openingReminderTiming"].value as? String, "At the planned time")
     tap(app.buttons["openingReminderTiming"], in: app)
     tap(app.buttons["15 minutes before"], in: app)
     tap(app.switches["When the window closes"].switches.firstMatch, in: app)
     XCTAssertEqual(app.switches["When the window closes"].value as? String, "1")
-    tap(app.buttons["closingReminderTiming"], in: app)
-    tap(app.buttons["30 minutes before"], in: app)
+    XCTAssertEqual(app.buttons["closingReminderTiming"].value as? String, "15 minutes before")
+    attach(app, name: "Default-closing-reminder")
+    let closingTiming = app.buttons["closingReminderTiming"]
+    closingTiming.staticTexts["15 minutes before"].coordinate(
+      withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).tap()
+    XCTAssertTrue(app.buttons["30 minutes before"].waitForExistence(timeout: 3))
+    app.buttons["30 minutes before"].tap()
+    closingTiming.staticTexts["30 minutes before"].coordinate(
+      withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).tap()
+    XCTAssertTrue(app.buttons["15 minutes before"].waitForExistence(timeout: 3))
+    app.buttons["15 minutes before"].tap()
     tap(app.switches["liveActivities"].switches.firstMatch, in: app)
     XCTAssertEqual(app.switches["liveActivities"].value as? String, "1")
     attach(app, name: "Advance-reminders-and-Live-Activities")
@@ -855,18 +1002,26 @@ import XCTest
     tap(app.buttons["Done"], in: app)
     tap(app.buttons["settings"], in: app)
     XCTAssertEqual(app.buttons["openingReminderTiming"].value as? String, "15 minutes before")
-    XCTAssertEqual(app.buttons["closingReminderTiming"].value as? String, "30 minutes before")
+    XCTAssertEqual(app.buttons["closingReminderTiming"].value as? String, "15 minutes before")
   }
 
   func testReminderTimingAtLargestText() throws {
     let app = app("home", largeText: true)
     tap(app.tabBars.buttons["Schedule"], in: app)
     tap(app.buttons["settings"], in: app)
-    tap(app.switches["When the window opens"].switches.firstMatch, in: app)
-    let reminder = app.buttons["openingReminderTiming"]
-    tap(reminder, in: app)
-    tap(app.buttons["15 minutes before"], in: app)
+    tap(app.switches["When the window closes"].switches.firstMatch, in: app)
+    let reminder = app.buttons["closingReminderTiming"]
     XCTAssertEqual(reminder.value as? String, "15 minutes before")
+    // The new row starts below the visible form at the largest text size.
+    scrollContent(in: app, towardTop: false)
+    // Form exposes the whole row as a button; tap the visible menu value within it.
+    let menuLabel = reminder.staticTexts["15 minutes before"]
+    XCTAssertTrue(menuLabel.exists)
+    menuLabel.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).tap()
+    attach(app, name: "Closing-reminder-menu-largest-text")
+    XCTAssertTrue(app.buttons["At the planned time"].waitForExistence(timeout: 3))
+    app.buttons["At the planned time"].tap()
+    XCTAssertEqual(reminder.value as? String, "At the planned time")
     XCTAssertTrue(reminder.isHittable)
     XCTAssertGreaterThanOrEqual(reminder.frame.minX, app.frame.minX)
     XCTAssertLessThanOrEqual(reminder.frame.maxX, app.frame.maxX)

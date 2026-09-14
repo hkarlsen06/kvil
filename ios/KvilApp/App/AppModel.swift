@@ -54,7 +54,7 @@ enum AppTab: Hashable {
     #if DEBUG
       fixedNow =
         scenario != nil && scenario != "openingSoon" && scenario != "closingSoon"
-          && scenario != "progressReturn"
+          && scenario != "progressReturn" && scenario != "onboardingLiveClock"
         ? ISO8601DateFormatter().date(
           from: scenario == "open"
             ? "2026-09-12T12:00:00Z"
@@ -74,7 +74,7 @@ enum AppTab: Hashable {
     cloud = ScheduleCloudService(enabled: deviceServicesEnabled)
     data = try store.load()
     #if DEBUG
-      if let scenario, scenario != "onboarding" {
+      if let scenario, scenario != "onboarding" && scenario != "onboardingLiveClock" {
         data = ScenarioData.make(
           now: fixedNow ?? Date(), calendar: LocalDay.calendar(),
           openingSoon: scenario == "openingSoon",
@@ -406,13 +406,13 @@ enum AppTab: Hashable {
       message = String(localized: .liveActivityFailed)
     }
   }
-  func connectHealth(write: Bool) async {
+  func connectHealth() async {
     guard scenario == nil else { return }
     do {
-      try await health.authorize(write: write)
+      try await health.authorize(write: true)
       preferences {
         $0.healthEnabled = true
-        if write { $0.healthWritesEnabled = health.canWrite }
+        $0.healthWritesEnabled = health.canWrite
       }
       await refreshHealth()
     } catch { message = String(localized: .healthUnavailable) }

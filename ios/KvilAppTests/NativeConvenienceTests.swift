@@ -97,7 +97,7 @@ final class NativeConvenienceTests: XCTestCase {
     XCTAssertNil(plan)
   }
 
-  func testLegacyPreferencesKeepBoundaryRemindersAndLiveActivitiesOff() throws {
+  func testLegacyPreferencesUseDefaultReminderTimingAndKeepLiveActivitiesOff() throws {
     var original = try XCTUnwrap(
       JSONSerialization.jsonObject(with: JSONEncoder().encode(Preferences())) as? [String: Any])
     original.removeValue(forKey: "openingReminderLeadMinutes")
@@ -105,9 +105,52 @@ final class NativeConvenienceTests: XCTestCase {
     original.removeValue(forKey: "liveActivitiesEnabled")
     let decoded = try JSONDecoder().decode(
       Preferences.self, from: JSONSerialization.data(withJSONObject: original))
-    XCTAssertEqual(decoded.openingReminderLeadMinutes ?? 0, 0)
-    XCTAssertEqual(decoded.closingReminderLeadMinutes ?? 0, 0)
+    XCTAssertEqual(decoded.openingReminderLead, 0)
+    XCTAssertEqual(decoded.closingReminderLead, 15)
     XCTAssertFalse(decoded.liveActivitiesEnabled == true)
+  }
+
+  func testDefaultRemindersFireAtOpeningAndFifteenMinutesBeforeClosing() {
+    var preferences = Preferences()
+    preferences.openingReminder = true
+    preferences.closingReminder = true
+    let now = date("2026-09-12T00:00:00Z")
+    let plan = ReminderPlan.make(
+      snapshot: snapshot(), preferences: preferences, now: now, calendar: calendar)
+    let today = plan.events.filter { calendar.isDate($0.date, inSameDayAs: now) }
+    XCTAssertEqual(today.map(\.date), [date("2026-09-12T10:00:00Z"), date("2026-09-12T17:45:00Z")])
+    XCTAssertEqual(today.map(\.leadMinutes), [0, 15])
+  }
+
+  func testDefaultClosingReminderCrossesYearBoundaryAndSpringDSTGap() {
+    let oslo = LocalDay.calendar(timeZone: TimeZone(identifier: "Europe/Oslo")!)
+    for (now, closing, expected) in [
+      ("2026-12-31T20:00:00Z", WallTime(hour: 0, minute: 10), "2026-12-31T22:55:00Z"),
+      ("2026-03-28T20:00:00Z", WallTime(hour: 3), "2026-03-29T00:45:00Z"),
+    ] {
+      let days = (1...7).map {
+        DayPlan(weekday: $0, opens: WallTime(hour: 20), closes: closing)
+      }
+      var preferences = Preferences()
+      preferences.closingReminder = true
+      let plan = ReminderPlan.make(
+        snapshot: snapshot(days), preferences: preferences, now: date(now), calendar: oslo)
+      XCTAssertEqual(plan.events.first?.date, date(expected))
+      XCTAssertEqual(plan.events.first?.leadMinutes, 15)
+    }
+  }
+
+  @MainActor func testExplicitClosingReminderTimingsSurvivePersistence() throws {
+    let store = try LocalStore(inMemory: true)
+    for lead in [0, 15, 30] {
+      var data = LocalData()
+      data.preferences.openingReminderLeadMinutes = 15
+      data.preferences.closingReminderLeadMinutes = lead
+      try store.save(data)
+      let restored = try store.load()
+      XCTAssertEqual(restored.preferences.openingReminderLead, 15)
+      XCTAssertEqual(restored.preferences.closingReminderLead, lead)
+    }
   }
 
   func testScheduleQueryDistinguishesNoPlanOpenFutureAndUnrestrictedDays() {

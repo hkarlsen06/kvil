@@ -1154,19 +1154,19 @@
       }
     },
     "healthSettingsHelp" : {
-      "comment" : "Kvil user interface: healthSettingsHelp",
+      "comment" : "Explains the optional combined Apple Health weight read and write permission request, and what disconnecting does.",
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Health is optional. Read access and write access are separate. Disconnecting here stops reads and future writes; manage permissions and existing Health entries in system settings."
+            "value" : "Health is optional. Connect to choose whether Kvil can read and save weight measurements. Disconnecting here stops reads and future writes; manage permissions and existing Health entries in system settings."
           }
         },
         "nb" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Helse er valgfritt. Lese- og skrivetilgang er adskilt. Frakobling stopper lesing og nye lagringer. Administrer tillatelser og eksisterende Helse-oppføringer i systeminnstillingene."
+            "value" : "Helse er valgfritt. Koble til for å velge om Kvil kan lese og lagre vektmålinger. Frakobling stopper lesing og nye lagringer. Administrer tillatelser og eksisterende Helse-oppføringer i systeminnstillingene."
           }
         }
       }
@@ -2864,19 +2864,19 @@
       }
     },
     "setupWindowHelp" : {
-      "comment" : "Below the common onboarding eating-window slider. The next step allows weekday adjustments.",
+      "comment" : "Hint below the usual meal-time slider. Individual days can be edited later in the weekly preview, after the personal pause illustration.",
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Start with your usual times. You can adjust each day on the next screen."
+            "value" : "You can adjust each day in the weekly preview."
           }
         },
         "nb" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ta utgangspunkt i dine vanlige tider. På neste skjerm kan du tilpasse hver dag."
+            "value" : "Du kan tilpasse hver dag i ukeoversikten."
           }
         }
       }
@@ -5262,17 +5262,17 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "The first number is hours without food. The second is the time set aside for meals."
+            "value" : "Choose what fits your day."
           }
         },
         "nb" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Det første tallet er timer uten mat. Det andre er tiden du setter av til måltider."
+            "value" : "Velg det som passer dagen din."
           }
         }
       },
-      "comment" : "Explain the order of the numbers in 12:12, 14:10 and 16:8: fasting hours first, eating-window hours second."
+      "comment" : "Short invitation to choose a rhythm after the visual educational introduction."
     },
     "setupRhythmFlexibleHelp" : {
       "extractionState" : "manual",
@@ -5867,6 +5867,438 @@
         }
       },
       "comment" : "Neutral schedule status before an upcoming unrestricted date; followed by its date, without a fasting countdown."
+    },
+    "onboardingBegin" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Let’s begin"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La oss begynne"
+          }
+        }
+      },
+      "comment" : "Welcome button opening the short educational introduction."
+    },
+    "onboardingContinue" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Continue"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Videre"
+          }
+        }
+      },
+      "comment" : "Advance one step in onboarding."
+    },
+    "onboardingProgress" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Setup progress"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fremdrift i oppsettet"
+          }
+        }
+      },
+      "comment" : "VoiceOver label for onboarding progress."
+    },
+    "onboardingStep" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Step %lld of %lld"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Steg %lld av %lld"
+          }
+        }
+      },
+      "comment" : "VoiceOver progress value. First integer is current step; second is total steps."
+    },
+    "onboardingWindowsTitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A pause between meals."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "En pause mellom måltidene."
+          }
+        }
+      },
+      "comment" : "Short educational onboarding headline introducing daily fasting."
+    },
+    "onboardingWindowsBody" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fasting is time without food. Between meals, your body also draws on stored energy."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Faste er tid uten mat. Mellom måltidene bruker kroppen også lagret energi."
+          }
+        }
+      },
+      "comment" : "Brief explanation of fasting; does not promise health benefits or a metabolic threshold."
+    },
+    "onboardingFasting" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fasting"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Faste"
+          }
+        }
+      },
+      "comment" : "Legend for the first number and blue portion of an illustrated daily fasting rhythm."
+    },
+    "onboardingMeals" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Meals"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Måltider"
+          }
+        }
+      },
+      "comment" : "Legend for the second number and green portion of an illustrated daily eating rhythm."
+    },
+    "onboardingApproachTitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your rhythm, in practice."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Din rytme, i praksis."
+          }
+        }
+      },
+      "comment" : "Heading above the personalized pause illustration after the user selects meal times."
+    },
+    "onboardingApproachBody" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The pause runs from your last meal to the next."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pausen varer fra siste måltid til det neste."
+          }
+        }
+      },
+      "comment" : "One-line introduction to the overnight fasting diagram."
+    },
+    "onboardingListen" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kvil makes room for late dinners. There are no hours to make up."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kvil gir rom for sene middager. Ingen timer å ta igjen."
+          }
+        }
+      },
+      "comment" : "Kvil’s flexible stance below the noninteractive overnight illustration. No compensatory fasting or adherence score."
+    },
+    "onboardingHours" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hours"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Timer"
+          }
+        }
+      },
+      "comment" : "Unit above the illustrated ratio: fasting hours followed by hours for meals."
+    },
+    "onboardingUseRhythm" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Use this rhythm"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bruk denne rytmen"
+          }
+        }
+      },
+      "comment" : "Confirm the rhythm selected in the interactive onboarding diagram and continue to meal times."
+    },
+    "onboardingNightExample" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "One night, for example"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "En natt, for eksempel"
+          }
+        }
+      },
+      "comment" : "Small label identifying the educational timeline as an example, not the person’s chosen schedule."
+    },
+    "onboardingUsualDinner" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "As planned"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Som planlagt"
+          }
+        }
+      },
+      "comment" : "Select the example with the last meal at 20:00 and next meal at 08:00."
+    },
+    "onboardingLateDinner" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Late dinner"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sen middag"
+          }
+        }
+      },
+      "comment" : "Select the example with the last meal two hours later, shortening the overnight pause."
+    },
+    "onboardingLastMeal" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Last meal"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Siste måltid"
+          }
+        }
+      },
+      "comment" : "Label below the evening endpoint of the educational overnight timeline."
+    },
+    "onboardingNextMeal" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Next meal"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Neste måltid"
+          }
+        }
+      },
+      "comment" : "Label below the morning endpoint of the educational overnight timeline."
+    },
+    "onboardingNightHours" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld h pause"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld t pause"
+          }
+        }
+      },
+      "comment" : "Hours in the illustrated overnight fasting pause. The static example shows 12 hours."
+    },
+    "onboardingNightSummary" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Last meal at %1$@. Next meal at %2$@. A %3$lld-hour pause, including sleep."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Siste måltid klokka %1$@. Neste måltid klokka %2$@. %3$lld timer pause, inkludert søvn."
+          }
+        }
+      },
+      "comment" : "VoiceOver value for the overnight illustration. The first two arguments are localized evening and morning clock times; the third is the length of the pause in hours."
+    },
+    "onboardingSeePause" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "See my pause"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Se pausen min"
+          }
+        }
+      },
+      "comment" : "Continue from choosing meal times to the illustration of the resulting fasting pause."
+    },
+    "onboardingPauseCaption" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sleep counts, too"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Søvnen teller også"
+          }
+        }
+      },
+      "comment" : "Short educational caption curved above the user’s pause. Sleep during a pause counts as part of that pause."
+    },
+    "onboardingPauseDuration" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ pause"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ pause"
+          }
+        }
+      },
+      "comment" : "Length of the chosen fasting pause. Argument is a natively formatted duration, such as 14 hr or 14 t."
+    },
+    "onboardingPauseSummary" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Last meal at %1$@. Next meal at %2$@. Pause: %3$@."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Siste måltid klokka %1$@. Neste måltid klokka %2$@. Pause: %3$@."
+          }
+        }
+      },
+      "comment" : "VoiceOver summary of the personalized pause. Localized clock times may include a next-day suffix; the third argument is a duration in hours and minutes."
     }
   },
   "version" : "1.0"

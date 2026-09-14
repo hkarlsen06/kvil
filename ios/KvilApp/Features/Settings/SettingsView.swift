@@ -104,7 +104,7 @@ struct SettingsView: View {
                 get: { model.data.preferences.healthWritesEnabled },
                 set: { enabled in
                   if enabled {
-                    Task { await model.connectHealth(write: true) }
+                    Task { await model.connectHealth() }
                   } else {
                     model.preferences { $0.healthWritesEnabled = false }
                   }
@@ -116,7 +116,7 @@ struct SettingsView: View {
               }
             }
           } else {
-            Button(.connectHealth) { Task { await model.connectHealth(write: false) } }
+            Button(.connectHealth) { Task { await model.connectHealth() } }
               .disabled(!model.health.available)
           }
         } header: {
@@ -232,9 +232,9 @@ struct SettingsView: View {
     let title: LocalizedStringResource = opening ? .openingReminderTiming : .closingReminderTiming
     let selection = Binding(
       get: {
-        (opening
-          ? model.data.preferences.openingReminderLeadMinutes
-          : model.data.preferences.closingReminderLeadMinutes) ?? 0
+        opening
+          ? model.data.preferences.openingReminderLead
+          : model.data.preferences.closingReminderLead
       },
       set: { minutes in
         model.preferences {
@@ -246,9 +246,11 @@ struct SettingsView: View {
         }
       })
     let value: LocalizedStringResource =
-      selection.wrappedValue == 15
-      ? .reminderFifteenBefore
-      : selection.wrappedValue == 30 ? .reminderThirtyBefore : .reminderAtTime
+      switch selection.wrappedValue {
+      case 15: .reminderFifteenBefore
+      case 30: .reminderThirtyBefore
+      default: .reminderAtTime
+      }
     return KvilControlRow(title: title) {
       Menu {
         Picker(title, selection: selection) {

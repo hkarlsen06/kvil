@@ -96,7 +96,7 @@ struct WeightView: View {
               model.healthBusy)
           }
         } else {
-          Button(.connectHealth) { Task { await model.connectHealth(write: false) } }
+          Button(.connectHealth) { Task { await model.connectHealth() } }
             .buttonStyle(.bordered)
         }
         Text(.externalWeightHelp).font(.footnote).foregroundStyle(Color.kvilSecondary)

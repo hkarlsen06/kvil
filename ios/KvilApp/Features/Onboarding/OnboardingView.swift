@@ -1,11 +1,14 @@
 import SwiftUI
+import UIKit
 
 struct OnboardingView: View {
   @Environment(AppModel.self) private var model
   @Environment(\.locale) private var locale
   @Environment(\.dynamicTypeSize) private var typeSize
+  @Environment(\.accessibilityReduceMotion) private var reduceMotion
   @ScaledMetric(relativeTo: .caption) private var nextDayLabelHeight: CGFloat = 16
-  @State private var page = 0
+  @State private var page = OnboardingStep.welcome
+  @State private var movingForward = true
   @State private var rhythm = FastingRhythm.twelve
   @State private var opens = WallTime(hour: 8)
   @State private var closes = WallTime(hour: 20)
@@ -20,15 +23,25 @@ struct OnboardingView: View {
   @AccessibilityFocusState private var headingFocused: Bool
 
   var body: some View {
-    Group {
-      switch page {
-      case 0: welcomePage
-      case 1: rhythmPage
-      case 2: mealTimesPage
-      default: previewPage
+    VStack(spacing: 0) {
+      OnboardingProgressView(step: page)
+      ZStack {
+        Group {
+          switch page {
+          case .welcome: welcomePage
+          case .windows: windowsPage
+          case .meals: mealTimesPage
+          case .approach: approachPage
+          case .preview: previewPage
+          }
+        }.id(page).transition(pageTransition)
       }
+      .clipped()
     }
-    .onChange(of: page) { headingFocused = true }
+    .background(Color.kvilCanvas)
+    .sensoryFeedback(.impact(weight: .light, intensity: 0.6), trigger: page)
+    .sensoryFeedback(.selection, trigger: rhythm)
+    .sensoryFeedback(.selection, trigger: enableReminders)
     .sheet(isPresented: $showingGuide) {
       NavigationStack {
         FastingGuideView()
@@ -45,13 +58,14 @@ struct OnboardingView: View {
     GeometryReader { geometry in
       ScrollView {
         VStack(alignment: .leading, spacing: 0) {
-          KvilWordmark().padding(.horizontal, KvilStyle.page).padding(.top, KvilStyle.page)
           OnboardingLandscapeView(
             height: max(210, geometry.size.height * 0.58)
-          ).padding(.top, KvilStyle.section)
+          )
           VStack(alignment: .leading, spacing: KvilStyle.content) {
             Text(.onboardingTitle).font(KvilStyle.title).fixedSize(
-              horizontal: false, vertical: true)
+              horizontal: false, vertical: true
+            )
+            .accessibilityAddTraits(.isHeader).accessibilityFocused($headingFocused)
             Text(.onboardingBody).foregroundStyle(Color.kvilSecondary).lineSpacing(4)
             Text(.onboardingSafety).font(.footnote).foregroundStyle(Color.kvilSecondary)
               .padding(.top, 2)
@@ -60,50 +74,48 @@ struct OnboardingView: View {
       }.scrollIndicators(.hidden)
         .safeAreaInset(edge: .bottom, spacing: 0) {
           KvilBottomActions {
-            Button(.findMyRhythm) { page = 1 }.buttonStyle(KvilPrimaryButtonStyle())
-              .accessibilityIdentifier("beginSetup")
+            Button(.onboardingBegin) { navigate(to: .windows) }.buttonStyle(
+              KvilPrimaryButtonStyle()
+            )
+            .accessibilityIdentifier("beginSetup")
           }
         }
     }.background(Color.kvilCanvas)
   }
 
-  private var rhythmPage: some View {
+  private var windowsPage: some View {
     KvilActionPage {
-      KvilWordmark()
-      pageHeading(.setupRhythmTitle, help: .setupRhythmHelp)
-      VStack(spacing: KvilStyle.related) {
-        ForEach(FastingRhythm.allCases) { option in
-          Button {
-            rhythm = option
-            if let day = option.example {
-              setWindow(day)
-            }
-          } label: {
-            HStack(spacing: KvilStyle.content) {
-              VStack(alignment: .leading, spacing: 5) {
-                Text(option.title).font(.headline)
-                Text(option.summary).font(.subheadline).foregroundStyle(Color.kvilSecondary)
-                  .fixedSize(horizontal: false, vertical: true)
-              }
-              Spacer(minLength: 0)
-              Image(systemName: rhythm == option ? "checkmark.circle.fill" : "circle")
-                .font(.title3).foregroundStyle(Color.kvilAccent).accessibilityHidden(true)
-            }.padding(KvilStyle.cardPadding).frame(maxWidth: .infinity, alignment: .leading)
-              .background(Color.kvilSurface, in: RoundedRectangle(cornerRadius: KvilStyle.corner))
-              .contentShape(RoundedRectangle(cornerRadius: KvilStyle.corner))
-          }.buttonStyle(.plain)
-            .accessibilityAddTraits(rhythm == option ? .isSelected : [])
-            .accessibilityIdentifier("setupRhythm.\(option.rawValue)")
-        }
-      }
-      Text(.setupRhythmFlexibleHelp).font(.footnote).foregroundStyle(Color.kvilSecondary)
-        .fixedSize(horizontal: false, vertical: true)
-      Button(.fastingGuide, systemImage: "book") { showingGuide = true }
-        .frame(minHeight: 44).accessibilityIdentifier("setupGuide")
+      pageHeading(.onboardingWindowsTitle, help: .onboardingWindowsBody)
+      OnboardingWindowsView(
+        rhythm: rhythmSelection,
+        windowMinutes: DayPlan(weekday: 1, opens: opens, closes: closes).windowMinutes)
     } actions: {
-      Button(.setupChooseMealTimes) { page = 2 }.buttonStyle(KvilPrimaryButtonStyle())
-        .accessibilityIdentifier("chooseMealTimes")
-      backButton(to: 0)
+      Button(.onboardingUseRhythm) { navigate(to: .meals) }
+        .buttonStyle(KvilPrimaryButtonStyle()).accessibilityIdentifier("continueWindows")
+      backButton(to: .welcome)
+    }
+  }
+
+  private var approachPage: some View {
+    KvilActionPage {
+      pageHeading(.onboardingApproachTitle, help: .onboardingApproachBody)
+      OnboardingPauseView(day: DayPlan(weekday: 1, opens: opens, closes: closes))
+      Button(.guideSuitabilityTitle, systemImage: "info.circle") { showingGuide = true }
+        .frame(minHeight: 44).accessibilityIdentifier("onboardingSafetyGuide")
+    } actions: {
+      Button(.setupPreviewWeek) { navigate(to: .preview) }
+        .buttonStyle(KvilPrimaryButtonStyle()).accessibilityIdentifier("previewSetup")
+      backButton(to: .meals)
+    }
+  }
+
+  private var rhythmSelection: Binding<FastingRhythm> {
+    Binding {
+      rhythm
+    } set: { selection in
+      guard rhythm != selection else { return }
+      rhythm = selection
+      if let day = selection.example { setWindow(day) }
     }
   }
 
@@ -111,7 +123,6 @@ struct OnboardingView: View {
     let day = DayPlan(weekday: 1, opens: opens, closes: closes)
     let shown = slidingWindow ?? day
     return KvilActionPage {
-      KvilWordmark()
       pageHeading(.setupMealsTitle, help: .setupMealsHelp)
       VStack(alignment: .leading, spacing: KvilStyle.content) {
         Text(rhythm.title).font(KvilStyle.heading).fixedSize(horizontal: false, vertical: true)
@@ -153,15 +164,14 @@ struct OnboardingView: View {
       Text(.setupWindowHelp).font(.footnote).foregroundStyle(Color.kvilSecondary)
         .fixedSize(horizontal: false, vertical: true)
     } actions: {
-      Button(.setupPreviewWeek) { page = 3 }.buttonStyle(KvilPrimaryButtonStyle())
-        .disabled(opens == closes).accessibilityIdentifier("previewSetup")
-      backButton(to: 1)
+      Button(.onboardingSeePause) { navigate(to: .approach) }.buttonStyle(KvilPrimaryButtonStyle())
+        .disabled(opens == closes).accessibilityIdentifier("continueMealTimes")
+      backButton(to: .windows)
     }
   }
 
   private var previewPage: some View {
     KvilActionPage {
-      KvilWordmark()
       pageHeading(.setupWeekTitle, help: .setupWeekHelp)
       VStack(alignment: .leading, spacing: KvilStyle.content) {
         ForEach(previewDates, id: \.self) { date in
@@ -189,7 +199,7 @@ struct OnboardingView: View {
       } label: {
         if busy { ProgressView().tint(Color.kvilInverse) } else { Text(.makeSpace) }
       }.buttonStyle(KvilPrimaryButtonStyle()).disabled(busy).accessibilityIdentifier("finishSetup")
-      backButton(to: 2).disabled(busy)
+      backButton(to: .approach).disabled(busy)
     }
   }
 
@@ -204,8 +214,26 @@ struct OnboardingView: View {
     }
   }
 
-  private func backButton(to page: Int) -> some View {
-    Button(.back) { self.page = page }.frame(maxWidth: .infinity, minHeight: 44)
+  private var pageTransition: AnyTransition {
+    if reduceMotion { return .opacity }
+    return .asymmetric(
+      insertion: .offset(x: movingForward ? 28 : -28).combined(with: .opacity),
+      removal: .offset(x: movingForward ? -20 : 20).combined(with: .opacity))
+  }
+
+  private func navigate(to next: OnboardingStep) {
+    movingForward = next.rawValue > page.rawValue
+    headingFocused = false
+    withAnimation(reduceMotion ? nil : .smooth(duration: 0.4)) {
+      page = next
+    } completion: {
+      headingFocused = true
+    }
+  }
+
+  private func backButton(to page: OnboardingStep) -> some View {
+    Button(.back) { navigate(to: page) }.frame(maxWidth: .infinity, minHeight: 44)
+      .accessibilityIdentifier("onboardingBack")
   }
 
   private func setWindow(_ day: DayPlan) {
@@ -293,13 +321,17 @@ struct OnboardingView: View {
   }
 
   private var previewDates: [Date] {
-    (0..<7).compactMap { model.calendar.date(byAdding: .day, value: $0, to: model.now) }
+    let calendar = model.calendar
+    // Keep row identities stable when drag previews redraw with a live clock.
+    let today = calendar.startOfDay(for: model.now)
+    return (0..<7).compactMap { calendar.date(byAdding: .day, value: $0, to: today) }
   }
 
   private func finish() async {
     busy = true
     defer { busy = false }
     guard model.configure(days: days) else { return }
+    UINotificationFeedbackGenerator().notificationOccurred(.success)
     if enableReminders {
       await model.setReminder(opening: true, enabled: true)
       if model.data.preferences.openingReminder {

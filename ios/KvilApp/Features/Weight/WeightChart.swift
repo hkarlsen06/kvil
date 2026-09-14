@@ -22,7 +22,7 @@ struct WeightChart: View {
       if typeSize.isAccessibilitySize {
         AxisMarks(values: .automatic(desiredCount: 2)) { value in
           AxisGridLine()
-          AxisValueLabel {
+          AxisValueLabel(anchor: .topLeading) {
             if let date = value.as(Date.self) {
               Text(date, format: .dateTime.day().month(.abbreviated).year(.twoDigits))
                 .fixedSize(horizontal: false, vertical: true)
@@ -30,7 +30,18 @@ struct WeightChart: View {
           }
         }
       } else {
-        AxisMarks()
+        AxisMarks {
+          AxisGridLine()
+          AxisTick()
+          AxisValueLabel(anchor: .topLeading)
+        }
+      }
+    }
+    .chartYAxis {
+      AxisMarks {
+        AxisGridLine()
+        AxisTick()
+        AxisValueLabel(anchor: .leading)
       }
     }
     .chartYScale(domain: .automatic(includesZero: false))

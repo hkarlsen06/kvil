@@ -16,8 +16,8 @@ struct ReminderPlan: Sendable {
   ) -> Self {
     let horizon = calendar.date(byAdding: .day, value: 27, to: calendar.startOfDay(for: now)) ?? now
     let engine = ScheduleEngine(snapshot: snapshot, calendar: calendar)
-    let openingLead = preferences.openingReminderLeadMinutes ?? 0
-    let closingLead = preferences.closingReminderLeadMinutes ?? 0
+    let openingLead = preferences.openingReminderLead
+    let closingLead = preferences.closingReminderLead
     let events = engine.windows(
       around: now, daysBefore: 1, daysAfter: 28
     ).flatMap { w in

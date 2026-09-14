@@ -65,8 +65,8 @@ struct LocalData: Codable, Equatable {
     guard Set(reflections.map(\.id)).count == reflections.count,
       Set(weights.map(\.id)).count == weights.count,
       weights.allSatisfy(\.isValid), reflections.allSatisfy(\.isValid),
-      [0, 15, 30].contains(preferences.openingReminderLeadMinutes ?? 0),
-      [0, 15, 30].contains(preferences.closingReminderLeadMinutes ?? 0)
+      [0, 15, 30].contains(preferences.openingReminderLead),
+      [0, 15, 30].contains(preferences.closingReminderLead)
     else { throw ScheduleError.incompatibleData }
     var result = self
     result.formatVersion = 2
