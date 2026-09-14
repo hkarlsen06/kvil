@@ -902,19 +902,19 @@
       }
     },
     "eula" : {
-      "comment" : "Kvil user interface: eula",
+      "comment" : "Paywall link to Apple’s standard Terms of Use (End User License Agreement). Keep EULA in parentheses.",
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "EULA"
+            "value" : "Terms of Use (EULA)"
           }
         },
         "nb" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "EULA"
+            "value" : "Bruksvilkår (EULA)"
           }
         }
       }
@@ -2324,19 +2324,19 @@
       }
     },
     "reflectionsEmpty" : {
-      "comment" : "Kvil user interface: reflectionsEmpty",
+      "comment" : "Empty History state explaining the new following-day reflection entry point on Home.",
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "After your eating window closes, Home offers a small check-in. Come back when you feel like it."
+            "value" : "On Home, you can reflect on yesterday. Your answers appear here."
           }
         },
         "nb" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Etter at spisevinduet lukker, finner du en liten innsjekk på Hjem. Kom tilbake når du har lyst."
+            "value" : "På Hjem kan du se tilbake på gårsdagen. Svarene dine vises her."
           }
         }
       }
@@ -2864,19 +2864,19 @@
       }
     },
     "setupWindowHelp" : {
-      "comment" : "Explain briefly that setup applies to every day and weekdays can be customized later.",
+      "comment" : "Below the common onboarding eating-window slider. The next step allows weekday adjustments.",
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "These times apply every day. You can adjust individual days later."
+            "value" : "Start with your usual times. You can adjust each day on the next screen."
           }
         },
         "nb" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tidene gjelder hver dag. Du kan tilpasse ukedagene senere."
+            "value" : "Ta utgangspunkt i dine vanlige tider. På neste skjerm kan du tilpasse hver dag."
           }
         }
       }
@@ -4013,6 +4013,1860 @@
         }
       },
       "comment" : "VoiceOver label for the weight chart in History, showing all available weight measurements."
+    },
+    "howDidYesterdayGo" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "How did yesterday go?"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hvordan gikk gårsdagen?"
+          }
+        }
+      },
+      "comment" : "Home button opening the optional next-day reflection."
+    },
+    "didYesterdayGoAsPlanned" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Did yesterday go as planned?"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gikk gårsdagen som planlagt?"
+          }
+        }
+      },
+      "comment" : "First step of a short reflection about the planned eating window."
+    },
+    "reflectionAsPlanned" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yes, as planned"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ja, som planlagt"
+          }
+        }
+      },
+      "comment" : "The person reports following the planned eating window; this is not a measured fast."
+    },
+    "reflectionPlanChanged" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "My day went differently"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dagen ble annerledes"
+          }
+        }
+      },
+      "comment" : "The person reports that their eating times differed from their plan."
+    },
+    "reflectionNotSure" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "I’m not sure"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jeg er usikker"
+          }
+        }
+      },
+      "comment" : "Reflection answer when the person is unsure about following their plan."
+    },
+    "plannedEatingWindow" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Planned eating window"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Planlagt spisevindu"
+          }
+        }
+      },
+      "comment" : "Label for schedule times, distinct from reported meal times."
+    },
+    "reflectionPlanHelp" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Did your meals fit within these times?"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Var måltidene dine innenfor disse tidene?"
+          }
+        }
+      },
+      "comment" : "Explain what following the planned window means, without implying exact meal times."
+    },
+    "whenDidYouEat" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Roughly when did you eat?"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Omtrent når spiste du?"
+          }
+        }
+      },
+      "comment" : "Reflection step asking approximate first and last meal times."
+    },
+    "approximateMealsHelp" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Adjust these to your first and last meal. An estimate is enough."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tilpass tidene til det første og siste måltidet ditt. Et anslag er nok."
+          }
+        }
+      },
+      "comment" : "Meal-time entry help; values shown initially are the plan, and must be confirmed as estimates."
+    },
+    "firstMeal" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "First meal"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Første måltid"
+          }
+        }
+      },
+      "comment" : "Approximate first meal time in a reflection."
+    },
+    "lastMeal" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Last meal"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Siste måltid"
+          }
+        }
+      },
+      "comment" : "Approximate last meal time in a reflection."
+    },
+    "lastMealAfterMidnight" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your last meal was after midnight."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Det siste måltidet var etter midnatt."
+          }
+        }
+      },
+      "comment" : "Shown when the entered last meal clock time precedes the first; last meal belongs to the following date."
+    },
+    "continueReflection" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Continue"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fortsett"
+          }
+        }
+      },
+      "comment" : "Proceed to the next relevant reflection step."
+    },
+    "dontRememberMealTimes" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "I don’t remember the times"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jeg husker ikke tidene"
+          }
+        }
+      },
+      "comment" : "Skip meal-time entry without recording guessed or planned times as actual times."
+    },
+    "howDidTheDayFeel" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "How did the day feel?"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hvordan føltes dagen?"
+          }
+        }
+      },
+      "comment" : "Final step asking the person how the day felt."
+    },
+    "addReflectionNote" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anything to remember?"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Noe du vil huske?"
+          }
+        }
+      },
+      "comment" : "Optional disclosure for a short personal reflection note."
+    },
+    "reflectionNotePrompt" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add a short note, if you like"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skriv en kort merknad hvis du vil"
+          }
+        }
+      },
+      "comment" : "Placeholder for an optional local-only note."
+    },
+    "saveReflection" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Save reflection"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lagre refleksjon"
+          }
+        }
+      },
+      "comment" : "Save all reported answers together after the final reflection step."
+    },
+    "reflectionDayOffHelp" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A day off from your schedule."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "En fridag fra planen din."
+          }
+        }
+      },
+      "comment" : "Short context above feelings when the reported date was a scheduled day off."
+    },
+    "reflectionInvalid" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Check your meal times and keep your note within 1,000 characters."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kontroller måltidstidene og hold merknaden under 1 000 tegn."
+          }
+        }
+      },
+      "comment" : "Validation error; invalid answers are not saved."
+    },
+    "reflectionMealTimesInvalid" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose times that have already passed. The last meal can be after midnight."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Velg tider som allerede har passert. Det siste måltidet kan være etter midnatt."
+          }
+        }
+      },
+      "comment" : "Approximate meal-time validation for date ordering and future times."
+    },
+    "homeDayOffHelp" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your usual rhythm can wait."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Den vanlige rytmen kan vente."
+          }
+        }
+      },
+      "comment" : "Calm Home text during a planned day off; no fasting countdown or completion claim."
+    },
+    "nextEatingWindow" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Next planned eating window"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Neste planlagte spisevindu"
+          }
+        }
+      },
+      "comment" : "Accessibility label for the next planned window after a day off."
+    },
+    "yourReportedAnswer" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your answer"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Svaret ditt"
+          }
+        }
+      },
+      "comment" : "Label emphasizing that plan-following information was reported by the person."
+    },
+    "approximateMealTimes" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Approximate meal times"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Omtrentlige måltidstider"
+          }
+        }
+      },
+      "comment" : "Label for reported first and last meal estimates."
+    },
+    "mealTimesAreEstimates" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Based on your own estimates."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Basert på dine egne anslag."
+          }
+        }
+      },
+      "comment" : "Clarifies that history meal times are approximate values supplied by the person."
+    },
+    "editReflection" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edit reflection"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rediger refleksjon"
+          }
+        }
+      },
+      "comment" : "Open the progressive reflection sheet to edit a saved answer."
+    },
+    "dayOff" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Day off"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fridag"
+          }
+        }
+      },
+      "comment" : "Schedule status for a day with no planned eating or fasting times; not a completed fast."
+    },
+    "dayOffDescription" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "There are no planned eating times today."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Det er ingen planlagte spisetider i dag."
+          }
+        }
+      },
+      "comment" : "Description of an unrestricted local calendar day."
+    },
+    "takeTodayOff" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Take today off"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ta fri i dag"
+          }
+        }
+      },
+      "comment" : "Action that makes today unrestricted and preserves the usual weekly schedule."
+    },
+    "makeDayOff" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Make this a day off"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gjør dette til en fridag"
+          }
+        }
+      },
+      "comment" : "Weekday menu action to have no planned eating times on this weekday, effective tomorrow."
+    },
+    "restorePlannedTimes" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Restore planned times"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gjenopprett planlagte tider"
+          }
+        }
+      },
+      "comment" : "Restores the saved opening and closing times for an unrestricted weekday."
+    },
+    "planScheduleBreak" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Plan days off"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Planlegg fridager"
+          }
+        }
+      },
+      "comment" : "Button and sheet title for choosing a date range without planned eating times."
+    },
+    "scheduleBreakIntro" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose the days you want to leave open. Your usual week stays saved and resumes on the date you choose."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Velg dagene du vil ha fri. Den vanlige uka lagres og starter igjen på datoen du velger."
+          }
+        }
+      },
+      "comment" : "Introduction to the dated schedule break editor."
+    },
+    "breakStarts" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "First day off"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Første fridag"
+          }
+        }
+      },
+      "comment" : "Date label; this date is included in a break."
+    },
+    "scheduleResumes" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Schedule resumes"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Planen starter igjen"
+          }
+        }
+      },
+      "comment" : "Date label; this date is excluded from a break and uses the usual weekly schedule."
+    },
+    "scheduleBreakLocalDates" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Days off follow local dates if you travel. Your usual eating times return on the resume date."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fridagene følger lokale datoer hvis du reiser. De vanlige spisetidene gjelder fra datoen planen starter igjen."
+          }
+        }
+      },
+      "comment" : "Break editor footer explaining local calendar dates and the exclusive resume date."
+    },
+    "resumeScheduleToday" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Resume today"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Start planen igjen i dag"
+          }
+        }
+      },
+      "comment" : "Action ending the current dated break immediately; usual weekday settings still apply."
+    },
+    "cancelScheduleBreak" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancel days off"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Avbryt fridagene"
+          }
+        }
+      },
+      "comment" : "Action cancelling future unrestricted dates while preserving the usual schedule."
+    },
+    "plannedBreak" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Planned days off"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Planlagte fridager"
+          }
+        }
+      },
+      "comment" : "Label for a current or upcoming dated schedule break."
+    },
+    "scheduleBreakOptions" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Days off options"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Valg for fridager"
+          }
+        }
+      },
+      "comment" : "Accessibility label of a dated-break context menu."
+    },
+    "openingReminderTiming" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Opening reminder time"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tid for åpningspåminnelse"
+          }
+        }
+      },
+      "comment" : "Picker label for when to remind before the planned eating window opens."
+    },
+    "closingReminderTiming" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Closing reminder time"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tid for stengepåminnelse"
+          }
+        }
+      },
+      "comment" : "Picker label for when to remind before the planned eating window closes."
+    },
+    "reminderAtTime" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "At the planned time"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Til planlagt tid"
+          }
+        }
+      },
+      "comment" : "Reminder timing option: at the opening or closing boundary."
+    },
+    "reminderFifteenBefore" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "15 minutes before"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "15 minutter før"
+          }
+        }
+      },
+      "comment" : "Reminder timing option: 15 minutes before the planned boundary."
+    },
+    "reminderThirtyBefore" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "30 minutes before"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "30 minutter før"
+          }
+        }
+      },
+      "comment" : "Reminder timing option: 30 minutes before the planned boundary."
+    },
+    "reminderOpeningSoon" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your eating window opens soon"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spisevinduet åpner snart"
+          }
+        }
+      },
+      "comment" : "Advance notification title for planned opening."
+    },
+    "reminderClosingSoon" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your eating window closes soon"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spisevinduet stenger snart"
+          }
+        }
+      },
+      "comment" : "Advance notification title for planned closing."
+    },
+    "reminderOpensIn" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your planned eating window opens in %lld minutes."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Det planlagte spisevinduet åpner om %lld minutter."
+          }
+        }
+      },
+      "comment" : "Advance opening notification body. Integer is 15 or 30 minutes."
+    },
+    "reminderClosesIn" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your planned eating window closes in %lld minutes."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Det planlagte spisevinduet stenger om %lld minutter."
+          }
+        }
+      },
+      "comment" : "Advance closing notification body. Integer is 15 or 30 minutes."
+    },
+    "liveActivities" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Live Activities"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Direkteaktiviteter"
+          }
+        }
+      },
+      "comment" : "Settings toggle for a Lock Screen and Dynamic Island opening countdown."
+    },
+    "liveActivitiesHelp" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open Kvil during the eight hours before your next eating window to show its opening on the Lock Screen and Dynamic Island. Days off stay quiet."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Åpne Kvil i løpet av de åtte timene før neste spisevindu for å vise åpningen på låst skjerm og Dynamic Island. Fridager er stille."
+          }
+        }
+      },
+      "comment" : "Explains foreground activation and the maximum eight-hour activity duration; do not imply background automatic start."
+    },
+    "liveActivitiesDisabled" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Allow Live Activities for Kvil in Settings to show the next opening."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tillat direkteaktiviteter for Kvil i Innstillinger for å vise neste åpning."
+          }
+        }
+      },
+      "comment" : "System has disabled Live Activities; user can open app system settings."
+    },
+    "liveActivityRefresh" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open Kvil for your current plan"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Åpne Kvil for å se gjeldende plan"
+          }
+        }
+      },
+      "comment" : "Stale Live Activity after the planned opening; do not claim a fast or current window state."
+    },
+    "liveActivityFailed" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The Live Activity could not start. Try opening Kvil again later."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Direkteaktiviteten kunne ikke starte. Prøv å åpne Kvil igjen senere."
+          }
+        }
+      },
+      "comment" : "Shown when ActivityKit rejects an activity request."
+    },
+    "siriAndShortcuts" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Siri and Shortcuts"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Siri og Snarveier"
+          }
+        }
+      },
+      "comment" : "Device help section title."
+    },
+    "shortcutsHelp" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ask Siri when your eating window opens in Kvil, or open your plan. You can also add these actions to your own shortcuts."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spør Siri når spisevinduet åpner i Kvil, eller åpne planen din. Du kan også legge til handlingene i egne snarveier."
+          }
+        }
+      },
+      "comment" : "Explains the two read-only app shortcuts."
+    },
+    "shortcutNextOpening" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Next opening"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Neste åpning"
+          }
+        }
+      },
+      "comment" : "Siri and Shortcuts action title to read the next planned eating window."
+    },
+    "shortcutNextOpeningDescription" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Read the next opening in your eating plan."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Les neste åpning i spiseplanen din."
+          }
+        }
+      },
+      "comment" : "App Intent description; query does not edit anything."
+    },
+    "shortcutOpenPlan" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open plan"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Åpne plan"
+          }
+        }
+      },
+      "comment" : "Siri and Shortcuts action title that opens the Plan tab."
+    },
+    "shortcutOpenPlanDescription" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open your weekly eating plan in Kvil."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Åpne den ukentlige spiseplanen din i Kvil."
+          }
+        }
+      },
+      "comment" : "App Intent description; opens Plan tab without edits."
+    },
+    "shortcutSetUp" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open Kvil to set up your eating plan."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Åpne Kvil for å sette opp spiseplanen din."
+          }
+        }
+      },
+      "comment" : "Spoken Siri result when no validated shared plan is available."
+    },
+    "shortcutNoWindow" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "There is no upcoming eating window planned."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Det er ikke planlagt noe kommende spisevindu."
+          }
+        }
+      },
+      "comment" : "Spoken Siri result when schedule is unrestricted with no upcoming window."
+    },
+    "shortcutDayOffReply" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Today is a day off. Your next planned eating window opens %@."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "I dag er en fridag. Neste planlagte spisevindu åpner %@."
+          }
+        }
+      },
+      "comment" : "Spoken Siri result; argument is localized date and time."
+    },
+    "shortcutOpenReply" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your planned eating window is open. The next opening is %@."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Det planlagte spisevinduet er åpent. Neste åpning er %@."
+          }
+        }
+      },
+      "comment" : "Spoken Siri result; argument is localized date and time, not a fasting completion claim."
+    },
+    "shortcutNextOpeningReply" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your next planned eating window opens %@."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Neste planlagte spisevindu åpner %@."
+          }
+        }
+      },
+      "comment" : "Spoken Siri result; argument is localized date and time."
+    },
+    "noWindowPlanned" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No eating window planned"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ingen spisevinduer planlagt"
+          }
+        }
+      },
+      "comment" : "Watch and widget text when all days are unrestricted with no scheduled return."
+    },
+    "fastingGuide" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fasting and your rhythm"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Faste og din rytme"
+          }
+        }
+      },
+      "comment" : "Title and navigation link for the concise practical guide, available during onboarding and later in Settings."
+    },
+    "setupRhythmTitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose a rhythm"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Velg en rytme"
+          }
+        }
+      },
+      "comment" : "Heading for the first guided setup step. The choices are examples, not a progression or health recommendation."
+    },
+    "setupRhythmHelp" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The first number is hours without food. The second is the time set aside for meals."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Det første tallet er timer uten mat. Det andre er tiden du setter av til måltider."
+          }
+        }
+      },
+      "comment" : "Explain the order of the numbers in 12:12, 14:10 and 16:8: fasting hours first, eating-window hours second."
+    },
+    "setupRhythmFlexibleHelp" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose times that fit your day. You can change your plan or take a day off."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Velg tider som passer dagen din. Du kan endre planen eller ta en fridag."
+          }
+        }
+      },
+      "comment" : "Reassure people that onboarding presets are flexible, with no automatic escalation or adherence requirement."
+    },
+    "setupChooseMealTimes" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Set my meal times"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Velg måltidstider"
+          }
+        }
+      },
+      "comment" : "Button advancing from rhythm selection to editable meal times."
+    },
+    "setupTwelveTitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "12:12"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "12:12"
+          }
+        }
+      },
+      "comment" : "Name of the example with twelve hours fasting and a twelve-hour eating window; keep this order."
+    },
+    "setupFourteenTitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "14:10"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "14:10"
+          }
+        }
+      },
+      "comment" : "Name of the example with fourteen hours fasting and a ten-hour eating window; keep this order."
+    },
+    "setupSixteenTitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "16:8"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "16:8"
+          }
+        }
+      },
+      "comment" : "Name of the example with sixteen hours fasting and an eight-hour eating window; keep this order."
+    },
+    "setupCustomTitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Custom"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Egendefinert"
+          }
+        }
+      },
+      "comment" : "Choice to set both ends of the eating window freely instead of choosing a preset."
+    },
+    "setupTwelveSummary" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "12 hours fasting · 12 hours for meals"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "12 timer faste · 12 timer til måltider"
+          }
+        }
+      },
+      "comment" : "Accessible, explicit expansion of the 12:12 example."
+    },
+    "setupFourteenSummary" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "14 hours fasting · 10 hours for meals"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "14 timer faste · 10 timer til måltider"
+          }
+        }
+      },
+      "comment" : "Accessible, explicit expansion of the 14:10 example."
+    },
+    "setupSixteenSummary" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "16 hours fasting · 8 hours for meals"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "16 timer faste · 8 timer til måltider"
+          }
+        }
+      },
+      "comment" : "Accessible, explicit expansion of the 16:8 example."
+    },
+    "setupCustomSummary" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose your own eating window"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Velg ditt eget spisevindu"
+          }
+        }
+      },
+      "comment" : "Description of the custom rhythm option; no implied duration recommendation."
+    },
+    "setupMealsTitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Make room for your meals"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gi plass til måltidene"
+          }
+        }
+      },
+      "comment" : "Heading for choosing the first meal and end of eating, anchoring the plan in ordinary life."
+    },
+    "setupMealsHelp" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Start with your usual first meal and when you want to finish eating."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ta utgangspunkt i ditt vanlige første måltid og når du vil være ferdig med å spise."
+          }
+        }
+      },
+      "comment" : "Introductory help for the meal-time step; these are planned boundaries, not a claim about actual eating."
+    },
+    "setupTwelveMeals" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Twelve hours for meals. Drag the bar to choose when they fit."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tolv timer til måltider. Dra i linjen for å velge når de passer."
+          }
+        }
+      },
+      "comment" : "Onboarding description of the twelve-hour eating window and its draggable bar."
+    },
+    "setupFourteenMeals" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ten hours for meals. Drag the bar to choose when they fit."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ti timer til måltider. Dra i linjen for å velge når de passer."
+          }
+        }
+      },
+      "comment" : "Onboarding description of the ten-hour eating window and its draggable bar."
+    },
+    "setupSixteenMeals" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eight hours for meals. Drag the bar to choose when they fit."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Åtte timer til måltider. Dra i linjen for å velge når de passer."
+          }
+        }
+      },
+      "comment" : "Onboarding description of the eight-hour eating window and its draggable bar."
+    },
+    "setupCustomMeals" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose the window length, then drag the bar to place it in your day."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Velg lengden på spisevinduet, og dra linjen dit den passer i dagen din."
+          }
+        }
+      },
+      "comment" : "Onboarding custom window help. The menu chooses its duration; dragging moves both times together."
+    },
+    "setupFirstMeal" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "First meal"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Første måltid"
+          }
+        }
+      },
+      "comment" : "Onboarding clock label for the planned opening of the eating window."
+    },
+    "setupLastMeal" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Finish eating"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ferdig med å spise"
+          }
+        }
+      },
+      "comment" : "Onboarding clock label for the planned end of the eating window, including the last meal or snack."
+    },
+    "setupPreviewWeek" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Preview my week"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Se uken min"
+          }
+        }
+      },
+      "comment" : "Button advancing to the seven-day schedule preview before anything is saved."
+    },
+    "setupWeekTitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The week ahead"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uken som kommer"
+          }
+        }
+      },
+      "comment" : "Heading above the final seven-day onboarding preview."
+    },
+    "setupWeekHelp" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Drag each day’s bar to fit your week. You can change these times later in Plan."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dra i linjen for hver dag slik at den passer uken din. Du kan endre tidene senere i Plan."
+          }
+        }
+      },
+      "comment" : "Onboarding weekly editor help. Each draggable bar changes only that weekday."
+    },
+    "guideWindowTitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "What the numbers mean"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hva tallene betyr"
+          }
+        }
+      },
+      "comment" : "Guide section heading explaining fasting-hour and eating-hour ratios."
+    },
+    "guideWindowBody" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "An eating window is the part of the day you set aside for meals. In a 14:10 rhythm, that window lasts ten hours, with fourteen hours between windows. Your schedule describes the plan. Your next-day check-in records what happened."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Et spisevindu er den delen av dagen du setter av til måltider. Med en 14:10-rytme varer vinduet i ti timer, med fjorten timer mellom vinduene. Spisevinduet viser hva du har planlagt. Oppsummeringen neste dag viser hvordan det gikk."
+          }
+        }
+      },
+      "comment" : "Explain time-restricted eating and the distinction between a plan and actual meals. Do not promise outcomes or claim a fast was completed."
+    },
+    "guideMealsTitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Food and drink"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mat og drikke"
+          }
+        }
+      },
+      "comment" : "Guide section heading for practical eating-window information."
+    },
+    "guideMealsBody" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Count food and drinks with calories in your eating window. Water, unsweetened tea and black coffee can fit outside it. Keep eating balanced meals."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La mat og drikke med kalorier inngå i spisevinduet. Vann, usøtet te og svart kaffe kan passe utenfor det. Fortsett å spise balanserte måltider."
+          }
+        }
+      },
+      "comment" : "General information paraphrased from the linked Johns Hopkins Medicine source, updated 7 April 2026. No dietary or weight-loss promises."
+    },
+    "guideFlexibleTitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Let the plan fit your life"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La planen passe livet ditt"
+          }
+        }
+      },
+      "comment" : "Guide section heading encouraging flexible planning."
+    },
+    "guideFlexibleBody" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Use Plan to adjust a day or take time off. The next morning, you can note what happened and how you felt. If the window feels hard to live with, give your meals more room."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bruk Plan til å tilpasse en dag eller ta fri. Neste morgen kan du notere hvordan det gikk, og hvordan du hadde det. Hvis vinduet er vanskelig å leve med, gi måltidene mer plass."
+          }
+        }
+      },
+      "comment" : "Describe Kvil scheduling and next-day reflection, without streaks, scores, pressure, or automatically increasing fasting duration."
+    },
+    "guideSuitabilityTitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Before you start"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Før du begynner"
+          }
+        }
+      },
+      "comment" : "Guide section heading for medical suitability information."
+    },
+    "guideSuitabilityBody" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fasting is not suitable for everyone. Avoid it if you are under 18, pregnant or breastfeeding, or have a history of eating disorders. If you have diabetes or take medication, discuss fasting with your clinician first. Seek medical advice if fasting makes you feel unwell."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Faste passer ikke for alle. Unngå faste hvis du er under 18 år, er gravid eller ammer, eller har hatt en spiseforstyrrelse. Hvis du har diabetes eller bruker medisiner, snakk med legen din før du begynner. Søk medisinske råd hvis du føler deg dårlig av å faste."
+          }
+        }
+      },
+      "comment" : "Suitability cautions paraphrased from Johns Hopkins Medicine. Preserve age, pregnancy/breastfeeding, eating-disorder history, diabetes/medication consultation, and symptoms advice."
+    },
+    "guideSourceHelp" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Health information from Johns Hopkins Medicine, updated 7 April 2026."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Helseinformasjon fra Johns Hopkins Medicine, oppdatert 7. april 2026."
+          }
+        }
+      },
+      "comment" : "Attribution for the health information in the guide. The date is the source article update date, not a claim that Kvil was medically reviewed."
+    },
+    "guideSourceTitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Read the source"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Les kilden"
+          }
+        }
+      },
+      "comment" : "Opens the Johns Hopkins Medicine article about intermittent fasting in the browser."
+    },
+    "didThatDayGoAsPlanned" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Did that day go as planned?"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gikk den dagen som planlagt?"
+          }
+        }
+      },
+      "comment" : "Opening question when editing a reflection for an older date in History."
+    },
+    "daysOffStart" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Days off start"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fridagene starter"
+          }
+        }
+      },
+      "comment" : "Neutral schedule status before an upcoming unrestricted date; followed by its date, without a fasting countdown."
     }
   },
   "version" : "1.0"

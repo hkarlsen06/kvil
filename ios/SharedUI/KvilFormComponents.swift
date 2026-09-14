@@ -69,29 +69,72 @@ struct KvilTimeWheel: View {
   }
 }
 
-/// Keeps actions near the bottom when content fits, and scrolls the whole page when it doesn't.
+/// Keeps actions in the bottom safe area while the content scrolls underneath.
 struct KvilActionPage<Content: View, Actions: View>: View {
+  var showsActions = true
   @ViewBuilder var content: Content
   @ViewBuilder var actions: Actions
 
   var body: some View {
-    GeometryReader { geometry in
-      ScrollView {
-        VStack(alignment: .leading, spacing: 0) {
-          VStack(alignment: .leading, spacing: KvilStyle.section) {
-            content
-          }
-          Spacer(minLength: KvilStyle.section)
-          VStack(spacing: KvilStyle.related) {
-            actions
-          }
-        }
-        .padding(KvilStyle.page)
-        .frame(minHeight: geometry.size.height, alignment: .top)
-      }.scrollIndicators(.hidden)
-    }.background(Color.kvilCanvas)
+    ScrollView {
+      VStack(alignment: .leading, spacing: KvilStyle.section) {
+        content
+      }.padding(KvilStyle.page).frame(maxWidth: .infinity, alignment: .leading)
+    }.scrollIndicators(.hidden)
+      .safeAreaInset(edge: .bottom, spacing: 0) {
+        if showsActions { KvilBottomActions { actions } }
+      }
+      .background(Color.kvilCanvas)
   }
 }
+
+struct KvilBottomActions<Actions: View>: View {
+  @ViewBuilder var actions: Actions
+
+  var body: some View {
+    VStack(spacing: KvilStyle.related) {
+      actions
+    }.frame(maxWidth: .infinity)
+      .padding(.horizontal, KvilStyle.page)
+      .padding(.vertical, KvilStyle.related)
+      .background {
+        Color.kvilCanvas.opacity(0.9).background(.ultraThinMaterial).ignoresSafeArea(edges: .bottom)
+      }
+  }
+}
+
+#if os(iOS)
+  struct KvilWindowLengthPicker: View {
+    @Environment(\.locale) private var locale
+    var title: LocalizedStringResource = .windowLength
+    var selected: Int?
+    var onSelect: (Int) -> Void
+
+    var body: some View {
+      Picker(
+        title,
+        selection: Binding<Int?>(
+          get: { selected },
+          set: { if let minutes = $0 { onSelect(minutes) } })
+      ) {
+        if selected == nil {
+          Text(.differentWindowLengths).tag(nil as Int?).disabled(true)
+        }
+        if let selected, selected % 60 != 0 {
+          Text(verbatim: duration(selected)).tag(Optional(selected))
+        }
+        ForEach(1..<24) { hours in
+          Text(verbatim: duration(hours * 60)).tag(Optional(hours * 60))
+        }
+      }.pickerStyle(.menu)
+    }
+
+    private func duration(_ minutes: Int) -> String {
+      Duration.seconds(minutes * 60).formatted(
+        .units(allowed: [.hours, .minutes], width: .abbreviated).locale(locale))
+    }
+  }
+#endif
 
 struct KvilControlRow<Control: View>: View {
   var title: LocalizedStringResource

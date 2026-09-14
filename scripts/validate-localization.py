@@ -9,6 +9,7 @@ ROOT = Path(__file__).resolve().parent.parent
 CATALOGS = (
     ROOT / "ios/SharedResources/Localizable.xcstrings",
     ROOT / "ios/KvilApp/Supporting/InfoPlist.xcstrings",
+    ROOT / "ios/KvilApp/Supporting/AppShortcuts.xcstrings",
 )
 
 

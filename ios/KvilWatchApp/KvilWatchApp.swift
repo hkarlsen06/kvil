@@ -14,33 +14,52 @@ import SwiftUI
           ScrollView {
             VStack(spacing: 12) {
               if let state {
-                ZStack {
-                  OpenArc().stroke(
-                    Color.kvilTrack, style: StrokeStyle(lineWidth: 4, lineCap: .round))
-                  OpenArc(progress: state.progress).stroke(
-                    Color.kvilAccent, style: StrokeStyle(lineWidth: 4, lineCap: .round))
-                  VStack(spacing: 6) {
-                    Image(systemName: state.isOpen ? "sun.max" : "leaf").foregroundStyle(
-                      Color.kvilAccent)
-                    if state.isOpen {
-                      Text(.windowOpen).font(.system(.title3, design: .serif))
-                        .multilineTextAlignment(.center)
-                    } else {
-                      Text(
-                        Duration.seconds(
-                          max(0, state.next.opening.timeIntervalSince(context.date))),
-                        format: .time(pattern: .hourMinute)
-                      ).font(.system(.title, design: .rounded)).monospacedDigit()
-                    }
-                  }.padding(12)
-                }.frame(width: 122, height: 122)
-                if let active = state.active {
-                  WindowTimeLabel(window: active).font(.caption)
+                if state.isDayOff || state.upcomingDayOff != nil
+                  || (state.active == nil && state.next == nil)
+                {
+                  Image(systemName: "sun.max").font(.largeTitle).foregroundStyle(Color.kvilAccent)
+                    .padding(.top, 12).accessibilityHidden(true)
+                  Text(state.upcomingDayOff == nil ? .dayOff : .daysOffStart)
+                    .font(.system(.title2, design: .serif)).multilineTextAlignment(.center)
+                  if let starts = state.upcomingDayOff {
+                    Text(starts, format: .dateTime.weekday(.wide).month(.abbreviated).day())
+                      .font(.caption).multilineTextAlignment(.center)
+                  } else if let resumes = state.resumesAt {
+                    Text(.scheduleResumes).font(.caption)
+                    Text(resumes, format: .dateTime.weekday(.wide).month(.abbreviated).day())
+                      .font(.caption).multilineTextAlignment(.center)
+                  } else {
+                    Text(.noWindowPlanned).font(.caption).multilineTextAlignment(.center)
+                  }
                 } else {
-                  HStack(spacing: 2) {
-                    Text(.opensAtPrefix)
-                    Text(state.next.opening, format: .dateTime.hour().minute())
-                  }.font(.caption).accessibilityElement(children: .combine)
+                  ZStack {
+                    OpenArc().stroke(
+                      Color.kvilTrack, style: StrokeStyle(lineWidth: 4, lineCap: .round))
+                    OpenArc(progress: state.progress).stroke(
+                      Color.kvilAccent, style: StrokeStyle(lineWidth: 4, lineCap: .round))
+                    VStack(spacing: 6) {
+                      Image(systemName: state.isOpen ? "sun.max" : "leaf").foregroundStyle(
+                        Color.kvilAccent)
+                      if state.isOpen {
+                        Text(.windowOpen).font(.system(.title3, design: .serif))
+                          .multilineTextAlignment(.center)
+                      } else if let next = state.next {
+                        Text(
+                          Duration.seconds(
+                            max(0, next.opening.timeIntervalSince(context.date))),
+                          format: .time(pattern: .hourMinute)
+                        ).font(.system(.title, design: .rounded)).monospacedDigit()
+                      }
+                    }.padding(12)
+                  }.frame(width: 122, height: 122)
+                  if let active = state.active {
+                    WindowTimeLabel(window: active).font(.caption)
+                  } else if let next = state.next {
+                    HStack(spacing: 2) {
+                      Text(.opensAtPrefix)
+                      Text(next.opening, format: .dateTime.hour().minute())
+                    }.font(.caption).accessibilityElement(children: .combine)
+                  }
                 }
                 Text(bridge.reachable ? .watchConnected : .watchOffline).font(.caption2)
                   .foregroundStyle(Color.kvilSecondary).multilineTextAlignment(.center)

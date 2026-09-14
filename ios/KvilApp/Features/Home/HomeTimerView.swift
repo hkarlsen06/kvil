@@ -32,7 +32,7 @@ struct HomeTimerView: View {
   private var countdownAnimationDuration: TimeInterval { reduceMotion ? 0 : 0.2 }
 
   private func remaining(at date: Date) -> Duration {
-    .seconds(max(0, state.next.opening.timeIntervalSince(date)))
+    .seconds(max(0, (state.next?.opening.timeIntervalSince(date) ?? 0)))
   }
 
   private func countdown(at date: Date) -> AttributedString {
@@ -134,7 +134,8 @@ struct HomeTimerView: View {
 
   private var countdownText: some View {
     // Preserve the opening's second boundary, including fractional-second overrides.
-    let phase = state.next.opening.timeIntervalSinceReferenceDate.truncatingRemainder(dividingBy: 1)
+    let phase = (state.next?.opening.timeIntervalSinceReferenceDate ?? 0).truncatingRemainder(
+      dividingBy: 1)
     // Start the digit transition early so it finishes on the countdown's next second.
     return TimelineView(
       .periodic(

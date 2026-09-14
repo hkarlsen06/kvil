@@ -22,7 +22,7 @@ final class ScheduleTests: XCTestCase {
   func testCountdownUsesPreviousCloseAndNextOpening() throws {
     let now = date("2026-09-12T04:00:00Z")
     let s = try XCTUnwrap(engine().state(at: now))
-    XCTAssertEqual(s.next.opening, date("2026-09-12T08:00:00Z"))
+    XCTAssertEqual(try XCTUnwrap(s.next).opening, date("2026-09-12T08:00:00Z"))
     XCTAssertEqual(s.previousClose, date("2026-09-11T16:00:00Z"))
     XCTAssertEqual(s.progress, 0.75, accuracy: 0.0001)
   }
@@ -37,7 +37,8 @@ final class ScheduleTests: XCTestCase {
     ]
     for (engine, opening, midpoint, closing) in cases {
       XCTAssertEqual(try XCTUnwrap(engine.state(at: date(opening))).progress, 1)
-      XCTAssertEqual(try XCTUnwrap(engine.state(at: date(midpoint))).progress, 0.5, accuracy: 0.0001)
+      XCTAssertEqual(
+        try XCTUnwrap(engine.state(at: date(midpoint))).progress, 0.5, accuracy: 0.0001)
       let beforeClose = try XCTUnwrap(engine.state(at: date(closing).addingTimeInterval(-1)))
       XCTAssertTrue(beforeClose.isOpen)
       XCTAssertGreaterThan(beforeClose.progress, 0)
@@ -76,9 +77,9 @@ final class ScheduleTests: XCTestCase {
   func testSundayToMondayAndYearBoundary() throws {
     var days = DayPlan.initial
     days[1].opens = .init(hour: 12)
-    let next = try XCTUnwrap(engine(days).state(at: date("2026-09-13T17:00:00Z"))).next
+    let next = try XCTUnwrap(engine(days).state(at: date("2026-09-13T17:00:00Z"))?.next)
     XCTAssertEqual(next.opening, date("2026-09-14T10:00:00Z"))
-    XCTAssertEqual(engine().state(at: date("2026-12-31T22:00:00Z"))?.next.dayKey, "2027-01-01")
+    XCTAssertEqual(engine().state(at: date("2026-12-31T22:00:00Z"))?.next?.dayKey, "2027-01-01")
   }
   func testDSTGapMovesForwardAndRepeatedHourUsesFirstOccurrence() throws {
     let days = (1...7).map {
@@ -112,7 +113,7 @@ final class ScheduleTests: XCTestCase {
     XCTAssertEqual(try XCTUnwrap(e.state(at: midpoint)).progress, 0.5, accuracy: 0.0001)
     XCTAssertEqual(e.snapshot.versions, original.versions)
     XCTAssertFalse(try XCTUnwrap(e.state(at: active.closing)).isOpen)
-    XCTAssertEqual(e.state(at: active.closing)?.next.opening, date("2026-09-13T08:00:00Z"))
+    XCTAssertEqual(e.state(at: active.closing)?.next?.opening, date("2026-09-13T08:00:00Z"))
     XCTAssertEqual(try e.settingEatingWindowOpen(true, at: now, modifiedAt: now), e.snapshot)
   }
   func testStartFastNowKeepsNextOpeningAndUpdatesReminders() throws {
@@ -123,14 +124,15 @@ final class ScheduleTests: XCTestCase {
     XCTAssertFalse(state.isOpen)
     XCTAssertEqual(state.previousClose, now)
     XCTAssertEqual(state.progress, 0)
-    XCTAssertEqual(state.next.opening, date("2026-09-13T08:00:00Z"))
+    XCTAssertEqual(try XCTUnwrap(state.next).opening, date("2026-09-13T08:00:00Z"))
     var preferences = Preferences()
     preferences.openingReminder = true
     preferences.closingReminder = true
     let events = ReminderPlan.make(
-      snapshot: e.snapshot, preferences: preferences, now: now, calendar: c).events
+      snapshot: e.snapshot, preferences: preferences, now: now, calendar: c
+    ).events
     XCTAssertFalse(events.contains { $0.date == date("2026-09-12T16:00:00Z") })
-    XCTAssertEqual(events.first?.date, state.next.opening)
+    XCTAssertEqual(events.first?.date, try XCTUnwrap(state.next).opening)
   }
   func testUndoEarlyBreakRestoresScheduleUntilExactOpeningAcrossDateBoundaries() throws {
     for value in [
@@ -143,13 +145,14 @@ final class ScheduleTests: XCTestCase {
       XCTAssertNil(e.earlyBreak(at: now))
       e.snapshot = try e.settingEatingWindowOpen(true, at: now, modifiedAt: now)
       let broken = e.snapshot
-      let beforeOpening = original.next.opening.addingTimeInterval(-1)
+      let plannedOpening = try XCTUnwrap(original.next).opening
+      let beforeOpening = plannedOpening.addingTimeInterval(-1)
       XCTAssertNotNil(e.earlyBreak(at: now))
       XCTAssertNotNil(e.earlyBreak(at: beforeOpening))
-      XCTAssertNil(e.earlyBreak(at: original.next.opening))
-      XCTAssertNil(e.earlyBreak(at: original.next.opening.addingTimeInterval(1)))
+      XCTAssertNil(e.earlyBreak(at: plannedOpening))
+      XCTAssertNil(e.earlyBreak(at: plannedOpening.addingTimeInterval(1)))
       XCTAssertEqual(
-        try e.undoingEarlyBreak(at: original.next.opening, modifiedAt: original.next.opening),
+        try e.undoingEarlyBreak(at: plannedOpening, modifiedAt: plannedOpening),
         broken)
       e.snapshot = try e.undoingEarlyBreak(at: beforeOpening, modifiedAt: beforeOpening)
       let restored = try XCTUnwrap(e.state(at: beforeOpening))
@@ -158,13 +161,13 @@ final class ScheduleTests: XCTestCase {
       XCTAssertEqual(restored.previousClose, original.previousClose)
       XCTAssertEqual(restored.next, original.next)
       XCTAssertEqual(e.snapshot.versions, broken.versions)
-      XCTAssertTrue(try XCTUnwrap(e.state(at: original.next.opening)).isOpen)
+      XCTAssertTrue(try XCTUnwrap(e.state(at: plannedOpening)).isOpen)
       var preferences = Preferences()
       preferences.openingReminder = true
       XCTAssertEqual(
         ReminderPlan.make(
           snapshot: e.snapshot, preferences: preferences, now: beforeOpening, calendar: c
-        ).events.first?.date, original.next.opening)
+        ).events.first?.date, plannedOpening)
     }
   }
   func testUndoEarlyBreakPreservesCustomWindowAfterClosingAndTravel() throws {
@@ -193,7 +196,7 @@ final class ScheduleTests: XCTestCase {
     for value in ["2026-09-13T20:00:00Z", "2026-12-31T22:30:00Z"] {
       var e = engine()
       let now = date(value)
-      let planned = try XCTUnwrap(e.state(at: now)).next
+      let planned = try XCTUnwrap(e.state(at: now)?.next)
       e.snapshot = try e.settingEatingWindowOpen(true, at: now, modifiedAt: now)
       let active = try XCTUnwrap(e.state(at: now)?.active)
       XCTAssertEqual(active.opening, now)
@@ -210,7 +213,7 @@ final class ScheduleTests: XCTestCase {
     e.snapshot = try e.settingEatingWindowOpen(false, at: now, modifiedAt: now)
     XCTAssertEqual(e.snapshot.overrides.first?.dayKey, "2026-09-12")
     XCTAssertEqual(e.state(at: now)?.previousClose, now)
-    XCTAssertEqual(e.state(at: now)?.next.opening, date("2026-09-13T18:00:00Z"))
+    XCTAssertEqual(e.state(at: now)?.next?.opening, date("2026-09-13T18:00:00Z"))
   }
   func testImmediateStartAndReopenAtOpeningDoesNotCreateReflectionOrLoseClosing() throws {
     for value in ["2026-09-12T08:00:00Z", "2026-09-12T04:03:27Z"] {

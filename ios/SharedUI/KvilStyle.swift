@@ -90,7 +90,9 @@ struct LandscapeView: View {
 
 struct KvilPrimaryButtonStyle: ButtonStyle {
   func makeBody(configuration: Configuration) -> some View {
-    configuration.label.font(.headline).frame(maxWidth: .infinity).padding(.vertical, 17)
+    configuration.label.font(.headline).multilineTextAlignment(.center)
+      .fixedSize(horizontal: false, vertical: true)
+      .frame(maxWidth: .infinity).padding(.vertical, 17)
       .foregroundStyle(Color.kvilInverse).background(
         Color.kvilAccent.opacity(configuration.isPressed ? 0.8 : 1), in: Capsule()
       )

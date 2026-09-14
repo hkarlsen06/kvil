@@ -1,8 +1,14 @@
 # Kvil
 
-A native iOS 27+ eating-schedule companion with a watchOS 27 app, Home Screen widgets, Lock Screen widgets, and Watch complications.
+A native iOS 27+ eating-schedule companion with a watchOS 27 app, Home Screen widgets, Lock Screen widgets, Watch complications, Live Activities, and Siri/Shortcuts. The iOS 27 and watchOS 27 minimums are retained.
 
-Kvil follows a weekly schedule automatically. Home also lets you break a fast early or start fasting now by adjusting the current window. An early break keeps the next scheduled closing time; starting a fast keeps the next planned opening. These dated adjustments do not change the usual week or record completed fasts. Home centers its content in a fixed, non-scrolling layout. Reflections open in a sheet when the inline prompt does not fit, including at large accessibility text sizes. The main tabs have no decorative landscape images. Weight logging and Apple Health are optional. Full reflection history and longer recaps use one non-consumable purchase; the timer, reminders, artwork, and device integrations remain free.
+Kvil follows a weekly schedule automatically. Home also lets you break a fast early or start fasting now by adjusting the current window. An early break keeps the next scheduled closing time; starting a fast keeps the next planned opening. These dated adjustments do not change the usual week or record completed fasts. Weight logging and Apple Health are optional. Full reflection history and longer recaps use one non-consumable purchase; the timer, reminders, artwork, and device integrations remain free.
+
+- Guided setup explains 12:12, 14:10, and 16:8 alongside Custom. Plan's draggable window sets the usual meal times, then individual weekday sliders let you adjust the week before saving. Setup and reflection actions stay at the bottom while content scrolls underneath. A short practical guide remains available in Settings. Presets are examples with no automatic progression.
+- Home's “How did yesterday go?” button opens a sheet showing one relevant step at a time: whether the day followed the plan, optional approximate first/last meal times if it changed or the person is unsure, then a feeling and optional note. Days off go straight to the feeling. Cancel leaves the draft unsaved. History shows the planned window beside the person's answers and clearly labels meal estimates; answering “As planned” never invents actual meal times.
+- Plan supports recurring weekdays off, taking today off, and dated breaks with a resume date. Saved weekday hours remain available when scheduling resumes. The shared engine handles days off across Home, Watch, widgets, reminders, and reflections.
+- Each opening/closing reminder can arrive at the boundary or 15 or 30 minutes before it, with one chosen reminder per boundary.
+- Optional Live Activities show the wait until opening on the Lock Screen and Dynamic Island. Siri/Shortcuts can report the next opening or open Plan.
 
 ## Development
 
@@ -14,7 +20,7 @@ XCODE_TEST_AGENT_SCHEME=StoreKit XCODE_TEST_AGENT_DESTINATION='platform=iOS Simu
 python3 scripts/validate-localization.py
 ```
 
-Use `KVIL_SCENARIO=home`, `open`, `reflection`, `history`, or `onboarding` in Debug to explore the production views without touching real storage, Health, purchases, notifications, or iCloud. Scenarios are compiled out of Release. UI copy lives in the shared English/Norwegian String Catalog. Swift code uses Xcode-generated symbols such as `Text(.cancel)` and `String(localized: .saveFailed)`; Xcode generates them during the build. Health permission descriptions live in `ios/KvilApp/Supporting/InfoPlist.xcstrings`.
+Use `KVIL_SCENARIO=home`, `open`, `reflection`, `reflectionDayOff`, `reflectionOvernight`, `dayOff`, `upcomingDayOff`, `history`, or `onboarding` in Debug to explore the production views without touching real storage, Health, purchases, notifications, Live Activities, or iCloud. Scenarios are compiled out of Release. UI copy lives in the shared English/Norwegian String Catalog. Swift code uses Xcode-generated symbols such as `Text(.cancel)` and `String(localized: .saveFailed)`; Xcode generates them during the build. Health permission descriptions live in `ios/KvilApp/Supporting/InfoPlist.xcstrings`.
 
 Add or update copy with `./scripts/xcstrings-set cancel --comment "Dismiss without saving" --en "Cancel" --nb "Avbryt"`, or use Xcode's catalog editor. The helper marks other translations `needs_review` when English or Norwegian changes. When editing source copy in Xcode, mark affected translations for review yourself. Run `python3 scripts/validate-localization.py` to check English/Norwegian completeness and compile both catalogs without writing generated source.
 
@@ -29,18 +35,20 @@ The API translator is adapted from Tidex and is reserved for when the app's copy
 - `ios/SharedWidget`: the common timeline provider and widget presentation.
 - `ios/KvilApp/Features`: Home, Schedule, History, Weight, Onboarding, Settings, Purchase.
 - `ios/KvilApp/Storage`: the single SwiftData container and transactional local repository.
-- `ios/KvilApp/Services`: UserNotifications, HealthKit, StoreKit, and iCloud schedule preferences.
+- `ios/KvilApp/Services`: UserNotifications, HealthKit, StoreKit, ActivityKit, App Intents, and iCloud schedule preferences.
 - `ios/KvilApp/App`: composition, observable presentation state, lifecycle, and scenarios.
 
-Dates are derived from wall-clock schedule values with a Gregorian calendar in the device time zone. Overnight windows belong to their opening day. Windows are half-open; an opening instant is open and a closing instant is closed. One engine supplies phone, Watch, reminders, and widget transitions. Weekly edits begin tomorrow; today's override is immediate. History reflects the person's answers, not inferred adherence.
+Dates are derived from wall-clock schedule values with a Gregorian calendar in the device time zone. Overnight windows belong to their opening day. Windows are half-open; an opening instant is open and a closing instant is closed. One engine supplies phone, Watch, reminders, and widget transitions. Weekly edits begin tomorrow; today's override is immediate. Days off are unrestricted local dates; a break's resume date is the first day using the usual schedule again. Overnight windows stop at the start of a day off. History reflects the person's answers, not inferred adherence.
 
 ## Data and integrations
 
 SwiftData is local and explicitly disables automatic CloudKit mirroring. The protected local store and derived snapshots are excluded from automatic backup. Free JSON export/import supplies local-history recovery; imports validate before replacing any records.
 
-Only schedule configuration uses native iCloud key-value synchronization. Per-day timestamps merge edits, dated override tombstones preserve deletion, and a reset marker prevents erased schedules from reappearing from an offline device. Apple Health owns weight synchronization; reflections never enter the schedule payload. iCloud transmission is eventual, and enabling sync is not proof of server delivery.
+Only schedule configuration, including days off and dated breaks, uses native iCloud key-value synchronization. Per-day timestamps merge edits, override/break tombstones preserve deletion, and a reset marker prevents erased schedules from reappearing from an offline device. Reported plan answers, approximate meal times, feelings, and notes stay in local reflection storage and explicit JSON backups; they never enter the schedule payload or Apple Health. Apple Health owns weight synchronization. iCloud transmission is eventual, and enabling sync is not proof of server delivery.
 
-Opening/closing reminders use a rolling queue of about four weeks, renewed whenever the app runs. Background refresh is opportunistic. Settings exposes the scheduled-through date. There are no reflection notifications. The phone owns reminder delivery and normal Watch routing.
+Opening/closing reminders use a rolling queue of about four weeks, renewed whenever the app runs. Schedule edits recalculate their selected advance timing, and days off suppress delivery. Background refresh is opportunistic. Settings exposes the scheduled-through date. There are no reflection notifications. The phone owns reminder delivery and normal Watch routing.
+
+Live Activities are off by default. When enabled, Kvil can start one while the app is active and the next opening is within eight hours. They update as the app runs and show a refresh state when stale. There is no server push or guaranteed background start; widgets remain available for ongoing schedule access. Physical-device notification, Siri, and Live Activity behavior require separate verification from simulator and unit tests.
 
 The Watch persists a validated schedule in its own App Group and calculates locally without the phone. WatchConnectivity transfers the latest configuration; App Groups do not transport data between devices. Widget countdowns are bounded and timelines include opening/closing transitions.
 

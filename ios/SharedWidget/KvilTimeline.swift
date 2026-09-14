@@ -23,6 +23,13 @@ struct KvilTimelineProvider: TimelineProvider {
     let end = now.addingTimeInterval(48 * 3600)
     var dates = Set(
       stride(from: 0, through: 48 * 3600, by: 1800).map { now.addingTimeInterval(Double($0)) })
+    // Unrestricted days begin and end at local midnight, even without a meal window.
+    for offset in 1...3 {
+      if let day = engine.calendar.date(byAdding: .day, value: offset, to: now) {
+        let boundary = engine.calendar.startOfDay(for: day)
+        if boundary <= end { dates.insert(boundary) }
+      }
+    }
     for window in engine.windows(around: now, daysBefore: 1, daysAfter: 3) {
       for date in [window.opening, window.closing] where date > now && date <= end {
         dates.insert(date)
@@ -62,75 +69,81 @@ struct KvilWidgetView: View {
   var body: some View {
     Group {
       if let state = entry.state {
-        switch family {
-        case .accessoryInline:
-          if state.isOpen {
-            Text(.widgetWindowOpen)
-          } else {
-            Text(
-              verbatim: String(localized: .opensAtPrefix)
-                + state.next.opening.formatted(.dateTime.hour().minute()))
-          }
-        case .accessoryCircular:
-          ZStack {
-            AccessoryWidgetBackground()
-            OpenArc(progress: state.progress).stroke(
-              .primary, style: StrokeStyle(lineWidth: 3, lineCap: .round)
-            ).padding(5)
-            VStack(spacing: 0) {
-              Image(systemName: state.isOpen ? "sun.max" : "leaf")
-                .font(.caption2).accessibilityHidden(true)
-              if state.isOpen {
-                Text(.openShort).font(.caption2)
-              } else {
-                countdown(state).font(.system(.caption2, design: .rounded))
-              }
-            }.lineLimit(1).minimumScaleFactor(0.4).padding(12)
-          }
-        case .accessoryRectangular:
-          VStack(alignment: .leading, spacing: 2) {
-            Label(
-              state.isOpen ? .widgetWindowOpen : .untilOpening,
-              systemImage: state.isOpen ? "sun.max" : "leaf"
-            ).font(.caption).fontWeight(.semibold)
-            if let active = state.active {
-              HStack(spacing: 3) {
-                Text(active.opening, format: .dateTime.hour().minute())
-                Text(verbatim: "–")
-                Text(active.closing, format: .dateTime.hour().minute())
-              }.font(.subheadline).monospacedDigit()
-                .accessibilityElement(children: .combine)
-              if !Calendar.current.isDate(active.opening, inSameDayAs: active.closing) {
-                Text(.nextDayShort).font(.caption2)
-              }
-            } else {
-              countdown(state).font(.system(.title2, design: .rounded))
+        if state.isDayOff || state.upcomingDayOff != nil
+          || (state.active == nil && state.next == nil)
+        {
+          dayOff(state)
+        } else {
+          switch family {
+          case .accessoryInline:
+            if state.isOpen {
+              Text(.widgetWindowOpen)
+            } else if let next = state.next {
               Text(
                 verbatim: String(localized: .opensAtPrefix)
-                  + state.next.opening.formatted(.dateTime.hour().minute())
-              ).font(.caption2)
+                  + next.opening.formatted(.dateTime.hour().minute()))
             }
-          }.lineLimit(1).minimumScaleFactor(0.65)
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
-        default:
-          VStack(alignment: .leading, spacing: 10) {
-            HStack(spacing: 5) {
-              Image(systemName: state.isOpen ? "sun.max" : "leaf")
-              Text(verbatim: "kvil").font(.system(.subheadline, design: .serif))
-            }.font(.caption).foregroundStyle(secondaryColor)
-            if state.isOpen {
-              Text(.windowOpen).font(.system(.title2, design: .serif))
-            } else {
-              countdown(state).font(.system(.largeTitle, design: .rounded, weight: .light))
-                .minimumScaleFactor(0.75)
+          case .accessoryCircular:
+            ZStack {
+              AccessoryWidgetBackground()
+              OpenArc(progress: state.progress).stroke(
+                .primary, style: StrokeStyle(lineWidth: 3, lineCap: .round)
+              ).padding(5)
+              VStack(spacing: 0) {
+                Image(systemName: state.isOpen ? "sun.max" : "leaf")
+                  .font(.caption2).accessibilityHidden(true)
+                if state.isOpen {
+                  Text(.openShort).font(.caption2)
+                } else {
+                  countdown(state).font(.system(.caption2, design: .rounded))
+                }
+              }.lineLimit(1).minimumScaleFactor(0.4).padding(12)
             }
-            if let active = state.active {
-              WindowTimeLabel(window: active).font(.caption)
-            } else {
-              Text(.untilEatingWindow).font(.caption).foregroundStyle(secondaryColor)
-              Text(state.next.opening, format: .dateTime.hour().minute()).font(.caption)
-            }
-          }.frame(maxWidth: .infinity, alignment: .leading)
+          case .accessoryRectangular:
+            VStack(alignment: .leading, spacing: 2) {
+              Label(
+                state.isOpen ? .widgetWindowOpen : .untilOpening,
+                systemImage: state.isOpen ? "sun.max" : "leaf"
+              ).font(.caption).fontWeight(.semibold)
+              if let active = state.active {
+                HStack(spacing: 3) {
+                  Text(active.opening, format: .dateTime.hour().minute())
+                  Text(verbatim: "–")
+                  Text(active.closing, format: .dateTime.hour().minute())
+                }.font(.subheadline).monospacedDigit()
+                  .accessibilityElement(children: .combine)
+                if !Calendar.current.isDate(active.opening, inSameDayAs: active.closing) {
+                  Text(.nextDayShort).font(.caption2)
+                }
+              } else if let next = state.next {
+                countdown(state).font(.system(.title2, design: .rounded))
+                Text(
+                  verbatim: String(localized: .opensAtPrefix)
+                    + next.opening.formatted(.dateTime.hour().minute())
+                ).font(.caption2)
+              }
+            }.lineLimit(1).minimumScaleFactor(0.65)
+              .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+          default:
+            VStack(alignment: .leading, spacing: 10) {
+              HStack(spacing: 5) {
+                Image(systemName: state.isOpen ? "sun.max" : "leaf")
+                Text(verbatim: "kvil").font(.system(.subheadline, design: .serif))
+              }.font(.caption).foregroundStyle(secondaryColor)
+              if state.isOpen {
+                Text(.windowOpen).font(.system(.title2, design: .serif))
+              } else {
+                countdown(state).font(.system(.largeTitle, design: .rounded, weight: .light))
+                  .minimumScaleFactor(0.75)
+              }
+              if let active = state.active {
+                WindowTimeLabel(window: active).font(.caption)
+              } else if let next = state.next {
+                Text(.untilEatingWindow).font(.caption).foregroundStyle(secondaryColor)
+                Text(next.opening, format: .dateTime.hour().minute()).font(.caption)
+              }
+            }.frame(maxWidth: .infinity, alignment: .leading)
+          }
         }
       } else {
         if family == .accessoryInline {
@@ -170,10 +183,44 @@ struct KvilWidgetView: View {
   private var secondaryColor: Color {
     usesPhotoBackground ? .kvilOnPhotoSecondary : .secondary
   }
-  private func countdown(_ state: ScheduleState) -> some View {
-    Text(
-      timerInterval: entry.date...max(entry.date, state.next.opening), countsDown: true,
-      showsHours: true
-    ).monospacedDigit()
+  @ViewBuilder private func countdown(_ state: ScheduleState) -> some View {
+    if let next = state.next {
+      Text(
+        timerInterval: entry.date...max(entry.date, next.opening), countsDown: true,
+        showsHours: true
+      ).monospacedDigit()
+    }
+  }
+  @ViewBuilder private func dayOff(_ state: ScheduleState) -> some View {
+    if family == .accessoryInline {
+      if let starts = state.upcomingDayOff {
+        Text(
+          verbatim: String(localized: .daysOffStart) + " "
+            + starts.formatted(.dateTime.weekday(.abbreviated).month(.abbreviated).day()))
+      } else {
+        Text(.dayOff)
+      }
+    } else if family == .accessoryCircular {
+      ZStack {
+        AccessoryWidgetBackground()
+        Image(systemName: "sun.max")
+          .accessibilityLabel(state.upcomingDayOff == nil ? .dayOff : .daysOffStart)
+      }
+    } else {
+      VStack(alignment: .leading, spacing: 6) {
+        Label(state.upcomingDayOff == nil ? .dayOff : .daysOffStart, systemImage: "sun.max")
+          .font(family == .accessoryRectangular ? .headline : .system(.title2, design: .serif))
+        if let starts = state.upcomingDayOff {
+          Text(starts, format: .dateTime.weekday(.abbreviated).month(.abbreviated).day())
+            .font(.caption)
+        } else if let resumes = state.resumesAt {
+          Text(.scheduleResumes).font(.caption).foregroundStyle(secondaryColor)
+          Text(resumes, format: .dateTime.weekday(.abbreviated).month(.abbreviated).day())
+            .font(.caption)
+        } else {
+          Text(.noWindowPlanned).font(.caption).foregroundStyle(secondaryColor)
+        }
+      }.frame(maxWidth: .infinity, alignment: .leading)
+    }
   }
 }

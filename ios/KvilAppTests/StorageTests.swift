@@ -25,7 +25,8 @@ import XCTest
     XCTAssertTrue(model.setEatingWindowOpen(true))
     XCTAssertTrue(try XCTUnwrap(model.engine.state(at: model.now)).isOpen)
     XCTAssertEqual(try model.store.load(), model.data)
-    XCTAssertEqual(try ScheduleMerge.merge(original.schedule, model.data.schedule), model.data.schedule)
+    XCTAssertEqual(
+      try ScheduleMerge.merge(original.schedule, model.data.schedule), model.data.schedule)
     let open = model.data.schedule
     XCTAssertTrue(model.setEatingWindowOpen(false))
     XCTAssertFalse(try XCTUnwrap(model.engine.state(at: model.now)).isOpen)
@@ -39,9 +40,9 @@ import XCTest
     XCTAssertNil(restored.earlyBreak(at: model.now))
     XCTAssertFalse(try XCTUnwrap(restored.state(at: model.now)).isOpen)
     XCTAssertEqual(
-      restored.state(at: model.now)?.next.opening,
+      restored.state(at: model.now)?.next?.opening,
       ScheduleEngine(snapshot: original.schedule, calendar: model.calendar)
-        .state(at: model.now)?.next.opening)
+        .state(at: model.now)?.next?.opening)
     XCTAssertEqual(try ScheduleMerge.merge(open, reloaded.schedule), reloaded.schedule)
     XCTAssertEqual(try ScheduleMerge.merge(reloaded.schedule, closed), reloaded.schedule)
     XCTAssertEqual(model.data.reflections, original.reflections)
@@ -74,7 +75,8 @@ import XCTest
     XCTAssertEqual(model.engine.plan(on: tomorrow)?.opens, days[index].opens)
     XCTAssertEqual(model.engine.plan(on: tomorrow)?.closes, days[index].closes)
     XCTAssertEqual(try model.store.load(), model.data)
-    XCTAssertEqual(try ScheduleMerge.merge(original.schedule, model.data.schedule), model.data.schedule)
+    XCTAssertEqual(
+      try ScheduleMerge.merge(original.schedule, model.data.schedule), model.data.schedule)
 
     for day in days.indices {
       days[day].opens = days[index].opens
@@ -82,9 +84,10 @@ import XCTest
     }
     XCTAssertTrue(model.saveWeek(days))
     XCTAssertEqual(model.engine.window(on: model.now), today)
-    XCTAssertTrue(try XCTUnwrap(model.data.schedule.versions.last).days.allSatisfy {
-      $0.opens == WallTime(hour: 22, minute: 15) && $0.closes == WallTime(hour: 6, minute: 45)
-    })
+    XCTAssertTrue(
+      try XCTUnwrap(model.data.schedule.versions.last).days.allSatisfy {
+        $0.opens == WallTime(hour: 22, minute: 15) && $0.closes == WallTime(hour: 6, minute: 45)
+      })
     let saved = model.data
     days[index].closes = days[index].opens
     XCTAssertFalse(model.saveWeek(days))

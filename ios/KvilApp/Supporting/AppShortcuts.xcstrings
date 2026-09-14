@@ -1,0 +1,42 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "When does my eating window open in ${applicationName}" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "When does my eating window open in ${applicationName}"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Når åpner spisevinduet mitt i ${applicationName}"
+          }
+        }
+      },
+      "comment" : "Siri invocation phrase for the next opening. Preserve the applicationName token."
+    },
+    "Open my plan in ${applicationName}" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open my plan in ${applicationName}"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Åpne planen min i ${applicationName}"
+          }
+        }
+      },
+      "comment" : "Siri invocation phrase for opening the plan. Preserve the applicationName token."
+    }
+  },
+  "version" : "1.0"
+}

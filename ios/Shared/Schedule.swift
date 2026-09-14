@@ -21,7 +21,10 @@ struct DayPlan: Codable, Equatable, Sendable, Identifiable {
   var modifiedAt: Date? = nil
   var opens: WallTime
   var closes: WallTime
+  // Optional so backups made before days off still decode.
+  var dayOff: Bool? = nil
   var id: Int { weekday }
+  var isDayOff: Bool { dayOff == true }
   var overnight: Bool { closes < opens }
   var windowMinutes: Int { (closes.minute - opens.minute + 1440) % 1440 }
 
@@ -80,11 +83,12 @@ struct EatingWindow: Equatable, Sendable, Identifiable {
 }
 
 struct ScheduleSnapshot: Codable, Equatable, Sendable {
-  var schema = 1
+  var schema = 2
   var revision: Date
   var versions: [ScheduleVersion]
   var overrides: [DayOverride]
   var resetAt: Date? = nil
+  var breaks: [ScheduleBreak]? = nil
   func forDisplay(now: Date, calendar: Calendar) -> Self {
     let start = calendar.date(byAdding: .day, value: -3, to: now) ?? now
     let key = LocalDay.key(start, calendar: calendar)
@@ -92,6 +96,7 @@ struct ScheduleSnapshot: Codable, Equatable, Sendable {
     var copy = self
     copy.versions = (base.map { [$0] } ?? []) + versions.filter { $0.effectiveDay > key }
     copy.overrides = overrides.filter { $0.closing >= start }
+    copy.breaks = breaks?.filter { $0.resumeDay > key }
     return copy
   }
   static let empty = ScheduleSnapshot(revision: .distantPast, versions: [], overrides: [])
@@ -125,9 +130,12 @@ enum LocalDay {
 
 struct ScheduleState: Sendable {
   var active: EatingWindow?
-  var next: EatingWindow
+  var next: EatingWindow?
   var previousClose: Date
   var progress: Double
+  var isDayOff: Bool = false
+  var resumesAt: Date? = nil
+  var upcomingDayOff: Date? = nil
   var isOpen: Bool { active != nil }
 }
 
@@ -145,20 +153,22 @@ struct ScheduleEngine: Sendable {
 
   func window(on date: Date) -> EatingWindow? {
     let day = calendar.startOfDay(for: date)
+    guard !isDayOff(on: day) else { return nil }
     let key = LocalDay.key(day, calendar: calendar)
     if let override = snapshot.overrides.first(where: {
       $0.dayKey == key && $0.timeZoneID == calendar.timeZone.identifier && $0.deleted != true
     }) {
-      return override.window
+      return restrictingToScheduledDays(override.window)
     }
     guard let p = plan(on: day), p.opens != p.closes,
       let opening = p.opens.date(on: day, calendar: calendar),
       let closeDay = calendar.date(byAdding: .day, value: p.overnight ? 1 : 0, to: day),
       let closing = p.closes.date(on: closeDay, calendar: calendar), closing > opening
     else { return nil }
-    return EatingWindow(
-      dayKey: key, timeZoneID: calendar.timeZone.identifier, opening: opening, closing: closing,
-      isOverride: false)
+    return restrictingToScheduledDays(
+      EatingWindow(
+        dayKey: key, timeZoneID: calendar.timeZone.identifier, opening: opening, closing: closing,
+        isOverride: false))
   }
 
   func windows(around now: Date, daysBefore: Int = 2, daysAfter: Int = 8) -> [EatingWindow] {
@@ -174,54 +184,72 @@ struct ScheduleEngine: Sendable {
       else { continue }
       let currentKey = LocalDay.key(item.window.opening, calendar: calendar)
       result.removeAll { $0.dayKey == currentKey || $0.dayKey == item.dayKey }
-      result.append(item.window)
+      guard let origin = LocalDay.date(item.dayKey, calendar: calendar), !isDayOff(on: origin),
+        let restricted = restrictingToScheduledDays(item.window)
+      else { continue }
+      result.append(restricted)
     }
     return result.sorted { $0.opening < $1.opening }
   }
 
   func state(at now: Date) -> ScheduleState? {
-    let windows = windows(around: now)
-    guard let next = windows.first(where: { $0.opening > now && $0.closing > $0.opening }) else {
-      return nil
+    guard plan(on: now) != nil else { return nil }
+    let windows = windows(around: now, daysBefore: 8)
+    let next = nextWindow(after: now)
+    let off = isDayOff(on: now)
+    if off {
+      return ScheduleState(
+        active: nil, next: next, previousClose: calendar.startOfDay(for: now), progress: 0,
+        isDayOff: true, resumesAt: next.map { calendar.startOfDay(for: $0.opening) })
     }
     let active = windows.first { $0.contains(now) }
-    let previousClose =
-      windows.last(where: { $0.closing <= now })?.closing ?? calendar.startOfDay(for: now)
+    let upcomingDayOff = active == nil ? nextDayOff(after: now, before: next?.opening) : nil
+    let previousClose = max(
+      windows.last(where: { $0.closing <= now })?.closing ?? calendar.startOfDay(for: now),
+      latestDayOffEnd(before: now) ?? .distantPast)
     let progress: Double
     if let active {
       let length = active.closing.timeIntervalSince(active.opening)
       progress = min(1, max(0, active.closing.timeIntervalSince(now) / length))
-    } else {
+    } else if let next, upcomingDayOff == nil {
       let length = next.opening.timeIntervalSince(previousClose)
       progress = min(1, max(0, length > 0 ? now.timeIntervalSince(previousClose) / length : 0))
+    } else {
+      progress = 0
     }
     return ScheduleState(
-      active: active, next: next, previousClose: previousClose, progress: progress)
+      active: active, next: next, previousClose: previousClose, progress: progress,
+      upcomingDayOff: upcomingDayOff)
   }
 
   func settingEatingWindowOpen(_ isOpen: Bool, at now: Date, modifiedAt: Date) throws
     -> ScheduleSnapshot
   {
     try validate(near: now)
-    guard let state = state(at: now) else { throw ScheduleError.invalidDate }
+    guard let state = state(at: now), !state.isDayOff else { throw ScheduleError.invalidDate }
     guard state.isOpen != isOpen else { return snapshot }
     let window: EatingWindow
     if isOpen {
       // Reopening a window that was closed manually must not pull in the following day.
-      window = snapshot.overrides.first {
-        $0.deleted != true && $0.adjustedClosing != nil
-          && $0.window.opening <= now && now < $0.closing
-      }?.window ?? state.next
+      guard
+        let openingWindow = snapshot.overrides.first(where: {
+          $0.deleted != true && $0.adjustedClosing != nil
+            && $0.window.opening <= now && now < $0.closing
+        })?.window ?? state.next
+      else { throw ScheduleError.invalidDate }
+      window = openingWindow
     } else if let active = state.active {
       window = active
     } else {
       throw ScheduleError.invalidDate
     }
-    var item = snapshot.overrides.first {
-      $0.dayKey == window.dayKey && $0.timeZoneID == window.timeZoneID && $0.deleted != true
-    } ?? DayOverride(
-      dayKey: window.dayKey, timeZoneID: window.timeZoneID,
-      opening: window.opening, closing: window.closing)
+    var item =
+      snapshot.overrides.first {
+        $0.dayKey == window.dayKey && $0.timeZoneID == window.timeZoneID && $0.deleted != true
+      }
+      ?? DayOverride(
+        dayKey: window.dayKey, timeZoneID: window.timeZoneID,
+        opening: window.opening, closing: window.closing)
     if isOpen {
       item.adjustedOpening = now
       item.adjustedClosing = nil
@@ -238,7 +266,8 @@ struct ScheduleEngine: Sendable {
   }
 
   func earlyBreak(at now: Date) -> DayOverride? {
-    snapshot.overrides.first {
+    guard !isDayOff(on: now) else { return nil }
+    return snapshot.overrides.first {
       $0.deleted != true && $0.adjustedOpening.map { $0 <= now } == true && now < $0.opening
     }
   }
@@ -290,27 +319,41 @@ struct ScheduleEngine: Sendable {
     for index in sorted.indices {
       let current = sorted[index]
       let next = sorted[(index + 1) % 7]
-      if current.overnight && current.closes > next.opens { throw ScheduleError.overlappingWindows }
+      if !current.isDayOff && !next.isDayOff && current.overnight && current.closes > next.opens {
+        throw ScheduleError.overlappingWindows
+      }
     }
   }
 
   func validate(near now: Date) throws {
-    guard snapshot.schema == 1, snapshot.revision.timeIntervalSince1970.isFinite,
-      snapshot.versions.count <= 10000, snapshot.overrides.count <= 10000
+    guard (1...2).contains(snapshot.schema), snapshot.revision.timeIntervalSince1970.isFinite,
+      snapshot.resetAt?.timeIntervalSince1970.isFinite != false,
+      snapshot.versions.count <= 10000, snapshot.overrides.count <= 10000,
+      (snapshot.breaks?.count ?? 0) <= 10000,
+      snapshot.schema == 2
+        || ((snapshot.breaks?.isEmpty ?? true)
+          && !snapshot.versions.flatMap(\.days).contains(where: { $0.dayOff != nil }))
     else { throw ScheduleError.incompatibleData }
     if snapshot.versions.isEmpty {
-      guard snapshot.overrides.isEmpty else { throw ScheduleError.incompatibleData }
+      guard snapshot.overrides.isEmpty, snapshot.breaks?.isEmpty ?? true else {
+        throw ScheduleError.incompatibleData
+      }
       return
     }
     guard Set(snapshot.versions.map(\.effectiveDay)).count == snapshot.versions.count,
-      Set(snapshot.overrides.map(\.id)).count == snapshot.overrides.count
+      Set(snapshot.overrides.map(\.id)).count == snapshot.overrides.count,
+      Set((snapshot.breaks ?? []).map(\.id)).count == (snapshot.breaks?.count ?? 0)
     else { throw ScheduleError.incompatibleData }
     for version in snapshot.versions {
-      guard LocalDay.date(version.effectiveDay, calendar: calendar) != nil else {
+      guard LocalDay.date(version.effectiveDay, calendar: calendar) != nil,
+        version.modifiedAt?.timeIntervalSince1970.isFinite != false,
+        version.days.allSatisfy({ $0.modifiedAt?.timeIntervalSince1970.isFinite != false })
+      else {
         throw ScheduleError.invalidDate
       }
       try Self.validate(days: version.days)
     }
+    for item in snapshot.breaks ?? [] { try item.validate(calendar: calendar) }
     for item in snapshot.overrides {
       guard let zone = TimeZone(identifier: item.timeZoneID) else {
         throw ScheduleError.invalidDate
@@ -318,7 +361,7 @@ struct ScheduleEngine: Sendable {
       let c = LocalDay.calendar(timeZone: zone)
       guard let day = LocalDay.date(item.dayKey, calendar: c),
         LocalDay.key(item.opening, calendar: c) == item.dayKey,
-        item.closing > item.opening,
+        item.closing > item.opening, item.modifiedAt?.timeIntervalSince1970.isFinite != false,
         let end = c.date(byAdding: .day, value: 2, to: day), item.closing < end
       else { throw ScheduleError.invalidTime }
       // An early break may bring the next day's opening into the preceding evening.
@@ -334,6 +377,13 @@ struct ScheduleEngine: Sendable {
     let dates =
       [now] + snapshot.versions.compactMap { LocalDay.date($0.effectiveDay, calendar: calendar) }
       + snapshot.overrides.map(\.opening)
+      + (snapshot.breaks ?? []).flatMap {
+        [
+          LocalDay.date($0.startDay, calendar: calendar),
+          LocalDay.date($0.resumeDay, calendar: calendar),
+        ]
+        .compactMap { $0 }
+      }
     for date in dates {
       let ws = windows(around: date)
       for (a, b) in zip(ws, ws.dropFirst()) where a.closing > b.opening {

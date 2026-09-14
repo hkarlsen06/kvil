@@ -4,13 +4,44 @@
   enum ScenarioData {
     static func make(
       now: Date, calendar: Calendar, openingSoon: Bool = false, closingSoon: Bool = false,
-      progressReturn: Bool = false, weightHistory: Bool = false
+      progressReturn: Bool = false, weightHistory: Bool = false,
+      pendingReflection: Bool = false, reflectionDayOff: Bool = false,
+      reflectionOvernight: Bool = false,
+      dayOff: Bool = false, upcomingDayOff: Bool = false
     ) -> LocalData {
       var value = LocalData()
       value.schedule = ScheduleSnapshot(
         revision: now,
         versions: [ScheduleVersion(effectiveDay: "2026-08-01", days: DayPlan.initial)],
         overrides: [])
+      if reflectionOvernight {
+        value.schedule.versions[0].days = (1...7).map {
+          DayPlan(weekday: $0, opens: WallTime(hour: 22), closes: WallTime(hour: 6))
+        }
+      }
+      if reflectionDayOff, let yesterday = calendar.date(byAdding: .day, value: -1, to: now) {
+        value.schedule.breaks = [
+          ScheduleBreak(
+            startDay: LocalDay.key(yesterday, calendar: calendar),
+            resumeDay: LocalDay.key(now, calendar: calendar), modifiedAt: yesterday)
+        ]
+      }
+      if dayOff, let resume = calendar.date(byAdding: .day, value: 3, to: now) {
+        value.schedule.breaks = [
+          ScheduleBreak(
+            startDay: LocalDay.key(now, calendar: calendar),
+            resumeDay: LocalDay.key(resume, calendar: calendar), modifiedAt: now)
+        ]
+      }
+      if upcomingDayOff, let start = calendar.date(byAdding: .day, value: 1, to: now),
+        let resume = calendar.date(byAdding: .day, value: 3, to: now)
+      {
+        value.schedule.breaks = [
+          ScheduleBreak(
+            startDay: LocalDay.key(start, calendar: calendar),
+            resumeDay: LocalDay.key(resume, calendar: calendar), modifiedAt: now)
+        ]
+      }
       if openingSoon || closingSoon || progressReturn {
         let opening = now.addingTimeInterval(closingSoon ? -3600 : progressReturn ? -10 : 20)
         value.schedule.overrides = [
@@ -25,6 +56,7 @@
       }
       let engine = ScheduleEngine(snapshot: value.schedule, calendar: calendar)
       for offset in 1...35 {
+        if pendingReflection && offset == 1 { continue }
         guard offset % 6 != 0, let day = calendar.date(byAdding: .day, value: -offset, to: now),
           let w = engine.window(on: day)
         else { continue }

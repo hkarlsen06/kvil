@@ -1,5 +1,7 @@
 Kvil market analysis · 14 September 2026
 
+Implementation follow-up, 14 September 2026: priorities 1–5 now have implementations in the working tree, including guided setup, progressive next-day reflections with reported meal estimates and notes, days off and dated breaks, advance reminders, Live Activities, and Siri/Shortcuts. The user chose to retain the iOS 27 and watchOS 27 minimums. See [README](README.md) and [product decisions](MVP_PLAN.md) for current behavior and integration limits. The original pre-implementation assessment below is retained as the research snapshot; its missing-feature descriptions are historical. This update does not establish physical-device or App Store verification.
+
 Kvil has a credible core eating-schedule product. Its largest opportunities are helping people choose a rhythm, making reflections useful over time, and accommodating days when they want no schedule. The strongest competitors provide guidance and feedback around their timers. Kvil can provide those benefits while keeping its quiet character.
 
 This is desk research against the current working tree, based on HEAD `4992c9a` plus existing local changes, including the weight chart work. Competitor evidence comes from current US App Store listings, official product/help pages, and a small amount of customer commentary. Competitor apps and paid flows were not personally tested. Ratings establish useful benchmarks, not market share, clinical effectiveness, retention, or revenue. Recommendations and expected benefits below are product judgments to validate.

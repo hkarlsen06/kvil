@@ -1,3 +1,5 @@
+import ActivityKit
+import AppIntents
 import SwiftUI
 import UserNotifications
 
@@ -33,12 +35,18 @@ struct SettingsView: View {
               get: { model.data.preferences.openingReminder },
               set: { enabled in Task { await model.setReminder(opening: true, enabled: enabled) } })
           )
+          if model.data.preferences.openingReminder {
+            reminderTiming(opening: true)
+          }
           Toggle(
             .closingReminder,
             isOn: Binding(
               get: { model.data.preferences.closingReminder },
               set: { enabled in Task { await model.setReminder(opening: false, enabled: enabled) } }
             ))
+          if model.data.preferences.closingReminder {
+            reminderTiming(opening: false)
+          }
           if model.notificationStatus == .denied {
             Button(.openSystemSettings) {
               if let url = URL(string: "app-settings:") { openURL(url) }
@@ -56,6 +64,25 @@ struct SettingsView: View {
           Text(.reminders)
         } footer: {
           Text(.reminderHorizonHelp)
+        }
+        Section {
+          Toggle(
+            .liveActivities,
+            isOn: Binding(
+              get: { model.data.preferences.liveActivitiesEnabled == true },
+              set: { enabled in model.preferences { $0.liveActivitiesEnabled = enabled } })
+          )
+          .accessibilityIdentifier("liveActivities")
+          if model.data.preferences.liveActivitiesEnabled == true,
+            !ActivityAuthorizationInfo().areActivitiesEnabled
+          {
+            Text(.liveActivitiesDisabled).font(.footnote).foregroundStyle(Color.kvilSecondary)
+            Button(.openSystemSettings) {
+              if let url = URL(string: "app-settings:") { openURL(url) }
+            }
+          }
+        } footer: {
+          Text(.liveActivitiesHelp)
         }
         Section {
           Toggle(.showWeight, isOn: binding(\.weightEnabled))
@@ -98,6 +125,7 @@ struct SettingsView: View {
           Text(.healthSettingsHelp)
         }
         Section {
+          NavigationLink(.fastingGuide) { FastingGuideView() }
           NavigationLink {
             DeviceHelpView()
           } label: {
@@ -200,6 +228,44 @@ struct SettingsView: View {
         }
     }.tint(Color.kvilAccent).modifier(AppMessageModifier())
   }
+  private func reminderTiming(opening: Bool) -> some View {
+    let title: LocalizedStringResource = opening ? .openingReminderTiming : .closingReminderTiming
+    let selection = Binding(
+      get: {
+        (opening
+          ? model.data.preferences.openingReminderLeadMinutes
+          : model.data.preferences.closingReminderLeadMinutes) ?? 0
+      },
+      set: { minutes in
+        model.preferences {
+          if opening {
+            $0.openingReminderLeadMinutes = minutes
+          } else {
+            $0.closingReminderLeadMinutes = minutes
+          }
+        }
+      })
+    let value: LocalizedStringResource =
+      selection.wrappedValue == 15
+      ? .reminderFifteenBefore
+      : selection.wrappedValue == 30 ? .reminderThirtyBefore : .reminderAtTime
+    return KvilControlRow(title: title) {
+      Menu {
+        Picker(title, selection: selection) {
+          Text(.reminderAtTime).tag(0)
+          Text(.reminderFifteenBefore).tag(15)
+          Text(.reminderThirtyBefore).tag(30)
+        }
+      } label: {
+        HStack(spacing: 6) {
+          Text(value).fixedSize(horizontal: false, vertical: true)
+          Image(systemName: "chevron.up.chevron.down").imageScale(.small)
+        }.multilineTextAlignment(.leading).frame(minHeight: 44)
+      }
+      .accessibilityLabel(title).accessibilityValue(Text(value))
+      .accessibilityIdentifier(opening ? "openingReminderTiming" : "closingReminderTiming")
+    }
+  }
   private func binding(_ key: WritableKeyPath<Preferences, Bool>) -> Binding<Bool> {
     Binding(
       get: { model.data.preferences[keyPath: key] },
@@ -224,6 +290,12 @@ struct DeviceHelpView: View {
         Text(.watchHelp)
       } header: {
         Label(.appleWatch, systemImage: "applewatch")
+      }
+      Section {
+        Text(.shortcutsHelp)
+        ShortcutsLink()
+      } header: {
+        Label(.siriAndShortcuts, systemImage: "waveform")
       }
     }.scrollContentBackground(.hidden).background(Color.kvilCanvas).navigationTitle(
       .watchAndWidgets)

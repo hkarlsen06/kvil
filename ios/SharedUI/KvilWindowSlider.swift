@@ -7,7 +7,7 @@
     var title: String
     var value: String
     var onMove: (DayPlan, DayPlan) -> Void
-    var onEdit: () -> Void
+    var onEdit: (() -> Void)? = nil
     var onPreview: (DayPlan?) -> Void
     @State private var origin: DayPlan?
     @State private var preview: DayPlan?
@@ -53,7 +53,9 @@
           @unknown default: break
           }
         }
-        .accessibilityAction(named: Text(.editWindowTimes)) { onEdit() }
+        .accessibilityActions {
+          if let onEdit { Button(.editWindowTimes, action: onEdit) }
+        }
         .sensoryFeedback(.selection, trigger: preview?.opens.minute)
     }
   }

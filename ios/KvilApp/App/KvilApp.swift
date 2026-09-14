@@ -44,6 +44,13 @@ import SwiftUI
         .onChange(of: scenePhase) { _, phase in
           if phase == .active { Task { await model?.refresh() } }
         }
+        .task(id: scenePhase) {
+          guard scenePhase == .active else { return }
+          while !Task.isCancelled {
+            await model?.refreshLiveActivity()
+            do { try await Task.sleep(for: .seconds(60)) } catch { return }
+          }
+        }
     }
   }
   private func load() {
@@ -92,6 +99,12 @@ struct RootView: View {
       .task {
         await model.refresh()
         await model.purchases.load()
+      }
+      .onChange(of: KvilIntentNavigation.shared.showPlan, initial: true) { _, show in
+        if show {
+          model.selectedTab = .schedule
+          KvilIntentNavigation.shared.showPlan = false
+        }
       }
       .onOpenURL { url in
         guard url.scheme == "kvil" else { return }

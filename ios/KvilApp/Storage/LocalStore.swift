@@ -41,6 +41,7 @@ import SwiftData
   var revision: Date
   var resetAt: Date?
   var healthAnchor: Data?
+  var scheduleBreaks: Data?
   init(_ value: Preferences, revision: Date) throws {
     id = "preferences"
     payload = try JSONEncoder().encode(value)
@@ -49,7 +50,7 @@ import SwiftData
 }
 
 struct LocalData: Codable, Equatable {
-  var formatVersion = 1
+  var formatVersion = 2
   var schedule: ScheduleSnapshot = .empty
   var reflections: [Reflection] = []
   var weights: [WeightEntry] = []
@@ -57,23 +58,19 @@ struct LocalData: Codable, Equatable {
   var healthAnchor: Data?
 
   func validated(now: Date = Date()) throws -> Self {
-    guard formatVersion == 1, reflections.count <= 100_000, weights.count <= 100_000,
+    guard (1...2).contains(formatVersion), reflections.count <= 100_000, weights.count <= 100_000,
       schedule.versions.count <= 10_000, schedule.overrides.count <= 10_000
     else { throw ScheduleError.incompatibleData }
-    if !schedule.versions.isEmpty {
-      try ScheduleEngine(snapshot: schedule, calendar: LocalDay.calendar()).validate(near: now)
-    }
+    try ScheduleEngine(snapshot: schedule, calendar: LocalDay.calendar()).validate(near: now)
     guard Set(reflections.map(\.id)).count == reflections.count,
       Set(weights.map(\.id)).count == weights.count,
-      weights.allSatisfy(\.isValid)
+      weights.allSatisfy(\.isValid), reflections.allSatisfy(\.isValid),
+      [0, 15, 30].contains(preferences.openingReminderLeadMinutes ?? 0),
+      [0, 15, 30].contains(preferences.closingReminderLeadMinutes ?? 0)
     else { throw ScheduleError.incompatibleData }
-    for r in reflections {
-      guard let zone = TimeZone(identifier: r.timeZoneID),
-        LocalDay.date(r.dayKey, calendar: LocalDay.calendar(timeZone: zone)) != nil,
-        r.closing > r.opening, r.updatedAt.timeIntervalSince1970.isFinite
-      else { throw ScheduleError.incompatibleData }
-    }
     var result = self
+    result.formatVersion = 2
+    result.schedule.schema = 2
     result.schedule.versions.sort { $0.effectiveDay < $1.effectiveDay }
     result.schedule.overrides.sort { $0.id < $1.id }
     result.reflections.sort { $0.id > $1.id }
@@ -127,7 +124,10 @@ struct LocalData: Codable, Equatable {
         },
         overrides: context.fetch(FetchDescriptor<StoredOverride>()).map {
           try decoder.decode(DayOverride.self, from: $0.payload)
-        }, resetAt: settings?.resetAt),
+        }, resetAt: settings?.resetAt,
+        breaks: try settings?.scheduleBreaks.map {
+          try decoder.decode([ScheduleBreak].self, from: $0)
+        }),
       reflections: context.fetch(FetchDescriptor<StoredReflection>()).map {
         try decoder.decode(Reflection.self, from: $0.payload)
       },
@@ -194,10 +194,12 @@ struct LocalData: Codable, Equatable {
         settings.revision = value.schedule.revision
         settings.resetAt = value.schedule.resetAt
         settings.healthAnchor = value.healthAnchor
+        settings.scheduleBreaks = try value.schedule.breaks.map { try JSONEncoder().encode($0) }
       } else {
         let row = try StoredSettings(value.preferences, revision: value.schedule.revision)
         row.resetAt = value.schedule.resetAt
         row.healthAnchor = value.healthAnchor
+        row.scheduleBreaks = try value.schedule.breaks.map { try JSONEncoder().encode($0) }
         context.insert(row)
       }
       try context.save()

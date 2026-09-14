@@ -5,6 +5,7 @@ import UserNotifications
 struct ReminderEvent: Equatable, Sendable, Identifiable {
   var date: Date
   var opening: Bool
+  var leadMinutes: Int = 0
   var id: String { "kvil.\(opening ? "open" : "close").\(Int(date.timeIntervalSince1970))" }
 }
 struct ReminderPlan: Sendable {
@@ -14,15 +15,25 @@ struct ReminderPlan: Sendable {
     snapshot: ScheduleSnapshot, preferences: Preferences, now: Date, calendar: Calendar
   ) -> Self {
     let horizon = calendar.date(byAdding: .day, value: 27, to: calendar.startOfDay(for: now)) ?? now
-    let events = ScheduleEngine(snapshot: snapshot, calendar: calendar).windows(
+    let engine = ScheduleEngine(snapshot: snapshot, calendar: calendar)
+    let openingLead = preferences.openingReminderLeadMinutes ?? 0
+    let closingLead = preferences.closingReminderLeadMinutes ?? 0
+    let events = engine.windows(
       around: now, daysBefore: 1, daysAfter: 28
     ).flatMap { w in
       [
-        ReminderEvent(date: w.opening, opening: true),
-        ReminderEvent(date: w.closing, opening: false),
+        ReminderEvent(
+          date: w.opening.addingTimeInterval(-Double(openingLead * 60)), opening: true,
+          leadMinutes: openingLead),
+        ReminderEvent(
+          date: w.closing.addingTimeInterval(-Double(closingLead * 60)), opening: false,
+          leadMinutes: closingLead),
       ]
     }.filter {
       $0.date > now && $0.date <= horizon
+        // A day off has no reminder, including an overnight window clipped at midnight.
+        && !engine.isDayOff(on: $0.date)
+        && !engine.isDayOff(on: $0.date.addingTimeInterval(Double($0.leadMinutes * 60)))
         && ($0.opening ? preferences.openingReminder : preferences.closingReminder)
     }
     return Self(events: events.sorted { $0.date < $1.date }, scheduledThrough: horizon)
@@ -57,10 +68,18 @@ actor ReminderService {
     for event in plan.events {
       try Task.checkCancellation()
       let content = UNMutableNotificationContent()
-      content.title = String(
-        localized: event.opening ? .reminderOpenTitle : .reminderCloseTitle)
-      content.body = String(
-        localized: event.opening ? .reminderOpenBody : .reminderCloseBody)
+      if event.leadMinutes > 0 {
+        content.title = String(
+          localized: event.opening ? .reminderOpeningSoon : .reminderClosingSoon)
+        content.body = String(
+          localized: event.opening
+            ? .reminderOpensIn(event.leadMinutes) : .reminderClosesIn(event.leadMinutes))
+      } else {
+        content.title = String(
+          localized: event.opening ? .reminderOpenTitle : .reminderCloseTitle)
+        content.body = String(
+          localized: event.opening ? .reminderOpenBody : .reminderCloseBody)
+      }
       content.sound = .default
       var components = calendar.dateComponents(
         [.year, .month, .day, .hour, .minute, .second], from: event.date)

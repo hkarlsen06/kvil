@@ -7,7 +7,7 @@ struct HomeView: View {
   @State private var actionFeedback = 0
   @State private var editingToday = false
   @State private var loggingWeight = false
-  @State private var reflecting: EatingWindow?
+  @State private var reflecting: Reflection?
   @State private var landscapeReveal: CGFloat = 0
 
   var body: some View {
@@ -15,11 +15,7 @@ struct HomeView: View {
     TimelineView(.periodic(from: Date(timeIntervalSinceReferenceDate: 0), by: 1)) { _ in
       let now = model.now
       let state = model.engine.state(at: now)
-      let eligible = model.engine.eligibleReflections(at: now).first { window in
-        !model.data.reflections.contains {
-          $0.dayKey == window.dayKey && $0.timeZoneID == window.timeZoneID
-        }
-      }
+      let eligible = model.yesterdayReflection
       ViewThatFits(in: .vertical) {
         content(state: state, now: now, eligible: eligible, compact: false)
         content(state: state, now: now, eligible: eligible, compact: true)
@@ -38,7 +34,8 @@ struct HomeView: View {
             // Keep the boat above the tab bar, even when larger text leaves less water visible.
             let boatBottom = max(boatTop, safeGeometry.size.height - horizon - 12)
             HomeLandscapeView(
-              isOpen: state?.isOpen == true, isSelected: model.selectedTab == .home,
+              isOpen: state?.isOpen == true || state?.isDayOff == true,
+              isSelected: model.selectedTab == .home,
               presentationID: model.homePresentationID, boatArea: boatTop...boatBottom,
               reveal: $landscapeReveal
             )
@@ -67,30 +64,11 @@ struct HomeView: View {
     }.navigationBarTitleDisplayMode(.inline)
       .sheet(isPresented: $editingToday) { ScheduleEditor() }
       .sheet(isPresented: $loggingWeight) { WeightEditor() }
-      .sheet(item: $reflecting) { window in
-        NavigationStack {
-          ScrollView {
-            ReflectionPrompt(window: window).padding(KvilStyle.page)
-          }.background(Color.kvilCanvas)
-            .navigationTitle(.yourReflections).navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-              ToolbarItem(placement: .confirmationAction) {
-                Button(.done) { reflecting = nil }
-              }
-            }
-        }.modifier(AppMessageModifier())
-          .onChange(of: model.data.reflections) { _, reflections in
-            if reflections.contains(where: {
-              $0.dayKey == window.dayKey && $0.timeZoneID == window.timeZoneID
-            }) {
-              reflecting = nil
-            }
-          }
-      }
+      .sheet(item: $reflecting) { ReflectionFlowView(reflection: $0) }
   }
 
   private func content(
-    state: ScheduleState?, now: Date, eligible: EatingWindow?, compact: Bool
+    state: ScheduleState?, now: Date, eligible: Reflection?, compact: Bool
   ) -> some View {
     VStack(spacing: 0) {
       Text(
@@ -104,7 +82,7 @@ struct HomeView: View {
       .fixedSize(horizontal: false, vertical: true)
       .accessibilityIdentifier("homeDate")
       .overlay(alignment: .trailing) {
-        if state != nil {
+        if let state, !state.isDayOff {
           Button {
             editingToday = true
           } label: {
@@ -119,7 +97,43 @@ struct HomeView: View {
       .foregroundStyle(Color.kvilSecondary)
       .padding(.horizontal, KvilStyle.page + 44)
       .padding(.bottom, compact ? 8 : 26)
-      if let state {
+      if let state, state.isDayOff {
+        VStack(spacing: KvilStyle.content) {
+          Image(systemName: "leaf").font(.system(size: compact ? 44 : 64, weight: .ultraLight))
+            .foregroundStyle(Color.kvilAccent).accessibilityHidden(true)
+          Text(.dayOff).font(KvilStyle.title)
+          Text(.homeDayOffHelp).foregroundStyle(Color.kvilSecondary).multilineTextAlignment(.center)
+          if let next = state.next {
+            VStack(spacing: 4) {
+              Text(.nextEatingWindow).font(.caption)
+              Text(
+                next.opening,
+                format: .dateTime.weekday(.wide).month(.abbreviated).day().hour().minute()
+              )
+              .font(.subheadline).fixedSize(horizontal: false, vertical: true)
+            }.multilineTextAlignment(.center).accessibilityElement(children: .combine)
+          }
+          Button(.schedule) { model.selectedTab = .schedule }.frame(minHeight: 44)
+        }.padding(KvilStyle.page).accessibilityIdentifier("homeDayOff")
+      } else if let state, let dayOff = state.upcomingDayOff {
+        VStack(spacing: KvilStyle.content) {
+          Image(systemName: "calendar").font(.system(size: compact ? 44 : 64, weight: .ultraLight))
+            .foregroundStyle(Color.kvilAccent).accessibilityHidden(true)
+          Text(.daysOffStart).font(KvilStyle.heading)
+          Text(dayOff, format: .dateTime.weekday(.wide).month(.abbreviated).day())
+            .font(KvilStyle.title).multilineTextAlignment(.center)
+          if let next = state.next {
+            VStack(spacing: 4) {
+              Text(.nextEatingWindow)
+              Text(
+                next.opening,
+                format: .dateTime.weekday(.wide).month(.abbreviated).day().hour().minute())
+            }.font(.subheadline).foregroundStyle(Color.kvilSecondary)
+              .multilineTextAlignment(.center).accessibilityElement(children: .combine)
+          }
+          Button(.schedule) { model.selectedTab = .schedule }.frame(minHeight: 44)
+        }.padding(KvilStyle.page).accessibilityIdentifier("homeUpcomingDayOff")
+      } else if let state {
         @Bindable var model = model
         HomeTimerView(
           state: state, now: now,
@@ -135,16 +149,16 @@ struct HomeView: View {
           if let active = state.active {
             WindowTimeLabel(window: active, stacksForAccessibility: !compact)
               .font(compact ? .caption : .body)
-          } else {
+          } else if let next = state.next {
             let layout =
               typeSize.isAccessibilitySize
               ? AnyLayout(VStackLayout(spacing: 5)) : AnyLayout(HStackLayout(spacing: 5))
             layout {
               Text(
-                Calendar.current.isDate(state.next.opening, inSameDayAs: now)
+                Calendar.current.isDate(next.opening, inSameDayAs: now)
                   ? (compact ? .opensTodayCompact : .opensToday)
                   : (compact ? .opensTomorrowCompact : .opensTomorrow))
-              Text(state.next.opening, format: .dateTime.hour().minute()).fontWeight(.medium)
+              Text(next.opening, format: .dateTime.hour().minute()).fontWeight(.medium)
             }.font(compact ? .caption : .subheadline).multilineTextAlignment(.center)
           }
         }.foregroundStyle(Color.kvilSecondary)
@@ -181,23 +195,15 @@ struct HomeView: View {
         Button(.schedule) { model.selectedTab = .schedule }.buttonStyle(.bordered)
       }
       if let eligible {
-        Group {
-          if compact {
-            Button {
-              reflecting = eligible
-            } label: {
-              Label(.reflectOnDay, systemImage: "text.bubble")
-                .font(.caption.weight(.medium)).multilineTextAlignment(.center)
-                .frame(minWidth: 44, minHeight: 44).contentShape(Rectangle())
-            }.buttonStyle(.plain).accessibilityIdentifier("openReflection")
-              .accessibilityHint(
-                Text(
-                  Calendar.current.isDate(eligible.opening, inSameDayAs: now)
-                    ? .howToday : .howYesterday))
-          } else {
-            ReflectionPrompt(window: eligible)
-          }
-        }.padding(.horizontal, KvilStyle.page).padding(.top, compact ? 12 : 28)
+        Button {
+          reflecting = eligible
+        } label: {
+          Label(.howDidYesterdayGo, systemImage: "text.bubble")
+            .font(.subheadline.weight(.medium)).multilineTextAlignment(.center)
+            .padding(.horizontal, KvilStyle.content).padding(.vertical, 12)
+            .frame(minHeight: 44).contentShape(Rectangle())
+        }.buttonStyle(.plain).accessibilityIdentifier("openReflection")
+          .padding(.horizontal, KvilStyle.page).padding(.top, compact ? 8 : 20)
       }
     }.fixedSize(horizontal: false, vertical: true)
       .accessibilityElement(children: .contain).accessibilityIdentifier("homeContent")
@@ -210,50 +216,5 @@ private struct HomeContentBoundsKey: PreferenceKey {
 
   static func reduce(value: inout Anchor<CGRect>?, nextValue: () -> Anchor<CGRect>?) {
     value = nextValue() ?? value
-  }
-}
-
-struct ReflectionPrompt: View {
-  @Environment(AppModel.self) private var model
-  @Environment(\.dynamicTypeSize) private var typeSize
-  var window: EatingWindow
-  var body: some View {
-    VStack(alignment: .leading, spacing: 16) {
-      HStack(alignment: .firstTextBaseline) {
-        VStack(alignment: .leading, spacing: 5) {
-          Text(
-            Calendar.current.isDate(window.opening, inSameDayAs: model.now)
-              ? .howToday : .howYesterday
-          ).font(KvilStyle.heading)
-          Text(.reflectionHelp).font(.footnote).foregroundStyle(Color.kvilSecondary)
-        }
-        Spacer(minLength: 8)
-        Button {
-          model.reflect(window, feeling: nil)
-        } label: {
-          Image(systemName: "xmark").frame(width: 44, height: 44)
-        }
-        .buttonStyle(.plain).accessibilityLabel(.dismissReflection)
-      }
-      if typeSize.isAccessibilitySize {
-        VStack(alignment: .leading, spacing: 8) { feelingButtons }
-      } else {
-        HStack(spacing: 8) { feelingButtons }
-      }
-    }.padding(20).background(
-      Color.kvilSurface, in: RoundedRectangle(cornerRadius: KvilStyle.corner))
-  }
-  @ViewBuilder var feelingButtons: some View {
-    ForEach(DayFeeling.allCases, id: \.self) { feeling in
-      Button {
-        model.reflect(window, feeling: feeling)
-      } label: {
-        VStack(spacing: 8) {
-          Image(systemName: feeling.symbol).font(.title3)
-          Text(feeling.title).font(.caption)
-        }
-        .frame(maxWidth: .infinity).padding(.vertical, 10).padding(.horizontal, 4)
-      }.buttonStyle(.plain).accessibilityIdentifier("feeling.\(feeling.rawValue)")
-    }
   }
 }

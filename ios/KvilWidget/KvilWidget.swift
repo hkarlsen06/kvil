@@ -2,7 +2,10 @@ import SwiftUI
 import WidgetKit
 
 @main struct KvilWidgets: WidgetBundle {
-  var body: some Widget { KvilScheduleWidget() }
+  var body: some Widget {
+    KvilScheduleWidget()
+    KvilLiveActivity()
+  }
 }
 struct KvilScheduleWidget: Widget {
   let kind = "KvilSchedule"

@@ -1,5 +1,6 @@
 import Foundation
 import Observation
+import UIKit
 import UserNotifications
 import WidgetKit
 
@@ -24,6 +25,7 @@ enum AppTab: Hashable {
   let reminders: ReminderService
   let health: any HealthAccess
   let cloud: ScheduleCloudService
+  let liveActivities = LiveActivityService()
   let store: LocalStore
   let scenario: String?
   let fixedNow: Date?
@@ -50,15 +52,16 @@ enum AppTab: Hashable {
     self.scenario = scenario
     deviceServicesEnabled = scenario == nil && !store.isInMemory
     #if DEBUG
-    fixedNow =
-      scenario != nil && scenario != "openingSoon" && scenario != "closingSoon"
-      && scenario != "progressReturn"
-      ? ISO8601DateFormatter().date(
-        from: scenario == "open"
-          ? "2026-09-12T12:00:00Z"
-          : scenario == "reflection" ? "2026-09-12T18:00:00Z" : "2026-09-12T06:15:00Z") : nil
+      fixedNow =
+        scenario != nil && scenario != "openingSoon" && scenario != "closingSoon"
+          && scenario != "progressReturn"
+        ? ISO8601DateFormatter().date(
+          from: scenario == "open"
+            ? "2026-09-12T12:00:00Z"
+            : ["reflection", "upcomingDayOff"].contains(scenario)
+              ? "2026-09-12T18:00:00Z" : "2026-09-12T06:15:00Z") : nil
     #else
-    fixedNow = nil
+      fixedNow = nil
     #endif
     var isolatedPurchases = scenario != nil
     #if DEBUG
@@ -73,9 +76,15 @@ enum AppTab: Hashable {
     #if DEBUG
       if let scenario, scenario != "onboarding" {
         data = ScenarioData.make(
-          now: fixedNow ?? Date(), calendar: LocalDay.calendar(), openingSoon: scenario == "openingSoon",
+          now: fixedNow ?? Date(), calendar: LocalDay.calendar(),
+          openingSoon: scenario == "openingSoon",
           closingSoon: scenario == "closingSoon", progressReturn: scenario == "progressReturn",
-          weightHistory: scenario == "weightHistory")
+          weightHistory: scenario == "weightHistory",
+          pendingReflection: ["reflection", "reflectionDayOff", "reflectionOvernight", "open"]
+            .contains(scenario),
+          reflectionDayOff: scenario == "reflectionDayOff",
+          reflectionOvernight: scenario == "reflectionOvernight",
+          dayOff: scenario == "dayOff", upcomingDayOff: scenario == "upcomingDayOff")
       }
     #endif
     cloud.onChange = { [weak self] in self?.updateSurfaces() }
@@ -125,12 +134,16 @@ enum AppTab: Hashable {
     var days = usualDays
     guard day.weekday == original.weekday,
       let index = days.firstIndex(where: { $0.weekday == original.weekday }),
-      days[index].opens == original.opens, days[index].closes == original.closes
+      days[index].opens == original.opens, days[index].closes == original.closes,
+      days[index].isDayOff == original.isDayOff
     else {
       message = String(localized: .scheduleChangedWhileEditing)
       return false
     }
-    guard day.opens != original.opens || day.closes != original.closes else { return true }
+    guard
+      day.opens != original.opens || day.closes != original.closes
+        || day.isDayOff != original.isDayOff
+    else { return true }
     days[index] = day
     return saveWeek(days)
   }
@@ -157,13 +170,14 @@ enum AppTab: Hashable {
     guard let tomorrow = calendar.date(byAdding: .day, value: 1, to: now) else { return false }
     var next = data
     let key = LocalDay.key(tomorrow, calendar: calendar)
+    next.schedule.schema = 2
     next.schedule.versions.removeAll { $0.effectiveDay >= key }
     let stamp = Date()
     let previous = data.schedule.versions.max { $0.effectiveDay < $1.effectiveDay }?.days ?? []
     let stamped = days.map { day in
       var d = day
       if let old = previous.first(where: { $0.weekday == d.weekday }),
-        old.opens == d.opens && old.closes == d.closes
+        old.opens == d.opens && old.closes == d.closes && old.isDayOff == d.isDayOff
       {
         d.modifiedAt = old.modifiedAt
       } else {
@@ -181,7 +195,12 @@ enum AppTab: Hashable {
     }
     return commit(next, publish: true)
   }
-  func saveToday(opens: WallTime, closes: WallTime, replacing original: EatingWindow? = nil) -> Bool {
+  func saveToday(opens: WallTime, closes: WallTime, replacing original: EatingWindow? = nil) -> Bool
+  {
+    guard !engine.isDayOff(on: now) else {
+      message = String(localized: .homeDayOffHelp)
+      return false
+    }
     if let original, engine.window(on: now) != original {
       message = String(localized: .scheduleChangedWhileEditing)
       return false
@@ -251,6 +270,54 @@ enum AppTab: Hashable {
     var next = data
     next.reflections.removeAll { $0.id == r.id }
     next.reflections.append(r)
+    return commit(next)
+  }
+  var yesterdayReflection: Reflection? {
+    guard let yesterday = calendar.date(byAdding: .day, value: -1, to: now),
+      engine.plan(on: yesterday) != nil
+    else { return nil }
+    let key = LocalDay.key(yesterday, calendar: calendar)
+    guard !data.reflections.contains(where: { $0.dayKey == key && $0.hasAnswer }) else {
+      return nil
+    }
+    let off = engine.isDayOff(on: yesterday)
+    let window = engine.windows(around: now, daysBefore: 2, daysAfter: 0)
+      .first { $0.dayKey == key }
+    let opening: Date
+    let closing: Date
+    let zone: String
+    if off {
+      opening = calendar.startOfDay(for: yesterday)
+      closing = calendar.startOfDay(for: now)
+      zone = calendar.timeZone.identifier
+    } else if let window, window.closing <= now {
+      opening = window.opening
+      closing = window.closing
+      zone = window.timeZoneID
+    } else {
+      return nil
+    }
+    return Reflection(
+      dayKey: key, timeZoneID: zone, feeling: nil,
+      opening: opening, closing: closing, updatedAt: now, wasDayOff: off)
+  }
+
+  @discardableResult func saveReflection(_ reflection: Reflection) -> Bool {
+    var answer = reflection
+    answer.updatedAt = now
+    answer.note = answer.note?.trimmingCharacters(in: .whitespacesAndNewlines)
+    if answer.note?.isEmpty == true { answer.note = nil }
+    let answerCalendar = LocalDay.calendar(
+      timeZone: TimeZone(identifier: answer.timeZoneID) ?? calendar.timeZone)
+    guard answer.isValid, answer.hasAnswer, answer.closing <= now,
+      answer.dayKey < LocalDay.key(now, calendar: answerCalendar)
+    else {
+      message = String(localized: .reflectionInvalid)
+      return false
+    }
+    var next = data
+    next.reflections.removeAll { $0.id == answer.id }
+    next.reflections.append(answer)
     return commit(next)
   }
   @discardableResult func editReflection(_ reflection: Reflection, feeling: DayFeeling) -> Bool {
@@ -324,6 +391,19 @@ enum AppTab: Hashable {
         notificationStatus = await reminders.status()
       } catch { if !Task.isCancelled { message = String(localized: .reminderFailure) } }
       await reminders.scheduleRefresh()
+      guard !Task.isCancelled else { return }
+      await refreshLiveActivity()
+    }
+  }
+  func refreshLiveActivity() async {
+    guard deviceServicesEnabled else { return }
+    do {
+      try await liveActivities.reconcile(
+        snapshot: data.schedule, enabled: data.preferences.liveActivitiesEnabled == true,
+        now: now, calendar: calendar, allowStart: UIApplication.shared.applicationState == .active)
+    } catch is CancellationError {
+    } catch {
+      message = String(localized: .liveActivityFailed)
     }
   }
   func connectHealth(write: Bool) async {
@@ -416,6 +496,7 @@ enum AppTab: Hashable {
   func restore(_ imported: LocalData) -> Bool {
     do {
       var next = try imported.validated(now: now)
+      next.schedule.schema = 2
       next.schedule.revision = Date()
       next.schedule.resetAt = Date()
       let importedStamp = Date().addingTimeInterval(0.001)
@@ -428,11 +509,19 @@ enum AppTab: Hashable {
       for index in next.schedule.overrides.indices {
         next.schedule.overrides[index].modifiedAt = importedStamp
       }
+      if let breaks = next.schedule.breaks {
+        next.schedule.breaks = breaks.map {
+          var item = $0
+          item.modifiedAt = importedStamp
+          return item
+        }
+      }
       next.healthAnchor = nil
       next.preferences.healthEnabled = false
       next.preferences.healthWritesEnabled = false
       next.preferences.openingReminder = false
       next.preferences.closingReminder = false
+      next.preferences.liveActivitiesEnabled = false
       // Recovery never automatically writes historical entries into Health.
       for index in next.weights.indices {
         next.weights[index].saveToHealth = false
@@ -453,6 +542,7 @@ enum AppTab: Hashable {
     guard commit(empty, publish: true) else { return false }
     healthWeights = []
     await reminders.clear()
+    if deviceServicesEnabled { await liveActivities.endAll() }
     selectedTab = .home
     return true
   }

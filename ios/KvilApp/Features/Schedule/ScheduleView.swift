@@ -5,6 +5,7 @@ struct ScheduleView: View {
   @Environment(\.locale) private var locale
   @Environment(\.dynamicTypeSize) private var typeSize
   @State private var editingToday = false
+  @State private var planningBreak = false
   @State private var editingDay: DayPlan?
   @State private var slidingDay: DayPlan?
   @State private var slidingToday: DayPlan?
@@ -13,9 +14,12 @@ struct ScheduleView: View {
   var body: some View {
     ScrollView {
       VStack(alignment: .leading, spacing: KvilStyle.section) {
-        if let today = model.engine.window(on: model.now) {
+        if model.engine.isDayOff(on: model.now) {
+          dayOffCard
+        } else if let today = model.engine.window(on: model.now) {
           todayCard(today)
         }
+        breaksSection
         usualWeek
         Text(.scheduleNoTracking).font(.footnote).foregroundStyle(Color.kvilSecondary)
           .fixedSize(horizontal: false, vertical: true)
@@ -27,6 +31,7 @@ struct ScheduleView: View {
     .toolbar { ToolbarItem(placement: .topBarTrailing) { SettingsLink() } }
     .sheet(isPresented: $editingToday) { ScheduleEditor() }
     .sheet(item: $editingDay) { ScheduleEditor(day: $0) }
+    .sheet(isPresented: $planningBreak) { ScheduleBreakEditor() }
   }
 
   private func todayCard(_ today: EatingWindow) -> some View {
@@ -46,6 +51,7 @@ struct ScheduleView: View {
               }
             }
             Button(.editWindowTimes, systemImage: "clock") { editingToday = true }
+            Button(.takeTodayOff, systemImage: "sun.max") { model.takeTodayOff() }
             if today.isOverride {
               Button(.useUsualSchedule, systemImage: "arrow.uturn.backward") {
                 _ = model.removeTodayOverride()
@@ -105,6 +111,61 @@ struct ScheduleView: View {
     }.padding(KvilStyle.cardPadding)
       .frame(maxWidth: .infinity, alignment: .leading)
       .background(Color.kvilSurface, in: RoundedRectangle(cornerRadius: KvilStyle.corner))
+  }
+
+  private var dayOffCard: some View {
+    VStack(alignment: .leading, spacing: 12) {
+      Text(.today).font(KvilStyle.heading)
+      Label(.dayOff, systemImage: "sun.max").font(.title3)
+        .accessibilityIdentifier("scheduleDayOff")
+      Text(.dayOffDescription).font(.subheadline).foregroundStyle(Color.kvilSecondary)
+        .fixedSize(horizontal: false, vertical: true)
+      if model.upcomingScheduleBreaks.contains(where: {
+        $0.contains(LocalDay.key(model.now, calendar: model.calendar))
+      }) {
+        Button(.resumeScheduleToday) { model.resumeSchedule() }
+          .frame(minHeight: 44)
+          .accessibilityIdentifier("resumeScheduleToday")
+      }
+    }.padding(KvilStyle.cardPadding).frame(maxWidth: .infinity, alignment: .leading)
+      .background(Color.kvilSurface, in: RoundedRectangle(cornerRadius: KvilStyle.corner))
+  }
+
+  private var breaksSection: some View {
+    VStack(alignment: .leading, spacing: 12) {
+      ForEach(model.upcomingScheduleBreaks) { item in
+        if let starts = LocalDay.date(item.startDay, calendar: model.calendar),
+          let resumes = LocalDay.date(item.resumeDay, calendar: model.calendar)
+        {
+          HStack(alignment: .top, spacing: 12) {
+            VStack(alignment: .leading, spacing: 6) {
+              Label(.plannedBreak, systemImage: "calendar")
+                .font(.subheadline.weight(.medium))
+              if !item.contains(LocalDay.key(model.now, calendar: model.calendar)) {
+                LabeledContent(.breakStarts) {
+                  Text(starts, format: .dateTime.day().month(.abbreviated))
+                }
+              }
+              LabeledContent(.scheduleResumes) {
+                Text(resumes, format: .dateTime.day().month(.abbreviated))
+              }
+            }.font(.footnote).foregroundStyle(Color.kvilSecondary)
+            Menu {
+              Button(
+                item.contains(LocalDay.key(model.now, calendar: model.calendar))
+                  ? LocalizedStringResource.resumeScheduleToday : .cancelScheduleBreak,
+                systemImage: "arrow.uturn.backward"
+              ) { model.endScheduleBreak(item) }
+            } label: {
+              Image(systemName: "ellipsis").frame(width: 44, height: 44)
+            }.accessibilityLabel(.scheduleBreakOptions)
+          }.padding(KvilStyle.cardPadding)
+            .background(Color.kvilSurface, in: RoundedRectangle(cornerRadius: KvilStyle.corner))
+        }
+      }
+      Button(.planScheduleBreak, systemImage: "calendar.badge.plus") { planningBreak = true }
+        .accessibilityIdentifier("planScheduleBreak")
+    }
   }
 
   private func saveToday(_ day: DayPlan, replacing original: EatingWindow) {
@@ -176,7 +237,9 @@ struct ScheduleView: View {
         let title = Text(weekday(day.weekday)).font(.subheadline.weight(.medium))
           .fixedSize(horizontal: !typeSize.isAccessibilitySize, vertical: true)
         let times = VStack(alignment: .leading, spacing: 4) {
-          if typeSize.isAccessibilitySize {
+          if shown.isDayOff {
+            Text(.dayOff)
+          } else if typeSize.isAccessibilitySize {
             stackedTimes(shown)
           } else {
             HStack(spacing: 3) {
@@ -185,7 +248,7 @@ struct ScheduleView: View {
               wallTime(shown.closes)
             }.fixedSize()
           }
-          if shown.overnight { Text(.nextDayShort).font(.caption) }
+          if !shown.isDayOff && shown.overnight { Text(.nextDayShort).font(.caption) }
         }.font(.footnote).foregroundStyle(Color.kvilSecondary)
         Group {
           if typeSize.isAccessibilitySize {
@@ -211,11 +274,13 @@ struct ScheduleView: View {
           .accessibilityIdentifier("dayTimes.\(day.weekday)")
         dayMenu(day)
       }
-      KvilWindowSlider(
-        day: day, title: weekday(day.weekday), value: windowSummary(shown),
-        onMove: { original, updated in _ = model.saveWeekDay(updated, replacing: original) },
-        onEdit: { editingDay = day }, onPreview: { slidingDay = $0 }
-      ).accessibilityIdentifier("windowSlider.\(day.weekday)")
+      if !day.isDayOff {
+        KvilWindowSlider(
+          day: day, title: weekday(day.weekday), value: windowSummary(shown),
+          onMove: { original, updated in _ = model.saveWeekDay(updated, replacing: original) },
+          onEdit: { editingDay = day }, onPreview: { slidingDay = $0 }
+        ).accessibilityIdentifier("windowSlider.\(day.weekday)")
+      }
     }.padding(.vertical, 8)
   }
 
@@ -234,22 +299,32 @@ struct ScheduleView: View {
   }
   private func dayMenu(_ day: DayPlan) -> some View {
     Menu {
-      lengthPicker(day)
-      Button(.applyLengthToAllDays, systemImage: "calendar") {
-        _ = model.setWindowLength(day.windowMinutes)
-      }
-      Button(.editWindowTimes, systemImage: "clock") { editingDay = day }
-        .accessibilityIdentifier("editDay.\(day.weekday)")
-      Divider()
-      Button(.copyTimesToAllDays, systemImage: "calendar") {
-        applyTimes(opens: day.opens, closes: day.closes)
-      }
-      Button(.copyTimes, systemImage: "doc.on.doc") {
-        copiedTimes = (day.opens, day.closes)
-      }
-      if let copiedTimes {
-        Button(.pasteTimes, systemImage: "doc.on.clipboard") {
-          applyTimes(opens: copiedTimes.opens, closes: copiedTimes.closes, weekday: day.weekday)
+      Button(
+        day.isDayOff ? LocalizedStringResource.restorePlannedTimes : .makeDayOff,
+        systemImage: day.isDayOff ? "clock" : "sun.max"
+      ) {
+        var updated = day
+        updated.dayOff = !day.isDayOff
+        _ = model.saveWeekDay(updated, replacing: day)
+      }.accessibilityIdentifier("toggleDayOff.\(day.weekday)")
+      if !day.isDayOff {
+        lengthPicker(day)
+        Button(.applyLengthToAllDays, systemImage: "calendar") {
+          _ = model.setWindowLength(day.windowMinutes)
+        }
+        Button(.editWindowTimes, systemImage: "clock") { editingDay = day }
+          .accessibilityIdentifier("editDay.\(day.weekday)")
+        Divider()
+        Button(.copyTimesToAllDays, systemImage: "calendar") {
+          applyTimes(opens: day.opens, closes: day.closes)
+        }
+        Button(.copyTimes, systemImage: "doc.on.doc") {
+          copiedTimes = (day.opens, day.closes)
+        }
+        if let copiedTimes {
+          Button(.pasteTimes, systemImage: "doc.on.clipboard") {
+            applyTimes(opens: copiedTimes.opens, closes: copiedTimes.closes, weekday: day.weekday)
+          }
         }
       }
     } label: {
@@ -274,22 +349,7 @@ struct ScheduleView: View {
     title: LocalizedStringResource = .windowLength, selected: Int?,
     onSelect: @escaping (Int) -> Void
   ) -> some View {
-    return Picker(
-      title,
-      selection: Binding<Int?>(
-        get: { selected },
-        set: { if let minutes = $0 { onSelect(minutes) } })
-    ) {
-      if selected == nil {
-        Text(.differentWindowLengths).tag(nil as Int?).disabled(true)
-      }
-      if let selected, selected % 60 != 0 {
-        Text(verbatim: duration(selected)).tag(Optional(selected))
-      }
-      ForEach(1..<24) { hours in
-        Text(verbatim: duration(hours * 60)).tag(Optional(hours * 60))
-      }
-    }.pickerStyle(.menu)
+    KvilWindowLengthPicker(title: title, selected: selected, onSelect: onSelect)
   }
 
   private func applyTimes(opens: WallTime, closes: WallTime, weekday: Int? = nil) {
