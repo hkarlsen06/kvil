@@ -83,7 +83,8 @@ import SwiftUI
               }
             }.padding(.horizontal, 4)
           }
-        }.navigationTitle(Text(verbatim: "kvil")).background(Color.kvilCanvas)
+        }.frame(maxWidth: .infinity, maxHeight: .infinity)
+          .navigationTitle(Text(verbatim: "kvil")).background(Color.kvilCanvas)
       }.environment(\.colorScheme, .dark).tint(Color.kvilAccent).foregroundStyle(Color.kvilInk)
         .onAppear {
           bridge.onSnapshot = { snapshot = $0 }

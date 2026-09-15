@@ -398,19 +398,19 @@
       }
     },
     "cloudEnabled" : {
-      "comment" : "Kvil interface: cloudEnabled",
+      "comment" : "Settings status shown only after CloudKit acknowledges the encrypted schedule and subscription is installed.",
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Schedule sync enabled"
+            "value" : "Your schedule is synced with your private iCloud account."
           }
         },
         "nb" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Plansynkronisering er på"
+            "value" : "Planen din er synkronisert med din private iCloud-konto."
           }
         }
       }
@@ -452,19 +452,19 @@
       }
     },
     "cloudScheduleHelp" : {
-      "comment" : "Kvil interface: cloudScheduleHelp",
+      "comment" : "Settings footer accurately describes the CloudKit schedule payload and data excluded from it. Does not claim an App Review exemption or unconditional end-to-end encryption.",
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Only your planned times sync with iCloud. Reflections stay on this device; use a backup to recover them. Weight uses Apple Health when you choose to share it."
+            "value" : "Your schedule, including changes to today’s window and days off, syncs through encrypted iCloud fields. Reflections, weight and Apple Health data stay out of this sync."
           }
         },
         "nb" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bare planlagte tider synkroniseres med iCloud. Refleksjoner blir på denne enheten. Bruk en sikkerhetskopi for å gjenopprette dem. Vekt bruker Apple Helse når du velger å dele den."
+            "value" : "Planen din, inkludert endringer i dagens spisevindu og fridager, synkroniseres via krypterte iCloud-felt. Refleksjoner, vekt og Apple Helse-data er ikke med i denne synkroniseringen."
           }
         }
       }
@@ -2018,19 +2018,19 @@
       }
     },
     "privacyLocal" : {
-      "comment" : "Kvil interface: privacyLocal",
+      "comment" : "Privacy page summary of encrypted schedule scope and local personal-data backup exclusion. Apple Health sharing is described separately.",
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kvil can sync your planned eating times through your own iCloud account. Reflections and weights entered in Kvil stay on your device and are not included in Kvil’s iCloud data. The local store is excluded from automatic device backups. Use Export a backup for recovery."
+            "value" : "Kvil syncs your schedule, including changes to today’s window and days off, through encrypted fields in your private iCloud account. Reflections and weight entered in Kvil stay on this device and are excluded from this sync and automatic device backups. Use Export a backup for recovery."
           }
         },
         "nb" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kvil kan synkronisere planlagte spisetider via din egen iCloud-konto. Refleksjoner og vekter du legger inn i Kvil, blir på enheten og er ikke inkludert i Kvils iCloud-data. Det lokale lageret er utelatt fra automatiske enhetssikkerhetskopier. Bruk Eksporter en sikkerhetskopi for gjenoppretting."
+            "value" : "Kvil synkroniserer planen din, inkludert endringer i dagens spisevindu og fridager, via krypterte felt i din private iCloud-konto. Refleksjoner og vekt lagt inn i Kvil blir på denne enheten og er utelatt fra denne synkroniseringen og automatiske enhetssikkerhetskopier. Bruk Eksporter en sikkerhetskopi for gjenoppretting."
           }
         }
       }
@@ -4020,17 +4020,17 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "How did yesterday go?"
+            "value" : "How did\nyesterday go?"
           }
         },
         "nb" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hvordan gikk gårsdagen?"
+            "value" : "Hvordan gikk\ngårsdagen?"
           }
         }
       },
-      "comment" : "Home button opening the optional next-day reflection."
+      "comment" : "Home button opening the optional next-day reflection. Keep the explicit line break to make a compact two-line label, with the question opening on the first line and yesterday on the second."
     },
     "didYesterdayGoAsPlanned" : {
       "extractionState" : "manual",
@@ -6317,6 +6317,60 @@
         }
       },
       "comment" : "Accessibility label for the small undo button beside the fasting action. Restores the eating window after starting a fast early; available until the originally scheduled closing."
+    },
+    "cloudWaiting" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Waiting to sync. Your schedule is saved on this iPhone."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Venter på synkronisering. Planen din er lagret på denne iPhonen."
+          }
+        }
+      },
+      "comment" : "Settings status while CloudKit is fetching, uploading or waiting to retry."
+    },
+    "cloudDataRemoved" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your iCloud schedule was removed. Sync is paused and your schedule is still on this iPhone. Turn sync on again in Settings to upload it."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Planen din ble fjernet fra iCloud. Synkronisering er satt på pause, og planen er fortsatt på denne iPhonen. Slå på synkronisering igjen i Innstillinger for å laste den opp."
+          }
+        }
+      },
+      "comment" : "Notice after CloudKit reports a deliberately deleted zone or a previously saved cloud record disappears. Local data is retained; reenabling explicitly authorizes uploading it."
+    },
+    "cloudRecoveryPaused" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Encrypted iCloud sync could not recover. Your schedule is still on this iPhone. Turn sync on again in Settings to retry recovery."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kryptert iCloud-synkronisering kunne ikke gjenopprettes. Planen er fortsatt på denne iPhonen. Slå på synkronisering igjen i Innstillinger for å prøve på nytt."
+          }
+        }
+      },
+      "comment" : "Notice when encryption-key-reset recovery fails again. Sync stays paused across launches until the user explicitly retries."
     }
   },
   "version" : "1.0"

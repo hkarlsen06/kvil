@@ -1,0 +1,517 @@
+{
+  "formatVersion" : 2,
+  "preferences" : {
+    "closingReminder" : false,
+    "cloudScheduleEnabled" : false,
+    "healthEnabled" : false,
+    "healthWritesEnabled" : false,
+    "liveActivitiesEnabled" : false,
+    "openingReminder" : false,
+    "weightEnabled" : false,
+    "weightUnit" : "kg"
+  },
+  "reflections" : [
+    {
+      "closing" : 811101600,
+      "dayKey" : "2026-09-14",
+      "feeling" : "difficult",
+      "note" : "Reviewer demo. Fictional entry.",
+      "opening" : 811058400,
+      "planExperience" : "unsure",
+      "timeZoneID" : "Europe\/Oslo",
+      "updatedAt" : 811105200
+    },
+    {
+      "closing" : 811015200,
+      "dayKey" : "2026-09-13",
+      "feeling" : "mixed",
+      "note" : "Reviewer demo. Fictional entry.",
+      "opening" : 810972000,
+      "planExperience" : "changed",
+      "timeZoneID" : "Europe\/Oslo",
+      "updatedAt" : 811018800
+    },
+    {
+      "closing" : 810928800,
+      "dayKey" : "2026-09-12",
+      "feeling" : "comfortable",
+      "note" : "Reviewer demo. Fictional entry.",
+      "opening" : 810885600,
+      "planExperience" : "asPlanned",
+      "timeZoneID" : "Europe\/Oslo",
+      "updatedAt" : 810932400
+    },
+    {
+      "closing" : 810842400,
+      "dayKey" : "2026-09-11",
+      "feeling" : "difficult",
+      "note" : "Reviewer demo. Fictional entry.",
+      "opening" : 810799200,
+      "planExperience" : "unsure",
+      "timeZoneID" : "Europe\/Oslo",
+      "updatedAt" : 810846000
+    },
+    {
+      "closing" : 810756000,
+      "dayKey" : "2026-09-10",
+      "feeling" : "mixed",
+      "note" : "Reviewer demo. Fictional entry.",
+      "opening" : 810712800,
+      "planExperience" : "changed",
+      "timeZoneID" : "Europe\/Oslo",
+      "updatedAt" : 810759600
+    },
+    {
+      "closing" : 810669600,
+      "dayKey" : "2026-09-09",
+      "feeling" : "comfortable",
+      "note" : "Reviewer demo. Fictional entry.",
+      "opening" : 810626400,
+      "planExperience" : "asPlanned",
+      "timeZoneID" : "Europe\/Oslo",
+      "updatedAt" : 810673200
+    },
+    {
+      "closing" : 810583200,
+      "dayKey" : "2026-09-08",
+      "feeling" : "difficult",
+      "note" : "Reviewer demo. Fictional entry.",
+      "opening" : 810540000,
+      "planExperience" : "unsure",
+      "timeZoneID" : "Europe\/Oslo",
+      "updatedAt" : 810586800
+    },
+    {
+      "closing" : 810496800,
+      "dayKey" : "2026-09-07",
+      "feeling" : "mixed",
+      "note" : "Reviewer demo. Fictional entry.",
+      "opening" : 810453600,
+      "planExperience" : "changed",
+      "timeZoneID" : "Europe\/Oslo",
+      "updatedAt" : 810500400
+    },
+    {
+      "closing" : 810410400,
+      "dayKey" : "2026-09-06",
+      "feeling" : "comfortable",
+      "note" : "Reviewer demo. Fictional entry.",
+      "opening" : 810367200,
+      "planExperience" : "asPlanned",
+      "timeZoneID" : "Europe\/Oslo",
+      "updatedAt" : 810414000
+    },
+    {
+      "closing" : 810324000,
+      "dayKey" : "2026-09-05",
+      "feeling" : "difficult",
+      "note" : "Reviewer demo. Fictional entry.",
+      "opening" : 810280800,
+      "planExperience" : "unsure",
+      "timeZoneID" : "Europe\/Oslo",
+      "updatedAt" : 810327600
+    },
+    {
+      "closing" : 810237600,
+      "dayKey" : "2026-09-04",
+      "feeling" : "mixed",
+      "note" : "Reviewer demo. Fictional entry.",
+      "opening" : 810194400,
+      "planExperience" : "changed",
+      "timeZoneID" : "Europe\/Oslo",
+      "updatedAt" : 810241200
+    },
+    {
+      "closing" : 810151200,
+      "dayKey" : "2026-09-03",
+      "feeling" : "comfortable",
+      "note" : "Reviewer demo. Fictional entry.",
+      "opening" : 810108000,
+      "planExperience" : "asPlanned",
+      "timeZoneID" : "Europe\/Oslo",
+      "updatedAt" : 810154800
+    },
+    {
+      "closing" : 810064800,
+      "dayKey" : "2026-09-02",
+      "feeling" : "difficult",
+      "note" : "Reviewer demo. Fictional entry.",
+      "opening" : 810021600,
+      "planExperience" : "unsure",
+      "timeZoneID" : "Europe\/Oslo",
+      "updatedAt" : 810068400
+    },
+    {
+      "closing" : 809978400,
+      "dayKey" : "2026-09-01",
+      "feeling" : "mixed",
+      "note" : "Reviewer demo. Fictional entry.",
+      "opening" : 809935200,
+      "planExperience" : "changed",
+      "timeZoneID" : "Europe\/Oslo",
+      "updatedAt" : 809982000
+    },
+    {
+      "closing" : 809892000,
+      "dayKey" : "2026-08-31",
+      "feeling" : "comfortable",
+      "note" : "Reviewer demo. Fictional entry.",
+      "opening" : 809848800,
+      "planExperience" : "asPlanned",
+      "timeZoneID" : "Europe\/Oslo",
+      "updatedAt" : 809895600
+    },
+    {
+      "closing" : 809805600,
+      "dayKey" : "2026-08-30",
+      "feeling" : "difficult",
+      "note" : "Reviewer demo. Fictional entry.",
+      "opening" : 809762400,
+      "planExperience" : "unsure",
+      "timeZoneID" : "Europe\/Oslo",
+      "updatedAt" : 809809200
+    },
+    {
+      "closing" : 809719200,
+      "dayKey" : "2026-08-29",
+      "feeling" : "mixed",
+      "note" : "Reviewer demo. Fictional entry.",
+      "opening" : 809676000,
+      "planExperience" : "changed",
+      "timeZoneID" : "Europe\/Oslo",
+      "updatedAt" : 809722800
+    },
+    {
+      "closing" : 809632800,
+      "dayKey" : "2026-08-28",
+      "feeling" : "comfortable",
+      "note" : "Reviewer demo. Fictional entry.",
+      "opening" : 809589600,
+      "planExperience" : "asPlanned",
+      "timeZoneID" : "Europe\/Oslo",
+      "updatedAt" : 809636400
+    },
+    {
+      "closing" : 809546400,
+      "dayKey" : "2026-08-27",
+      "feeling" : "difficult",
+      "note" : "Reviewer demo. Fictional entry.",
+      "opening" : 809503200,
+      "planExperience" : "unsure",
+      "timeZoneID" : "Europe\/Oslo",
+      "updatedAt" : 809550000
+    },
+    {
+      "closing" : 809460000,
+      "dayKey" : "2026-08-26",
+      "feeling" : "mixed",
+      "note" : "Reviewer demo. Fictional entry.",
+      "opening" : 809416800,
+      "planExperience" : "changed",
+      "timeZoneID" : "Europe\/Oslo",
+      "updatedAt" : 809463600
+    },
+    {
+      "closing" : 809373600,
+      "dayKey" : "2026-08-25",
+      "feeling" : "comfortable",
+      "note" : "Reviewer demo. Fictional entry.",
+      "opening" : 809330400,
+      "planExperience" : "asPlanned",
+      "timeZoneID" : "Europe\/Oslo",
+      "updatedAt" : 809377200
+    },
+    {
+      "closing" : 809287200,
+      "dayKey" : "2026-08-24",
+      "feeling" : "difficult",
+      "note" : "Reviewer demo. Fictional entry.",
+      "opening" : 809244000,
+      "planExperience" : "unsure",
+      "timeZoneID" : "Europe\/Oslo",
+      "updatedAt" : 809290800
+    },
+    {
+      "closing" : 809200800,
+      "dayKey" : "2026-08-23",
+      "feeling" : "mixed",
+      "note" : "Reviewer demo. Fictional entry.",
+      "opening" : 809157600,
+      "planExperience" : "changed",
+      "timeZoneID" : "Europe\/Oslo",
+      "updatedAt" : 809204400
+    },
+    {
+      "closing" : 809114400,
+      "dayKey" : "2026-08-22",
+      "feeling" : "comfortable",
+      "note" : "Reviewer demo. Fictional entry.",
+      "opening" : 809071200,
+      "planExperience" : "asPlanned",
+      "timeZoneID" : "Europe\/Oslo",
+      "updatedAt" : 809118000
+    },
+    {
+      "closing" : 809028000,
+      "dayKey" : "2026-08-21",
+      "feeling" : "difficult",
+      "note" : "Reviewer demo. Fictional entry.",
+      "opening" : 808984800,
+      "planExperience" : "unsure",
+      "timeZoneID" : "Europe\/Oslo",
+      "updatedAt" : 809031600
+    },
+    {
+      "closing" : 808941600,
+      "dayKey" : "2026-08-20",
+      "feeling" : "mixed",
+      "note" : "Reviewer demo. Fictional entry.",
+      "opening" : 808898400,
+      "planExperience" : "changed",
+      "timeZoneID" : "Europe\/Oslo",
+      "updatedAt" : 808945200
+    },
+    {
+      "closing" : 808855200,
+      "dayKey" : "2026-08-19",
+      "feeling" : "comfortable",
+      "note" : "Reviewer demo. Fictional entry.",
+      "opening" : 808812000,
+      "planExperience" : "asPlanned",
+      "timeZoneID" : "Europe\/Oslo",
+      "updatedAt" : 808858800
+    },
+    {
+      "closing" : 808768800,
+      "dayKey" : "2026-08-18",
+      "feeling" : "difficult",
+      "note" : "Reviewer demo. Fictional entry.",
+      "opening" : 808725600,
+      "planExperience" : "unsure",
+      "timeZoneID" : "Europe\/Oslo",
+      "updatedAt" : 808772400
+    },
+    {
+      "closing" : 808682400,
+      "dayKey" : "2026-08-17",
+      "feeling" : "mixed",
+      "note" : "Reviewer demo. Fictional entry.",
+      "opening" : 808639200,
+      "planExperience" : "changed",
+      "timeZoneID" : "Europe\/Oslo",
+      "updatedAt" : 808686000
+    },
+    {
+      "closing" : 808596000,
+      "dayKey" : "2026-08-16",
+      "feeling" : "comfortable",
+      "note" : "Reviewer demo. Fictional entry.",
+      "opening" : 808552800,
+      "planExperience" : "asPlanned",
+      "timeZoneID" : "Europe\/Oslo",
+      "updatedAt" : 808599600
+    },
+    {
+      "closing" : 808509600,
+      "dayKey" : "2026-08-15",
+      "feeling" : "difficult",
+      "note" : "Reviewer demo. Fictional entry.",
+      "opening" : 808466400,
+      "planExperience" : "unsure",
+      "timeZoneID" : "Europe\/Oslo",
+      "updatedAt" : 808513200
+    },
+    {
+      "closing" : 808423200,
+      "dayKey" : "2026-08-14",
+      "feeling" : "mixed",
+      "note" : "Reviewer demo. Fictional entry.",
+      "opening" : 808380000,
+      "planExperience" : "changed",
+      "timeZoneID" : "Europe\/Oslo",
+      "updatedAt" : 808426800
+    },
+    {
+      "closing" : 808336800,
+      "dayKey" : "2026-08-13",
+      "feeling" : "comfortable",
+      "note" : "Reviewer demo. Fictional entry.",
+      "opening" : 808293600,
+      "planExperience" : "asPlanned",
+      "timeZoneID" : "Europe\/Oslo",
+      "updatedAt" : 808340400
+    },
+    {
+      "closing" : 808250400,
+      "dayKey" : "2026-08-12",
+      "feeling" : "difficult",
+      "note" : "Reviewer demo. Fictional entry.",
+      "opening" : 808207200,
+      "planExperience" : "unsure",
+      "timeZoneID" : "Europe\/Oslo",
+      "updatedAt" : 808254000
+    },
+    {
+      "closing" : 808164000,
+      "dayKey" : "2026-08-11",
+      "feeling" : "mixed",
+      "note" : "Reviewer demo. Fictional entry.",
+      "opening" : 808120800,
+      "planExperience" : "changed",
+      "timeZoneID" : "Europe\/Oslo",
+      "updatedAt" : 808167600
+    },
+    {
+      "closing" : 808077600,
+      "dayKey" : "2026-08-10",
+      "feeling" : "comfortable",
+      "note" : "Reviewer demo. Fictional entry.",
+      "opening" : 808034400,
+      "planExperience" : "asPlanned",
+      "timeZoneID" : "Europe\/Oslo",
+      "updatedAt" : 808081200
+    },
+    {
+      "closing" : 807991200,
+      "dayKey" : "2026-08-09",
+      "feeling" : "difficult",
+      "note" : "Reviewer demo. Fictional entry.",
+      "opening" : 807948000,
+      "planExperience" : "unsure",
+      "timeZoneID" : "Europe\/Oslo",
+      "updatedAt" : 807994800
+    },
+    {
+      "closing" : 807904800,
+      "dayKey" : "2026-08-08",
+      "feeling" : "mixed",
+      "note" : "Reviewer demo. Fictional entry.",
+      "opening" : 807861600,
+      "planExperience" : "changed",
+      "timeZoneID" : "Europe\/Oslo",
+      "updatedAt" : 807908400
+    },
+    {
+      "closing" : 807818400,
+      "dayKey" : "2026-08-07",
+      "feeling" : "comfortable",
+      "note" : "Reviewer demo. Fictional entry.",
+      "opening" : 807775200,
+      "planExperience" : "asPlanned",
+      "timeZoneID" : "Europe\/Oslo",
+      "updatedAt" : 807822000
+    },
+    {
+      "closing" : 807732000,
+      "dayKey" : "2026-08-06",
+      "feeling" : "difficult",
+      "note" : "Reviewer demo. Fictional entry.",
+      "opening" : 807688800,
+      "planExperience" : "unsure",
+      "timeZoneID" : "Europe\/Oslo",
+      "updatedAt" : 807735600
+    },
+    {
+      "closing" : 807645600,
+      "dayKey" : "2026-08-05",
+      "feeling" : "mixed",
+      "note" : "Reviewer demo. Fictional entry.",
+      "opening" : 807602400,
+      "planExperience" : "changed",
+      "timeZoneID" : "Europe\/Oslo",
+      "updatedAt" : 807649200
+    },
+    {
+      "closing" : 807559200,
+      "dayKey" : "2026-08-04",
+      "feeling" : "comfortable",
+      "note" : "Reviewer demo. Fictional entry.",
+      "opening" : 807516000,
+      "planExperience" : "asPlanned",
+      "timeZoneID" : "Europe\/Oslo",
+      "updatedAt" : 807562800
+    }
+  ],
+  "schedule" : {
+    "overrides" : [
+
+    ],
+    "revision" : 811123200,
+    "schema" : 2,
+    "versions" : [
+      {
+        "days" : [
+          {
+            "closes" : {
+              "minute" : 1200
+            },
+            "opens" : {
+              "minute" : 480
+            },
+            "weekday" : 1
+          },
+          {
+            "closes" : {
+              "minute" : 1200
+            },
+            "opens" : {
+              "minute" : 480
+            },
+            "weekday" : 2
+          },
+          {
+            "closes" : {
+              "minute" : 1200
+            },
+            "opens" : {
+              "minute" : 480
+            },
+            "weekday" : 3
+          },
+          {
+            "closes" : {
+              "minute" : 1200
+            },
+            "opens" : {
+              "minute" : 480
+            },
+            "weekday" : 4
+          },
+          {
+            "closes" : {
+              "minute" : 1200
+            },
+            "opens" : {
+              "minute" : 480
+            },
+            "weekday" : 5
+          },
+          {
+            "closes" : {
+              "minute" : 1200
+            },
+            "opens" : {
+              "minute" : 480
+            },
+            "weekday" : 6
+          },
+          {
+            "closes" : {
+              "minute" : 1200
+            },
+            "opens" : {
+              "minute" : 480
+            },
+            "weekday" : 7
+          }
+        ],
+        "effectiveDay" : "2026-08-04",
+        "id" : "ED4CC6E4-0774-4ADC-B759-B44D9D246122",
+        "modifiedAt" : 807487200
+      }
+    ]
+  },
+  "weights" : [
+
+  ]
+}

@@ -60,6 +60,28 @@ final class ScheduleMergeTests: XCTestCase {
     b.versions[0].days[1].modifiedAt = Date()
     XCTAssertThrowsError(try ScheduleMerge.merge(a, b))
   }
+  func testMergeRejectsDuplicateScheduleIDsInEitherInput() throws {
+    let valid = baseline()
+    var invalid = valid
+    var duplicate = try XCTUnwrap(invalid.versions.first)
+    duplicate.effectiveDay = "2026-02-01"
+    invalid.versions.append(duplicate)
+    for (local, remote) in [(valid, invalid), (invalid, valid)] {
+      XCTAssertThrowsError(try ScheduleMerge.merge(local, remote)) {
+        XCTAssertEqual($0 as? ScheduleError, .incompatibleData)
+      }
+    }
+  }
+  func testMergeRejectsScheduleIDCollisionAcrossDifferentDates() throws {
+    let local = baseline()
+    var remote = local
+    remote.versions[0].effectiveDay = "2026-02-01"
+    for (first, second) in [(local, remote), (remote, local)] {
+      XCTAssertThrowsError(try ScheduleMerge.merge(first, second)) {
+        XCTAssertEqual($0 as? ScheduleError, .incompatibleData)
+      }
+    }
+  }
   @MainActor func testResetMarkerSurvivesLocalStoreReload() throws {
     let store = try LocalStore(inMemory: true)
     var data = LocalData()

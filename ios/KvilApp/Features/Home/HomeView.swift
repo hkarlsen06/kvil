@@ -96,7 +96,7 @@ struct HomeView: View {
       }
       .foregroundStyle(Color.kvilSecondary)
       .padding(.horizontal, KvilStyle.page + 44)
-      .padding(.bottom, compact ? 8 : 26)
+      .padding(.bottom, compact ? 8 : 22)
       if let state, state.isDayOff {
         VStack(spacing: KvilStyle.content) {
           Image(systemName: "leaf").font(.system(size: compact ? 44 : 64, weight: .ultraLight))
@@ -193,7 +193,7 @@ struct HomeView: View {
             }.accessibilityLabel(canUndoStart ? .undoEarlyStart : .undoEarlyBreak)
               .accessibilityIdentifier(canUndoStart ? "undoEarlyStart" : "undoEarlyBreak")
           }
-        }.buttonStyle(KvilWindowActionButtonStyle()).padding(.top, compact ? 4 : 22)
+        }.buttonStyle(KvilWindowActionButtonStyle()).padding(.top, compact ? 4 : 18)
           .sensoryFeedback(.impact(weight: .light, intensity: 0.5), trigger: actionFeedback)
           .padding(.horizontal, KvilStyle.page)
       } else {
@@ -208,17 +208,19 @@ struct HomeView: View {
         Button {
           reflecting = eligible
         } label: {
-          Label {
+          HStack(alignment: .center, spacing: 10) {
+            if !typeSize.isAccessibilitySize {
+              Image(systemName: "text.bubble").accessibilityHidden(true)
+            }
             Text(.howDidYesterdayGo).fixedSize(horizontal: false, vertical: true)
-          } icon: {
-            if !typeSize.isAccessibilitySize { Image(systemName: "text.bubble") }
           }
             .font((compact ? Font.caption : .subheadline).weight(.medium))
-            .multilineTextAlignment(.center)
+            .multilineTextAlignment(.leading)
             .padding(.horizontal, KvilStyle.content).padding(.vertical, 12)
             .frame(minHeight: 44).contentShape(Rectangle())
+            .foregroundStyle(Color.kvilInk)
         }.buttonStyle(.plain).accessibilityIdentifier("openReflection")
-          .padding(.horizontal, KvilStyle.page).padding(.top, compact ? 8 : 20)
+          .padding(.horizontal, KvilStyle.page).padding(.top, compact ? 8 : 16)
       }
     }.fixedSize(horizontal: false, vertical: true)
       .accessibilityElement(children: .contain).accessibilityIdentifier("homeContent")

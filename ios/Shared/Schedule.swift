@@ -362,7 +362,8 @@ struct ScheduleEngine: Sendable {
       }
       return
     }
-    guard Set(snapshot.versions.map(\.effectiveDay)).count == snapshot.versions.count,
+    guard Set(snapshot.versions.map(\.id)).count == snapshot.versions.count,
+      Set(snapshot.versions.map(\.effectiveDay)).count == snapshot.versions.count,
       Set(snapshot.overrides.map(\.id)).count == snapshot.overrides.count,
       Set((snapshot.breaks ?? []).map(\.id)).count == (snapshot.breaks?.count ?? 0)
     else { throw ScheduleError.incompatibleData }

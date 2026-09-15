@@ -1,0 +1,19 @@
+{
+  "checkedAt": "2026-09-15",
+  "appId": "6811427716",
+  "version": "1.0.0",
+  "detachedBuild": "2446.23.21",
+  "method": "Signed-in App Store Connect UI",
+  "actions": [
+    "Removed the app-version item from the unsubmitted review draft; retained the first non-consumable purchase item.",
+    "Removed the old build association from the editable version and saved.",
+    "Reloaded the version page and read back Prepare for Submission, disabled Save, and Add Build."
+  ],
+  "selectedBuild": null,
+  "versionState": "PREPARE_FOR_SUBMISSION",
+  "reviewDraftRetainsPurchase": true,
+  "uploadedBuildDeletedFromAccount": false,
+  "newBuildUploaded": false,
+  "submittedForReview": false,
+  "url": "https://appstoreconnect.apple.com/apps/6811427716/distribution/ios/version/inflight"
+}

@@ -1,4 +1,6 @@
 #include "Version.xcconfig"
 
+APS_ENVIRONMENT = development
+
 // Preserve debug symbols when embedding already signed widgets and the Watch app.
 COPY_PHASE_STRIP = NO

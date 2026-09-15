@@ -1,0 +1,31 @@
+{
+  "verifiedAt": "2026-09-15T02:53:05.746613+00:00",
+  "method": "Authenticated Safari CloudKit Console UI; development reload, reviewed deployment diff, success notice, production field table and export preview",
+  "team": "48ZSLD4RMP",
+  "container": "iCloud.dev.hkarlsen06.kvil",
+  "development": {
+    "recordType": "ScheduleState",
+    "applicationFields": {
+      "payload": "ENCRYPTED BYTES"
+    },
+    "indexes": [],
+    "publicDatabaseGrants": []
+  },
+  "production": {
+    "recordType": "ScheduleState",
+    "applicationFields": {
+      "payload": "ENCRYPTED BYTES"
+    },
+    "indexes": [],
+    "publicDatabaseGrants": [],
+    "exportPreviewName": "cloudkit-production.ckdb",
+    "exportPreviewBytes": 643
+  },
+  "deployed": true,
+  "deployedChanges": "One new ScheduleState record type. Users schema unchanged.",
+  "productionURL": "https://icloud.developer.apple.com/dashboard/database/teams/48ZSLD4RMP/containers/iCloud.dev.hkarlsen06.kvil/environments/PRODUCTION/types/ScheduleState/fields",
+  "privateUserRecordsCreatedByAudit": false,
+  "appUploaded": false,
+  "twoDeviceRuntimeVerified": false,
+  "note": "Schema facts transcribed from live UI. The export was previewed, not downloaded. Schema provisioning does not prove runtime record sync."
+}

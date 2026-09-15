@@ -131,6 +131,33 @@ import XCTest
     bad.reflections.append(data.reflections[0])
     XCTAssertThrowsError(try bad.validated())
   }
+  func testDuplicateScheduleIDsRejectBackupWithoutReplacingExistingData() throws {
+    let folder = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
+    defer { try? FileManager.default.removeItem(at: folder) }
+    let original = fixture()
+    do {
+      let store = try LocalStore(directory: folder)
+      try store.save(original)
+      var invalid = original
+      var duplicate = try XCTUnwrap(invalid.schedule.versions.first)
+      duplicate.effectiveDay = "2027-01-01"
+      invalid.schedule.versions.append(duplicate)
+      let backup = try JSONDecoder().decode(LocalData.self, from: JSONEncoder().encode(invalid))
+
+      XCTAssertThrowsError(try backup.validated()) {
+        XCTAssertEqual($0 as? ScheduleError, .incompatibleData)
+      }
+      XCTAssertThrowsError(try store.save(backup))
+      XCTAssertEqual(try store.load(), original)
+
+      let model = try AppModel(store: store, scenario: "onboarding")
+      let beforeImport = model.data
+      XCTAssertFalse(model.restore(backup))
+      XCTAssertEqual(model.data, beforeImport)
+      XCTAssertEqual(try model.store.load(), beforeImport)
+    }
+    XCTAssertEqual(try LocalStore(directory: folder).load(), original)
+  }
   func testWeightUnitConversionAndInvalidValues() {
     XCTAssertEqual(WeightUnit.lb.kilograms(WeightUnit.lb.display(83.2)), 83.2, accuracy: 0.00001)
     for value in [Double.nan, .infinity, -1, 0, 1001] {
@@ -156,5 +183,22 @@ import XCTest
     XCTAssertFalse(model.data.preferences.healthEnabled)
     XCTAssertFalse(model.data.preferences.openingReminder)
     XCTAssertFalse(model.data.weights[0].saveToHealth)
+  }
+  func testRestorePreservesDestinationCloudSyncChoice() throws {
+    for destinationEnabled in [false, true] {
+      for backupEnabled in [false, true] {
+        let store = try LocalStore(inMemory: true)
+        var original = fixture()
+        original.preferences.cloudScheduleEnabled = destinationEnabled
+        try store.save(original)
+        let model = try AppModel(store: store, scenario: "onboarding")
+        var backup = fixture()
+        backup.preferences.cloudScheduleEnabled = backupEnabled
+
+        XCTAssertTrue(model.restore(backup))
+        XCTAssertEqual(model.data.preferences.cloudScheduleEnabled, destinationEnabled)
+        XCTAssertEqual(try store.load().preferences.cloudScheduleEnabled, destinationEnabled)
+      }
+    }
   }
 }

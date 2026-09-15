@@ -392,39 +392,47 @@ struct ScheduleEditor: View {
   var day: DayPlan? = nil
   @Environment(AppModel.self) private var model
   @Environment(\.dismiss) private var dismiss
+  @Environment(\.locale) private var locale
   @Environment(\.dynamicTypeSize) private var typeSize
   @State private var opens = WallTime(hour: 0)
   @State private var closes = WallTime(hour: 0)
+  @State private var slidingWindow: DayPlan?
   @State private var validation: String?
+  @State private var contentHeight: CGFloat = 0
+  @State private var navigationHeight: CGFloat = 0
 
   var body: some View {
     NavigationStack {
-      Form {
-        Section {
+      ScrollView {
+        VStack(alignment: .leading, spacing: KvilStyle.content) {
           Text(day == nil ? LocalizedStringResource.todayEditorIntro : .dayEditorIntro)
-            .foregroundStyle(
-              Color.kvilSecondary)
-        }.listRowBackground(Color.clear)
-        Section {
-          ViewThatFits(in: .horizontal) {
-            if !typeSize.isAccessibilitySize {
-              HStack(spacing: 8) { timeWheels }.fixedSize(horizontal: true, vertical: false)
+            .foregroundStyle(Color.kvilSecondary)
+            .fixedSize(horizontal: false, vertical: true)
+            .frame(maxWidth: .infinity, alignment: .leading)
+          VStack(alignment: .leading, spacing: KvilStyle.content) {
+            if day == nil {
+              windowControl
+            } else {
+              ViewThatFits(in: .horizontal) {
+                if !typeSize.isAccessibilitySize {
+                  HStack(spacing: 8) { timeWheels }.fixedSize(horizontal: true, vertical: false)
+                }
+                VStack(spacing: 8) { timeWheels }
+              }.frame(maxWidth: .infinity)
+              if closes < opens {
+                Label(.closesNextDay, systemImage: "moon").font(.footnote).foregroundStyle(
+                  Color.kvilSecondary)
+              }
             }
-            VStack(spacing: 8) { timeWheels }
-          }.frame(maxWidth: .infinity)
-          if closes < opens {
-            Label(.closesNextDay, systemImage: "moon").font(.footnote).foregroundStyle(
-              Color.kvilSecondary)
+          }.padding(KvilStyle.cardPadding)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(Color.kvilSurface, in: RoundedRectangle(cornerRadius: KvilStyle.corner))
+          if let validation {
+            Text(validation).foregroundStyle(Color.kvilWarning)
+              .fixedSize(horizontal: false, vertical: true)
+              .accessibilityIdentifier("scheduleValidation")
           }
-        }
-        if let validation {
-          Section {
-            Text(validation).foregroundStyle(Color.kvilWarning).accessibilityIdentifier(
-              "scheduleValidation")
-          }
-        }
-        if day == nil && model.engine.window(on: model.now)?.isOverride == true {
-          Section {
+          if day == nil && model.engine.window(on: model.now)?.isOverride == true {
             Button(.useUsualSchedule) {
               if model.removeTodayOverride() {
                 dismiss()
@@ -432,10 +440,21 @@ struct ScheduleEditor: View {
                 validation = model.message
                 model.message = nil
               }
-            }
+            }.frame(minHeight: 44)
           }
+        }.padding(KvilStyle.page)
+          .frame(maxWidth: .infinity, alignment: .leading)
+          .onGeometryChange(for: CGFloat.self) {
+            $0.size.height
+          } action: {
+            contentHeight = $0
+          }
+      }.scrollBounceBehavior(.basedOnSize).background(Color.kvilCanvas)
+        .onGeometryChange(for: CGFloat.self) {
+          $0.safeAreaInsets.top
+        } action: {
+          navigationHeight = $0
         }
-      }.scrollContentBackground(.hidden).background(Color.kvilCanvas)
         .navigationTitle(
           Text(
             verbatim: day.map { model.calendar.weekdaySymbols[$0.weekday - 1] }
@@ -451,7 +470,68 @@ struct ScheduleEditor: View {
         }
         .onAppear { load() }
     }.tint(Color.kvilAccent)
+      .presentationDetents(
+        contentHeight > 0 ? [.height(contentHeight + navigationHeight)] : [.medium])
   }
+
+  private var windowControl: some View {
+    let window = DayPlan(
+      weekday: model.calendar.component(.weekday, from: model.now), opens: opens, closes: closes)
+    let shown = slidingWindow ?? window
+    return VStack(alignment: .leading, spacing: KvilStyle.related) {
+      ViewThatFits(in: .horizontal) {
+        if !typeSize.isAccessibilitySize {
+          HStack(alignment: .top, spacing: KvilStyle.content) {
+            windowTime(shown.opens, title: .windowOpens, identifier: "openingTime")
+            Spacer(minLength: 0)
+            windowTime(shown.closes, title: .windowCloses, identifier: "closingTime")
+          }
+        }
+        VStack(alignment: .leading, spacing: KvilStyle.related) {
+          windowTime(shown.opens, title: .windowOpens, identifier: "openingTime")
+          windowTime(shown.closes, title: .windowCloses, identifier: "closingTime")
+        }
+      }
+      if shown.overnight {
+        Text(.closesNextDay).font(.caption).foregroundStyle(Color.kvilSecondary)
+          .fixedSize(horizontal: false, vertical: true)
+      }
+      KvilWindowSlider(
+        day: window, title: String(localized: .eatingWindow),
+        value: "\(wallTimeString(shown.opens)) – \(wallTimeString(shown.closes))"
+          + (shown.overnight ? ", " + String(localized: .closesNextDay) : ""),
+        onMove: { _, updated in setWindow(updated) }, onPreview: { slidingWindow = $0 }
+      ).accessibilityIdentifier("editorWindowSlider")
+      KvilDayAxis()
+      KvilControlRow(title: .windowLength) {
+        KvilWindowLengthPicker(selected: window.windowMinutes) { minutes in
+          if let updated = try? window.resized(to: minutes) { setWindow(updated) }
+        }.labelsHidden().accessibilityIdentifier("editorWindowLength")
+      }
+    }
+  }
+
+  private func windowTime(_ time: WallTime, title: LocalizedStringResource, identifier: String)
+    -> some View
+  {
+    VStack(alignment: .leading, spacing: 6) {
+      Text(title).font(.subheadline).foregroundStyle(Color.kvilSecondary)
+      Text(verbatim: wallTimeString(time))
+        .font(.system(.title, design: .serif)).monospacedDigit().fixedSize()
+    }.accessibilityElement(children: .combine).accessibilityIdentifier(identifier)
+  }
+
+  private func wallTimeString(_ time: WallTime) -> String {
+    Date(timeIntervalSinceReferenceDate: TimeInterval(time.minute * 60)).formatted(
+      Date.FormatStyle(date: .omitted, time: .shortened, locale: locale, timeZone: .gmt))
+  }
+
+  private func setWindow(_ window: DayPlan) {
+    opens = window.opens
+    closes = window.closes
+    validation = nil
+  }
+
   @ViewBuilder private var timeWheels: some View {
     KvilTimeWheel(title: .windowOpens, time: $opens)
       .accessibilityIdentifier("openingTime")

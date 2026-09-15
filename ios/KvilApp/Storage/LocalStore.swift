@@ -84,6 +84,7 @@ struct LocalData: Codable, Equatable {
 @MainActor final class LocalStore {
   let container: ModelContainer
   let isInMemory: Bool
+  let directory: URL?
   private let context: ModelContext
   init(inMemory: Bool = false, directory: URL? = nil) throws {
     isInMemory = inMemory
@@ -93,6 +94,7 @@ struct LocalData: Codable, Equatable {
     ])
     let configuration: ModelConfiguration
     if inMemory {
+      self.directory = nil
       configuration = ModelConfiguration(
         schema: schema, isStoredInMemoryOnly: true, cloudKitDatabase: .none)
     } else {
@@ -105,6 +107,7 @@ struct LocalData: Codable, Equatable {
       var values = URLResourceValues()
       values.isExcludedFromBackup = true
       try folder.setResourceValues(values)
+      self.directory = folder
       configuration = ModelConfiguration(
         schema: schema, url: folder.appendingPathComponent("Kvil.store"), cloudKitDatabase: .none)
     }

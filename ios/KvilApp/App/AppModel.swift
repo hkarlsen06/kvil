@@ -71,7 +71,7 @@ enum AppTab: Hashable {
     #endif
     purchases = PurchaseService(scenario: isolatedPurchases, unlocked: scenario == "history")
     watch = WatchBridge(enabled: deviceServicesEnabled)
-    cloud = ScheduleCloudService(enabled: deviceServicesEnabled)
+    cloud = ScheduleCloudService(directory: deviceServicesEnabled ? store.directory : nil)
     data = try store.load()
     #if DEBUG
       if let scenario, scenario != "onboarding" && scenario != "onboardingLiveClock" {
@@ -87,10 +87,23 @@ enum AppTab: Hashable {
           dayOff: scenario == "dayOff", upcomingDayOff: scenario == "upcomingDayOff")
       }
     #endif
-    cloud.onChange = { [weak self] in self?.updateSurfaces() }
-    cloud.onAccountChange = { [weak self] in
-      self?.preferences { $0.cloudScheduleEnabled = false }
-      self?.message = String(localized: .cloudAccountChanged)
+    cloud.currentSnapshot = { [weak self] in self?.data.schedule ?? .empty }
+    cloud.acceptSnapshot = { [weak self] snapshot in
+      guard let self else { return false }
+      var next = self.data
+      next.schedule = snapshot
+      guard self.commit(next) else { return false }
+      self.publishLocalSurfaces()
+      return true
+    }
+    cloud.onPause = { [weak self] reason in
+      guard let self else { return }
+      self.preferences { $0.cloudScheduleEnabled = false }
+      switch reason {
+      case .accountChanged: self.message = String(localized: .cloudAccountChanged)
+      case .remoteDeleted: self.message = String(localized: .cloudDataRemoved)
+      case .encryptedReset: self.message = String(localized: .cloudRecoveryPaused)
+      }
     }
   }
 
@@ -347,7 +360,12 @@ enum AppTab: Hashable {
   func preferences(_ edit: (inout Preferences) -> Void) {
     var next = data
     edit(&next.preferences)
-    commit(next, publish: true)
+    let enablingCloud = !data.preferences.cloudScheduleEnabled && next.preferences.cloudScheduleEnabled
+    guard commit(next) else { return }
+    if enablingCloud {
+      do { try cloud.resume() } catch { message = String(localized: .cloudNeedsAttention) }
+    }
+    updateSurfaces()
   }
   func setReminder(opening: Bool, enabled: Bool) async {
     if enabled && deviceServicesEnabled {
@@ -375,14 +393,19 @@ enum AppTab: Hashable {
   }
   func updateSurfaces() {
     guard deviceServicesEnabled else { return }
-    do {
-      let merged = try cloud.sync(data.schedule, enabled: data.preferences.cloudScheduleEnabled)
-      if merged != data.schedule {
-        var next = data
-        next.schedule = merged
-        guard commit(next) else { return }
-      }
-    } catch { message = String(localized: .cloudConflict) }
+    cloud.requestSync(enabled: data.preferences.cloudScheduleEnabled)
+    publishLocalSurfaces()
+  }
+
+  func syncSchedule() async -> Bool {
+    guard deviceServicesEnabled else { return false }
+    let before = data.schedule
+    await cloud.syncNow(enabled: data.preferences.cloudScheduleEnabled)
+    return before != data.schedule
+  }
+
+  private func publishLocalSurfaces() {
+    guard deviceServicesEnabled else { return }
     let snapshot = data.schedule
     let preferences = data.preferences
     do {
@@ -527,6 +550,8 @@ enum AppTab: Hashable {
         }
       }
       next.healthAnchor = nil
+      // A backup cannot change this device's existing choice to sync.
+      next.preferences.cloudScheduleEnabled = data.preferences.cloudScheduleEnabled
       next.preferences.healthEnabled = false
       next.preferences.healthWritesEnabled = false
       next.preferences.openingReminder = false
@@ -538,7 +563,10 @@ enum AppTab: Hashable {
         next.weights[index].pendingDeletion = false
         next.weights[index].healthNeedsUpdate = false
       }
-      return commit(next, publish: true)
+      guard commit(next) else { return false }
+      cloud.invalidatePendingWork()
+      updateSurfaces()
+      return true
     } catch {
       message = String(localized: .importInvalid)
       return false
@@ -549,7 +577,9 @@ enum AppTab: Hashable {
     empty.schedule.revision = Date()
     empty.schedule.resetAt = empty.schedule.revision
     empty.preferences.cloudScheduleEnabled = data.preferences.cloudScheduleEnabled
-    guard commit(empty, publish: true) else { return false }
+    guard commit(empty) else { return false }
+    cloud.invalidatePendingWork()
+    updateSurfaces()
     healthWeights = []
     await reminders.clear()
     if deviceServicesEnabled { await liveActivities.endAll() }

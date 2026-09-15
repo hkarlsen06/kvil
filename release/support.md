@@ -18,7 +18,11 @@ Install Kvil from the Watch app, then open Kvil on both devices. The Watch store
 
 ## Backup and recovery
 
-Schedule settings can sync through iCloud. Reflections stay local. Export a backup in Settings to preserve your schedule, reflection history, and Kvil weight entries. Restore validates the backup before asking to replace local records. Health and reminders stay off after importing until you enable them again. Apple Health controls synchronization of measurements you shared there.
+Your schedule, days off, and fasting adjustments can sync through encrypted fields in your private CloudKit database. Reflections and weight entries stay outside this sync. Open Kvil on each device and allow time for changes to arrive; background delivery is not immediate or guaranteed. If sync pauses after an account change or removal of the cloud schedule, check the account and turn sync on again in Settings when you want to use it.
+
+Kvil migrates schedules from older iCloud key-value storage after saving an encrypted copy. Keep the app updated on your devices so an older version does not keep writing the old copy. Turning sync off does not delete data already in iCloud.
+
+Export a backup in Settings to preserve your schedule, reflection history, and Kvil weight entries. Restore validates the backup before asking to replace local records and preserves that device's existing schedule-sync choice. Health, reminders, and Live Activities stay off after importing until you enable them again. Apple Health controls synchronization of measurements you shared there.
 
 ## Full history
 

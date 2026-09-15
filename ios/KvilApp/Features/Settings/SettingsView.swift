@@ -151,17 +151,22 @@ struct SettingsView: View {
         }
         Section {
           Toggle(.cloudSchedule, isOn: binding(\.cloudScheduleEnabled))
+            .accessibilityIdentifier("cloudScheduleSync")
           if model.data.preferences.cloudScheduleEnabled {
             Text(
               model.cloud.status == .unavailable
                 ? .cloudUnavailable
                 : model.cloud.status == .needsAttention
-                  ? .cloudNeedsAttention : .cloudEnabled
+                  ? .cloudNeedsAttention
+                  : model.cloud.status == .enabled ? .cloudEnabled : .cloudWaiting
             )
             .font(.footnote).foregroundStyle(Color.kvilSecondary)
+            .fixedSize(horizontal: false, vertical: true)
+            .accessibilityIdentifier("cloudSyncStatus")
           }
         } footer: {
-          Text(.cloudScheduleHelp)
+          Text(.cloudScheduleHelp).fixedSize(horizontal: false, vertical: true)
+            .accessibilityIdentifier("cloudSyncHelp")
         }
         Section {
           Button(.exportData) { exporting = true }.accessibilityIdentifier("exportData")
@@ -309,7 +314,7 @@ struct PrivacyView: View {
     ScrollView {
       VStack(alignment: .leading, spacing: 24) {
         Text(.privacyTitle).font(KvilStyle.title)
-        Text(.privacyLocal)
+        Text(.privacyLocal).accessibilityIdentifier("privacyStorage")
         Text(.privacyHealth)
         Text(.privacyDevices)
         Text(.privacyPurchase)

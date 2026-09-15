@@ -1,0 +1,22 @@
+{
+  "unitTestsPassed": 129,
+  "cloudTestsIncluded": 27,
+  "uiTestsPassed": 2,
+  "uiTestsFailed": 1,
+  "failedUI": "CloudSettingsUITests.testEncryptedCloudSettingsInNorwegian",
+  "auditTarget": null,
+  "visualInspection": "All three captured cloud sections reviewed; no visible truncation found. Failure retained without exemption.",
+  "xcresult": "/var/folders/9j/7d72xt915393rwfg7fzyvv5r0000gn/T//Kvil-test-1789440283-49089.xcresult",
+  "sourceSha256": {
+    "ios/KvilApp/Services/CloudKitScheduleClient.swift": "a175fdc255037816702aa317655202bc3b03e6d0728f3ad7efb3f94c32f85d01",
+    "ios/KvilApp/Services/ScheduleCloudService.swift": "7af6ec6310cc9fda71f5db809401200a257cd9a961f616a3db35cf1d25447671",
+    "ios/KvilApp/Services/ScheduleCloudStorage.swift": "d9ba2c1e9bd6bb75ccba3228f653752672af1daf88fe91ead0f3aaaa171575e0",
+    "ios/KvilApp/App/AppModel.swift": "37973cbdcb0ed2d5309c8c9eb52d20f51d344384c2fca0a77489175bf1179758",
+    "ios/KvilApp/App/KvilAppDelegate.swift": "42ff3c0cf55b9f68c9544ffd408b1d3ac5b3fc1893e64a350db65575acc8e613",
+    "ios/KvilApp/App/KvilApp.swift": "67ea6f3237fe962dcca8f009bf4229dc7d2736e8c4da23122f7fad2f200a78d8",
+    "ios/KvilApp/Storage/LocalStore.swift": "2e2081390aae7291f40dd266ed2084858b4d80cac377709b608aef3d14d92022",
+    "ios/KvilApp/Features/Settings/SettingsView.swift": "333b67c10ff5b284133710beff5e73d589f43c9271818707b7befee1c73d36e2",
+    "ios/KvilAppTests/ScheduleCloudServiceTests.swift": "7ef856cbcdbae2397b0f4951d2ca1b04e78170e0e387bf2530fd79f02adc6d77",
+    "ios/KvilAppUITests/CloudSettingsUITests.swift": "b2bc60a6bcec1e4c030b70a20eb1562dc1241c505a4b0a328914f055f72c44cd"
+  }
+}

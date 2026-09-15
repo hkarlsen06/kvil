@@ -409,6 +409,17 @@
 					};
 					C491B7D549B8FE51E15D58A7 = {
 						CreatedOnToolsVersion = 27.0;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
 					};
 					CB32F35BAE920D3D83C2E252 = {
 						CreatedOnToolsVersion = 27.0;

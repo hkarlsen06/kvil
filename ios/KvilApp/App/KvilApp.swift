@@ -48,6 +48,7 @@ import SwiftUI
           guard scenePhase == .active else { return }
           while !Task.isCancelled {
             await model?.refreshLiveActivity()
+            _ = await model?.syncSchedule()
             do { try await Task.sleep(for: .seconds(60)) } catch { return }
           }
         }
@@ -55,17 +56,7 @@ import SwiftUI
   }
   private func load() {
     do {
-      var scenario: String?
-      #if DEBUG
-        scenario = ProcessInfo.processInfo.environment["KVIL_SCENARIO"]
-        if scenario == nil
-          && ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] != nil
-        {
-          scenario = "onboarding"
-        }
-      #endif
-      let store = try LocalStore(inMemory: scenario != nil)
-      model = try AppModel(store: store, scenario: scenario)
+      model = try appDelegate.loadModel()
       storageFailure = false
     } catch { storageFailure = true }
   }

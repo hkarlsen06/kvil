@@ -1,5 +1,15 @@
 # Kvil release readiness
 
+## Current preparation status: 15 September 2026
+
+The old build has been detached from the live draft, content rights corrected, and dark screenshots regenerated locally. The subsequent encrypted private CloudKit migration is integrated. Production schema and signed App Store export **2449.2.47** are verified, and all 129 unit tests passed. Two Settings UI checks passed; one ordinary-Norwegian native clipping audit remains unresolved without an identified target, although the captures are visually complete. Real two-device/APNs migration and recovery checks remain in [CloudKit deployment](CLOUDKIT_DEPLOYMENT.md). [Migration evidence](CLOUDKIT_MIGRATION.md). Encryption does not settle the [App Review policy question](ICLOUD_PRIVACY_FINDINGS.md).
+
+Local listing, reviewer, privacy, and support text now describes encrypted schedule sync, including Home fasting adjustments. The prepared website HTML has not been published. No new binary, screenshots, or listing text has been uploaded. [App Review remediation](APP_REVIEW_REMEDIATION.md) is the current checklist.
+
+## Historical readiness record: 13 September 2026
+
+The sections below retain the original build, website, and validation evidence from that checkpoint. References there to current materials, KVS, or pending changes describe the 13 September state, not the new CloudKit candidate.
+
 Updated 13 September 2026. The current working tree and live website include visual changes made after the last Apple upload. This is not a submitted or approved App Store release.
 
 ## Current visual revision

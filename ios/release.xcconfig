@@ -1,1 +1,3 @@
 #include "Version.xcconfig"
+
+APS_ENVIRONMENT = production

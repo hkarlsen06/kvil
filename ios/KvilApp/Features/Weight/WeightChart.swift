@@ -45,7 +45,9 @@ struct WeightChart: View {
       }
     }
     .chartYScale(domain: .automatic(includesZero: false))
-    .chartYAxisLabel(unit.rawValue)
+    .chartYAxisLabel(
+      unit.rawValue, position: .top, alignment: .trailing,
+      spacing: typeSize.isAccessibilitySize ? KvilStyle.content : KvilStyle.related)
     .frame(height: typeSize.isAccessibilitySize ? 300 : 170)
   }
 }
