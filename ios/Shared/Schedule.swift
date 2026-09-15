@@ -274,17 +274,39 @@ struct ScheduleEngine: Sendable {
 
   func undoingEarlyBreak(at now: Date, modifiedAt: Date) throws -> ScheduleSnapshot {
     try validate(near: now)
-    guard let item = earlyBreak(at: now),
-      let index = snapshot.overrides.firstIndex(where: { $0.id == item.id })
-    else { return snapshot }
-    var next = snapshot
+    guard var item = earlyBreak(at: now) else { return snapshot }
     // Restore the saved window, including any custom times for this day. Clearing a
     // subsequent early close also prevents the restored window from ending before it opens.
-    next.overrides[index].adjustedOpening = nil
-    next.overrides[index].adjustedClosing = nil
+    item.adjustedOpening = nil
+    item.adjustedClosing = nil
+    return try restoringAdjustment(item, at: now, modifiedAt: modifiedAt)
+  }
+
+  func earlyStart(at now: Date) -> DayOverride? {
+    guard !isDayOff(on: now) else { return nil }
+    return snapshot.overrides.first {
+      $0.deleted != true && $0.adjustedClosing.map { $0 <= now } == true && now < $0.closing
+    }
+  }
+
+  func undoingEarlyStart(at now: Date, modifiedAt: Date) throws -> ScheduleSnapshot {
+    try validate(near: now)
+    guard var item = earlyStart(at: now) else { return snapshot }
+    item.adjustedClosing = nil
+    return try restoringAdjustment(item, at: now, modifiedAt: modifiedAt)
+  }
+
+  private func restoringAdjustment(_ item: DayOverride, at now: Date, modifiedAt: Date) throws
+    -> ScheduleSnapshot
+  {
+    guard let index = snapshot.overrides.firstIndex(where: { $0.id == item.id }) else {
+      return snapshot
+    }
+    var next = snapshot
+    next.overrides[index] = item
     var usual = self
     usual.snapshot.overrides.removeAll { $0.id == item.id }
-    if item.timeZoneID == calendar.timeZone.identifier,
+    if item.adjustedOpening == nil, item.timeZoneID == calendar.timeZone.identifier,
       let window = usual.window(on: item.opening),
       window.opening == item.opening, window.closing == item.closing
     {

@@ -2378,37 +2378,37 @@
       }
     },
     "reminderCloseBody" : {
-      "comment" : "Kvil user interface: reminderCloseBody",
+      "comment" : "Notification body at the scheduled closing. Calmly marks the planned pause and allows flexibility; do not imply the person has stopped eating.",
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "A quiet reminder of your schedule. Make room for what your day needs."
+            "value" : "Your planned pause starts now. Adjust your schedule if you need to."
           }
         },
         "nb" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "En rolig påminnelse om planen din. Gi rom for det dagen trenger."
+            "value" : "Den planlagte pausen starter nå. Juster planen hvis du trenger det."
           }
         }
       }
     },
     "reminderCloseTitle" : {
-      "comment" : "Kvil user interface: reminderCloseTitle",
+      "comment" : "Notification title at the scheduled closing. Describes the end of the planned eating window, not the person’s behavior.",
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Your planned window has closed"
+            "value" : "Your eating window has ended"
           }
         },
         "nb" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Det planlagte spisevinduet har lukket"
+            "value" : "Spisevinduet er over"
           }
         }
       }
@@ -2450,25 +2450,25 @@
       }
     },
     "reminderOpenBody" : {
-      "comment" : "Kvil user interface: reminderOpenBody",
+      "comment" : "Notification body at the scheduled opening. A relaxed invitation to eat, with no pressure to start immediately.",
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "There’s room for your next meal. Adjust today’s plan whenever you need to."
+            "value" : "Enjoy your next meal when you’re ready."
           }
         },
         "nb" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Det er rom for neste måltid. Juster dagens plan når du trenger det."
+            "value" : "Ta neste måltid når det passer deg."
           }
         }
       }
     },
     "reminderOpenTitle" : {
-      "comment" : "Kvil user interface: reminderOpenTitle",
+      "comment" : "Notification title at the scheduled opening. Describes the planned eating window, not a completed fast.",
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
@@ -4858,7 +4858,7 @@
           }
         }
       },
-      "comment" : "Advance notification title for planned opening."
+      "comment" : "Advance notification title before the planned eating window opens."
     },
     "reminderClosingSoon" : {
       "extractionState" : "manual",
@@ -4866,17 +4866,17 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Your eating window closes soon"
+            "value" : "Your eating window ends soon"
           }
         },
         "nb" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Spisevinduet stenger snart"
+            "value" : "Spisevinduet er snart over"
           }
         }
       },
-      "comment" : "Advance notification title for planned closing."
+      "comment" : "Advance notification title before the planned eating window ends. Keep the tone calm, without urgency."
     },
     "reminderOpensIn" : {
       "extractionState" : "manual",
@@ -4884,17 +4884,17 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Your planned eating window opens in %lld minutes."
+            "value" : "Your eating window opens in %lld minutes."
           }
         },
         "nb" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Det planlagte spisevinduet åpner om %lld minutter."
+            "value" : "Spisevinduet åpner om %lld minutter."
           }
         }
       },
-      "comment" : "Advance opening notification body. Integer is 15 or 30 minutes."
+      "comment" : "Advance opening notification body. Integer is the selected lead time, 15 or 30 minutes. Describes the schedule without urging the person to eat."
     },
     "reminderClosesIn" : {
       "extractionState" : "manual",
@@ -4902,17 +4902,17 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Your planned eating window closes in %lld minutes."
+            "value" : "There are %lld minutes left in your eating window."
           }
         },
         "nb" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Det planlagte spisevinduet stenger om %lld minutter."
+            "value" : "Det er %lld minutter igjen av spisevinduet ditt."
           }
         }
       },
-      "comment" : "Advance closing notification body. Integer is 15 or 30 minutes."
+      "comment" : "Advance closing notification body. Integer is the selected lead time, 15 or 30 minutes. A gentle heads-up about the schedule, without pressure to finish eating."
     },
     "liveActivities" : {
       "extractionState" : "manual",
@@ -6299,6 +6299,24 @@
         }
       },
       "comment" : "VoiceOver summary of the personalized pause. Localized clock times may include a next-day suffix; the third argument is a duration in hours and minutes."
+    },
+    "undoEarlyStart" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Undo early fast start"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Angre tidlig fastestart"
+          }
+        }
+      },
+      "comment" : "Accessibility label for the small undo button beside the fasting action. Restores the eating window after starting a fast early; available until the originally scheduled closing."
     }
   },
   "version" : "1.0"

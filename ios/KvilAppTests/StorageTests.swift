@@ -49,6 +49,27 @@ import XCTest
     XCTAssertEqual(model.data.weights, original.weights)
     XCTAssertEqual(model.data.schedule.versions, original.schedule.versions)
   }
+  func testUndoEarlyStartPersistsAndMergesWithoutChangingPersonalData() throws {
+    for scenario in ["open", "home"] {
+      let model = try AppModel(store: LocalStore(inMemory: true), scenario: scenario)
+      if scenario == "home" { XCTAssertTrue(model.setEatingWindowOpen(true)) }
+      let original = model.data
+      let window = try XCTUnwrap(model.engine.state(at: model.now)?.active)
+      XCTAssertTrue(model.setEatingWindowOpen(false))
+      let started = model.data.schedule
+      XCTAssertTrue(model.undoEarlyStart())
+      let reloaded = try model.store.load()
+      let restored = ScheduleEngine(snapshot: reloaded.schedule, calendar: model.calendar)
+      XCTAssertEqual(reloaded, model.data)
+      XCTAssertEqual(restored.state(at: model.now)?.active, window)
+      XCTAssertNil(restored.earlyStart(at: model.now))
+      XCTAssertEqual(try ScheduleMerge.merge(started, reloaded.schedule), reloaded.schedule)
+      XCTAssertEqual(try ScheduleMerge.merge(reloaded.schedule, started), reloaded.schedule)
+      XCTAssertEqual(reloaded.reflections, original.reflections)
+      XCTAssertEqual(reloaded.weights, original.weights)
+      XCTAssertEqual(reloaded.schedule.versions, original.schedule.versions)
+    }
+  }
   func testPersistentStoreReopensWithoutLoss() throws {
     let folder = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
     defer { try? FileManager.default.removeItem(at: folder) }

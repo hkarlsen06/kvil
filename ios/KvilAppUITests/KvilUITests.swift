@@ -92,6 +92,18 @@ import XCTest
     action.tap()
     action.tap()
     XCTAssertEqual(action.label, "Bryt fasten tidlig")
+    let undoStart = app.buttons["undoEarlyStart"]
+    XCTAssertTrue(undoStart.isHittable)
+    XCTAssertEqual(undoStart.label, "Angre tidlig fastestart")
+    XCTAssertFalse(undo.exists)
+    XCTAssertGreaterThan(undoStart.frame.minX, action.frame.maxX)
+    XCTAssertEqual(undoStart.frame.midY, action.frame.midY, accuracy: 1)
+    attach(app, name: "Undo-early-start-norsk")
+    app.tabBars.buttons["Plan"].tap()
+    app.tabBars.buttons["Hjem"].tap()
+    undoStart.tap()
+    XCTAssertTrue(undoStart.waitForNonExistence(timeout: 3))
+    XCTAssertEqual(action.label, "Start fasten nå")
     XCTAssertTrue(undo.isHittable)
     undo.tap()
     XCTAssertTrue(undo.waitForNonExistence(timeout: 3))
@@ -131,6 +143,19 @@ import XCTest
     XCTAssertEqual(action.label, "Start fast now")
     attach(app, name: "Undo-expired-at-scheduled-opening")
   }
+  func testUndoEarlyStartExpiresWhenScheduledWindowCloses() {
+    let app = app("closingSoon")
+    let action = app.buttons["fastingAction"]
+    let undo = app.buttons["undoEarlyStart"]
+    XCTAssertTrue(action.waitForExistence(timeout: 10))
+    XCTAssertFalse(undo.exists)
+    action.tap()
+    XCTAssertTrue(undo.waitForExistence(timeout: 3))
+    XCTAssertEqual(action.label, "Break fast early")
+    XCTAssertTrue(undo.waitForNonExistence(timeout: 25))
+    XCTAssertEqual(action.label, "Break fast early")
+    attach(app, name: "Undo-expired-at-scheduled-closing")
+  }
   func testFastingActionsAtLargestText() throws {
     let app = app("open", largeText: true)
     let action = app.buttons["fastingAction"]
@@ -144,6 +169,15 @@ import XCTest
     XCTAssertLessThanOrEqual(action.frame.maxY, app.tabBars.firstMatch.frame.minY)
     action.tap()
     XCTAssertEqual(action.label, "Break fast early")
+    let undo = app.buttons["undoEarlyStart"]
+    XCTAssertTrue(undo.isHittable)
+    XCTAssertEqual(undo.label, "Undo early fast start")
+    let aligned = XCTNSPredicateExpectation(
+      predicate: NSPredicate { _, _ in
+        undo.frame.minX > action.frame.maxX && abs(undo.frame.midY - action.frame.midY) <= 1
+      },
+      object: nil)
+    XCTAssertEqual(XCTWaiter.wait(for: [aligned], timeout: 3), .completed)
     try app.performAccessibilityAudit(for: [.textClipped, .sufficientElementDescription])
     XCTAssertFalse(app.scrollViews.firstMatch.exists)
     XCTAssertLessThanOrEqual(action.frame.maxY, app.tabBars.firstMatch.frame.minY)
@@ -161,6 +195,10 @@ import XCTest
     tap(app.buttons["saveReflection"], in: app)
     XCTAssertTrue(reflection.waitForNonExistence(timeout: 3))
     XCTAssertFalse(app.scrollViews.firstMatch.exists)
+    undo.tap()
+    XCTAssertTrue(undo.waitForNonExistence(timeout: 3))
+    XCTAssertEqual(action.label, "Start fast now")
+    XCTAssertFalse(app.buttons["undoEarlyBreak"].exists)
   }
   func testHomeLeavesSpaceForLandscapeWithoutScrolling() throws {
     let app = app("open", language: "nb")

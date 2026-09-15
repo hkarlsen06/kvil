@@ -263,6 +263,16 @@ enum AppTab: Hashable {
       return false
     }
   }
+  @discardableResult func undoEarlyStart() -> Bool {
+    do {
+      var next = data
+      next.schedule = try engine.undoingEarlyStart(at: now, modifiedAt: Date())
+      return commit(next, publish: true)
+    } catch {
+      message = errorText(error)
+      return false
+    }
+  }
   @discardableResult func reflect(_ window: EatingWindow, feeling: DayFeeling?) -> Bool {
     let r = Reflection(
       dayKey: window.dayKey, timeZoneID: window.timeZoneID, feeling: feeling,

@@ -170,6 +170,68 @@ final class ScheduleTests: XCTestCase {
         ).events.first?.date, plannedOpening)
     }
   }
+  func testUndoEarlyStartRestoresWindowUntilExactClosingAcrossDateBoundaries() throws {
+    let overnight = (1...7).map {
+      DayPlan(weekday: $0, opens: .init(hour: 20), closes: .init(hour: 4))
+    }
+    for (days, value) in [
+      (DayPlan.initial, "2026-09-12T12:00:00Z"),
+      (overnight, "2026-12-31T22:30:00Z"),
+      (overnight, "2026-03-28T22:30:00Z"),
+      (overnight, "2026-10-24T22:30:00Z"),
+    ] {
+      var e = engine(days)
+      let now = date(value)
+      let original = try XCTUnwrap(e.state(at: now)?.active)
+      XCTAssertNil(e.earlyStart(at: now))
+      e.snapshot = try e.settingEatingWindowOpen(false, at: now, modifiedAt: now)
+      let started = e.snapshot
+      let beforeClosing = original.closing.addingTimeInterval(-1)
+      XCTAssertNil(e.earlyStart(at: now.addingTimeInterval(-1)))
+      XCTAssertNotNil(e.earlyStart(at: now))
+      XCTAssertNotNil(e.earlyStart(at: beforeClosing))
+      XCTAssertNil(e.earlyStart(at: original.closing))
+      XCTAssertNil(e.earlyStart(at: original.closing.addingTimeInterval(1)))
+      XCTAssertEqual(
+        try e.undoingEarlyStart(at: original.closing, modifiedAt: original.closing), started)
+      e.snapshot = try e.undoingEarlyStart(at: beforeClosing, modifiedAt: beforeClosing)
+      XCTAssertEqual(e.state(at: beforeClosing)?.active, original)
+      XCTAssertNil(e.earlyStart(at: beforeClosing))
+      XCTAssertEqual(e.snapshot.versions, started.versions)
+      XCTAssertFalse(try XCTUnwrap(e.state(at: original.closing)).isOpen)
+      XCTAssertEqual(
+        try e.undoingEarlyStart(at: beforeClosing, modifiedAt: beforeClosing), e.snapshot)
+      var preferences = Preferences()
+      preferences.closingReminder = true
+      preferences.closingReminderLeadMinutes = 0
+      XCTAssertEqual(
+        ReminderPlan.make(
+          snapshot: e.snapshot, preferences: preferences, now: beforeClosing, calendar: c
+        ).events.first?.date, original.closing)
+    }
+  }
+  func testUndoEarlyStartPreservesEarlyBreakAndCustomWindowAfterTravel() throws {
+    let item = DayOverride(
+      dayKey: "2026-09-12", timeZoneID: c.timeZone.identifier,
+      opening: date("2026-09-12T10:00:00Z"), closing: date("2026-09-12T18:00:00Z"))
+    for breakEarly in [false, true] {
+      var e = engine(overrides: [item])
+      let now = date(breakEarly ? "2026-09-12T06:00:00Z" : "2026-09-12T12:00:00Z")
+      if breakEarly {
+        e.snapshot = try e.settingEatingWindowOpen(true, at: now, modifiedAt: now)
+      }
+      let original = try XCTUnwrap(e.state(at: now)?.active)
+      let start = now.addingTimeInterval(60)
+      e.snapshot = try e.settingEatingWindowOpen(false, at: start, modifiedAt: start)
+      e.calendar = LocalDay.calendar(timeZone: TimeZone(identifier: "America/New_York")!)
+      let undo = start.addingTimeInterval(60)
+      e.snapshot = try e.undoingEarlyStart(at: undo, modifiedAt: undo)
+      XCTAssertEqual(e.state(at: undo)?.active, original)
+      XCTAssertNil(e.earlyStart(at: undo))
+      XCTAssertEqual(e.earlyBreak(at: undo) != nil, breakEarly)
+      XCTAssertNotEqual(e.snapshot.overrides.first?.deleted, true)
+    }
+  }
   func testUndoEarlyBreakPreservesCustomWindowAfterClosingAndTravel() throws {
     let item = DayOverride(
       dayKey: "2026-09-12", timeZoneID: c.timeZone.identifier,

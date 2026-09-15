@@ -16,11 +16,16 @@ import UserNotifications
   }
 
   nonisolated func userNotificationCenter(
-    _ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse
-  ) async {
+    _ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse,
+    withCompletionHandler completionHandler: @escaping @Sendable () -> Void
+  ) {
     let identifier = response.notification.request.identifier
     let action = response.actionIdentifier
-    await MainActor.run { receiveReminder(identifier: identifier, action: action) }
+    // UIKit's launch completion must also run on main; the async delegate bridge can finish off-main.
+    Task { @MainActor in
+      receiveReminder(identifier: identifier, action: action)
+      completionHandler()
+    }
   }
 
   func receiveReminder(identifier: String, action: String) {

@@ -168,22 +168,32 @@ struct HomeView: View {
           Button {
             if model.setEatingWindowOpen(!state.isOpen) { actionFeedback += 1 }
           } label: {
-            Label(
-              state.isOpen ? .startFastNow : .breakFastEarly,
-              systemImage: state.isOpen ? "leaf" : "fork.knife"
-            )
-            .font(.subheadline.weight(.medium)).multilineTextAlignment(.center)
-            .padding(.horizontal, 22).padding(.vertical, 13)
+            Label {
+              Text(state.isOpen ? .startFastNow : .breakFastEarly)
+                .fixedSize(horizontal: false, vertical: true)
+            } icon: {
+              if !typeSize.isAccessibilitySize {
+                Image(systemName: state.isOpen ? "leaf" : "fork.knife")
+              }
+            }
+            .font((compact ? Font.caption : .subheadline).weight(.medium))
+            .multilineTextAlignment(.center)
+            .padding(.horizontal, 22).padding(.vertical, compact ? 0 : 13)
+            .frame(minHeight: 44)
           }.accessibilityIdentifier("fastingAction")
-          if model.engine.earlyBreak(at: now) != nil {
+          let canUndoStart = model.engine.earlyStart(at: now) != nil
+          if canUndoStart || model.engine.earlyBreak(at: now) != nil {
             Button {
-              if model.undoEarlyBreak() { actionFeedback += 1 }
+              if canUndoStart ? model.undoEarlyStart() : model.undoEarlyBreak() {
+                actionFeedback += 1
+              }
             } label: {
               Image(systemName: "arrow.uturn.backward")
                 .font(.system(size: 17, weight: .medium)).frame(width: 44, height: 44)
-            }.accessibilityLabel(.undoEarlyBreak).accessibilityIdentifier("undoEarlyBreak")
+            }.accessibilityLabel(canUndoStart ? .undoEarlyStart : .undoEarlyBreak)
+              .accessibilityIdentifier(canUndoStart ? "undoEarlyStart" : "undoEarlyBreak")
           }
-        }.buttonStyle(KvilWindowActionButtonStyle()).padding(.top, compact ? 16 : 22)
+        }.buttonStyle(KvilWindowActionButtonStyle()).padding(.top, compact ? 4 : 22)
           .sensoryFeedback(.impact(weight: .light, intensity: 0.5), trigger: actionFeedback)
           .padding(.horizontal, KvilStyle.page)
       } else {
@@ -198,8 +208,13 @@ struct HomeView: View {
         Button {
           reflecting = eligible
         } label: {
-          Label(.howDidYesterdayGo, systemImage: "text.bubble")
-            .font(.subheadline.weight(.medium)).multilineTextAlignment(.center)
+          Label {
+            Text(.howDidYesterdayGo).fixedSize(horizontal: false, vertical: true)
+          } icon: {
+            if !typeSize.isAccessibilitySize { Image(systemName: "text.bubble") }
+          }
+            .font((compact ? Font.caption : .subheadline).weight(.medium))
+            .multilineTextAlignment(.center)
             .padding(.horizontal, KvilStyle.content).padding(.vertical, 12)
             .frame(minHeight: 44).contentShape(Rectangle())
         }.buttonStyle(.plain).accessibilityIdentifier("openReflection")

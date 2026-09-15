@@ -4,6 +4,49 @@ import XCTest
 @testable import KvilApp
 
 @MainActor final class ReminderPresentationTests: XCTestCase {
+  func testNotificationCallbackCompletesOnMainThreadAfterRetainingColdLaunchResponse() async throws {
+    let delegate = KvilAppDelegate()
+    let completed = expectation(description: "Notification response completed")
+    completed.assertForOverFulfill = true
+
+    try await Task.detached {
+      let response = try Self.notificationResponse()
+      // Exercise the Objective-C completion-handler entry point used by iOS.
+      let notificationDelegate: any UNUserNotificationCenterDelegate = delegate
+      notificationDelegate.userNotificationCenter?(
+        .current(), didReceive: response,
+        withCompletionHandler: {
+          XCTAssertTrue(Thread.isMainThread, "UIKit's launch completion must run on the main thread")
+          if Thread.isMainThread {
+            MainActor.assumeIsolated {
+              XCTAssertNotNil(delegate.reminderResponse, "Retain the route before completing launch")
+            }
+          }
+          completed.fulfill()
+        })
+    }.value
+
+    await fulfillment(of: [completed], timeout: 5)
+    XCTAssertNotNil(delegate.reminderResponse)
+  }
+
+  private nonisolated static func notificationResponse() throws -> UNNotificationResponse {
+    // These system types expose NSSecureCoding initializers, but no public value initializers.
+    let notificationArchive = NSKeyedArchiver(requiringSecureCoding: true)
+    notificationArchive.encode(
+      UNNotificationRequest(
+        identifier: "kvil.open.123", content: UNMutableNotificationContent(), trigger: nil),
+      forKey: "request")
+    notificationArchive.encode(Date(), forKey: "date")
+    let notificationCoder = try NSKeyedUnarchiver(forReadingFrom: notificationArchive.encodedData)
+    let notification = try XCTUnwrap(UNNotification(coder: notificationCoder))
+    let responseArchive = NSKeyedArchiver(requiringSecureCoding: true)
+    responseArchive.encode(notification, forKey: "notification")
+    responseArchive.encode(UNNotificationDefaultActionIdentifier, forKey: "actionIdentifier")
+    let responseCoder = try NSKeyedUnarchiver(forReadingFrom: responseArchive.encodedData)
+    return try XCTUnwrap(UNNotificationResponse(coder: responseCoder))
+  }
+
   func testReminderTapSurvivesColdLaunchAndEachTapHasANewPresentation() {
     let delegate = KvilAppDelegate()
     delegate.receiveReminder(identifier: "unrelated", action: UNNotificationDefaultActionIdentifier)
