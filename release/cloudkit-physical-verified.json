@@ -1,0 +1,66 @@
+{
+  "checkedAt": "2026-09-15T04:49:06.512463+00:00",
+  "device": "Cold Harbor",
+  "model": "iPhone 17 Pro",
+  "os": "iOS 27.0 (24A435)",
+  "build": "2449.4.42",
+  "result": "Passed",
+  "passedTests": 1,
+  "skippedTests": 0,
+  "failedTests": 0,
+  "scope": "Real CloudKit server operations from two independent native client instances on one physical iPhone. Dedicated UUID QA zone; fictional data only. This does not establish two-device sync or background APNs delivery.",
+  "resultBundle": "/var/folders/9j/7d72xt915393rwfg7fzyvv5r0000gn/T/Kvil-test-1789447354-43451.xcresult",
+  "wrapperLog": "build/cloudkit-live-physical.log",
+  "audit": {
+    "checkpoints": [
+      "same signed-in account",
+      "new QA zone absent",
+      "QA zone created; record initially absent",
+      "encrypted payload acknowledged and independently fetched; subscription saved",
+      "real stale-write conflict; independent weekday edits converge",
+      "reset tombstone survives stale-client conflict",
+      "cancelled-before-submit write leaves cloud data unchanged",
+      "only QA zone deleted; real zoneNotFound observed",
+      "explicit QA zone recreation and encrypted round trip",
+      "QA subscription and zone cleaned up"
+    ],
+    "cleanupSucceeded": true,
+    "fictionalDataOnly": true,
+    "runID": "6A38095F-4C18-4DB5-BC8A-8AC84D1B59CF",
+    "zone": "KvilQA-6A38095F-4C18-4DB5-BC8A-8AC84D1B59CF"
+  },
+  "signedCapabilities": {
+    "aps-environment": "development",
+    "com.apple.developer.icloud-container-identifiers": [
+      "iCloud.dev.hkarlsen06.kvil"
+    ],
+    "com.apple.developer.icloud-services": [
+      "CloudKit"
+    ],
+    "com.apple.developer.icloud-container-environment": null,
+    "com.apple.developer.ubiquity-kvstore-identifier": "48ZSLD4RMP.dev.hkarlsen06.kvil",
+    "profile": {
+      "aps-environment": "development",
+      "com.apple.developer.icloud-container-identifiers": [
+        "iCloud.dev.hkarlsen06.kvil"
+      ],
+      "com.apple.developer.icloud-services": "*",
+      "com.apple.developer.icloud-container-environment": [
+        "Production",
+        "Development"
+      ],
+      "com.apple.developer.ubiquity-kvstore-identifier": "48ZSLD4RMP.*"
+    }
+  },
+  "sourceSHA256": {
+    "ios/KvilApp/Services/CloudKitScheduleClient.swift": "a8d9e41bdfaae8dc28bcc8197b238ddf3ff034270e403672eb5920bbc078dec9",
+    "ios/KvilAppTests/CloudKitLiveTests.swift": "0811e0fb8a0f5c4cd44db24089475f047d306d7be38ba717c56557af4ccd8994"
+  },
+  "notVerified": [
+    "Two physical iPhones converging",
+    "Production/TestFlight private records",
+    "Actual app background APNs delivery",
+    "Real account switching or iCloud Keychain reset",
+    "Transport migration of a real legacy user KVS record"
+  ]
+}

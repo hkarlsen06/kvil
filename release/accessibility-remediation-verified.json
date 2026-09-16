@@ -1,0 +1,202 @@
+{
+  "verified_at": "2026-09-16T12:49:00.593143+00:00",
+  "status": "resolved_home_and_settings_focused_audits",
+  "environment": {
+    "platform": "iOS Simulator",
+    "device": "iPhone 13 mini",
+    "device_id": "92ADD424-FC44-47A1-B43B-AB24A64B2BB6",
+    "os": "iOS 27.0 (24A434)",
+    "appearance": "dark",
+    "scheme": "StoreKit"
+  },
+  "results": [
+    {
+      "scope": "Home: compact landscape and open-window/English/Norwegian layouts",
+      "build": "2449.20.22",
+      "passed": 2,
+      "failed": 0,
+      "skipped": 0,
+      "warnings": [],
+      "xcresult": "/var/folders/9j/7d72xt915393rwfg7fzyvv5r0000gn/T/Kvil-test-1789503769-41532.xcresult",
+      "log": "build/luna-home-native-range.log",
+      "summary": "build/luna-home-final-summary.json",
+      "attachments": "build/luna-home-native-range-attachments"
+    },
+    {
+      "scope": "Full Settings: English, Norwegian, largest Norwegian, largest English reminders, reminder/Live Activities persistence, weight/sync/navigation controls",
+      "build": "2450.12.39",
+      "passed": 6,
+      "failed": 0,
+      "skipped": 0,
+      "warnings": [
+        "/Users/hkarlsen06/Repositories/kvil/ios/KvilAppUITests/KvilUITests.swift:10: Main actor-isolated property 'storeKit' can not be mutated from a nonisolated context",
+        "/Users/hkarlsen06/Repositories/kvil/ios/KvilAppUITests/KvilUITests.swift:11: Main actor-isolated property 'storeKit' can not be referenced from a nonisolated context",
+        "/Users/hkarlsen06/Repositories/kvil/ios/KvilAppUITests/KvilUITests.swift:12: Main actor-isolated property 'storeKit' can not be referenced from a nonisolated context",
+        "/Users/hkarlsen06/Repositories/kvil/ios/KvilAppUITests/KvilUITests.swift:13: Main actor-isolated property 'storeKit' can not be referenced from a nonisolated context",
+        "/Users/hkarlsen06/Repositories/kvil/ios/KvilAppUITests/KvilUITests.swift:11:5: warning: main actor-isolated property 'storeKit' can not be mutated from a nonisolated context",
+        "|     `- warning: main actor-isolated property 'storeKit' can not be mutated from a nonisolated context",
+        "/Users/hkarlsen06/Repositories/kvil/ios/KvilAppUITests/KvilUITests.swift:12:5: warning: main actor-isolated property 'storeKit' can not be referenced from a nonisolated context",
+        "|     `- warning: main actor-isolated property 'storeKit' can not be referenced from a nonisolated context",
+        "/Users/hkarlsen06/Repositories/kvil/ios/KvilAppUITests/KvilUITests.swift:13:5: warning: main actor-isolated property 'storeKit' can not be referenced from a nonisolated context",
+        "/Users/hkarlsen06/Repositories/kvil/ios/KvilAppUITests/KvilUITests.swift:14:5: warning: main actor-isolated property 'storeKit' can not be referenced from a nonisolated context"
+      ],
+      "warning_note": "Four pre-existing StoreKit UI test setup actor-isolation warnings; wrapper repeats some diagnostics. No runtime warnings.",
+      "xcresult": "/var/folders/9j/7d72xt915393rwfg7fzyvv5r0000gn/T/Kvil-test-1789562367-39242.xcresult",
+      "log": "build/settings-clipping-final.log",
+      "summary": "build/settings-clipping-final-summary.json",
+      "attachments": "build/settings-clipping-final-attachments"
+    }
+  ],
+  "totals": {
+    "passed": 8,
+    "failed": 0,
+    "skipped": 0,
+    "note": "Eight unique focused cases: two earlier Home cases plus six Settings cases. The final two-case follow-up repeats Settings cases and is not added again. These are focused runs, not a full-suite run."
+  },
+  "changes": [
+    "Render the horizontal time range as one Text while preserving locale, calendar, time zone, vertical fallback and next-day marker.",
+    "Lay out the existing Settings Sections in a regular grouped ScrollView/VStack so complete row and footer text determines their height.",
+    "Use one wrapping Text menu label for reminder values, retaining native menu selection and accessible title/value.",
+    "Keep the current section when Dynamic Type changes, using stable row/header/footer identities captured only during user scrolling and only when at least half visible.",
+    "Keep explicit native picker semantics, full button hit regions, disclosure indicators, accent-colored reminder values and the destructive erase label."
+  ],
+  "visual_inspection": "Root inspected the earlier accepted Home captures, plus final English/Norwegian Settings, largest Norwegian cloud section after the font sweep, the complete largest English reminder value after the sweep, ordinary reminder controls, weight-unit selection, and data/navigation captures. The final color-refinement captures show the full accent-colored reminder value and red erase label. Normal scroll viewport boundaries are distinct from text truncation.",
+  "overnight_format_probe": "build/luna-home-overnight-format.txt",
+  "audit_filters_or_waivers": false,
+  "diagnostic_source_retained": false,
+  "source_identity": {
+    "base_commit": "30249c975ef5940690b625b7c897026c70e7fc99",
+    "uncommitted": true,
+    "sha256": {
+      "ios/SharedUI/KvilStyle.swift": "4e4f908f6379c42e622e0438d334ad36f170c592b08665b466f632064027112d",
+      "ios/KvilApp/Features/Settings/SettingsView.swift": "83a2f7b7f0b73191697fb27e5cccc5f9f2e4dc8ca77ade9978b2d72d99b0c822",
+      "ios/KvilApp/Features/Home/HomeView.swift": "036230cb0461dda44d0c60c68f38cad16a78887d1413aa770465806ac4d25f0d",
+      "ios/KvilAppUITests/CloudSettingsUITests.swift": "8c04350bed1ab0ac6264bb2f8e1e7580e7132f7f57f08770b5c707ad066ffada",
+      "ios/KvilAppUITests/KvilUITests.swift": "f7bcb36e5adaf5838f1277db36721f3980050483b3bad0b5bd6f1f45525135f3"
+    },
+    "note": "Fingerprints describe final retained source. Temporary diagnostic code was removed. The last two production edits only restored reminder/erase control colors and were covered by the successful two-case follow-up."
+  },
+  "earlier_evidence": "release/accessibility-verified.json retains the morning failures and model/setup results. Those suites were not repeated in this UI-only follow-up.",
+  "archive_scope": "The earlier signed archive 2449.6.4 predates these changes. No replacement archive, build upload or review submission was made.",
+  "hardware_scope": "Simulator validation. No claim of final physical-device, multi-iPhone, TestFlight or App Review approval.",
+  "rejected_candidates": [
+    {
+      "scope": "Full Settings: ordinary English, ordinary Norwegian, largest Norwegian, largest English reminders",
+      "build": "2449.20.46",
+      "passed": 4,
+      "failed": 0,
+      "skipped": 0,
+      "warnings": [],
+      "xcresult": "/var/folders/9j/7d72xt915393rwfg7fzyvv5r0000gn/T/Kvil-test-1789505167-59767.xcresult",
+      "log": "build/luna-settings-dynamicid-final.log",
+      "summary": "build/luna-settings-dynamicid-summary.json",
+      "attachments": "build/luna-settings-dynamicid-attachments",
+      "rejected_reason": "Post-audit viewport regression: recreating the full Form made cloudSyncHelp disappear and reset scrolling. Native passes do not count as accepted remediation."
+    },
+    {
+      "build": "2450.12.18",
+      "log": "build/settings-clipping-native-picker.log",
+      "rejected_reason": "Native reminder picker passed its audit but visibly shortened the largest selected value to planned; replaced by one wrapping Text menu label."
+    },
+    {
+      "build": "2450.12.34",
+      "log": "build/settings-clipping-resize-bottom.log",
+      "passed": 2,
+      "failed": 0,
+      "rejected_reason": "isHittable passed but the reminder screenshot showed only its help footer. Rejected after visual inspection; increased visibility threshold and added a real post-audit menu interaction."
+    }
+  ],
+  "settings_production_state": "Grouped Settings scroll view, wrapping reminder menu values and user-scroll target preservation retained. No full-screen identity reset, audit issue handler, filter or waiver.",
+  "diagnostics": {
+    "all_eight_section_isolations": "passed; this does not replace the failed full-Form tests",
+    "reverted_trials": [
+      "four footer fixedSize modifiers",
+      "clipped Form",
+      "whole Form identity based on Dynamic Type",
+      "inset grouped List",
+      "opaque navigation toolbar",
+      "help text moved from footer into rows",
+      "icon-only Done button",
+      "small symbol scale"
+    ],
+    "settling_probe": "A 50-second pause before the native audit still failed. Temporary pause removed.",
+    "tooling_limit": "Accessibility Inspector could not attach through current UI controls; Device Hub timed out. This does not prove an Apple framework defect or a false positive.",
+    "initial_final_run_error": "The first retained-source command used the wrong test target and ran zero tests; it is excluded from results. The corrected final run executed all four tests.",
+    "earlier_settings_production_state": "The 15 September retained-source run still had four failures; those are preserved in earlier_results.",
+    "september_16_findings": "The full native Form reproduced the targetless report while a regular grouped stack cleared it. This comparison does not prove an Apple framework defect. A native menu Picker passed its audit but visibly truncated the selected value, and a barely-visible footer target moved the reminder out of view; both candidates were rejected."
+  },
+  "localization_validation": {
+    "passed": true,
+    "shared_strings": 355,
+    "info_plist_entries": 4,
+    "app_shortcuts_entries": 2,
+    "log": "build/settings-clipping-localization.log"
+  },
+  "git_diff_check": "passed",
+  "earlier_results": [
+    {
+      "scope": "Final retained full Settings: ordinary English, ordinary Norwegian, largest Norwegian, largest English reminders",
+      "build": "2449.21.7",
+      "passed": 0,
+      "failed": 4,
+      "skipped": 0,
+      "warnings": [],
+      "failure": "All four native audits report Text clipped. No resolvable target identified.",
+      "xcresult": "/var/folders/9j/7d72xt915393rwfg7fzyvv5r0000gn/T/Kvil-test-1789506438-76673.xcresult",
+      "log": "build/luna-settings-final-retained-corrected.log",
+      "summary": "build/luna-settings-final-retained-summary.json",
+      "attachments": "build/luna-settings-final-retained-attachments"
+    }
+  ],
+  "verification_followups": [
+    {
+      "scope": "Final control-color refinement: largest reminder menu and weight/sync/navigation. Both cases repeated successfully after giving reminder values the accent color and the erase label its destructive color.",
+      "build": "2450.12.45",
+      "passed": 2,
+      "failed": 0,
+      "skipped": 0,
+      "warnings": [
+        "/Users/hkarlsen06/Repositories/kvil/ios/KvilAppUITests/KvilUITests.swift:10: Main actor-isolated property 'storeKit' can not be mutated from a nonisolated context",
+        "/Users/hkarlsen06/Repositories/kvil/ios/KvilAppUITests/KvilUITests.swift:11: Main actor-isolated property 'storeKit' can not be referenced from a nonisolated context",
+        "/Users/hkarlsen06/Repositories/kvil/ios/KvilAppUITests/KvilUITests.swift:12: Main actor-isolated property 'storeKit' can not be referenced from a nonisolated context",
+        "/Users/hkarlsen06/Repositories/kvil/ios/KvilAppUITests/KvilUITests.swift:13: Main actor-isolated property 'storeKit' can not be referenced from a nonisolated context",
+        "/Users/hkarlsen06/Repositories/kvil/ios/KvilAppUITests/KvilUITests.swift:11:5: warning: main actor-isolated property 'storeKit' can not be mutated from a nonisolated context",
+        "|     `- warning: main actor-isolated property 'storeKit' can not be mutated from a nonisolated context",
+        "/Users/hkarlsen06/Repositories/kvil/ios/KvilAppUITests/KvilUITests.swift:12:5: warning: main actor-isolated property 'storeKit' can not be referenced from a nonisolated context",
+        "|     `- warning: main actor-isolated property 'storeKit' can not be referenced from a nonisolated context",
+        "/Users/hkarlsen06/Repositories/kvil/ios/KvilAppUITests/KvilUITests.swift:13:5: warning: main actor-isolated property 'storeKit' can not be referenced from a nonisolated context",
+        "/Users/hkarlsen06/Repositories/kvil/ios/KvilAppUITests/KvilUITests.swift:14:5: warning: main actor-isolated property 'storeKit' can not be referenced from a nonisolated context"
+      ],
+      "warning_note": "Four pre-existing StoreKit UI test setup actor-isolation warnings; wrapper repeats some diagnostics. No runtime warnings.",
+      "xcresult": "/var/folders/9j/7d72xt915393rwfg7fzyvv5r0000gn/T/Kvil-test-1789562710-43671.xcresult",
+      "log": "build/settings-clipping-control-colors.log",
+      "summary": "build/settings-clipping-control-colors-summary.json",
+      "attachments": "build/settings-clipping-control-colors-attachments"
+    }
+  ],
+  "visual_inspected_files": [
+    "build/settings-clipping-final-attachments/BF2A07F1-CF2C-4E25-B76C-92FDD405D596.png",
+    "build/settings-clipping-final-attachments/89D4C10D-5657-494C-BBE8-6F4A96C0D224.png",
+    "build/settings-clipping-final-attachments/CF6CBADB-E3B9-46D8-A5D7-1AAD41904182.png",
+    "build/settings-clipping-final-attachments/47CA60F5-286D-4DF7-A045-2D5E24AF0028.png",
+    "build/settings-clipping-final-attachments/5FEFAC98-8B43-4A31-9CB5-46DF011D6753.png",
+    "build/settings-clipping-final-attachments/8C9FF95C-62B7-44FD-BEDF-568E24D695AA.png",
+    "build/settings-clipping-final-attachments/29F4915C-D685-4C9E-87D2-3AD57584CB52.png",
+    "build/settings-clipping-control-colors-attachments/93607370-9CA4-47B8-BD60-B5FA8CCB99B4.png",
+    "build/settings-clipping-control-colors-attachments/5F2D6F97-7F12-4905-ABF4-BF1E7913F4F7.png"
+  ],
+  "earlier_regression_probe": {
+    "result": "failed",
+    "log": "build/luna-settings-dynamicid-probe.log",
+    "xcresult": "/var/folders/9j/7d72xt915393rwfg7fzyvv5r0000gn/T/Kvil-test-1789505385-62408.xcresult"
+  },
+  "regression_probe": {
+    "result": "passed",
+    "checks": [
+      "Cloud section remains accessible after the native Dynamic Type sweep.",
+      "Largest reminder value has its center in the viewport, is fully readable in the root-inspected screenshot, and opens the native menu after the sweep; choosing 30 minutes updates its value.",
+      "Weight unit and reminder preferences persist when Settings closes and reopens; native cloud toggle and Privacy/About navigation work."
+    ],
+    "evidence": "Final six-flow run and two-case color follow-up listed above."
+  }
+}

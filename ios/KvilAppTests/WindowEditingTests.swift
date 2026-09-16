@@ -58,6 +58,91 @@ import XCTest
     }
   }
 
+  func testMinimumWindowLengthIncludesExactAndOvernightBoundaries() throws {
+    for hour in [10, 22] {
+      let day = DayPlan(weekday: 1, opens: .init(hour: hour), closes: .init(hour: 6))
+      for length in [1, 300, 359] {
+        XCTAssertThrowsError(try day.resized(to: length)) {
+          XCTAssertEqual($0 as? ScheduleError, .windowTooShort)
+        }
+      }
+      for length in [360, 361, 1380, 1439] {
+        let resized = try day.resized(to: length)
+        XCTAssertEqual(resized.windowMinutes, length)
+        XCTAssertEqual(resized.opens, day.opens)
+      }
+      let days = try (1...7).map { weekday in
+        var resized = try day.resized(to: 360)
+        resized.weekday = weekday
+        return resized
+      }
+      XCTAssertNoThrow(try ScheduleEngine.validateEdits(days: days))
+    }
+  }
+
+  func testEveryEditingEntryPointRejectsShortWindowsWithoutSaving() throws {
+    let model = try AppModel(store: LocalStore(inMemory: true), scenario: "home")
+    let saved = model.data
+    let persisted = try model.store.load()
+    var shortDays = model.usualDays
+    shortDays[0].closes = .init(hour: 15, minute: 59)
+    XCTAssertFalse(model.configure(days: shortDays, cloudScheduleEnabled: true))
+    XCTAssertFalse(model.saveWeek(shortDays))
+    XCTAssertFalse(model.saveWeekDay(shortDays[0], replacing: model.usualDays[0]))
+    XCTAssertFalse(model.setWindowLength(359))
+    XCTAssertFalse(model.setWindowLength(359, weekday: 1))
+    for hour in [10, 22] {
+      XCTAssertFalse(
+        model.saveToday(
+          opens: .init(hour: hour), closes: .init(hour: (hour + 5) % 24, minute: 59)))
+      XCTAssertEqual(model.message, String(localized: .windowTooShort))
+    }
+    XCTAssertEqual(model.data, saved)
+    XCTAssertEqual(try model.store.load(), persisted)
+    let minimumDays = try model.usualDays.map { try $0.resized(to: 360) }
+    XCTAssertTrue(model.configure(days: minimumDays))
+    XCTAssertTrue(model.usualDays.allSatisfy { $0.windowMinutes == 360 })
+    XCTAssertEqual(try model.store.load(), model.data)
+  }
+
+  func testLegacyShortWindowsSurviveStorageRestoreAndSyncButCannotBeNewEdits() throws {
+    let model = try AppModel(store: LocalStore(inMemory: true), scenario: "home")
+    var legacy = model.data
+    for index in legacy.schedule.versions.indices {
+      legacy.schedule.versions[index].days[0].closes = .init(hour: 10, minute: 1)
+    }
+    let decoded = try JSONDecoder().decode(LocalData.self, from: JSONEncoder().encode(legacy))
+    XCTAssertNoThrow(try decoded.validated(now: model.now))
+    XCTAssertTrue(model.restore(decoded))
+    XCTAssertEqual(model.usualDays[0].windowMinutes, 1)
+    XCTAssertEqual(try model.store.load(), model.data)
+    XCTAssertEqual(
+      try ScheduleMerge.merge(model.data.schedule, legacy.schedule), model.data.schedule)
+
+    let otherDay = model.usualDays[1]
+    XCTAssertTrue(model.saveWeekDay(otherDay.shifted(by: 15), replacing: otherDay))
+    let oldDay = model.usualDays[0]
+    XCTAssertEqual(oldDay.windowMinutes, 1)
+    XCTAssertTrue(model.saveWeekDay(oldDay, replacing: oldDay))
+    let saved = model.data
+    XCTAssertFalse(model.saveWeekDay(oldDay.shifted(by: 15), replacing: oldDay))
+    var copiedDays = model.usualDays
+    copiedDays[1].opens = oldDay.opens
+    copiedDays[1].closes = oldDay.closes
+    XCTAssertFalse(model.saveWeek(copiedDays))
+    XCTAssertEqual(model.data, saved)
+    XCTAssertEqual(try model.store.load(), saved)
+
+    var dayOff = oldDay
+    dayOff.dayOff = true
+    XCTAssertTrue(model.saveWeekDay(dayOff, replacing: oldDay))
+    XCTAssertFalse(model.saveWeekDay(oldDay, replacing: model.usualDays[0]))
+    var enlarged = try oldDay.resized(to: 360)
+    enlarged.dayOff = false
+    XCTAssertTrue(model.saveWeekDay(enlarged, replacing: model.usualDays[0]))
+    XCTAssertEqual(model.usualDays[0].windowMinutes, 360)
+  }
+
   func testLengthForAllDaysKeepsOpeningsAndPersistsFromTomorrow() throws {
     let model = try AppModel(store: LocalStore(inMemory: true), scenario: "home")
     let original = model.data
@@ -112,6 +197,7 @@ import XCTest
       DayPlan(weekday: $0, opens: .init(hour: 0, minute: 30), closes: .init(hour: 6, minute: 30))
         .shifted(by: 120)
     }
+    XCTAssertNoThrow(try ScheduleEngine.validateEdits(days: days))
     let engine = ScheduleEngine(
       snapshot: ScheduleSnapshot(
         revision: .distantPast,

@@ -19,12 +19,49 @@ import Foundation
 
   private let container: CKContainer
   private let database: CKDatabase
+  private let operationZoneID: CKRecordZone.ID
+  private let operationRecordID: CKRecord.ID
+  private let operationSubscriptionID: CKSubscription.ID
 
-  init() {
+  convenience init() {
+    self.init(zoneID: Self.zoneID, subscriptionID: Self.subscriptionID)
+  }
+
+  private init(zoneID: CKRecordZone.ID, subscriptionID: CKSubscription.ID) {
     let container = CKContainer(identifier: "iCloud.dev.hkarlsen06.kvil")
     self.container = container
     database = container.privateCloudDatabase
+    operationZoneID = zoneID
+    operationRecordID = CKRecord.ID(recordName: "current", zoneID: zoneID)
+    operationSubscriptionID = subscriptionID
   }
+
+  #if DEBUG
+    // Live audits can address only a generated QA namespace. Normal initializers
+    // and the release binary retain the fixed production schedule boundary.
+    convenience init(auditRunID: UUID) {
+      self.init(
+        zoneID: Self.auditZoneID(for: auditRunID),
+        subscriptionID: "schedule-qa-\(auditRunID.uuidString.lowercased())")
+    }
+
+    static func auditZoneID(for runID: UUID) -> CKRecordZone.ID {
+      CKRecordZone.ID(zoneName: "KvilQA-\(runID.uuidString)", ownerName: CKCurrentUserDefaultName)
+    }
+
+    func deleteAuditSubscription() async throws {
+      guard operationZoneID.zoneName.hasPrefix("KvilQA-"),
+        operationSubscriptionID.hasPrefix("schedule-qa-")
+      else { throw CKError(.invalidArguments) }
+      let operation = CKModifySubscriptionsOperation(
+        subscriptionsToSave: nil, subscriptionIDsToDelete: [operationSubscriptionID])
+      let response = CloudOperationResponse<Void>()
+      operation.perSubscriptionDeleteBlock = { _, result in response.receive(result) }
+      operation.modifySubscriptionsResultBlock = { response.finish($0) }
+      do { try await perform(operation, response: response) } catch let error as CKError
+        where error.code == .unknownItem { return }
+    }
+  #endif
 
   func accountID() async throws -> String {
     try Task.checkCancellation()
@@ -64,7 +101,7 @@ import Foundation
   }
 
   func fetchZone() async throws {
-    let operation = CKFetchRecordZonesOperation(recordZoneIDs: [Self.zoneID])
+    let operation = CKFetchRecordZonesOperation(recordZoneIDs: [operationZoneID])
     let response = CloudOperationResponse<Void>()
     operation.perRecordZoneResultBlock = { _, result in
       response.receive(result.map { _ in () })
@@ -75,7 +112,7 @@ import Foundation
 
   func createZone() async throws {
     let operation = CKModifyRecordZonesOperation(
-      recordZonesToSave: [CKRecordZone(zoneID: Self.zoneID)], recordZoneIDsToDelete: nil)
+      recordZonesToSave: [CKRecordZone(zoneID: operationZoneID)], recordZoneIDsToDelete: nil)
     let response = CloudOperationResponse<Void>()
     operation.perRecordZoneSaveBlock = { _, result in
       response.receive(result.map { _ in () })
@@ -86,7 +123,7 @@ import Foundation
 
   func deleteZone() async throws {
     let operation = CKModifyRecordZonesOperation(
-      recordZonesToSave: nil, recordZoneIDsToDelete: [Self.zoneID])
+      recordZonesToSave: nil, recordZoneIDsToDelete: [operationZoneID])
     let response = CloudOperationResponse<Void>()
     operation.perRecordZoneDeleteBlock = { _, result in response.receive(result) }
     operation.modifyRecordZonesResultBlock = { response.finish($0) }
@@ -94,7 +131,7 @@ import Foundation
   }
 
   func fetchRecord() async throws -> CKRecord? {
-    let operation = CKFetchRecordsOperation(recordIDs: [Self.recordID])
+    let operation = CKFetchRecordsOperation(recordIDs: [operationRecordID])
     let response = CloudOperationResponse<CKRecord>()
     operation.perRecordResultBlock = { _, result in response.receive(result) }
     operation.fetchRecordsResultBlock = { response.finish($0) }
@@ -106,7 +143,7 @@ import Foundation
   }
 
   func saveRecord(_ record: CKRecord) async throws -> CKRecord {
-    guard record.recordID == Self.recordID, record.recordType == Self.recordType else {
+    guard record.recordID == operationRecordID, record.recordType == Self.recordType else {
       throw CKError(.invalidArguments)
     }
     let operation = CKModifyRecordsOperation(recordsToSave: [record], recordIDsToDelete: nil)
@@ -120,7 +157,7 @@ import Foundation
 
   func ensureSubscription() async throws {
     let subscription = CKRecordZoneSubscription(
-      zoneID: Self.zoneID, subscriptionID: Self.subscriptionID)
+      zoneID: operationZoneID, subscriptionID: operationSubscriptionID)
     let info = CKSubscription.NotificationInfo()
     info.shouldSendContentAvailable = true
     subscription.notificationInfo = info

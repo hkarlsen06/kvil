@@ -20,171 +20,65 @@ struct SettingsView: View {
   @Environment(AppModel.self) private var model
   @Environment(\.dismiss) private var dismiss
   @Environment(\.openURL) private var openURL
+  @Environment(\.dynamicTypeSize) private var typeSize
   @State private var showingPurchase = false
   @State private var exporting = false
   @State private var importing = false
   @State private var imported: LocalData?
   @State private var erase = false
+  @State private var lastVisibleTarget: SettingsScrollTarget?
+  @State private var userIsScrolling = false
   var body: some View {
     NavigationStack {
-      Form {
-        Section {
-          Toggle(
-            .openingReminder,
-            isOn: Binding(
-              get: { model.data.preferences.openingReminder },
-              set: { enabled in Task { await model.setReminder(opening: true, enabled: enabled) } })
-          )
-          if model.data.preferences.openingReminder {
-            reminderTiming(opening: true)
-          }
-          Toggle(
-            .closingReminder,
-            isOn: Binding(
-              get: { model.data.preferences.closingReminder },
-              set: { enabled in Task { await model.setReminder(opening: false, enabled: enabled) } }
-            ))
-          if model.data.preferences.closingReminder {
-            reminderTiming(opening: false)
-          }
-          if model.notificationStatus == .denied {
-            Button(.openSystemSettings) {
-              if let url = URL(string: "app-settings:") { openURL(url) }
-            }
-            Text(.remindersDenied).font(.footnote).foregroundStyle(Color.kvilSecondary)
-          }
-          if let through = model.remindersThrough {
-            LabeledContent {
-              Text(through, format: .dateTime.month(.abbreviated).day())
-            } label: {
-              Text(.scheduledThrough)
-            }
-          }
-        } header: {
-          Text(.reminders)
-        } footer: {
-          Text(.reminderHorizonHelp)
-        }
-        Section {
-          Toggle(
-            .liveActivities,
-            isOn: Binding(
-              get: { model.data.preferences.liveActivitiesEnabled == true },
-              set: { enabled in model.preferences { $0.liveActivitiesEnabled = enabled } })
-          )
-          .accessibilityIdentifier("liveActivities")
-          if model.data.preferences.liveActivitiesEnabled == true,
-            !ActivityAuthorizationInfo().areActivitiesEnabled
-          {
-            Text(.liveActivitiesDisabled).font(.footnote).foregroundStyle(Color.kvilSecondary)
-            Button(.openSystemSettings) {
-              if let url = URL(string: "app-settings:") { openURL(url) }
-            }
-          }
-        } footer: {
-          Text(.liveActivitiesHelp)
-        }
-        Section {
-          Toggle(.showWeight, isOn: binding(\.weightEnabled))
-          if model.data.preferences.weightEnabled {
-            Picker(
-              .weightUnit,
-              selection: Binding(
-                get: { model.data.preferences.weightUnit },
-                set: { unit in model.preferences { $0.weightUnit = unit } })
-            ) {
-              Text(verbatim: "kg").tag(WeightUnit.kg)
-              Text(verbatim: "lb").tag(WeightUnit.lb)
-            }
-          }
-          if model.data.preferences.healthEnabled {
-            Toggle(
-              .saveToHealth,
-              isOn: Binding(
-                get: { model.data.preferences.healthWritesEnabled },
-                set: { enabled in
-                  if enabled {
-                    Task { await model.connectHealth() }
-                  } else {
-                    model.preferences { $0.healthWritesEnabled = false }
+      ScrollViewReader { proxy in
+        ScrollView {
+          // Keep row heights and scroll targets tied to the full text at every Dynamic Type size.
+          VStack(alignment: .leading, spacing: 0) {
+            ForEach(sections: settingsSections) { section in
+              if !section.header.isEmpty {
+                VStack(alignment: .leading, spacing: 0) { section.header }
+                  .font(.headline).accessibilityAddTraits(.isHeader)
+                  .padding(.horizontal, KvilStyle.content).padding(.bottom, KvilStyle.related)
+                  .id(SettingsScrollTarget.header(section.id))
+                  .onScrollVisibilityChange(threshold: 0.5) {
+                    rememberVisibleTarget(.header(section.id), isVisible: $0)
                   }
-                }))
-            Button(.stopReadingHealth) {
-              model.preferences {
-                $0.healthEnabled = false
-                $0.healthWritesEnabled = false
+              }
+              VStack(spacing: 0) {
+                ForEach(section.content) { row in
+                  if row.id != section.content.first?.id {
+                    Divider().padding(.horizontal, KvilStyle.content)
+                  }
+                  row.frame(maxWidth: .infinity, minHeight: 44, alignment: .leading)
+                    .padding(.horizontal, KvilStyle.content).padding(.vertical, 4)
+                    .id(SettingsScrollTarget.row(row.id))
+                    .onScrollVisibilityChange(threshold: 0.5) {
+                      rememberVisibleTarget(.row(row.id), isVisible: $0)
+                    }
+                }
+              }
+              .buttonStyle(SettingsRowButtonStyle())
+              .background(Color.kvilSurface, in: RoundedRectangle(cornerRadius: KvilStyle.corner))
+              .padding(.bottom, section.footer.isEmpty ? KvilStyle.section : KvilStyle.related)
+              if !section.footer.isEmpty {
+                VStack(alignment: .leading, spacing: 0) { section.footer }
+                  .font(.footnote).foregroundStyle(Color.kvilSecondary)
+                  .fixedSize(horizontal: false, vertical: true)
+                  .padding(.horizontal, KvilStyle.content).padding(.bottom, KvilStyle.section)
+                  .id(SettingsScrollTarget.footer(section.id))
+                  .onScrollVisibilityChange(threshold: 0.5) {
+                    rememberVisibleTarget(.footer(section.id), isVisible: $0)
+                  }
               }
             }
-          } else {
-            Button(.connectHealth) { Task { await model.connectHealth() } }
-              .disabled(!model.health.available)
-          }
-        } header: {
-          Text(.weightAndHealth)
-        } footer: {
-          Text(.healthSettingsHelp)
+          }.padding(KvilStyle.content)
+        }.onScrollPhaseChange { _, phase in
+          userIsScrolling = phase == .interacting || phase == .decelerating
         }
-        Section {
-          NavigationLink(.fastingGuide) { FastingGuideView() }
-          NavigationLink {
-            DeviceHelpView()
-          } label: {
-            Label(.watchAndWidgets, systemImage: "applewatch")
-          }
+        .onChange(of: typeSize) { _, _ in
+          if let lastVisibleTarget { proxy.scrollTo(lastVisibleTarget, anchor: .center) }
         }
-        Section {
-          Button {
-            showingPurchase = true
-          } label: {
-            Label(
-              model.purchases.unlocked ? .historyUnlocked : .fullHistory,
-              systemImage: "leaf")
-          }
-          Button(.restorePurchases) {
-            Task {
-              await model.purchases.restore()
-              model.message =
-                model.purchases.error
-                ?? String(localized: model.purchases.unlocked ? .restored : .noPurchases)
-            }
-          }.disabled(model.purchases.busy)
-        }
-        Section {
-          Toggle(.cloudSchedule, isOn: binding(\.cloudScheduleEnabled))
-            .accessibilityIdentifier("cloudScheduleSync")
-          if model.data.preferences.cloudScheduleEnabled {
-            Text(
-              model.cloud.status == .unavailable
-                ? .cloudUnavailable
-                : model.cloud.status == .needsAttention
-                  ? .cloudNeedsAttention
-                  : model.cloud.status == .enabled ? .cloudEnabled : .cloudWaiting
-            )
-            .font(.footnote).foregroundStyle(Color.kvilSecondary)
-            .fixedSize(horizontal: false, vertical: true)
-            .accessibilityIdentifier("cloudSyncStatus")
-          }
-        } footer: {
-          Text(.cloudScheduleHelp).fixedSize(horizontal: false, vertical: true)
-            .accessibilityIdentifier("cloudSyncHelp")
-        }
-        Section {
-          Button(.exportData) { exporting = true }.accessibilityIdentifier("exportData")
-          Button(.importData) { importing = true }
-          Button(.eraseData, role: .destructive) { erase = true }
-        } header: {
-          Text(.yourData)
-        } footer: {
-          Text(.localStorageNotice)
-        }
-        Section {
-          NavigationLink(.privacy) { PrivacyView() }
-          NavigationLink(.aboutKvil) { AboutView() }
-          LabeledContent(
-            .version,
-            value: Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "1.0.0")
-        }
-      }.scrollContentBackground(.hidden).background(Color.kvilCanvas).navigationTitle(.settings)
+        .background(Color.kvilCanvas).navigationTitle(.settings)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar { ToolbarItem(placement: .confirmationAction) { Button(.done) { dismiss() } } }
         .sheet(isPresented: $showingPurchase) { PurchaseView() }
@@ -231,8 +125,208 @@ struct SettingsView: View {
         } message: {
           Text(.eraseDataBody)
         }
+      }
     }.tint(Color.kvilAccent).modifier(AppMessageModifier())
   }
+
+  private func rememberVisibleTarget(_ target: SettingsScrollTarget, isVisible: Bool) {
+    // Font reflow must not replace the position established by the user's scroll.
+    if isVisible && userIsScrolling { lastVisibleTarget = target }
+  }
+
+  @ViewBuilder private var settingsSections: some View {
+    Section {
+      Toggle(
+        .openingReminder,
+        isOn: Binding(
+          get: { model.data.preferences.openingReminder },
+          set: { enabled in Task { await model.setReminder(opening: true, enabled: enabled) } })
+      )
+      if model.data.preferences.openingReminder {
+        reminderTiming(opening: true)
+      }
+      Toggle(
+        .closingReminder,
+        isOn: Binding(
+          get: { model.data.preferences.closingReminder },
+          set: { enabled in Task { await model.setReminder(opening: false, enabled: enabled) } }
+        ))
+      if model.data.preferences.closingReminder {
+        reminderTiming(opening: false)
+      }
+      if model.notificationStatus == .denied {
+        Button(.openSystemSettings) {
+          if let url = URL(string: "app-settings:") { openURL(url) }
+        }
+        Text(.remindersDenied).font(.footnote).foregroundStyle(Color.kvilSecondary)
+      }
+      if let through = model.remindersThrough {
+        LabeledContent {
+          Text(through, format: .dateTime.month(.abbreviated).day())
+        } label: {
+          Text(.scheduledThrough)
+        }
+      }
+    } header: {
+      Text(.reminders)
+    } footer: {
+      Text(.reminderHorizonHelp)
+    }
+    Section {
+      Toggle(
+        .liveActivities,
+        isOn: Binding(
+          get: { model.data.preferences.liveActivitiesEnabled == true },
+          set: { enabled in model.preferences { $0.liveActivitiesEnabled = enabled } })
+      )
+      .accessibilityIdentifier("liveActivities")
+      if model.data.preferences.liveActivitiesEnabled == true,
+        !ActivityAuthorizationInfo().areActivitiesEnabled
+      {
+        Text(.liveActivitiesDisabled).font(.footnote).foregroundStyle(Color.kvilSecondary)
+        Button(.openSystemSettings) {
+          if let url = URL(string: "app-settings:") { openURL(url) }
+        }
+      }
+    } footer: {
+      Text(.liveActivitiesHelp)
+    }
+    Section {
+      Toggle(.showWeight, isOn: binding(\.weightEnabled))
+      if model.data.preferences.weightEnabled {
+        KvilControlRow(title: .weightUnit) {
+          Picker(
+            .weightUnit,
+            selection: Binding(
+              get: { model.data.preferences.weightUnit },
+              set: { unit in model.preferences { $0.weightUnit = unit } })
+          ) {
+            Text(verbatim: "kg").tag(WeightUnit.kg)
+            Text(verbatim: "lb").tag(WeightUnit.lb)
+          }.pickerStyle(.menu).labelsHidden().buttonStyle(.borderless).frame(minHeight: 44)
+            .accessibilityLabel(.weightUnit).accessibilityIdentifier("weightUnit")
+        }
+      }
+      if model.data.preferences.healthEnabled {
+        Toggle(
+          .saveToHealth,
+          isOn: Binding(
+            get: { model.data.preferences.healthWritesEnabled },
+            set: { enabled in
+              if enabled {
+                Task { await model.connectHealth() }
+              } else {
+                model.preferences { $0.healthWritesEnabled = false }
+              }
+            }))
+        Button(.stopReadingHealth) {
+          model.preferences {
+            $0.healthEnabled = false
+            $0.healthWritesEnabled = false
+          }
+        }
+      } else {
+        Button(.connectHealth) { Task { await model.connectHealth() } }
+          .disabled(!model.health.available)
+      }
+    } header: {
+      Text(.weightAndHealth)
+    } footer: {
+      Text(.healthSettingsHelp)
+    }
+    Section {
+      NavigationLink {
+        FastingGuideView()
+      } label: {
+        disclosureLabel(.fastingGuide)
+      }
+      NavigationLink {
+        DeviceHelpView()
+      } label: {
+        disclosureLabel(.watchAndWidgets, systemImage: "applewatch")
+      }
+    }
+    Section {
+      Button {
+        showingPurchase = true
+      } label: {
+        Label(
+          model.purchases.unlocked ? .historyUnlocked : .fullHistory,
+          systemImage: "leaf"
+        )
+        .labelStyle(.titleAndIcon)
+      }
+      Button(.restorePurchases) {
+        Task {
+          await model.purchases.restore()
+          model.message =
+            model.purchases.error
+            ?? String(localized: model.purchases.unlocked ? .restored : .noPurchases)
+        }
+      }.disabled(model.purchases.busy)
+    }
+    Section {
+      Toggle(.cloudSchedule, isOn: binding(\.cloudScheduleEnabled))
+        .accessibilityIdentifier("cloudScheduleSync")
+      if model.data.preferences.cloudScheduleEnabled {
+        Text(
+          model.cloud.status == .unavailable
+            ? .cloudUnavailable
+            : model.cloud.status == .needsAttention
+              ? .cloudNeedsAttention
+              : model.cloud.status == .enabled ? .cloudEnabled : .cloudWaiting
+        )
+        .font(.footnote).foregroundStyle(Color.kvilSecondary)
+        .fixedSize(horizontal: false, vertical: true)
+        .accessibilityIdentifier("cloudSyncStatus")
+      }
+    } footer: {
+      Text(.cloudScheduleHelp).fixedSize(horizontal: false, vertical: true)
+        .accessibilityIdentifier("cloudSyncHelp")
+    }
+    Section {
+      Button(.exportData) { exporting = true }.accessibilityIdentifier("exportData")
+      Button(.importData) { importing = true }
+      Button(role: .destructive) { erase = true } label: {
+        Text(.eraseData).foregroundStyle(Color.red)
+      }
+    } header: {
+      Text(.yourData)
+    } footer: {
+      Text(.localStorageNotice)
+    }
+    Section {
+      NavigationLink {
+        PrivacyView()
+      } label: {
+        disclosureLabel(.privacy)
+      }
+      NavigationLink {
+        AboutView()
+      } label: {
+        disclosureLabel(.aboutKvil)
+      }
+      LabeledContent(
+        .version,
+        value: Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "1.0.0")
+    }
+  }
+
+  private func disclosureLabel(_ title: LocalizedStringResource, systemImage: String? = nil)
+    -> some View
+  {
+    HStack {
+      if let systemImage {
+        Label(title, systemImage: systemImage).labelStyle(.titleAndIcon)
+      } else {
+        Text(title)
+      }
+      Spacer(minLength: KvilStyle.related)
+      Image(systemName: "chevron.right").font(.footnote.weight(.semibold))
+        .foregroundStyle(Color.kvilSecondary).accessibilityHidden(true)
+    }
+  }
+
   private func reminderTiming(opening: Bool) -> some View {
     let title: LocalizedStringResource = opening ? .openingReminderTiming : .closingReminderTiming
     let selection = Binding(
@@ -256,7 +350,8 @@ struct SettingsView: View {
       case 30: .reminderThirtyBefore
       default: .reminderAtTime
       }
-    return KvilControlRow(title: title) {
+    return VStack(alignment: .leading, spacing: KvilStyle.related) {
+      Text(title).fixedSize(horizontal: false, vertical: true).accessibilityHidden(true)
       Menu {
         Picker(title, selection: selection) {
           Text(.reminderAtTime).tag(0)
@@ -264,19 +359,37 @@ struct SettingsView: View {
           Text(.reminderThirtyBefore).tag(30)
         }
       } label: {
-        HStack(spacing: 6) {
-          Text(value).fixedSize(horizontal: false, vertical: true)
-          Image(systemName: "chevron.up.chevron.down").imageScale(.small)
-        }.multilineTextAlignment(.leading).frame(minHeight: 44)
-      }
-      .accessibilityLabel(title).accessibilityValue(Text(value))
-      .accessibilityIdentifier(opening ? "openingReminderTiming" : "closingReminderTiming")
+        Text(value).foregroundStyle(Color.kvilAccent)
+          .fixedSize(horizontal: false, vertical: true)
+          .multilineTextAlignment(.leading)
+          .frame(maxWidth: .infinity, minHeight: 44, alignment: .leading)
+      }.buttonStyle(.borderless).menuIndicator(.visible)
+        .accessibilityLabel(title).accessibilityValue(Text(value))
+        .accessibilityIdentifier(opening ? "openingReminderTiming" : "closingReminderTiming")
     }
   }
   private func binding(_ key: WritableKeyPath<Preferences, Bool>) -> Binding<Bool> {
     Binding(
       get: { model.data.preferences[keyPath: key] },
       set: { new in model.preferences { $0[keyPath: key] = new } })
+  }
+}
+
+private enum SettingsScrollTarget: Hashable {
+  case header(SectionConfiguration.ID)
+  case row(Subview.ID)
+  case footer(SectionConfiguration.ID)
+}
+
+private struct SettingsRowButtonStyle: ButtonStyle {
+  @Environment(\.isEnabled) private var isEnabled
+
+  func makeBody(configuration: Configuration) -> some View {
+    configuration.label
+      .frame(maxWidth: .infinity, minHeight: 44, alignment: .leading)
+      .foregroundStyle(configuration.role == .destructive ? Color.red : Color.kvilInk)
+      .contentShape(Rectangle())
+      .opacity(!isEnabled ? 0.5 : configuration.isPressed ? 0.65 : 1)
   }
 }
 

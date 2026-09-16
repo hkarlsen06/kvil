@@ -1,0 +1,516 @@
+{
+  "checkedAt": "2026-09-15T04:44:43.136305+00:00",
+  "scope": "Publish prepared Kvil privacy and support articles only; preserve existing production portfolio source and unrelated canonical working-tree edits.",
+  "authorization": "User: Do the outstanding ones then; parent delegated prepared privacy/support publication.",
+  "deployment": {
+    "id": "7e75a446-ee7d-4edf-9619-0d9f7157af4a",
+    "url": "https://7e75a446.hkarlsen06-dev.pages.dev",
+    "project": "hkarlsen06-dev",
+    "environment": "Production",
+    "branch": "main",
+    "baseCommit": "8a2d5928baa0cb2ff6479d55b8955e676600519c",
+    "previousProductionId": "deecd0c0-3ec0-4e5e-8e5a-dedff6901455"
+  },
+  "canonicalRepository": "mdr:/home/hkarlsen06/code/hkarlsen06.dev",
+  "workflow": {
+    "build": "Isolated git archive of current production commit, replace only privacy/support article elements, bun install --frozen-lockfile, bun run build.",
+    "buildPassed": true,
+    "typescriptPassed": true,
+    "node": "24.18.0",
+    "next": "16.3.0",
+    "wrangler": "4.118.0",
+    "deploy": "Existing authenticated local Wrangler published the identical complete export built on mdr. No App Store upload.",
+    "exportFileCount": 130,
+    "changedSourceFiles": [
+      "public/kvil/privacy/index.html",
+      "public/kvil/support/index.html"
+    ],
+    "canonicalSourceFilesUpdated": [
+      "public/kvil/privacy/index.html",
+      "public/kvil/support/index.html"
+    ],
+    "unrelatedCanonicalFilesPreserved": true,
+    "canonicalGitIndexPreserved": true,
+    "gitCommitOrPushPerformed": false,
+    "sourceChangesAreArticleOnly": true
+  },
+  "layoutScope": "Retained current production headers, stylesheets, favicons, imagery and portfolio copy. Earlier dirty visual changes in canonical repo were excluded. release/site/dist retains those older visual snapshot headers; its two article bodies match live.",
+  "publicPages": [
+    {
+      "path": "kvil/privacy/index.html",
+      "url": "https://hkarlsen06.dev/kvil/privacy/",
+      "kind": "privacy",
+      "sha256": "e447ee3ee1f82fad8db4034626e37d6c654b741eb2fb53c01b7b3822b972919c",
+      "contentType": "text/html; charset=utf-8",
+      "httpStatus": 200,
+      "articleMatchesPreparedExactly": true,
+      "matchesDeployedHtmlAfterEmailNormalization": true,
+      "deployedFileSha256": "b5c71e53b48e1dce7f3662bf17a54f280bc003809b0645b5a851bdef36cc53f3",
+      "oldKvsTransportClaimAbsent": true,
+      "encryptedPrivateCloudKitPresent": true,
+      "offDoesNotDeletePresent": true
+    },
+    {
+      "path": "kvil/privacy/index.html",
+      "url": "https://7e75a446.hkarlsen06-dev.pages.dev/kvil/privacy/",
+      "kind": "privacy",
+      "sha256": "b5c71e53b48e1dce7f3662bf17a54f280bc003809b0645b5a851bdef36cc53f3",
+      "contentType": "text/html; charset=utf-8",
+      "httpStatus": 200,
+      "articleMatchesPreparedExactly": true,
+      "matchesDeployedHtmlAfterEmailNormalization": true,
+      "deployedFileSha256": "b5c71e53b48e1dce7f3662bf17a54f280bc003809b0645b5a851bdef36cc53f3",
+      "oldKvsTransportClaimAbsent": true,
+      "encryptedPrivateCloudKitPresent": true,
+      "offDoesNotDeletePresent": true
+    },
+    {
+      "path": "kvil/support/index.html",
+      "url": "https://hkarlsen06.dev/kvil/support/",
+      "kind": "support",
+      "sha256": "5405a4bea87046f6f8921dd4d6ac0901e0e596131866dd5b5e5d426559a58985",
+      "contentType": "text/html; charset=utf-8",
+      "httpStatus": 200,
+      "articleMatchesPreparedExactly": true,
+      "matchesDeployedHtmlAfterEmailNormalization": true,
+      "deployedFileSha256": "07b64cc331a39a70192ef1dc4f0e5f1b769a58a08407b237979091975b02219f",
+      "oldKvsTransportClaimAbsent": true,
+      "encryptedPrivateCloudKitPresent": true,
+      "offDoesNotDeletePresent": true
+    },
+    {
+      "path": "kvil/support/index.html",
+      "url": "https://7e75a446.hkarlsen06-dev.pages.dev/kvil/support/",
+      "kind": "support",
+      "sha256": "07b64cc331a39a70192ef1dc4f0e5f1b769a58a08407b237979091975b02219f",
+      "contentType": "text/html; charset=utf-8",
+      "httpStatus": 200,
+      "articleMatchesPreparedExactly": true,
+      "matchesDeployedHtmlAfterEmailNormalization": true,
+      "deployedFileSha256": "07b64cc331a39a70192ef1dc4f0e5f1b769a58a08407b237979091975b02219f",
+      "oldKvsTransportClaimAbsent": true,
+      "encryptedPrivateCloudKitPresent": true,
+      "offDoesNotDeletePresent": true
+    }
+  ],
+  "preservation": {
+    "checksPassed": 39,
+    "htmlVisibleTextUnchanged": 15,
+    "assetsByteIdentical": 24,
+    "results": [
+      {
+        "path": "ads.txt",
+        "url": "https://hkarlsen06.dev/ads.txt",
+        "kind": "preservation",
+        "sha256": "2b1c2056a3efc6a972f4e2fbcaaa3227674ff5b1fa580a7d3c3acd472bddd207",
+        "contentType": "text/plain; charset=utf-8",
+        "httpStatus": 200,
+        "unchanged": true,
+        "comparison": "exact bytes"
+      },
+      {
+        "path": "android-chrome-512x512.png",
+        "url": "https://hkarlsen06.dev/android-chrome-512x512.png",
+        "kind": "preservation",
+        "sha256": "54e97058b45c9c41ba363de22c1d393b668cc720527fb3204e0a5113a4eb8d7d",
+        "contentType": "image/png",
+        "httpStatus": 200,
+        "unchanged": true,
+        "comparison": "exact bytes"
+      },
+      {
+        "path": "apple-touch-icon.png",
+        "url": "https://hkarlsen06.dev/apple-touch-icon.png",
+        "kind": "preservation",
+        "sha256": "33c058ee0e2294e0e7470c4dd89676a17f56d086680dc210cb3fc0e857dc1a4d",
+        "contentType": "image/png",
+        "httpStatus": 200,
+        "unchanged": true,
+        "comparison": "exact bytes"
+      },
+      {
+        "path": "favicon-16x16.png",
+        "url": "https://hkarlsen06.dev/favicon-16x16.png",
+        "kind": "preservation",
+        "sha256": "f5a0142b712b01e4b2345685edf47b972d3e4edbb3f74b2370bfcc598f1108ca",
+        "contentType": "image/png",
+        "httpStatus": 200,
+        "unchanged": true,
+        "comparison": "exact bytes"
+      },
+      {
+        "path": "favicon-192x192.png",
+        "url": "https://hkarlsen06.dev/favicon-192x192.png",
+        "kind": "preservation",
+        "sha256": "95541a074b1f6b045e7825c0885848984606fa81025aae15426e7500a51c2bba",
+        "contentType": "image/png",
+        "httpStatus": 200,
+        "unchanged": true,
+        "comparison": "exact bytes"
+      },
+      {
+        "path": "favicon-32x32.png",
+        "url": "https://hkarlsen06.dev/favicon-32x32.png",
+        "kind": "preservation",
+        "sha256": "5bf5059ad2b1d2526d614a773c5994be73bd32dfaac8ad2ff1ab605eb03b2fd8",
+        "contentType": "image/png",
+        "httpStatus": 200,
+        "unchanged": true,
+        "comparison": "exact bytes"
+      },
+      {
+        "path": "favicon-48x48.png",
+        "url": "https://hkarlsen06.dev/favicon-48x48.png",
+        "kind": "preservation",
+        "sha256": "40a12cbb696558ca9a8d968381db77cb8f32784335e2af8fa759000b7b651a6b",
+        "contentType": "image/png",
+        "httpStatus": 200,
+        "unchanged": true,
+        "comparison": "exact bytes"
+      },
+      {
+        "path": "favicon.ico",
+        "url": "https://hkarlsen06.dev/favicon.ico",
+        "kind": "preservation",
+        "sha256": "9944d148ecb446874a2e499ea1539eb64712848f62d0122295be4eff35cde5a2",
+        "contentType": "image/vnd.microsoft.icon",
+        "httpStatus": 200,
+        "unchanged": true,
+        "comparison": "exact bytes"
+      },
+      {
+        "path": "icons/kvist-app-icon.png",
+        "url": "https://hkarlsen06.dev/icons/kvist-app-icon.png",
+        "kind": "preservation",
+        "sha256": "aaf6229fc46af114f7324d2eb3e0efcd9e9fdd38f05154ecbb1e3676949e730e",
+        "contentType": "image/png",
+        "httpStatus": 200,
+        "unchanged": true,
+        "comparison": "exact bytes"
+      },
+      {
+        "path": "icons/lyriclint-app-icon.svg",
+        "url": "https://hkarlsen06.dev/icons/lyriclint-app-icon.svg",
+        "kind": "preservation",
+        "sha256": "48daccef1f209a86e3aad0747e40ce948d7a312a12145afc55985edf90bdc7a0",
+        "contentType": "image/svg+xml",
+        "httpStatus": 200,
+        "unchanged": true,
+        "comparison": "exact bytes"
+      },
+      {
+        "path": "icons/paeonia-app-icon.png",
+        "url": "https://hkarlsen06.dev/icons/paeonia-app-icon.png",
+        "kind": "preservation",
+        "sha256": "b51e97380a849cfee6795e7ed0cdf36bdd626aeb968a3d2053fef23d98342bac",
+        "contentType": "image/png",
+        "httpStatus": 200,
+        "unchanged": true,
+        "comparison": "exact bytes"
+      },
+      {
+        "path": "icons/tidex-app-icon.png",
+        "url": "https://hkarlsen06.dev/icons/tidex-app-icon.png",
+        "kind": "preservation",
+        "sha256": "9b8e5d8a89c17b7083f6207d02b206793405d4b42acffadbbdd62b437741b05d",
+        "contentType": "image/png",
+        "httpStatus": 200,
+        "unchanged": true,
+        "comparison": "exact bytes"
+      },
+      {
+        "path": "icons/tidex-wordmark.webp",
+        "url": "https://hkarlsen06.dev/icons/tidex-wordmark.webp",
+        "kind": "preservation",
+        "sha256": "c47fe5d20596aeac868444f2724398d72a2d0866b31efd9d8ae7003b80a85782",
+        "contentType": "image/webp",
+        "httpStatus": 200,
+        "unchanged": true,
+        "comparison": "exact bytes"
+      },
+      {
+        "path": "kvil/assets/home.png",
+        "url": "https://hkarlsen06.dev/kvil/assets/home.png",
+        "kind": "preservation",
+        "sha256": "542532224811698ded57227b74899f912c2d3c11a4bfbd2f4a1ff9f1ac6a7943",
+        "contentType": "image/png",
+        "httpStatus": 200,
+        "unchanged": true,
+        "comparison": "exact bytes"
+      },
+      {
+        "path": "kvil/assets/icon.png",
+        "url": "https://hkarlsen06.dev/kvil/assets/icon.png",
+        "kind": "preservation",
+        "sha256": "64fc3ed6dfe497ab8627b9dd72c857da75b4bc48de2a962376bb1849681b07a0",
+        "contentType": "image/png",
+        "httpStatus": 200,
+        "unchanged": true,
+        "comparison": "exact bytes"
+      },
+      {
+        "path": "kvil/assets/landscape-day.jpg",
+        "url": "https://hkarlsen06.dev/kvil/assets/landscape-day.jpg",
+        "kind": "preservation",
+        "sha256": "85d01dc0432276b8e67a2c5e1d792edf20d4a57d7f0a7b435e6627b6bb423b68",
+        "contentType": "image/jpeg",
+        "httpStatus": 200,
+        "unchanged": true,
+        "comparison": "exact bytes"
+      },
+      {
+        "path": "kvil/assets/landscape-night.jpg",
+        "url": "https://hkarlsen06.dev/kvil/assets/landscape-night.jpg",
+        "kind": "preservation",
+        "sha256": "f9ad94f37bb5f6806ae65705521295b4efc143bd205e2d846d37db2fec72c576",
+        "contentType": "image/jpeg",
+        "httpStatus": 200,
+        "unchanged": true,
+        "comparison": "exact bytes"
+      },
+      {
+        "path": "kvil/assets/watch.png",
+        "url": "https://hkarlsen06.dev/kvil/assets/watch.png",
+        "kind": "preservation",
+        "sha256": "b8bebf25de1a356b706fd548e701f455f8f4a43182d0f43a7077a4a5304bee43",
+        "contentType": "image/png",
+        "httpStatus": 200,
+        "unchanged": true,
+        "comparison": "exact bytes"
+      },
+      {
+        "path": "kvil/index.html",
+        "url": "https://hkarlsen06.dev/kvil/",
+        "kind": "preservation",
+        "sha256": "115e72d355bb765333e11a384042ae2ee267b9019cb5e98bdba00dae2fc03f18",
+        "contentType": "text/html; charset=utf-8",
+        "httpStatus": 200,
+        "unchanged": true,
+        "comparison": "visible text"
+      },
+      {
+        "path": "kvil/style.css",
+        "url": "https://hkarlsen06.dev/kvil/style.css",
+        "kind": "preservation",
+        "sha256": "4970b09c2c6cb38b1eaa96f068af5daafadbd597c501d0746176569090407d8c",
+        "contentType": "text/css; charset=utf-8",
+        "httpStatus": 200,
+        "unchanged": true,
+        "comparison": "exact bytes"
+      },
+      {
+        "path": "og/landing.png",
+        "url": "https://hkarlsen06.dev/og/landing.png",
+        "kind": "preservation",
+        "sha256": "d014edc031656dd8a5cb7740ed900d658ba3108ff6fcb977fc3ff4f758c10f0b",
+        "contentType": "image/png",
+        "httpStatus": 200,
+        "unchanged": true,
+        "comparison": "exact bytes"
+      },
+      {
+        "path": "profile-hjalmar.webp",
+        "url": "https://hkarlsen06.dev/profile-hjalmar.webp",
+        "kind": "preservation",
+        "sha256": "623df222c8f635ffd3ee577c34e7438cfe16b00c82534f5cf67b12b0dd814dd5",
+        "contentType": "image/webp",
+        "httpStatus": 200,
+        "unchanged": true,
+        "comparison": "exact bytes"
+      },
+      {
+        "path": "robots.txt",
+        "url": "https://hkarlsen06.dev/robots.txt",
+        "kind": "preservation",
+        "sha256": "86866c6671c387c2e8a155f10a0c2d64050a54b68a311ce25edaf45c06ea5fc0",
+        "contentType": "text/plain; charset=utf-8",
+        "httpStatus": 200,
+        "unchanged": true,
+        "comparison": "exact bytes"
+      },
+      {
+        "path": "site.webmanifest",
+        "url": "https://hkarlsen06.dev/site.webmanifest",
+        "kind": "preservation",
+        "sha256": "cb4f114c9054463eff7078d2f81625b45ae66d629e62831f5e49f4b9270a310a",
+        "contentType": "application/manifest+json",
+        "httpStatus": 200,
+        "unchanged": true,
+        "comparison": "exact bytes"
+      },
+      {
+        "path": "sitemap.xml",
+        "url": "https://hkarlsen06.dev/sitemap.xml",
+        "kind": "preservation",
+        "sha256": "83dd8270ae9d9b572bb2066965e3a5f7c76f29a8a4f115ed0d922a3dd0c6bf0d",
+        "contentType": "application/xml",
+        "httpStatus": 200,
+        "unchanged": true,
+        "comparison": "exact bytes"
+      },
+      {
+        "path": "index.html",
+        "url": "https://hkarlsen06.dev/",
+        "kind": "preservation",
+        "sha256": "306773fb3850bd580b36d3dcb5c5faf61a381566d3df7839351382d56bad3cad",
+        "contentType": "text/html; charset=utf-8",
+        "httpStatus": 200,
+        "unchanged": true,
+        "comparison": "visible text"
+      },
+      {
+        "path": "404.html",
+        "url": "https://hkarlsen06.dev/404.html",
+        "kind": "preservation",
+        "sha256": "e7dabef25faee536d9384eacd033dbdba7a1a6002d5d773792bb06e538aea664",
+        "contentType": "text/html; charset=utf-8",
+        "httpStatus": 200,
+        "unchanged": true,
+        "comparison": "visible text"
+      },
+      {
+        "path": "contact/index.html",
+        "url": "https://hkarlsen06.dev/contact/",
+        "kind": "preservation",
+        "sha256": "a3ed3b01c64f4466046ff2f506fa9b53f9b7939ad00aa5c1657900cf914cab7e",
+        "contentType": "text/html; charset=utf-8",
+        "httpStatus": 200,
+        "unchanged": true,
+        "comparison": "visible text"
+      },
+      {
+        "path": "no/index.html",
+        "url": "https://hkarlsen06.dev/no/",
+        "kind": "preservation",
+        "sha256": "da0902ca1748aa6af7aaa2837d8e434fc864aabdc9200d0097a1177a681b25d6",
+        "contentType": "text/html; charset=utf-8",
+        "httpStatus": 200,
+        "unchanged": true,
+        "comparison": "visible text"
+      },
+      {
+        "path": "no/contact/index.html",
+        "url": "https://hkarlsen06.dev/no/contact/",
+        "kind": "preservation",
+        "sha256": "b0c1b75c086a96be42d8dc50a36da51e3aa0eba880515477d056adcf323abe4a",
+        "contentType": "text/html; charset=utf-8",
+        "httpStatus": 200,
+        "unchanged": true,
+        "comparison": "visible text"
+      },
+      {
+        "path": "no/projects/index.html",
+        "url": "https://hkarlsen06.dev/no/projects/",
+        "kind": "preservation",
+        "sha256": "72cfd76a2aca96e7640b1125f3c5fc9348a43f6d296201b188072a351fbde049",
+        "contentType": "text/html; charset=utf-8",
+        "httpStatus": 200,
+        "unchanged": true,
+        "comparison": "visible text"
+      },
+      {
+        "path": "no/about/index.html",
+        "url": "https://hkarlsen06.dev/no/about/",
+        "kind": "preservation",
+        "sha256": "0d0b3b5c31871da88d13bfc7c9bd47b9294786eb106098d0db2cce3b759b7701",
+        "contentType": "text/html; charset=utf-8",
+        "httpStatus": 200,
+        "unchanged": true,
+        "comparison": "visible text"
+      },
+      {
+        "path": "projects/index.html",
+        "url": "https://hkarlsen06.dev/projects/",
+        "kind": "preservation",
+        "sha256": "16534f7182d67f46450e85a1147d885ad3e129e1f2289e9644d6a56a1f7d6cdd",
+        "contentType": "text/html; charset=utf-8",
+        "httpStatus": 200,
+        "unchanged": true,
+        "comparison": "visible text"
+      },
+      {
+        "path": "about/index.html",
+        "url": "https://hkarlsen06.dev/about/",
+        "kind": "preservation",
+        "sha256": "ed96bd6b94c0b25283ae8d194bbb67e379a467936039c40f1e9de2a3eb254a3b",
+        "contentType": "text/html; charset=utf-8",
+        "httpStatus": 200,
+        "unchanged": true,
+        "comparison": "visible text"
+      },
+      {
+        "path": "_not-found/index.html",
+        "url": "https://hkarlsen06.dev/_not-found/",
+        "kind": "preservation",
+        "sha256": "e7dabef25faee536d9384eacd033dbdba7a1a6002d5d773792bb06e538aea664",
+        "contentType": "text/html; charset=utf-8",
+        "httpStatus": 200,
+        "unchanged": true,
+        "comparison": "visible text"
+      },
+      {
+        "path": "en/index.html",
+        "url": "https://hkarlsen06.dev/en/",
+        "kind": "preservation",
+        "sha256": "abe194fb155a6e456edb80b31a1654685c259cb71cee6467d132e8cbbe1773a6",
+        "contentType": "text/html; charset=utf-8",
+        "httpStatus": 200,
+        "unchanged": true,
+        "comparison": "visible text"
+      },
+      {
+        "path": "en/contact/index.html",
+        "url": "https://hkarlsen06.dev/en/contact/",
+        "kind": "preservation",
+        "sha256": "46a8470971e88cee51672d1706fac9e3edcecc2eadc7e006f56a5621bcfac524",
+        "contentType": "text/html; charset=utf-8",
+        "httpStatus": 200,
+        "unchanged": true,
+        "comparison": "visible text"
+      },
+      {
+        "path": "en/projects/index.html",
+        "url": "https://hkarlsen06.dev/en/projects/",
+        "kind": "preservation",
+        "sha256": "f140f4e6480910cbfe5483143fd63c636a2de8e7a83a4eb4cc423a3a4ec284c6",
+        "contentType": "text/html; charset=utf-8",
+        "httpStatus": 200,
+        "unchanged": true,
+        "comparison": "visible text"
+      },
+      {
+        "path": "en/about/index.html",
+        "url": "https://hkarlsen06.dev/en/about/",
+        "kind": "preservation",
+        "sha256": "349707d5ad104a9e791ed6f4045a81a69c40809c9b37baba9e8b06812cab4f1c",
+        "contentType": "text/html; charset=utf-8",
+        "httpStatus": 200,
+        "unchanged": true,
+        "comparison": "visible text"
+      }
+    ]
+  },
+  "evidence": {
+    "buildLog": "build/privacy-site-publication/build.log",
+    "deployLog": "build/privacy-site-publication/deployment-local.log",
+    "productionReadback": "build/privacy-site-publication/deployments-after.txt",
+    "completeExportManifest": "build/privacy-site-publication/prepared-export.json",
+    "baselineReadback": "build/privacy-site-publication/baseline-comparison.json",
+    "postDeploymentReadback": "build/privacy-site-publication/live-readback.json",
+    "canonicalPreimageAndIndexHash": "build/privacy-site-publication/canonical-before.json"
+  },
+  "limitations": [
+    "Publication and content verification do not establish App Review policy acceptance or physical-device CloudKit convergence.",
+    "No browser layout audit was added for this article-only update; existing production styling was preserved.",
+    "The canonical portfolio has earlier uncommitted visual changes. No commit or push was performed, so a later Git-triggered deployment can replace these direct-upload pages unless their source is included."
+  ],
+  "deploymentNotes": [
+    "Remote /tmp was full; task temporary files used /home/hkarlsen06/.cache. No unrelated files were deleted.",
+    "mdr Wrangler had no deploy credentials; its two rejected attempts did not publish. The existing authenticated local installation completed publication.",
+    "Local Wrangler emitted a non-fatal git metadata lookup warning because the portfolio commit is absent from the Kvil repository; the requested portfolio source hash is recorded on the successful Production deployment."
+  ],
+  "references": [
+    "https://developers.cloudflare.com/pages/get-started/direct-upload/",
+    "https://developers.cloudflare.com/pages/configuration/git-integration/"
+  ]
+}

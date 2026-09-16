@@ -119,6 +119,9 @@ extension DayFeeling {
 
 struct WindowTimeLabel: View {
   @Environment(\.dynamicTypeSize) private var typeSize
+  @Environment(\.locale) private var locale
+  @Environment(\.timeZone) private var timeZone
+  @Environment(\.calendar) private var calendar
   var window: EatingWindow
   var stacksForAccessibility = true
   var body: some View {
@@ -128,15 +131,20 @@ struct WindowTimeLabel: View {
       } else {
         ViewThatFits(in: .horizontal) {
           HStack(spacing: 4) {
-            Text(window.opening, format: .dateTime.hour().minute())
-            Text(verbatim: "–")
-            Text(window.closing, format: .dateTime.hour().minute())
+            Text(verbatim: timeRange)
             overnightLabel
           }.fixedSize()
           verticalRange
         }
       }
     }.monospacedDigit().accessibilityElement(children: .combine)
+  }
+  private var timeRange: String {
+    var style = Date.FormatStyle().hour().minute()
+    style.locale = locale
+    style.timeZone = timeZone
+    style.calendar = calendar
+    return "\(window.opening.formatted(style)) – \(window.closing.formatted(style))"
   }
   private var verticalRange: some View {
     VStack(alignment: .leading, spacing: 4) {

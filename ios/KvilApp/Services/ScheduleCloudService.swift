@@ -112,7 +112,7 @@ import Observation
     subscribed = false
   }
 
-  // Called only after the user explicitly turns sync back on in Settings.
+  // Called after the user explicitly turns sync back on in setup or Settings.
   func resume() throws {
     guard !stateLoadFailed else { throw ScheduleError.incompatibleData }
     invalidatePendingWork()

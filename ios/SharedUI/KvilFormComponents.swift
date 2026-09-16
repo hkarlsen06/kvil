@@ -120,10 +120,11 @@ struct KvilBottomActions<Actions: View>: View {
         if selected == nil {
           Text(.differentWindowLengths).tag(nil as Int?).disabled(true)
         }
-        if let selected, selected % 60 != 0 {
+        if let selected, selected % 60 != 0 || selected < DayPlan.minimumWindowMinutes {
           Text(verbatim: duration(selected)).tag(Optional(selected))
+            .disabled(selected < DayPlan.minimumWindowMinutes)
         }
-        ForEach(1..<24) { hours in
+        ForEach((DayPlan.minimumWindowMinutes / 60)..<24, id: \.self) { hours in
           Text(verbatim: duration(hours * 60)).tag(Optional(hours * 60))
         }
       }.pickerStyle(.menu)

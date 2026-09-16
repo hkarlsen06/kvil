@@ -4,7 +4,9 @@ These are unmodified dark-mode captures of Kvil's production SwiftUI views using
 
 `manifest.json` records each file, dimensions, SHA-256, appearance, capture time, build and source. All eleven final images were visually inspected and their dimensions and hashes verified. The iPhone simulator was explicitly set to dark appearance. The Watch uses the app's native dark palette; its background now fills the screen in both languages.
 
-These files have not been uploaded to Apple. Replace the old sets alongside the next candidate, including adding the Norwegian welcome image. `../apple-media-verified.json` and `../photography-verified.json` are historical evidence for older captures; neither verifies delivery of this set.
+All eleven images were uploaded on 15 September and read back as Apple `COMPLETE`: ten storefront screenshots in four sets, plus the separate purchase review image. Each local SHA-256 matches the capture manifest; Apple checksums, dimensions and file sizes match the source files. Both iPhone sets are ordered Home → Schedule → History → Welcome, including the newly added Norwegian welcome image; each Watch set contains its timer. Nine old storefront IDs are absent from the final sets. The purchase's review-image relationship points to the new capture. [Delivery and metadata evidence](../appstore-materials-verified.json).
+
+Screenshot attachment does not upload a new app binary or submit the app for review. Purchase membership in the review draft is tracked separately. `../apple-media-verified.json` and `../photography-verified.json` retain historical evidence for older captures.
 
 The final iPhone capture test passed in `Kvil-test-1789437874-12844.xcresult`; the wrapper log is `build/app-review-dark-screenshots-final.log`. Watch captures use an isolated simulator and a fictional snapshot validated and round-tripped through the production schedule/storage code. Phone scenario integrations are disabled. No screenshot pixels were edited.
 

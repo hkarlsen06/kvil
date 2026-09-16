@@ -1,0 +1,794 @@
+{
+  "verifiedAt": "2026-09-15T05:57:37.201465+00:00",
+  "verificationMethod": "Independent comparison of local source files and saved live App Store Connect API readbacks. This evidence-generation step made no API or UI changes.",
+  "app": {
+    "id": "6811427716",
+    "bundleId": "dev.hkarlsen06.kvil",
+    "versionId": "ff9a978c-ce76-410f-8e2e-439fbbda7446",
+    "version": "1.0.0",
+    "platform": "IOS",
+    "stateInSavedReadback": "PREPARE_FOR_SUBMISSION",
+    "selectedBuildInSavedReadback": null
+  },
+  "reviewSubmission": {
+    "id": "f18650b3-7b9c-44db-9951-ff66ed60dfc1",
+    "stateInSavedReadback": "READY_FOR_REVIEW",
+    "submittedDate": null,
+    "reviewSubmitted": false,
+    "apiPlatform": null,
+    "itemCount": 1,
+    "apiReadback": "build/asc-materials/review-submissions.json",
+    "selectedBuild": null,
+    "oldBuildAttached": false,
+    "buildRelationshipReadback": "build/asc-materials/selected-build.json",
+    "nativeUiObservation": {
+      "reportedBy": "Root agent after restoring the unsubmitted draft",
+      "platformLabel": "iOS",
+      "items": "Full History purchase only",
+      "submitButtonDisabled": true,
+      "appVersionRequired": true,
+      "sourceNote": "Direct native UI readback reported by root; platform and item meaning are not inferred from the API null platform or opaque item ID."
+    }
+  },
+  "metadata": [
+    {
+      "requestFile": "release/requests/listing-en.json",
+      "readbackFile": "build/asc-materials/listing-en-after.json",
+      "resourceType": "appStoreVersionLocalizations",
+      "resourceId": "18922802-67fc-4025-bc29-2e75cf707d73",
+      "allRequestedFieldsExactlyEqual": true,
+      "fields": {
+        "description": {
+          "exactlyEqual": true,
+          "requestedValueSha256": "d09bde1dd9249a8e450905ca6cf8bbf4bd582b0c53b74159d9c7992c8bc85863",
+          "readbackValueSha256": "d09bde1dd9249a8e450905ca6cf8bbf4bd582b0c53b74159d9c7992c8bc85863",
+          "characterCount": 2309,
+          "utf16CodeUnits": 2309
+        },
+        "keywords": {
+          "exactlyEqual": true,
+          "requestedValueSha256": "4e642050d5143a9b3f0e9ac0999e6af07ce3a742544f28f69e2a598b6615e0e7",
+          "readbackValueSha256": "4e642050d5143a9b3f0e9ac0999e6af07ce3a742544f28f69e2a598b6615e0e7",
+          "characterCount": 88,
+          "utf16CodeUnits": 88
+        },
+        "promotionalText": {
+          "exactlyEqual": true,
+          "requestedValueSha256": "cff737a7e80a1124aae9cebdc169b6c307a6c955c9521f1ec34ebb9c75cfd2b1",
+          "readbackValueSha256": "cff737a7e80a1124aae9cebdc169b6c307a6c955c9521f1ec34ebb9c75cfd2b1",
+          "characterCount": 125,
+          "utf16CodeUnits": 125
+        }
+      },
+      "locale": "en-US"
+    },
+    {
+      "requestFile": "release/requests/listing-no.json",
+      "readbackFile": "build/asc-materials/listing-no-after.json",
+      "resourceType": "appStoreVersionLocalizations",
+      "resourceId": "c8fe6bf6-9d5b-4eff-98bb-7420064d7b4a",
+      "allRequestedFieldsExactlyEqual": true,
+      "fields": {
+        "description": {
+          "exactlyEqual": true,
+          "requestedValueSha256": "ab3f53d8d5a98a630d076f0d7c4240f3a986d7096a15da5c004105a6e7f3da59",
+          "readbackValueSha256": "ab3f53d8d5a98a630d076f0d7c4240f3a986d7096a15da5c004105a6e7f3da59",
+          "characterCount": 2265,
+          "utf16CodeUnits": 2265
+        },
+        "keywords": {
+          "exactlyEqual": true,
+          "requestedValueSha256": "20e66e7b55be966ab00fe14398034dba415ffca5b831401d247d4fc3b294dbba",
+          "readbackValueSha256": "20e66e7b55be966ab00fe14398034dba415ffca5b831401d247d4fc3b294dbba",
+          "characterCount": 76,
+          "utf16CodeUnits": 76
+        },
+        "promotionalText": {
+          "exactlyEqual": true,
+          "requestedValueSha256": "bb66395e6fba49aba9d58e029fa44c0402c456ba59c62f37d8df99e65c617e3d",
+          "readbackValueSha256": "bb66395e6fba49aba9d58e029fa44c0402c456ba59c62f37d8df99e65c617e3d",
+          "characterCount": 111,
+          "utf16CodeUnits": 111
+        }
+      },
+      "locale": "no"
+    },
+    {
+      "requestFile": "release/requests/review-notes.json",
+      "readbackFile": "build/asc-materials/review-notes-after.json",
+      "resourceType": "appStoreReviewDetails",
+      "resourceId": "7da6b8ac-ca76-4347-a18c-c7bcf8dcfa51",
+      "allRequestedFieldsExactlyEqual": true,
+      "fields": {
+        "demoAccountRequired": {
+          "exactlyEqual": true,
+          "requestedValueSha256": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+          "readbackValueSha256": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+          "characterCount": null,
+          "utf16CodeUnits": null
+        },
+        "notes": {
+          "exactlyEqual": true,
+          "requestedValueSha256": "1941b0f029e53ca49b09aebe2d0fda2e263d1d41918003eaa76387f464a89241",
+          "readbackValueSha256": "1941b0f029e53ca49b09aebe2d0fda2e263d1d41918003eaa76387f464a89241",
+          "characterCount": 3974,
+          "utf16CodeUnits": 3974
+        }
+      }
+    }
+  ],
+  "metadataSummary": {
+    "resourceCount": 3,
+    "requestedFieldCount": 8,
+    "allRequestedFieldsExactlyEqual": true,
+    "scope": "English/Norwegian description, keywords and promotional text; demoAccountRequired and review notes. No assertion about unrequested metadata fields.",
+    "valueHashEncoding": "Strings: UTF-8 text. Other scalar values: compact JSON."
+  },
+  "screenshots": {
+    "total": 10,
+    "complete": 10,
+    "allDark": true,
+    "sourceManifest": "release/screenshots/manifest.json",
+    "allSourceSha256MatchManifest": true,
+    "allAppleChecksumsMatchLocalMd5": true,
+    "allAppleDimensionsAndFileSizesMatch": true,
+    "allUploadedAndFinalResponsesExactlyEqual": true,
+    "finalSetCount": 4,
+    "allFinalSetOrdersExact": true,
+    "previousIdsAbsentFromFinalSets": 9,
+    "sets": [
+      {
+        "id": "f8aff6a7-7858-407d-babf-bd1095b1f749",
+        "locale": "en-US",
+        "displayType": "APP_IPHONE_67",
+        "finalReadback": "build/asc-materials/final-set-f8aff6a7-7858-407d-babf-bd1095b1f749.json",
+        "count": 4,
+        "exactOrderVerified": true,
+        "expectedOrder": [
+          "1fd61e6f-3d1f-492d-8132-895f81ed054d",
+          "383b3bc3-3de9-4562-8e00-f4236b277db6",
+          "46c18af8-5e30-4680-afc4-c3da49ccb00d",
+          "a9325c17-7099-4656-8024-54576e322ce2"
+        ],
+        "readbackOrder": [
+          "1fd61e6f-3d1f-492d-8132-895f81ed054d",
+          "383b3bc3-3de9-4562-8e00-f4236b277db6",
+          "46c18af8-5e30-4680-afc4-c3da49ccb00d",
+          "a9325c17-7099-4656-8024-54576e322ce2"
+        ],
+        "oldIds": [
+          "165e963b-38df-4f67-8532-d65faa30e9b0",
+          "244c1f8b-7d81-427d-b323-f77cb22b2d31",
+          "b863db83-5909-4b9b-966a-a36df72f4739",
+          "0184c638-73f4-4d25-b29c-1da3b3ec763e"
+        ],
+        "oldIdsAbsentFromFinalSet": true,
+        "screenshots": [
+          {
+            "position": 1,
+            "path": "release/screenshots/en-US/01-home.png",
+            "id": "1fd61e6f-3d1f-492d-8132-895f81ed054d",
+            "sourceSha256": "350445f2a0ba3c3469d54c8688348a9642e2c16be3633db787ab73b4d732ffd1",
+            "sourceMd5": "ead61faa17a783052bdfd5156c34ed90",
+            "appleSourceFileChecksum": "ead61faa17a783052bdfd5156c34ed90",
+            "checksumAlgorithm": "MD5",
+            "checksumMatches": true,
+            "fileSize": 498348,
+            "appleFileSizeMatches": true,
+            "width": 1320,
+            "height": 2868,
+            "appleDimensionsMatch": true,
+            "sourceManifestMatches": true,
+            "appearance": "dark",
+            "captureBuild": "2449.2.4",
+            "capturedAt": "2026-09-15T02:05:12.348000+00:00",
+            "state": "COMPLETE",
+            "errors": [],
+            "warnings": null,
+            "uploadedAndFinalReadbacksExactlyEqual": true,
+            "journalStages": [
+              "reserved"
+            ],
+            "uploadedReadback": "build/asc-materials/uploaded-1fd61e6f-3d1f-492d-8132-895f81ed054d.json"
+          },
+          {
+            "position": 2,
+            "path": "release/screenshots/en-US/02-schedule.png",
+            "id": "383b3bc3-3de9-4562-8e00-f4236b277db6",
+            "sourceSha256": "afc189e8371e5cb0de76540d0e80b7bd134638b6a872097ef7c4caf16e6666bc",
+            "sourceMd5": "208c343878132ba4a9f47f7ee0550b2d",
+            "appleSourceFileChecksum": "208c343878132ba4a9f47f7ee0550b2d",
+            "checksumAlgorithm": "MD5",
+            "checksumMatches": true,
+            "fileSize": 265653,
+            "appleFileSizeMatches": true,
+            "width": 1320,
+            "height": 2868,
+            "appleDimensionsMatch": true,
+            "sourceManifestMatches": true,
+            "appearance": "dark",
+            "captureBuild": "2449.2.4",
+            "capturedAt": "2026-09-15T02:05:16.496000+00:00",
+            "state": "COMPLETE",
+            "errors": [],
+            "warnings": null,
+            "uploadedAndFinalReadbacksExactlyEqual": true,
+            "journalStages": [
+              "reserved",
+              "complete"
+            ],
+            "uploadedReadback": "build/asc-materials/uploaded-383b3bc3-3de9-4562-8e00-f4236b277db6.json"
+          },
+          {
+            "position": 3,
+            "path": "release/screenshots/en-US/03-history.png",
+            "id": "46c18af8-5e30-4680-afc4-c3da49ccb00d",
+            "sourceSha256": "212ea13e42ef8b2651f421ff35316438284f0232e890202958ee3eaf48e10dba",
+            "sourceMd5": "28d9e5d419c4442e51bf8258106b2e3f",
+            "appleSourceFileChecksum": "28d9e5d419c4442e51bf8258106b2e3f",
+            "checksumAlgorithm": "MD5",
+            "checksumMatches": true,
+            "fileSize": 303851,
+            "appleFileSizeMatches": true,
+            "width": 1320,
+            "height": 2868,
+            "appleDimensionsMatch": true,
+            "sourceManifestMatches": true,
+            "appearance": "dark",
+            "captureBuild": "2449.2.4",
+            "capturedAt": "2026-09-15T02:05:20.036000+00:00",
+            "state": "COMPLETE",
+            "errors": [],
+            "warnings": null,
+            "uploadedAndFinalReadbacksExactlyEqual": true,
+            "journalStages": [
+              "reserved",
+              "complete"
+            ],
+            "uploadedReadback": "build/asc-materials/uploaded-46c18af8-5e30-4680-afc4-c3da49ccb00d.json"
+          },
+          {
+            "position": 4,
+            "path": "release/screenshots/en-US/04-welcome.png",
+            "id": "a9325c17-7099-4656-8024-54576e322ce2",
+            "sourceSha256": "ffac2c7b552af75e562eb7af873aff16b1c3661cd62f9ec611b3b678ddc065b8",
+            "sourceMd5": "48d52ce6c395a3c690f3161fb5cde8ff",
+            "appleSourceFileChecksum": "48d52ce6c395a3c690f3161fb5cde8ff",
+            "checksumAlgorithm": "MD5",
+            "checksumMatches": true,
+            "fileSize": 3237167,
+            "appleFileSizeMatches": true,
+            "width": 1320,
+            "height": 2868,
+            "appleDimensionsMatch": true,
+            "sourceManifestMatches": true,
+            "appearance": "dark",
+            "captureBuild": "2449.2.4",
+            "capturedAt": "2026-09-15T02:05:02.309000+00:00",
+            "state": "COMPLETE",
+            "errors": [],
+            "warnings": null,
+            "uploadedAndFinalReadbacksExactlyEqual": true,
+            "journalStages": [
+              "reserved",
+              "complete"
+            ],
+            "uploadedReadback": "build/asc-materials/uploaded-a9325c17-7099-4656-8024-54576e322ce2.json"
+          }
+        ]
+      },
+      {
+        "id": "d055f939-447e-4074-bce4-de089ad2a20b",
+        "locale": "en-US",
+        "displayType": "APP_WATCH_ULTRA",
+        "finalReadback": "build/asc-materials/final-set-d055f939-447e-4074-bce4-de089ad2a20b.json",
+        "count": 1,
+        "exactOrderVerified": true,
+        "expectedOrder": [
+          "6a99c06f-5c58-4974-bb89-4a7bfc6502a0"
+        ],
+        "readbackOrder": [
+          "6a99c06f-5c58-4974-bb89-4a7bfc6502a0"
+        ],
+        "oldIds": [
+          "1c976760-e6dc-4c76-b699-e558b16a50df"
+        ],
+        "oldIdsAbsentFromFinalSet": true,
+        "screenshots": [
+          {
+            "position": 1,
+            "path": "release/screenshots/en-US/watch/01-timer.png",
+            "id": "6a99c06f-5c58-4974-bb89-4a7bfc6502a0",
+            "sourceSha256": "b27a8c16202eccd8baf4eb83463792bddfcb55f4d9cdb32e3d0de75c689bfbe5",
+            "sourceMd5": "4d925348cc3590e7ce31bb242d248437",
+            "appleSourceFileChecksum": "4d925348cc3590e7ce31bb242d248437",
+            "checksumAlgorithm": "MD5",
+            "checksumMatches": true,
+            "fileSize": 33442,
+            "appleFileSizeMatches": true,
+            "width": 410,
+            "height": 502,
+            "appleDimensionsMatch": true,
+            "sourceManifestMatches": true,
+            "appearance": "dark",
+            "captureBuild": "2449.2.1",
+            "capturedAt": "2026-09-15T02:03:16.715845+00:00",
+            "state": "COMPLETE",
+            "errors": [],
+            "warnings": null,
+            "uploadedAndFinalReadbacksExactlyEqual": true,
+            "journalStages": [
+              "reserved",
+              "complete"
+            ],
+            "uploadedReadback": "build/asc-materials/uploaded-6a99c06f-5c58-4974-bb89-4a7bfc6502a0.json"
+          }
+        ]
+      },
+      {
+        "id": "a1e05777-357c-4aeb-adbb-faceaeffb438",
+        "locale": "no",
+        "displayType": "APP_WATCH_ULTRA",
+        "finalReadback": "build/asc-materials/final-set-a1e05777-357c-4aeb-adbb-faceaeffb438.json",
+        "count": 1,
+        "exactOrderVerified": true,
+        "expectedOrder": [
+          "23db5d36-fffd-4ad8-a4fb-4ad26bdd0fd7"
+        ],
+        "readbackOrder": [
+          "23db5d36-fffd-4ad8-a4fb-4ad26bdd0fd7"
+        ],
+        "oldIds": [
+          "4659c6a2-1f87-4b5c-a9cd-1e660f2b770e"
+        ],
+        "oldIdsAbsentFromFinalSet": true,
+        "screenshots": [
+          {
+            "position": 1,
+            "path": "release/screenshots/no/watch/01-timer.png",
+            "id": "23db5d36-fffd-4ad8-a4fb-4ad26bdd0fd7",
+            "sourceSha256": "3df768a442e098f34e4f10b1bd3513a83f082de2caf2afe13b7d41fb535642ed",
+            "sourceMd5": "9ed365c54662ae187c604351652bc286",
+            "appleSourceFileChecksum": "9ed365c54662ae187c604351652bc286",
+            "checksumAlgorithm": "MD5",
+            "checksumMatches": true,
+            "fileSize": 30758,
+            "appleFileSizeMatches": true,
+            "width": 410,
+            "height": 502,
+            "appleDimensionsMatch": true,
+            "sourceManifestMatches": true,
+            "appearance": "dark",
+            "captureBuild": "2449.2.1",
+            "capturedAt": "2026-09-15T02:05:02.165881+00:00",
+            "state": "COMPLETE",
+            "errors": [],
+            "warnings": null,
+            "uploadedAndFinalReadbacksExactlyEqual": true,
+            "journalStages": [
+              "reserved",
+              "complete"
+            ],
+            "uploadedReadback": "build/asc-materials/uploaded-23db5d36-fffd-4ad8-a4fb-4ad26bdd0fd7.json"
+          }
+        ]
+      },
+      {
+        "id": "208bb15a-b214-483c-9470-34ffad1e067a",
+        "locale": "no",
+        "displayType": "APP_IPHONE_67",
+        "finalReadback": "build/asc-materials/final-set-208bb15a-b214-483c-9470-34ffad1e067a.json",
+        "count": 4,
+        "exactOrderVerified": true,
+        "expectedOrder": [
+          "14beadc0-79ac-437d-8ec5-43a959878441",
+          "05842c47-2ecc-4f09-917c-f6b6893ae657",
+          "b3240bae-2dfe-4185-a805-db1d263533e2",
+          "e7b8c0da-d16f-4152-a006-8f3902dfbb28"
+        ],
+        "readbackOrder": [
+          "14beadc0-79ac-437d-8ec5-43a959878441",
+          "05842c47-2ecc-4f09-917c-f6b6893ae657",
+          "b3240bae-2dfe-4185-a805-db1d263533e2",
+          "e7b8c0da-d16f-4152-a006-8f3902dfbb28"
+        ],
+        "oldIds": [
+          "9018e4ea-a9ab-4a88-8db2-4b2f7442554f",
+          "d4c6bfad-ff12-432f-a3db-8d044028f911",
+          "60298f3d-fbdb-47f6-9849-baa57573b694"
+        ],
+        "oldIdsAbsentFromFinalSet": true,
+        "screenshots": [
+          {
+            "position": 1,
+            "path": "release/screenshots/no/01-home.png",
+            "id": "14beadc0-79ac-437d-8ec5-43a959878441",
+            "sourceSha256": "e3bf60ac95f98a07a13aa6e05c0d88ef4f53c74d20b6e16d0e59a329b57bc7ed",
+            "sourceMd5": "c26a036f6b773bbf8ecf6884d53eea31",
+            "appleSourceFileChecksum": "c26a036f6b773bbf8ecf6884d53eea31",
+            "checksumAlgorithm": "MD5",
+            "checksumMatches": true,
+            "fileSize": 487005,
+            "appleFileSizeMatches": true,
+            "width": 1320,
+            "height": 2868,
+            "appleDimensionsMatch": true,
+            "sourceManifestMatches": true,
+            "appearance": "dark",
+            "captureBuild": "2449.2.4",
+            "capturedAt": "2026-09-15T02:05:45.395000+00:00",
+            "state": "COMPLETE",
+            "errors": [],
+            "warnings": null,
+            "uploadedAndFinalReadbacksExactlyEqual": true,
+            "journalStages": [
+              "reserved",
+              "complete"
+            ],
+            "uploadedReadback": "build/asc-materials/uploaded-14beadc0-79ac-437d-8ec5-43a959878441.json"
+          },
+          {
+            "position": 2,
+            "path": "release/screenshots/no/02-schedule.png",
+            "id": "05842c47-2ecc-4f09-917c-f6b6893ae657",
+            "sourceSha256": "cb02c1c361f6e2f292ae6c615d3089308d5663d155730bd8b8607e2ee7496555",
+            "sourceMd5": "a1e65d99847177a068ffb1349764f627",
+            "appleSourceFileChecksum": "a1e65d99847177a068ffb1349764f627",
+            "checksumAlgorithm": "MD5",
+            "checksumMatches": true,
+            "fileSize": 244986,
+            "appleFileSizeMatches": true,
+            "width": 1320,
+            "height": 2868,
+            "appleDimensionsMatch": true,
+            "sourceManifestMatches": true,
+            "appearance": "dark",
+            "captureBuild": "2449.2.4",
+            "capturedAt": "2026-09-15T02:05:48.983000+00:00",
+            "state": "COMPLETE",
+            "errors": [],
+            "warnings": null,
+            "uploadedAndFinalReadbacksExactlyEqual": true,
+            "journalStages": [
+              "reserved",
+              "complete"
+            ],
+            "uploadedReadback": "build/asc-materials/uploaded-05842c47-2ecc-4f09-917c-f6b6893ae657.json"
+          },
+          {
+            "position": 3,
+            "path": "release/screenshots/no/03-history.png",
+            "id": "b3240bae-2dfe-4185-a805-db1d263533e2",
+            "sourceSha256": "0904766586fd643b6dd11b81f25bbe2f3319b5f6bdc76b8414b3566473e3fd4b",
+            "sourceMd5": "906aeabb3c0015091cbd6153699f9396",
+            "appleSourceFileChecksum": "906aeabb3c0015091cbd6153699f9396",
+            "checksumAlgorithm": "MD5",
+            "checksumMatches": true,
+            "fileSize": 297313,
+            "appleFileSizeMatches": true,
+            "width": 1320,
+            "height": 2868,
+            "appleDimensionsMatch": true,
+            "sourceManifestMatches": true,
+            "appearance": "dark",
+            "captureBuild": "2449.2.4",
+            "capturedAt": "2026-09-15T02:05:52.389000+00:00",
+            "state": "COMPLETE",
+            "errors": [],
+            "warnings": null,
+            "uploadedAndFinalReadbacksExactlyEqual": true,
+            "journalStages": [
+              "reserved",
+              "complete"
+            ],
+            "uploadedReadback": "build/asc-materials/uploaded-b3240bae-2dfe-4185-a805-db1d263533e2.json"
+          },
+          {
+            "position": 4,
+            "path": "release/screenshots/no/04-welcome.png",
+            "id": "e7b8c0da-d16f-4152-a006-8f3902dfbb28",
+            "sourceSha256": "2c48063eb98f5899843017d744d3a4385b010710c1aa992e8b9aa24c65fb7d9a",
+            "sourceMd5": "1439065765652d0cf482def2660d5b52",
+            "appleSourceFileChecksum": "1439065765652d0cf482def2660d5b52",
+            "checksumAlgorithm": "MD5",
+            "checksumMatches": true,
+            "fileSize": 3236941,
+            "appleFileSizeMatches": true,
+            "width": 1320,
+            "height": 2868,
+            "appleDimensionsMatch": true,
+            "sourceManifestMatches": true,
+            "appearance": "dark",
+            "captureBuild": "2449.2.4",
+            "capturedAt": "2026-09-15T02:05:36.369000+00:00",
+            "state": "COMPLETE",
+            "errors": [],
+            "warnings": null,
+            "uploadedAndFinalReadbacksExactlyEqual": true,
+            "journalStages": [
+              "reserved",
+              "complete"
+            ],
+            "uploadedReadback": "build/asc-materials/uploaded-e7b8c0da-d16f-4152-a006-8f3902dfbb28.json"
+          }
+        ]
+      }
+    ]
+  },
+  "purchaseReviewScreenshot": {
+    "path": "release/screenshots/review/purchase.png",
+    "sourceSha256": "b03e73690151a3b6ee8ac2098bf79f8b9d43cb5926c3acf304288134ad6786a8",
+    "sourceMd5": "15711ebe59f4f06f89d785083daa23be",
+    "appleSourceFileChecksum": "15711ebe59f4f06f89d785083daa23be",
+    "checksumAlgorithm": "MD5",
+    "checksumMatches": true,
+    "fileSize": 1666494,
+    "appleFileSizeMatches": true,
+    "width": 1320,
+    "height": 2868,
+    "appleDimensionsMatch": true,
+    "appearance": "dark",
+    "captureBuild": "2449.2.4",
+    "state": "COMPLETE",
+    "newCaptureUploadVerified": true,
+    "purchaseId": "6811446026",
+    "assetId": "9391c3b8-2685-4b76-9bad-6910bc689cec",
+    "priorAssetId": "1d1dfcbd-286a-42c8-b21a-8c7b84454406",
+    "relationshipResourceIdMatchesUploadedAsset": true,
+    "uploadedAndRelationshipReadbacksExactlyEqual": true,
+    "errors": null,
+    "warnings": null,
+    "relationshipReadback": "build/asc-materials/purchase-shot-after.json",
+    "uploadedReadback": "build/asc-materials/uploaded-9391c3b8-2685-4b76-9bad-6910bc689cec.json",
+    "journalStages": [
+      "reserved",
+      "complete"
+    ],
+    "scopeNote": "Separate from the ten storefront screenshots. This verifies the image relationship on the purchase. Review-draft membership is documented separately in reviewSubmission."
+  },
+  "imageSummary": {
+    "storefront": 10,
+    "purchaseReview": 1,
+    "total": 11,
+    "complete": 11,
+    "allSourceAndAppleChecksumsMatch": true
+  },
+  "reviewerFixture": {
+    "path": "release/Kvil-reviewer-demo.zip",
+    "sourceSha256": "1f9c7afd12b1f92f5174ab5c2fc47688766eeae19094651ba589988d830a6f86",
+    "sourceMd5": "71895873af2bf606ba0ffb7a608dcd9b",
+    "appleSourceFileChecksum": "71895873af2bf606ba0ffb7a608dcd9b",
+    "checksumAlgorithm": "MD5",
+    "checksumMatches": true,
+    "fileSize": 2814,
+    "appleFileSizeMatches": true,
+    "attachmentId": "936626d5-361e-4112-873c-c13d98500635",
+    "state": "COMPLETE",
+    "errors": [],
+    "warnings": null,
+    "relationshipResourceIdMatchesUploadedAsset": true,
+    "uploadedAndRelationshipReadbacksExactlyEqual": true,
+    "relationshipReadback": "build/asc-materials/review-attachments-after.json",
+    "uploadedReadback": "build/asc-materials/uploaded-936626d5-361e-4112-873c-c13d98500635.json",
+    "contents": [
+      {
+        "name": "README.txt",
+        "bytes": 2195,
+        "sha256": "ad5e308e8f9a9a99f1e2788857ba39b8a26b588276e3284369676daa1cabdbd4"
+      },
+      {
+        "name": "reviewer-demo.json",
+        "bytes": 13962,
+        "sha256": "6f0b6c0e015312d069257b17e402be2c146fcf29d670e6de7a64397ea3a8085c"
+      }
+    ],
+    "fixtureJsonMatchesOriginalValidatedBytes": true,
+    "fictionalData": true,
+    "grantsPurchaseEntitlement": false,
+    "dateLimitation": "Week and Month counts depend on the current date; the fixture is anchored to 15 September 2026. All time retains 42 entries."
+  },
+  "evidenceFiles": [
+    {
+      "path": "release/screenshots/manifest.json",
+      "sha256": "8b2f2a3258aa15bb9f64314ec6f96fb5b5c0380d12addb8d57dc277652985d92",
+      "modifiedAt": "2026-09-15T02:07:41.401404+00:00"
+    },
+    {
+      "path": "build/asc-materials/replacements.json",
+      "sha256": "dcffdcdf94fb1b25dd622926c05256bf43b27ec05d30cd60e3179de8c8c6d25d",
+      "modifiedAt": "2026-09-15T04:47:12.902320+00:00"
+    },
+    {
+      "path": "build/asc-materials/upload-progress.jsonl",
+      "sha256": "acf463ed61f804ad85ad39c3e3aadb8b03f6c02d572a9abd40975b4b8d34b2cc"
+    },
+    {
+      "path": "build/asc-materials/sets-en-US.json",
+      "sha256": "582da01d03b9695e4896e3f5ebb0109b866ccc42349bf1c296eef8391a44d406",
+      "modifiedAt": "2026-09-15T04:42:06.284633+00:00"
+    },
+    {
+      "path": "build/asc-materials/sets-no.json",
+      "sha256": "dcb3907caed28ea95d948e1a071e64fbc6376682f60c080a92d8b2e8f06f1f9a",
+      "modifiedAt": "2026-09-15T04:42:05.708065+00:00"
+    },
+    {
+      "path": "release/requests/listing-en.json",
+      "sha256": "e10012ae0d7d34fea6f19531f93c3ee5f5e4bcb32198b0136cb018bb0ab912ac",
+      "modifiedAt": "2026-09-15T02:33:42.524968+00:00"
+    },
+    {
+      "path": "build/asc-materials/listing-en-after.json",
+      "sha256": "007546d43e18fd2ade6029c1266128f1ea41252195f4f9ead5ce8180ff7f6e13",
+      "modifiedAt": "2026-09-15T04:54:04.575038+00:00"
+    },
+    {
+      "path": "release/requests/listing-no.json",
+      "sha256": "0160e91d24f278335a1fd99a4bacd5560150c67281ffa357197610db3c16e388",
+      "modifiedAt": "2026-09-15T02:33:42.525262+00:00"
+    },
+    {
+      "path": "build/asc-materials/listing-no-after.json",
+      "sha256": "9e57e877ac4f467472893e43a6c0cc2364168c323b24020921fe5a1503063ac4",
+      "modifiedAt": "2026-09-15T04:54:06.282168+00:00"
+    },
+    {
+      "path": "release/requests/review-notes.json",
+      "sha256": "5b0dc0da569314d8ef3ccada1f81c94c519a5b9d5a47033463ff5d486bd20c71",
+      "modifiedAt": "2026-09-15T05:03:26.284361+00:00"
+    },
+    {
+      "path": "build/asc-materials/review-notes-after.json",
+      "sha256": "5a6efd350e1033f83818274e2228f9b4979fbd3a51992d0d061c44273a46749d",
+      "modifiedAt": "2026-09-15T05:03:28.155144+00:00"
+    },
+    {
+      "path": "build/asc-materials/final-set-f8aff6a7-7858-407d-babf-bd1095b1f749.json",
+      "sha256": "55a36493c975cdf29150e27266d664e420d475ce280b71b8302d8c740ab519f2",
+      "modifiedAt": "2026-09-15T04:47:16.894975+00:00"
+    },
+    {
+      "path": "build/asc-materials/uploaded-1fd61e6f-3d1f-492d-8132-895f81ed054d.json",
+      "sha256": "50f00cc1bd8069eced9eafb66be3ac9b08b2538e9ea2ace866cfd010ca790eb5",
+      "modifiedAt": "2026-09-15T04:44:34.601939+00:00"
+    },
+    {
+      "path": "build/asc-materials/uploaded-383b3bc3-3de9-4562-8e00-f4236b277db6.json",
+      "sha256": "fb036042c8ade2fc2bec81dfb9fbcaa4b498d67f504873b064b17031f1ed9877",
+      "modifiedAt": "2026-09-15T04:44:52.051600+00:00"
+    },
+    {
+      "path": "build/asc-materials/uploaded-46c18af8-5e30-4680-afc4-c3da49ccb00d.json",
+      "sha256": "aa3eacc1447931ed3b43d3cdf1bd330204f0f5294dfd5f6b0428b82487c71e70",
+      "modifiedAt": "2026-09-15T04:45:09.521116+00:00"
+    },
+    {
+      "path": "build/asc-materials/uploaded-a9325c17-7099-4656-8024-54576e322ce2.json",
+      "sha256": "505b50a00e6efbd0d4d5f5e6295b8613f00b54acd7eed5fd12f20f5261ae4baa",
+      "modifiedAt": "2026-09-15T04:45:27.719701+00:00"
+    },
+    {
+      "path": "build/asc-materials/final-set-d055f939-447e-4074-bce4-de089ad2a20b.json",
+      "sha256": "d93ab1be1fc79112ee93b10d953e1eb2037c0d86ad77aa28f17346af50dddf22",
+      "modifiedAt": "2026-09-15T04:47:18.861776+00:00"
+    },
+    {
+      "path": "build/asc-materials/uploaded-6a99c06f-5c58-4974-bb89-4a7bfc6502a0.json",
+      "sha256": "012036ebdc0d6b46c51578bf039e741eee284537458ba76590574f39d82decd2",
+      "modifiedAt": "2026-09-15T04:45:44.850008+00:00"
+    },
+    {
+      "path": "build/asc-materials/final-set-a1e05777-357c-4aeb-adbb-faceaeffb438.json",
+      "sha256": "91d4c9f181c55aceb1bc3ed453017346664a735912f17f391192e1e1d3a6b0ac",
+      "modifiedAt": "2026-09-15T04:47:20.646742+00:00"
+    },
+    {
+      "path": "build/asc-materials/uploaded-23db5d36-fffd-4ad8-a4fb-4ad26bdd0fd7.json",
+      "sha256": "c900844c8cae39ab2d7479c40b59e534284660a90807cd8ba215bd6fc4fb2e63",
+      "modifiedAt": "2026-09-15T04:46:01.941889+00:00"
+    },
+    {
+      "path": "build/asc-materials/final-set-208bb15a-b214-483c-9470-34ffad1e067a.json",
+      "sha256": "40537b51a1610a10b53ee998a78a50cfe48018d2c1c9a2ec09f9153734c994ed",
+      "modifiedAt": "2026-09-15T04:47:23.821249+00:00"
+    },
+    {
+      "path": "build/asc-materials/uploaded-14beadc0-79ac-437d-8ec5-43a959878441.json",
+      "sha256": "7e8c0225788e306edf343acffb05ab3a0516394b6f4a952cef88f27a79df19dd",
+      "modifiedAt": "2026-09-15T04:46:19.607626+00:00"
+    },
+    {
+      "path": "build/asc-materials/uploaded-05842c47-2ecc-4f09-917c-f6b6893ae657.json",
+      "sha256": "a25c54080d7f192448f4d7eec5cb670fb5b0afd08532f66c541f41ebe89e7ee0",
+      "modifiedAt": "2026-09-15T04:46:37.433307+00:00"
+    },
+    {
+      "path": "build/asc-materials/uploaded-b3240bae-2dfe-4185-a805-db1d263533e2.json",
+      "sha256": "4b4b5c66525e5aaad0fbec7a50684f62ac6bc4da0357f08c56ad5580a4f58af7",
+      "modifiedAt": "2026-09-15T04:46:54.900896+00:00"
+    },
+    {
+      "path": "build/asc-materials/uploaded-e7b8c0da-d16f-4152-a006-8f3902dfbb28.json",
+      "sha256": "e5c53b5ef7752d762d605f62ece024a8abd7d7dfed7c9e8f883eab5136ae97b9",
+      "modifiedAt": "2026-09-15T04:47:12.900974+00:00"
+    },
+    {
+      "path": "build/asc-materials/app.json",
+      "sha256": "5abf76bc1c14e9608866f67a2976ac52a8dc21ef974a0bcfe66a6304c99356b2",
+      "modifiedAt": "2026-09-15T04:45:35.602222+00:00"
+    },
+    {
+      "path": "build/asc-materials/versions.json",
+      "sha256": "e1f312b20e81432bdb1ac6f69598953f95d8071e8b0c97d5a215e72b7e4de878",
+      "modifiedAt": "2026-09-15T04:42:03.788007+00:00"
+    },
+    {
+      "path": "build/asc-materials/selected-build.json",
+      "sha256": "f29f8c5bbe68b7402cfaadf6ec12bc9694e5e4f20596ef6ae103b4ff08c182cb",
+      "modifiedAt": "2026-09-15T04:42:05.049776+00:00"
+    },
+    {
+      "path": "build/asc-materials/purchase-shot-before.json",
+      "sha256": "67410e0395a1203fb9b022d1fbd7ce628c7d637d831960ae9d6663bd5cd2cd9c",
+      "modifiedAt": "2026-09-15T04:50:16.543291+00:00"
+    },
+    {
+      "path": "build/asc-materials/purchase-shot-after.json",
+      "sha256": "f72320b147a07f569f9f86c754074b9d6796423151aa1f279a9c7988908d05db",
+      "modifiedAt": "2026-09-15T04:50:26.708253+00:00"
+    },
+    {
+      "path": "build/asc-materials/uploaded-9391c3b8-2685-4b76-9bad-6910bc689cec.json",
+      "sha256": "4bc442d66b867fe67193986c7de97c10bf823634b75eeb0c05ba6f7b8b1b9d4b",
+      "modifiedAt": "2026-09-15T04:50:26.094961+00:00"
+    },
+    {
+      "path": "release/review-notes.txt",
+      "sha256": "8f819233855289db851ffeb62636cdfb8b1827b8d641d743b93f1bbdf01e492b"
+    },
+    {
+      "path": "build/asc-materials/review-submissions.json",
+      "sha256": "e1ea11aaff46c369ae2ecd4cd3a3572e11e1e9e81ab116041f54ef0ee805c27f",
+      "modifiedAt": "2026-09-15T04:53:34.543262+00:00"
+    },
+    {
+      "path": "build/asc-materials/review-attachments-after.json",
+      "sha256": "08e8c23707fbe4e8c1031d77eb07976b7c387033eee3f44079fbdfd8c4affc0c",
+      "modifiedAt": "2026-09-15T04:53:25.230093+00:00"
+    },
+    {
+      "path": "build/asc-materials/uploaded-936626d5-361e-4112-873c-c13d98500635.json",
+      "sha256": "1fa80f1c8b9ee2c584c7512e55fcb8d63004ee8683e9d321e0158f288dc6918c",
+      "modifiedAt": "2026-09-15T04:53:24.661379+00:00"
+    },
+    {
+      "path": "build/asc-materials/final-status.json",
+      "sha256": "95e096cae412f0d8a3e81bef081e3a1e2192f03eccce85d9907b95cc1ba6c846",
+      "modifiedAt": "2026-09-15T05:56:53.205363+00:00"
+    }
+  ],
+  "uploaderLogs": [
+    "build/asc-materials-screenshots.log",
+    "build/asc-materials-purchase.log",
+    "build/asc-materials-fixture.log"
+  ],
+  "limits": [
+    "These checks establish stored metadata equality and processed screenshot attachment, not App Review approval or a public App Store release.",
+    "No new app binary upload or build selection is established by these materials. The saved selected-build response is null.",
+    "Review-draft membership, Mac/Vision availability, hardware checks and policy consultation are separate workstreams."
+  ],
+  "finalDraftStatusReadback": {
+    "checkedAt": "2026-09-15T05:56:53Z",
+    "version": "1.0.0",
+    "state": "PREPARE_FOR_SUBMISSION",
+    "selectedBuild": null,
+    "reviews": [
+      {
+        "id": "f18650b3-7b9c-44db-9951-ff66ed60dfc1",
+        "state": "READY_FOR_REVIEW",
+        "submittedDate": null,
+        "itemCount": 1
+      }
+    ]
+  }
+}

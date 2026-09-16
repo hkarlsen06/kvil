@@ -1,0 +1,241 @@
+{
+  "checked_at": "2026-09-15T06:10:58.797036+00:00",
+  "status": "native_accessibility_audits_unresolved",
+  "environment": {
+    "platform": "iOS Simulator",
+    "device": "iPhone 13 mini",
+    "device_id": "92ADD424-FC44-47A1-B43B-AB24A64B2BB6",
+    "os": "iOS 27.0 (24A434)",
+    "appearance": "dark",
+    "scheme": "StoreKit"
+  },
+  "latest_results_by_test": {
+    "unit_tests": {
+      "passed": 132,
+      "failed": 0,
+      "skipped": 1,
+      "skip_reason": "CloudKitLiveTests requires its explicit live-test gate.",
+      "xcresult": "/var/folders/9j/7d72xt915393rwfg7fzyvv5r0000gn/T//Kvil-test-1789451109-88274.xcresult"
+    },
+    "onboarding_flows": {
+      "passed": 2,
+      "failed": 0,
+      "cases": [
+        "ordinary English consent, completion and optional weight flow",
+        "largest Norwegian consent, pinned actions and completion"
+      ],
+      "verified": "Cloud sync is initially on; turning the actual switch off persists through setup and is read back as off in Settings.",
+      "xcresult": "/var/folders/9j/7d72xt915393rwfg7fzyvv5r0000gn/T//Kvil-test-1789451760-95014.xcresult"
+    },
+    "home_audits": {
+      "passed": 0,
+      "failed": 2,
+      "failure": "Native contrast audit",
+      "geometry": "Compact Home centering, date alignment, no scrolling and at least 100 pt below controls passed.",
+      "xcresult": "/var/folders/9j/7d72xt915393rwfg7fzyvv5r0000gn/T//Kvil-test-1789451760-95014.xcresult"
+    },
+    "settings_audits": {
+      "passed": 0,
+      "failed": 4,
+      "cases": [
+        "cloud Settings English",
+        "cloud Settings Norwegian",
+        "cloud Settings largest Norwegian",
+        "largest English closing-reminder timing"
+      ],
+      "failure": "Native textClipped audit",
+      "xcresult": "/var/folders/9j/7d72xt915393rwfg7fzyvv5r0000gn/T//Kvil-test-1789452036-96563.xcresult"
+    }
+  },
+  "latest_selected_test_totals": {
+    "passed": 134,
+    "failed": 6,
+    "skipped": 1,
+    "note": "Latest result per selected test across the three runs, not a single passing full-suite run. Later changes after the unit run were limited to UI layout and UI tests."
+  },
+  "runs": [
+    {
+      "log": "build/accessibility-final-validation.log",
+      "xcresult": "/var/folders/9j/7d72xt915393rwfg7fzyvv5r0000gn/T//Kvil-test-1789451109-88274.xcresult",
+      "tests": 141,
+      "passed": 133,
+      "failed": 7,
+      "skipped": 1,
+      "failures": [
+        "CloudSettingsUITests.testEncryptedCloudSettingsAtLargestText() [/Users/hkarlsen06/Repositories/kvil/ios/KvilAppUITests/CloudSettingsUITests.swift:56]: Text clipped",
+        "CloudSettingsUITests.testEncryptedCloudSettingsInEnglish() [/Users/hkarlsen06/Repositories/kvil/ios/KvilAppUITests/CloudSettingsUITests.swift:56]: Text clipped",
+        "CloudSettingsUITests.testEncryptedCloudSettingsInNorwegian() [/Users/hkarlsen06/Repositories/kvil/ios/KvilAppUITests/CloudSettingsUITests.swift:56]: Text clipped",
+        "KvilUITests.testGuidedSetupActionsStayPinnedAtLargestText() [/Users/hkarlsen06/Repositories/kvil/ios/KvilAppUITests/KvilUITests.swift:515]: XCTAssertEqual failed: (\"Optional(\"1\")\") is not equal to (\"Optional(\"0\")\")",
+        "KvilUITests.testHomeLeavesSpaceForLandscapeWithoutScrolling() [/Users/hkarlsen06/Repositories/kvil/ios/KvilAppUITests/KvilUITests.swift:236]: XCTAssertFalse failed",
+        "KvilUITests.testOpenWindowAndNorwegianLayouts() [/Users/hkarlsen06/Repositories/kvil/ios/KvilAppUITests/KvilUITests.swift:48]: Hit area is too small",
+        "KvilUITests.testOpenWindowAndNorwegianLayouts() [/Users/hkarlsen06/Repositories/kvil/ios/KvilAppUITests/KvilUITests.swift:48]: Contrast failed",
+        "KvilUITests.testReminderTimingAtLargestText() [/Users/hkarlsen06/Repositories/kvil/ios/KvilAppUITests/KvilUITests.swift:48]: Text clipped"
+      ]
+    },
+    {
+      "log": "build/accessibility-final-flows.log",
+      "xcresult": "/var/folders/9j/7d72xt915393rwfg7fzyvv5r0000gn/T//Kvil-test-1789451760-95014.xcresult",
+      "tests": 4,
+      "passed": 2,
+      "failed": 2,
+      "skipped": 0,
+      "failures": [
+        "KvilUITests.testHomeLeavesSpaceForLandscapeWithoutScrolling() [/Users/hkarlsen06/Repositories/kvil/ios/KvilAppUITests/KvilUITests.swift:48]: Contrast failed",
+        "KvilUITests.testOpenWindowAndNorwegianLayouts() [/Users/hkarlsen06/Repositories/kvil/ios/KvilAppUITests/KvilUITests.swift:48]: Contrast failed"
+      ]
+    },
+    {
+      "log": "build/accessibility-final-settings.log",
+      "xcresult": "/var/folders/9j/7d72xt915393rwfg7fzyvv5r0000gn/T//Kvil-test-1789452036-96563.xcresult",
+      "tests": 4,
+      "passed": 0,
+      "failed": 4,
+      "skipped": 0,
+      "failures": [
+        "CloudSettingsUITests.testEncryptedCloudSettingsAtLargestText() [/Users/hkarlsen06/Repositories/kvil/ios/KvilAppUITests/CloudSettingsUITests.swift:56]: Text clipped",
+        "CloudSettingsUITests.testEncryptedCloudSettingsInEnglish() [/Users/hkarlsen06/Repositories/kvil/ios/KvilAppUITests/CloudSettingsUITests.swift:56]: Text clipped",
+        "CloudSettingsUITests.testEncryptedCloudSettingsInNorwegian() [/Users/hkarlsen06/Repositories/kvil/ios/KvilAppUITests/CloudSettingsUITests.swift:56]: Text clipped",
+        "KvilUITests.testReminderTimingAtLargestText() [/Users/hkarlsen06/Repositories/kvil/ios/KvilAppUITests/KvilUITests.swift:48]: Text clipped"
+      ]
+    }
+  ],
+  "retained_production_changes": [
+    "Home reserves 100 pt for the landscape at ordinary text sizes, letting the existing compact variant fit small phones.",
+    "The Watch/widgets and Full history Settings Labels explicitly use the native titleAndIcon style."
+  ],
+  "isolated_label_check": {
+    "result": "passed",
+    "scope": "Norwegian Watch/widgets and Full history native Label rows, with titleAndIcon; textClipped and sufficientElementDescription.",
+    "xcresult": "/var/folders/9j/7d72xt915393rwfg7fzyvv5r0000gn/T/Kvil-test-1789450950-86571.xcresult",
+    "limitation": "This isolated pass does not replace the four failed full-Form audits."
+  },
+  "unresolved_evidence": {
+    "home": "Controlled isolation identified the time-range en dash. The original sRGB crop has approximately 7.37:1 opaque glyph contrast; native audit still fails. A stronger separator also failed and was reverted.",
+    "home_pixel_measurement": "build/accessibility-target-isolation/dash-contrast-measurement.json",
+    "settings": "Final full Form audits still report generic textClipped without a resolvable native target. Ordinary cloud copy is visibly complete; largest text requires scrolling. No issue was filtered or waived.",
+    "final_settings_attachments": "build/accessibility-final-settings",
+    "final_home_and_setup_attachments": "build/accessibility-final-flows"
+  },
+  "setup_screenshots": {
+    "ordinary_english": "build/accessibility-final-flows/0C43EBB1-93B8-4487-9861-AC0D4628B9EE.png",
+    "largest_norwegian_switch_visible": "build/accessibility-final-flows/B9F8EEE8-0F72-482B-9536-314AB0727FEC.png",
+    "largest_week_and_pinned_actions": "build/accessibility-final-flows/69B11A68-FAB4-4AE9-BF7A-74EFC8695236.png",
+    "note": "Saved-off persistence is established by the value assertions. The largest retained-state screenshot shows adjacent Settings rows and is not visual proof of switch position."
+  },
+  "large_home_captures": [
+    {
+      "language": "en",
+      "path": "build/accessibility-final-large/en-home.png",
+      "width": 1320,
+      "height": 2868,
+      "appearance": "dark",
+      "device": "iPhone 17 Pro Max",
+      "device_id": "C536D803-7048-46D2-9422-9F9D1592B941",
+      "build": "2449.6.0",
+      "sha256": "4a6ca49f47cc09085d9354cdacbc6e1670dbf2090e04959c5a4ddd047d435d08",
+      "source": "Unmodified native simctl screenshot of the final Debug app and fictional home scenario."
+    },
+    {
+      "language": "nb",
+      "path": "build/accessibility-final-large/nb-home.png",
+      "width": 1320,
+      "height": 2868,
+      "appearance": "dark",
+      "device": "iPhone 17 Pro Max",
+      "device_id": "C536D803-7048-46D2-9422-9F9D1592B941",
+      "build": "2449.6.0",
+      "sha256": "4883d20a3468794e6e9f309945fb8234df5c1516d0a302850ec60878d5dc40c6",
+      "source": "Unmodified native simctl screenshot of the final Debug app and fictional home scenario."
+    }
+  ],
+  "source_identity": {
+    "git_head": "30249c975ef5940690b625b7c897026c70e7fc99",
+    "working_tree_changes": true,
+    "note": "Git HEAD identifies the base commit, not a commit containing these uncommitted changes. Production and test fingerprints are separate; unchanged KvilStyle.swift is included to record the reverted shared-UI trials. The captured Debug build is 2449.6.0. The separately archived Release build is documented in release/audit-candidate-verified.json.",
+    "changed_production_and_reverted_shared_ui_sha256": {
+      "ios/KvilApp/App/AppModel.swift": "ed42ebbeaca8b4f2490d8d8e7217303926c47cbca3bae9cb3d3a75ea6f529052",
+      "ios/KvilApp/Features/Home/HomeView.swift": "036230cb0461dda44d0c60c68f38cad16a78887d1413aa770465806ac4d25f0d",
+      "ios/KvilApp/Features/Onboarding/OnboardingView.swift": "21dec52c91b147a97ff68d1ef8e3475e4e97c15f76c17003c78df8adcc7f8bda",
+      "ios/KvilApp/Features/Settings/SettingsView.swift": "326a1b095d025986f50add48931f836ade5c3ec0b64d8ae98cd9021b45ef87b2",
+      "ios/KvilApp/Services/CloudKitScheduleClient.swift": "a8d9e41bdfaae8dc28bcc8197b238ddf3ff034270e403672eb5920bbc078dec9",
+      "ios/KvilApp/Services/ScheduleCloudService.swift": "797d47a28aaaeb15af3318351acadee18de596e19b98810d6d6090e277d698cb",
+      "ios/SharedResources/Localizable.xcstrings": "b95d33de41978762f16aebb1412ccd46677ebfc7bbeabb4b0a56956db9a5a49a",
+      "ios/SharedUI/KvilStyle.swift": "fe74c04b21b06f596b51c5dabc217fadf7079d83aeb8d2a28f8c0af9cb1d2d04"
+    },
+    "production_fingerprint": "0b9d6dbb7deeb353dd53bc886c8ea521ed38a20626d899d7f1edb917932fc9fb",
+    "changed_test_harness_and_unit_tests_sha256": {
+      "ios/KvilAppTests/CloudKitLiveTests.swift": "0811e0fb8a0f5c4cd44db24089475f047d306d7be38ba717c56557af4ccd8994",
+      "ios/KvilAppTests/OnboardingStorageTests.swift": "3d9b241ebce9a00788951342623213a977b1e6158774e740c21068441d32fe86",
+      "ios/KvilAppUITests/CloudSettingsUITests.swift": "b45520332d45db094332ae098c9941b819bb1bca54c082e4797fbf5bb2c76311",
+      "ios/KvilAppUITests/KvilUITests.swift": "81b9b5d58e8d70e881164cffb7f62a10655486f793f59c079185a77920800416"
+    },
+    "test_fingerprint": "2e5439a039aea94409db1c3af4dbfd7b760af572115780b49952758829fc1a09"
+  },
+  "source_sha256": {
+    "ios/KvilApp/Features/Home/HomeView.swift": "036230cb0461dda44d0c60c68f38cad16a78887d1413aa770465806ac4d25f0d",
+    "ios/KvilApp/Features/Settings/SettingsView.swift": "326a1b095d025986f50add48931f836ade5c3ec0b64d8ae98cd9021b45ef87b2",
+    "ios/SharedUI/KvilStyle.swift": "fe74c04b21b06f596b51c5dabc217fadf7079d83aeb8d2a28f8c0af9cb1d2d04",
+    "ios/KvilAppUITests/KvilUITests.swift": "81b9b5d58e8d70e881164cffb7f62a10655486f793f59c079185a77920800416",
+    "ios/KvilAppUITests/CloudSettingsUITests.swift": "b45520332d45db094332ae098c9941b819bb1bca54c082e4797fbf5bb2c76311"
+  },
+  "diagnostic_history": "build/accessibility-diagnostic-history.json",
+  "temporary_diagnostic_source_retained": false,
+  "audit_filters_or_waivers": false,
+  "physical_device_scope": "Final changes were verified on simulators. This report does not claim a final physical-device or App Store approval check.",
+  "storefront_home_comparison": {
+    "result": "No visible change to the full Home controls, text layout or scenery in either locale. Existing storefront Home images remain representative; no replacement is needed for the retained compact-layout fix.",
+    "storefront_images": [
+      "release/screenshots/en-US/01-home.png",
+      "release/screenshots/no/01-home.png"
+    ],
+    "comparison_method": "Visual inspection of all four full-resolution native images. Pixel comparison excludes the first 170 pixels containing the status bar.",
+    "measurements": [
+      {
+        "language": "en",
+        "current": "build/accessibility-final-large/en-home.png",
+        "storefront": "release/screenshots/en-US/01-home.png",
+        "dimensions": [
+          1320,
+          2868
+        ],
+        "comparison_region": [
+          0,
+          170,
+          1320,
+          2868
+        ],
+        "different_pixel_fraction": 0.0,
+        "mean_absolute_channel_error": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "maximum_channel_difference": 0,
+        "different_pixel_bounds": null
+      },
+      {
+        "language": "nb",
+        "current": "build/accessibility-final-large/nb-home.png",
+        "storefront": "release/screenshots/no/01-home.png",
+        "dimensions": [
+          1320,
+          2868
+        ],
+        "comparison_region": [
+          0,
+          170,
+          1320,
+          2868
+        ],
+        "different_pixel_fraction": 0.0,
+        "mean_absolute_channel_error": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "maximum_channel_difference": 0,
+        "different_pixel_bounds": null
+      }
+    ]
+  }
+}

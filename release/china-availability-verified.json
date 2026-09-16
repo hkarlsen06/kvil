@@ -1,0 +1,38 @@
+{
+  "verifiedAt": "2026-09-15T20:05:05.087135+00:00",
+  "authorization": "Owner requested dropping China from distribution on 15 September 2026.",
+  "method": "App Store Connect API targeted app territory PATCH and purchase availability update, followed by full territory-list GET readbacks.",
+  "app": {
+    "id": "6811427716",
+    "chinaAvailable": false,
+    "availableTerritories": 174,
+    "otherTerritoriesUnchanged": 174
+  },
+  "purchase": {
+    "id": "6811446026",
+    "chinaAvailable": false,
+    "availableTerritories": 174,
+    "otherTerritoriesUnchanged": true,
+    "availableInNewTerritoriesUnchanged": true
+  },
+  "separateStorefronts": {
+    "HKG": true,
+    "MAC": true,
+    "TWN": true
+  },
+  "binaryUploadedByAgent": false,
+  "reviewSubmittedByAgent": false,
+  "evidenceFiles": [
+    "build/asc-materials/china-app-territories-before-update.json",
+    "build/asc-materials/china-app-update-request.json",
+    "build/asc-materials/china-app-territories-after.json",
+    "build/asc-materials/china-iap-territories-before-update.json",
+    "build/asc-materials/china-iap-update-request.json",
+    "build/asc-materials/china-iap-territories-after.json",
+    "build/asc-materials/china-iap-availability-after.json"
+  ],
+  "configurationFiles": [
+    "release/requests/app-availability.json",
+    "release/requests/iap-availability.json"
+  ]
+}

@@ -2846,19 +2846,19 @@
       }
     },
     "setupStorageHelp" : {
-      "comment" : "Brief setup storage summary. Only the schedule can sync with iCloud. Kvil reflection and weight records are stored on the device; full backup and Apple Health details remain in Settings.",
+      "comment" : "Description beside the final setup iCloud toggle. Sync defaults on for new users, but an existing off choice is preserved. Explains the encrypted schedule scope and excluded personal data; does not claim that existing-account restoration or legacy migration waits for this screen.",
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Your schedule can sync with iCloud. Reflections and weight entries in Kvil stay on this device."
+            "value" : "On by default. When enabled, your schedule, including changes to today’s window and days off, syncs with iCloud using encryption. Reflections, weight and Apple Health data are not included. You can turn sync off here or in Settings."
           }
         },
         "nb" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Planen kan synkroniseres med iCloud. Refleksjoner og vektlogger i Kvil lagres på enheten."
+            "value" : "På som standard. Når synkronisering er på, synkroniseres planen din kryptert med iCloud, inkludert endringer i dagens spisevindu og fridager. Refleksjoner, vekt og Apple Helse-data er ikke med. Du kan slå av synkronisering her eller i Innstillinger."
           }
         }
       }
@@ -6371,6 +6371,24 @@
         }
       },
       "comment" : "Notice when encryption-key-reset recovery fails again. Sync stays paused across launches until the user explicitly retries."
+    },
+    "windowTooShort" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose an eating window of at least six hours."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Velg et spisevindu på minst seks timer."
+          }
+        }
+      },
+      "comment" : "Validation error when saving a new or edited planned eating window shorter than six hours. Does not describe recorded meals or actual eating duration."
     }
   },
   "version" : "1.0"

@@ -1,6 +1,6 @@
 Kvil is an eating-schedule planner for adults. No account or sign-in is required.
 
-Tap “Let’s begin” and follow the guided setup: choose a rhythm, set meal times, read about the pause, and preview your week. Home follows the schedule automatically and counts down to the next opening. During an open window it shows the window without a closing countdown. “Break fast early” and “Start fast now” adjust today's opening or closing; an undo control appears after either action. Kvil does not claim that a fast was completed.
+Tap “Let’s begin”: choose a rhythm and meal times, then preview your week and choose reminders and iCloud sync. Home follows the schedule automatically and counts down to the next opening. During an open window it shows the window without a closing countdown. “Break fast early” and “Start fast now” adjust today's opening or closing; an undo control appears after either action. Kvil does not claim that a fast was completed.
 
 Schedule supports different weekday windows, overnight windows, changes just for today, and days off or longer breaks. Weekly edits start tomorrow. Settings is available from Schedule and History. Optional opening/closing reminders can arrive at the planned time or beforehand. They are queued about four weeks ahead and renewed when Kvil runs; Settings displays the current horizon.
 
@@ -17,3 +17,5 @@ Live Activities are off by default. Turn them on in Settings, then open Kvil whi
 English and Norwegian Bokmål are included. iPhone follows system light/dark appearance; Watch uses a dark palette. Kvil has no advertising, third-party analytics, or tracking SDKs.
 
 Landscape photography is by Kayvan Mazhar, used under the Unsplash License: https://unsplash.com/photos/a-body-of-water-surrounded-by-a-forest-UyPumfejEMI . License: https://unsplash.com/license .
+
+Fictional history is attached in Kvil-reviewer-demo.zip. Read README.txt, turn iCloud sync off, then import reviewer-demo.json in Settings. This does not unlock purchases.

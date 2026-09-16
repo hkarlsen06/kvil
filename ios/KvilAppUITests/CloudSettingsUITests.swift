@@ -26,6 +26,7 @@ import XCTest
       ]
     }
     app.launch()
+    XCTAssertTrue(app.buttons["fastingAction"].waitForExistence(timeout: 10))
     let schedule = app.tabBars.buttons[language == "nb" ? "Plan" : "Schedule"]
     XCTAssertTrue(schedule.waitForExistence(timeout: 10))
     schedule.tap()
@@ -46,13 +47,21 @@ import XCTest
     screenshot.name = "Encrypted-cloud-settings-\(language)\(largeText ? "-largest" : "")-dark"
     screenshot.lifetime = .keepAlways
     add(screenshot)
-    try app.performAccessibilityAudit(for: [.textClipped, .sufficientElementDescription]) { issue in
-      let detail = XCTAttachment(string: String(describing: issue.element))
-      detail.name = "Cloud-settings-audit-target"
-      detail.lifetime = .keepAlways
-      self.add(detail)
-      return false
-    }
+    let hierarchy = XCTAttachment(string: app.debugDescription)
+    hierarchy.name = "Cloud-settings-layout-\(language)\(largeText ? "-largest" : "")"
+    hierarchy.lifetime = .keepAlways
+    add(hierarchy)
+    // Let XCTest finish the font sweep and report every issue before restoring test behavior.
+    continueAfterFailure = true
+    defer { continueAfterFailure = false }
+    try app.performAccessibilityAudit(for: [.textClipped, .sufficientElementDescription])
+    XCTAssertTrue(
+      help.isHittable,
+      "Settings must preserve access to the current section after text-size changes")
+    let afterAudit = XCTAttachment(screenshot: app.screenshot())
+    afterAudit.name = "Settings-after-text-size-audit-\(language)\(largeText ? "-largest" : "")"
+    afterAudit.lifetime = .keepAlways
+    add(afterAudit)
     app.terminate()
   }
 

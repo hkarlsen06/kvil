@@ -38,6 +38,10 @@ with tempfile.TemporaryDirectory(prefix='kvil-export-check-') as temporary:
         subprocess.run(['codesign', '--verify', '--strict', str(path)], check=True,
                        stdout=subprocess.DEVNULL, stderr=subprocess.PIPE)
         info = plistlib.loads((path / 'Info.plist').read_bytes())
+        executable = (path / info['CFBundleExecutable']).read_bytes()
+        assert not any(marker in executable for marker in (
+            b'KvilQA-', b'schedule-qa-', b'KVIL_RUN_LIVE_CLOUDKIT', b'KVIL_AUDIT_'
+        )), 'Debug audit hooks in export'
         entitlement_bytes = subprocess.run(
             ['codesign', '-d', '--entitlements', ':-', str(path)], check=True,
             capture_output=True).stdout
@@ -101,7 +105,8 @@ with tempfile.TemporaryDirectory(prefix='kvil-export-check-') as temporary:
 result = {
     'archive': str(archive.relative_to(root)), 'ipa': str(ipa.relative_to(root)),
     'sha256': hashlib.sha256(ipa.read_bytes()).hexdigest(), 'bytes': ipa.stat().st_size,
-    'exportedBundles': bundles, 'debugResourcesAbsent': True, 'uploaded': False,
+    'exportedBundles': bundles, 'debugResourcesAbsent': True, 'debugAuditHooksAbsent': True,
+    'uploaded': False,
     'cloudKit': {'container': cloudkit_container, 'environment': 'Production',
                  'productionProfileVerified': True, 'backgroundPushConfigured': True},
 }

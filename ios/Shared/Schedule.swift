@@ -17,6 +17,7 @@ struct WallTime: Codable, Hashable, Sendable, Comparable {
 }
 
 struct DayPlan: Codable, Equatable, Sendable, Identifiable {
+  static let minimumWindowMinutes = 6 * 60
   var weekday: Int
   var modifiedAt: Date? = nil
   var opens: WallTime
@@ -38,6 +39,7 @@ struct DayPlan: Codable, Equatable, Sendable, Identifiable {
 
   func resized(to minutes: Int) throws -> Self {
     guard (1..<1440).contains(minutes) else { throw ScheduleError.invalidTime }
+    guard minutes >= Self.minimumWindowMinutes else { throw ScheduleError.windowTooShort }
     var day = self
     day.closes = WallTime(minute: (opens.minute + minutes) % 1440)
     return day
@@ -103,7 +105,7 @@ struct ScheduleSnapshot: Codable, Equatable, Sendable {
 }
 
 enum ScheduleError: Error, Equatable {
-  case invalidTime, missingWeekdays, overlappingWindows, invalidDate, incompatibleData
+  case invalidTime, windowTooShort, missingWeekdays, overlappingWindows, invalidDate, incompatibleData
 }
 
 enum LocalDay {
@@ -344,6 +346,17 @@ struct ScheduleEngine: Sendable {
       if !current.isDayOff && !next.isDayOff && current.overnight && current.closes > next.opens {
         throw ScheduleError.overlappingWindows
       }
+    }
+  }
+
+  // Apply the current editing limit without rejecting older saved or synced schedules.
+  static func validateEdits(days: [DayPlan], replacing existing: [DayPlan] = []) throws {
+    try validate(days: days)
+    for day in days where !day.isDayOff && day.windowMinutes < DayPlan.minimumWindowMinutes {
+      guard existing.contains(where: {
+        $0.weekday == day.weekday && !$0.isDayOff
+          && $0.opens == day.opens && $0.closes == day.closes
+      }) else { throw ScheduleError.windowTooShort }
     }
   }
 

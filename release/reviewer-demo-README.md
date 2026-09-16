@@ -1,6 +1,6 @@
 # Reviewer history fixture
 
-[reviewer-demo.json](reviewer-demo.json) contains fictional data for reviewing Full History without waiting weeks. It is a local release asset and has **not been attached or uploaded** to App Store Connect.
+[reviewer-demo.json](reviewer-demo.json) contains fictional data for reviewing Full History without waiting weeks. It was attached to App Store Connect on 15 September 2026 inside [Kvil-reviewer-demo.zip](Kvil-reviewer-demo.zip), alongside `README.txt`. Apple reports the ZIP as `COMPLETE`; its checksum, size and attachment relationship were verified. [Delivery evidence](appstore-materials-verified.json).
 
 Use `.json`: `BackupDocument` and the Settings file picker accept `UTType.json`. The app does not register a `.kvilbackup` type.
 
@@ -25,9 +25,11 @@ The fixture uses the production encoder's default date format. Its anchor is 15 
 
 Week and Month follow the device's current date, so their counts change after 15 September. All time retains all 42 entries. Refresh and revalidate the fixture before packaging if populated recent recaps are required on a later review date; do not ask reviewers to change the device clock.
 
-## Packaging
+## Delivered package
 
-Include the fixture and these directions in the reviewer materials only after confirming how the file will be delivered. Then add the actual attachment name or verified download location to the review notes. The current review notes do not promise that Apple already has the file.
+`Kvil-reviewer-demo.zip` contains only `reviewer-demo.json` and `README.txt`. Unzip it, then import the JSON through Kvil Settings; the app does not import the ZIP directly. The archived JSON is byte-identical to the validated fixture below. The ZIP is 2,814 bytes, SHA-256 `1f9c7afd12b1f92f5174ab5c2fc47688766eeae19094651ba589988d830a6f86`.
+
+The saved App Store Connect response identifies attachment `936626d5-361e-4112-873c-c13d98500635` under this version's review details. Its native purchase still requires the appropriate Apple test environment; attaching the fixture grants no entitlement and does not submit the app for review.
 
 The fixture needs no weight or Health authorization. Do not use it to test writes to a person's Health store.
 

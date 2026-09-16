@@ -119,12 +119,15 @@ enum AppTab: Hashable {
       return false
     }
   }
-  func configure(days: [DayPlan]) -> Bool {
-    do { try ScheduleEngine.validate(days: days) } catch {
+  func configure(days: [DayPlan], cloudScheduleEnabled: Bool? = nil) -> Bool {
+    do { try ScheduleEngine.validateEdits(days: days) } catch {
       message = errorText(error)
       return false
     }
     var next = data
+    if let cloudScheduleEnabled {
+      next.preferences.cloudScheduleEnabled = cloudScheduleEnabled
+    }
     let stamp = Date()
     let stamped = days.map { day in
       var d = day
@@ -137,7 +140,14 @@ enum AppTab: Hashable {
         ScheduleVersion(
           effectiveDay: LocalDay.key(now, calendar: calendar), days: stamped, modifiedAt: stamp)
       ], overrides: [], resetAt: data.schedule.resetAt)
-    return commit(next, publish: true)
+    // Save the setup choice with the schedule before any surface can publish it.
+    let enablingCloud = !data.preferences.cloudScheduleEnabled && next.preferences.cloudScheduleEnabled
+    guard commit(next) else { return false }
+    if enablingCloud {
+      do { try cloud.resume() } catch { message = String(localized: .cloudNeedsAttention) }
+    }
+    updateSurfaces()
+    return true
   }
   var usualDays: [DayPlan] {
     data.schedule.versions.max { $0.effectiveDay < $1.effectiveDay }?.days ?? DayPlan.initial
@@ -180,6 +190,10 @@ enum AppTab: Hashable {
   }
 
   func saveWeek(_ days: [DayPlan]) -> Bool {
+    do { try ScheduleEngine.validateEdits(days: days, replacing: usualDays) } catch {
+      message = errorText(error)
+      return false
+    }
     guard let tomorrow = calendar.date(byAdding: .day, value: 1, to: now) else { return false }
     var next = data
     let key = LocalDay.key(tomorrow, calendar: calendar)
@@ -223,6 +237,11 @@ enum AppTab: Hashable {
       let closing = closes.date(on: closeDay, calendar: calendar)
     else {
       message = String(localized: .invalidTime)
+      return false
+    }
+    let day = DayPlan(weekday: calendar.component(.weekday, from: now), opens: opens, closes: closes)
+    guard day.windowMinutes >= DayPlan.minimumWindowMinutes else {
+      message = String(localized: .windowTooShort)
       return false
     }
     var next = data
@@ -587,8 +606,10 @@ enum AppTab: Hashable {
     return true
   }
   func errorText(_ error: Error) -> String {
-    String(
-      localized: (error as? ScheduleError) == .overlappingWindows
-        ? .overlappingWindows : .invalidTime)
+    switch error as? ScheduleError {
+    case .overlappingWindows: String(localized: .overlappingWindows)
+    case .windowTooShort: String(localized: .windowTooShort)
+    default: String(localized: .invalidTime)
+    }
   }
 }

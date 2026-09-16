@@ -18,6 +18,7 @@ struct OnboardingView: View {
   @State private var slidingWindow: DayPlan?
   @State private var slidingDay: DayPlan?
   @State private var enableReminders = true
+  @State private var cloudScheduleChoice: Bool?
   @State private var showingGuide = false
   @State private var busy = false
   @AccessibilityFocusState private var headingFocused: Bool
@@ -173,6 +174,9 @@ struct OnboardingView: View {
   private var previewPage: some View {
     KvilActionPage {
       pageHeading(.setupWeekTitle, help: .setupWeekHelp)
+      KvilDescribedToggle(
+        title: .cloudSchedule, description: .setupStorageHelp, isOn: cloudScheduleSelection
+      ).accessibilityIdentifier("setupCloudScheduleSync")
       VStack(alignment: .leading, spacing: KvilStyle.content) {
         ForEach(previewDates, id: \.self) { date in
           if let day = days.first(where: {
@@ -191,8 +195,6 @@ struct OnboardingView: View {
         .background(Color.kvilSurface, in: RoundedRectangle(cornerRadius: KvilStyle.corner))
       KvilDescribedToggle(
         title: .gentleReminders, description: .setupReminderHelp, isOn: $enableReminders)
-      Text(.setupStorageHelp).font(.footnote).foregroundStyle(Color.kvilSecondary)
-        .fixedSize(horizontal: false, vertical: true)
     } actions: {
       Button {
         Task { await finish() }
@@ -200,6 +202,14 @@ struct OnboardingView: View {
         if busy { ProgressView().tint(Color.kvilInverse) } else { Text(.makeSpace) }
       }.buttonStyle(KvilPrimaryButtonStyle()).disabled(busy).accessibilityIdentifier("finishSetup")
       backButton(to: .approach).disabled(busy)
+    }
+  }
+
+  private var cloudScheduleSelection: Binding<Bool> {
+    Binding {
+      cloudScheduleChoice ?? model.data.preferences.cloudScheduleEnabled
+    } set: {
+      cloudScheduleChoice = $0
     }
   }
 
@@ -330,7 +340,9 @@ struct OnboardingView: View {
   private func finish() async {
     busy = true
     defer { busy = false }
-    guard model.configure(days: days) else { return }
+    guard
+      model.configure(days: days, cloudScheduleEnabled: cloudScheduleSelection.wrappedValue)
+    else { return }
     UINotificationFeedbackGenerator().notificationOccurred(.success)
     if enableReminders {
       await model.setReminder(opening: true, enabled: true)

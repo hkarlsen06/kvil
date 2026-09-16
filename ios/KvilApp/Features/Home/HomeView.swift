@@ -20,6 +20,8 @@ struct HomeView: View {
         content(state: state, now: now, eligible: eligible, compact: false)
         content(state: state, now: now, eligible: eligible, compact: true)
       }
+      // Choose the compact controls when the full layout would consume the landscape below them.
+      .padding(.bottom, typeSize.isAccessibilitySize ? 0 : 100)
       .padding(.vertical, KvilStyle.content)
       .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
       .backgroundPreferenceValue(HomeContentBoundsKey.self) { contentBounds in
@@ -50,7 +52,9 @@ struct HomeView: View {
       .background(Color.kvilSky(daylight: Double(landscapeReveal)))
       .animation(KvilMotion.transition(reduceMotion: reduceMotion), value: state?.isOpen)
     }.toolbar {
-      ToolbarItem(placement: .topBarLeading) { KvilWordmark().fixedSize() }
+      ToolbarItem(placement: .topBarLeading) {
+        KvilWordmark().fixedSize().accessibilityIdentifier("homeWordmark")
+      }
         .sharedBackgroundVisibility(.hidden)
       if model.data.preferences.weightEnabled {
         ToolbarItem(placement: .topBarTrailing) {
@@ -148,7 +152,7 @@ struct HomeView: View {
           }
           if let active = state.active {
             WindowTimeLabel(window: active, stacksForAccessibility: !compact)
-              .font(compact ? .caption : .body)
+              .font(compact ? .caption : .body).accessibilityIdentifier("homeWindowTime")
           } else if let next = state.next {
             let layout =
               typeSize.isAccessibilitySize

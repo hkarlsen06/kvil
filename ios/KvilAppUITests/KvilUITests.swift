@@ -30,6 +30,24 @@ import XCTest
     app.launch()
     return app
   }
+  private func waitForUnobstructedHome(_ app: XCUIApplication) {
+    let wordmark = app.descendants(matching: .any).matching(identifier: "homeWordmark").firstMatch
+    XCTAssertTrue(wordmark.waitForExistence(timeout: 5))
+    // A system notification can cover the header and contaminate a whole-screen contrast audit.
+    let visible = XCTNSPredicateExpectation(
+      predicate: NSPredicate { _, _ in wordmark.isHittable }, object: nil)
+    XCTAssertEqual(XCTWaiter.wait(for: [visible], timeout: 15), .completed)
+  }
+  private func auditCurrentScreen(_ app: XCUIApplication, for types: XCUIAccessibilityAuditType) throws {
+    let previous = continueAfterFailure
+    continueAfterFailure = true
+    defer { continueAfterFailure = previous }
+    let hierarchy = XCTAttachment(string: app.debugDescription)
+    hierarchy.name = "Accessibility-audit-layout"
+    hierarchy.lifetime = .keepAlways
+    add(hierarchy)
+    try app.performAccessibilityAudit(for: types)
+  }
   func testHomeScheduleAndReflectionFlow() {
     let app = app("reflection")
     XCTAssertTrue(app.buttons["changeToday"].waitForExistence(timeout: 10))
@@ -213,17 +231,15 @@ import XCTest
     // The date's 44-point edit target extends above the content's visual top edge.
     XCTAssertEqual(app.staticTexts["homeDate"].frame.minY, navigationBottom + 16, accuracy: 2)
     XCTAssertGreaterThanOrEqual(tabTop - content.frame.maxY, 100)
+    let window = app.descendants(matching: .any).matching(identifier: "homeWindowTime").firstMatch
+    XCTAssertTrue(window.label.contains("10:00"))
+    XCTAssertTrue(window.label.contains("18:00"))
     let dateBeforeSwipe = app.staticTexts["homeDate"].frame
     app.swipeUp()
     XCTAssertEqual(app.staticTexts["homeDate"].frame, dateBeforeSwipe)
     XCTAssertTrue(action.isHittable)
-    try app.performAccessibilityAudit(for: [.contrast, .textClipped, .hitRegion]) { issue in
-      let attachment = XCTAttachment(string: String(describing: issue.element))
-      attachment.name = "Accessibility-audit-target"
-      attachment.lifetime = .keepAlways
-      self.add(attachment)
-      return false
-    }
+    waitForUnobstructedHome(app)
+    try auditCurrentScreen(app, for: [.contrast, .textClipped, .hitRegion])
     attach(app, name: "Home-landscape-space-norsk")
   }
   func testWindowOpensWhileHomeIsVisible() throws {
@@ -316,8 +332,10 @@ import XCTest
     app.buttons["beginSetup"].tap()
     continueIntroduction(in: app)
     previewWeek(in: app)
+    disableSetupCloudSync(in: app)
     tap(app.buttons["finishSetup"], in: app)
     XCTAssertTrue(app.buttons["changeToday"].waitForExistence(timeout: 5))
+    assertSetupCloudSyncRemainsDisabled(in: app, language: "en")
     XCTAssertFalse(app.buttons["settings"].exists)
     XCTAssertFalse(app.buttons["logWeight"].exists)
     attach(app, name: "Home-weight-disabled")
@@ -418,14 +436,9 @@ import XCTest
     let open = app("open")
     XCTAssertTrue(open.buttons["changeToday"].waitForExistence(timeout: 10))
     XCTAssertTrue(open.staticTexts["Your window\nis open"].exists)
+    waitForUnobstructedHome(open)
     attach(open, name: "Open-window")
-    try open.performAccessibilityAudit(for: [.contrast, .textClipped, .hitRegion]) { issue in
-      let attachment = XCTAttachment(string: String(describing: issue.element))
-      attachment.name = "Accessibility-audit-target"
-      attachment.lifetime = .keepAlways
-      self.add(attachment)
-      return false
-    }
+    try auditCurrentScreen(open, for: [.contrast, .textClipped, .hitRegion])
     open.terminate()
     let norwegian = app("home", language: "nb")
     XCTAssertTrue(norwegian.buttons["changeToday"].waitForExistence(timeout: 10))
@@ -491,6 +504,29 @@ import XCTest
   private func previewWeek(in app: XCUIApplication) {
     tap(app.buttons["continueMealTimes"], in: app)
     tap(app.buttons["previewSetup"], in: app)
+  }
+
+  private func disableSetupCloudSync(in app: XCUIApplication) {
+    let cloud = app.switches["setupCloudScheduleSync"]
+    let control = cloud.switches.firstMatch
+    reveal(control, in: app)
+    XCTAssertEqual(cloud.value as? String, "1")
+    attach(app, name: "Onboarding-cloud-choice-default")
+    control.tap()
+    XCTAssertEqual(cloud.value as? String, "0")
+  }
+
+  private func assertSetupCloudSyncRemainsDisabled(in app: XCUIApplication, language: String) {
+    tap(app.tabBars.buttons[language == "nb" ? "Plan" : "Schedule"], in: app)
+    tap(app.buttons["settings"], in: app)
+    let cloud = app.switches["cloudScheduleSync"]
+    // Settings opens at the top; iCloud is below the preceding sections at large text sizes.
+    for _ in 0..<20 where !cloud.isHittable { scrollContent(in: app, towardTop: false) }
+    XCTAssertTrue(cloud.isHittable)
+    XCTAssertEqual(cloud.value as? String, "0")
+    attach(app, name: "Settings-cloud-choice-retained")
+    tap(app.buttons[language == "nb" ? "Ferdig" : "Done"], in: app)
+    tap(app.tabBars.buttons[language == "nb" ? "Hjem" : "Home"], in: app)
   }
 
   func testOnboardingEducationAndProgress() throws {
@@ -839,12 +875,14 @@ import XCTest
     attach(app, name: "Onboarding-slider-pinned-footer-largest-text")
     previewWeek(in: app)
     XCTAssertFalse(app.pickerWheels.firstMatch.exists)
+    disableSetupCloudSync(in: app)
     let firstDay = app.descendants(matching: .any)
       .matching(NSPredicate(format: "identifier BEGINSWITH %@", "setupDayTimes.")).firstMatch
     assertPinnedAction(app.buttons["finishSetup"], whileScrolling: firstDay, in: app)
     attach(app, name: "Onboarding-week-pinned-footer-largest-text")
     tap(app.buttons["finishSetup"], in: app)
     XCTAssertTrue(app.buttons["fastingAction"].waitForExistence(timeout: 5))
+    assertSetupCloudSyncRemainsDisabled(in: app, language: "nb")
   }
 
   func testGuidedSetupAccessibilityAtLargestText() throws {
@@ -1065,9 +1103,9 @@ import XCTest
     tap(app.switches["When the window closes"].switches.firstMatch, in: app)
     let reminder = app.buttons["closingReminderTiming"]
     XCTAssertEqual(reminder.value as? String, "15 minutes before")
-    // The new row starts below the visible form at the largest text size.
+    // The new row starts below the visible content at the largest text size.
     scrollContent(in: app, towardTop: false)
-    // Form exposes the whole row as a button; tap the visible menu value within it.
+    // Tap the visible menu value within the accessible button.
     let menuLabel = reminder.staticTexts["15 minutes before"]
     XCTAssertTrue(menuLabel.exists)
     menuLabel.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).tap()
@@ -1079,13 +1117,53 @@ import XCTest
     XCTAssertGreaterThanOrEqual(reminder.frame.minX, app.frame.minX)
     XCTAssertLessThanOrEqual(reminder.frame.maxX, app.frame.maxX)
     attach(app, name: "Reminder-timing-largest-text")
-    try app.performAccessibilityAudit(for: [.textClipped, .hitRegion]) { issue in
-      let attachment = XCTAttachment(string: String(describing: issue.element))
-      attachment.name = "Accessibility-audit-target"
-      attachment.lifetime = .keepAlways
-      self.add(attachment)
-      return false
-    }
+    try auditCurrentScreen(app, for: [.textClipped, .hitRegion])
+    XCTAssertTrue(reminder.isHittable)
+    XCTAssertEqual(reminder.value as? String, "At the planned time")
+    attach(app, name: "Reminder-timing-after-text-size-audit")
+    let selectedValue = reminder.staticTexts["At the planned time"]
+    XCTAssertTrue(
+      visibleContent(in: app).contains(
+        CGPoint(x: selectedValue.frame.midX, y: selectedValue.frame.midY)))
+    selectedValue.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).tap()
+    XCTAssertTrue(app.buttons["30 minutes before"].waitForExistence(timeout: 3))
+    app.buttons["30 minutes before"].tap()
+    XCTAssertEqual(reminder.value as? String, "30 minutes before")
+  }
+
+  func testSettingsWeightSyncAndNavigation() throws {
+    let app = app("home")
+    tap(app.tabBars.buttons["Schedule"], in: app)
+    tap(app.buttons["settings"], in: app)
+    let weight = app.switches["Show weight logging"]
+    tap(weight.switches.firstMatch, in: app)
+    XCTAssertEqual(weight.value as? String, "1")
+    let unit = app.buttons["weightUnit"]
+    tap(unit, in: app)
+    tap(app.buttons["lb"], in: app)
+    XCTAssertTrue(unit.staticTexts["lb"].exists)
+    attach(app, name: "Settings-weight-unit-menu")
+    try auditCurrentScreen(app, for: [.textClipped, .hitRegion, .sufficientElementDescription])
+
+    let cloud = app.switches["cloudScheduleSync"]
+    tap(cloud.switches.firstMatch, in: app)
+    XCTAssertEqual(cloud.value as? String, "0")
+    XCTAssertFalse(app.staticTexts["cloudSyncStatus"].exists)
+    tap(cloud.switches.firstMatch, in: app)
+    XCTAssertEqual(cloud.value as? String, "1")
+    XCTAssertTrue(app.staticTexts["cloudSyncStatus"].exists)
+    tap(app.buttons["Privacy"], in: app)
+    XCTAssertTrue(app.staticTexts["privacyStorage"].waitForExistence(timeout: 3))
+    app.navigationBars["Privacy"].buttons.element(boundBy: 0).tap()
+    tap(app.buttons["About Kvil"], in: app)
+    XCTAssertTrue(app.navigationBars["About Kvil"].waitForExistence(timeout: 3))
+    app.navigationBars["About Kvil"].buttons.element(boundBy: 0).tap()
+    attach(app, name: "Settings-data-and-navigation")
+    try auditCurrentScreen(app, for: [.textClipped, .hitRegion, .sufficientElementDescription])
+    tap(app.buttons["Done"], in: app)
+    tap(app.buttons["settings"], in: app)
+    reveal(unit, in: app)
+    XCTAssertTrue(unit.staticTexts["lb"].exists)
   }
 
   func testReflectionProgressionAtLargestText() throws {
@@ -1182,20 +1260,23 @@ import XCTest
     app.buttons["changeToday"].tap()
     XCTAssertTrue(editorBar.waitForExistence(timeout: 3))
     app.buttons["editorWindowLength"].tap()
-    app.buttons["4 hr"].tap()
+    for hours in 1...5 { XCTAssertFalse(app.buttons["\(hours) hr"].exists) }
+    XCTAssertTrue(app.buttons["6 hr"].exists)
+    attach(app, name: "Six-hour-minimum-window-menu")
+    app.buttons["6 hr"].tap()
     editorBar.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).press(
       forDuration: 0.1,
       thenDragTo: editorBar.coordinate(withNormalizedOffset: CGVector(dx: 0.625, dy: 0.5)))
     app.buttons["saveSchedule"].tap()
     app.tabBars.buttons["Schedule"].tap()
     XCTAssertTrue(today.label.contains("1:00"), today.label)
-    XCTAssertTrue(today.label.contains("5:00"), today.label)
+    XCTAssertTrue(today.label.contains("7:00"), today.label)
     XCTAssertEqual((1...7).map { app.staticTexts["dayTimes.\($0)"].label }, week)
     app.buttons["todayMenu"].tap()
     app.buttons["Set exact times"].tap()
     XCTAssertTrue(opening.waitForExistence(timeout: 3))
     XCTAssertTrue(opening.label.contains("1:00"), opening.label)
-    XCTAssertTrue(app.staticTexts["closingTime"].label.contains("5:00"))
+    XCTAssertTrue(app.staticTexts["closingTime"].label.contains("7:00"))
     app.buttons["Cancel"].tap()
   }
 
@@ -1262,9 +1343,9 @@ import XCTest
     app.buttons.matching(NSPredicate(format: "label BEGINSWITH %@", "Window length for all days"))
       .firstMatch.tap()
     attach(app, name: "All-days-window-length-menu")
-    app.buttons["4 hr"].tap()
-    XCTAssertTrue(app.staticTexts["dayTimes.1"].label.contains("5:00"))
-    XCTAssertTrue(app.staticTexts["dayTimes.2"].label.contains("2:00"))
+    app.buttons["7 hr"].tap()
+    XCTAssertTrue(app.staticTexts["dayTimes.1"].label.contains("8:00"))
+    XCTAssertTrue(app.staticTexts["dayTimes.2"].label.contains("5:00"))
     attach(app, name: "Window-length-for-all-days")
 
     reveal(bar, in: app)
@@ -1272,7 +1353,7 @@ import XCTest
       forDuration: 0.1,
       thenDragTo: bar.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)))
     XCTAssertTrue(app.staticTexts["dayTimes.1"].label.contains("10:00"))
-    XCTAssertTrue(app.staticTexts["dayTimes.1"].label.contains("2:00"))
+    XCTAssertTrue(app.staticTexts["dayTimes.1"].label.contains("5:00"))
     let times = app.staticTexts["dayTimes.1"].label
     let originalY = bar.frame.minY
     let scrollStart = bar.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5))
@@ -1292,6 +1373,20 @@ import XCTest
     app.buttons["Set exact times"].tap()
     let opening = app.otherElements["openingTime"]
     let closing = app.otherElements["closingTime"]
+    XCTAssertTrue(opening.waitForExistence(timeout: 3))
+    closing.pickerWheels.element(boundBy: 0).adjust(toPickerWheelValue: "3")
+    closing.pickerWheels.element(boundBy: 1).adjust(toPickerWheelValue: "59")
+    app.buttons["saveSchedule"].tap()
+    XCTAssertEqual(
+      app.staticTexts["scheduleValidation"].label,
+      "Choose an eating window of at least six hours.")
+    attach(app, name: "Exact-window-below-six-hours-rejected")
+    closing.pickerWheels.element(boundBy: 0).adjust(toPickerWheelValue: "4")
+    closing.pickerWheels.element(boundBy: 1).adjust(toPickerWheelValue: "00")
+    app.buttons["saveSchedule"].tap()
+    XCTAssertTrue(app.staticTexts["dayTimes.1"].label.contains("4:00"))
+    app.buttons["dayMenu.1"].tap()
+    app.buttons["Set exact times"].tap()
     XCTAssertTrue(opening.waitForExistence(timeout: 3))
     opening.pickerWheels.element(boundBy: 2).adjust(toPickerWheelValue: "PM")
     closing.pickerWheels.element(boundBy: 2).adjust(toPickerWheelValue: "AM")

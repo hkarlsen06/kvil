@@ -1202,7 +1202,7 @@
       "type": "territoryAvailabilities",
       "id": "${kvil-CHN}",
       "attributes": {
-        "available": true,
+        "available": false,
         "preOrderEnabled": false
       },
       "relationships": {

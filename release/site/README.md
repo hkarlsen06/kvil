@@ -1,17 +1,27 @@
 # Kvil public pages
 
-Published within the existing portfolio at [hkarlsen06.dev/kvil/](https://hkarlsen06.dev/kvil/), with [support](https://hkarlsen06.dev/kvil/support/) and [privacy](https://hkarlsen06.dev/kvil/privacy/) pages.
+Kvil's [overview](https://hkarlsen06.dev/kvil/), [support](https://hkarlsen06.dev/kvil/support/), and [privacy](https://hkarlsen06.dev/kvil/privacy/) pages are hosted in the existing portfolio. The canonical repository is `mdr:/home/hkarlsen06/code/hkarlsen06.dev`, remote `hkarlsen06/hkarlsen06.dev`, under `public/kvil/`. Cloudflare Pages project: `hkarlsen06-dev`.
 
-The canonical website repository is `mdr:/home/hkarlsen06/code/hkarlsen06.dev`, remote `hkarlsen06/hkarlsen06.dev`. Its `public/kvil/` directory contains these static pages. Both portfolio languages list Kvil through the existing project component and dictionaries. Cloudflare Pages project: `hkarlsen06-dev`.
+## Published policy update: 15 September 2026
 
-**Unpublished update, 15 September 2026:** `dist/kvil/privacy/index.html` and `dist/kvil/support/index.html` now contain prepared copy for encrypted private CloudKit schedule sync, legacy KVS migration, current Health authorization, and backup consent. They match `release/privacy.md` and `release/support.md`. These edits have not been copied to the canonical portfolio repository or deployed, and do not describe the current live page as verified. Publish the final policy with the verified candidate and read it back from the public URL.
+The privacy and support articles now match `release/privacy.md` and `release/support.md`: encrypted private CloudKit schedule sync, fasting adjustments, legacy KVS migration, current Health authorization, and backup consent. Both public URLs and the deployment URL returned 200, with exact article matches. Cloudflare email protection was normalized when comparing complete HTML. [Publication evidence](../privacy-site-verified.json).
 
-The rest of `dist/kvil/`, including the overview and image assets, remains a snapshot of the earlier published pages. Refresh the overview's app image and related copy against the new candidate before publishing that revision. There is no build step for this snapshot. Preview with `python3 -m http.server 8765 --bind 127.0.0.1 --directory release/site/dist` and open `http://127.0.0.1:8765/kvil/`.
+The current production source was commit `8a2d5928baa0cb2ff6479d55b8955e676600519c`. An isolated archive of that commit received only the two article replacements. Its locked dependencies, production build and TypeScript checks passed. The complete 130-file export was published as [7e75a446](https://7e75a446.hkarlsen06-dev.pages.dev), on Production/main. Before-and-after checks preserved visible text on 15 other HTML pages and exact bytes for 24 assets.
 
-The authored pages contain no JavaScript, analytics, forms, or external fonts. They follow system appearance using the bundled Rice Lake photograph by Kayvan Mazhar. All three pages credit the photographer. The hero, social preview, and phone capture use the same photograph as the app. The existing Cloudflare email-protection feature transforms public email links and adds its decoding script.
+The canonical repository received the same article updates. Its unrelated files and Git index were hash-checked and preserved. Nothing was committed or pushed. A later Git-triggered deployment can replace a direct upload unless the updated source is included.
 
-`../photography-verified.json` records the earlier photography deployment, live content and asset checks, and preservation of the existing portfolio favicon and Tidex artwork. `../website-verified.json` records the original deployment before that visual revision. Neither verifies the prepared CloudKit policy update. Stylesheet and phone-image URLs include content hashes to refresh visitors' cached assets; update these hashes when changing either file.
+## Release snapshot and earlier artwork
 
-All three Kvil pages use `assets/icon.svg` as their scalable favicon, with a 32-pixel PNG fallback and a 180-pixel Apple touch icon. The SVG is copied from `design/artwork/icon.svg`; the PNGs and 256-pixel header/project icon are resized from its generated `design/artwork/icon.png`. Refresh these four website assets together after changing the source artwork. `../favicon-verified.json` records the latest deployed favicon links, content types, and asset hashes.
+`dist/kvil/` is a working snapshot. Its privacy/support article bodies are current, but its headers, favicon links, overview, styles and images retain the earlier photography revision. They are not a complete snapshot of the current public site. The 14 September Git deployment had restored older production artwork; this policy-only publication preserved that production layout and excluded the canonical repository's unrelated visual edits.
 
-For future changes, edit the canonical portfolio repository and refresh this release snapshot. Build and deploy the entire portfolio export. Do not deploy this Kvil-only snapshot as the portfolio root. Preserve existing unrelated working-tree changes when committing; compare their published assets before deploying.
+`../photography-verified.json`, `../website-verified.json`, and `../favicon-verified.json` retain historical deployment evidence. Their visual results do not describe the current production layout. Refresh and review the overview and artwork separately before publishing those changes.
+
+The authored Kvil pages contain no JavaScript, analytics, forms, or external fonts. The existing Cloudflare email-protection feature transforms public email links and adds its decoding script. The snapshot follows system appearance and contains the licensed Rice Lake photograph and its attribution.
+
+Preview the snapshot with `python3 -m http.server 8765 --bind 127.0.0.1 --directory release/site/dist`, then open `http://127.0.0.1:8765/kvil/`. This does not preview the whole portfolio.
+
+## Future publication
+
+Inspect the latest Production deployment and canonical working tree before choosing a build source. Build and deploy the entire portfolio export; do not publish the Kvil-only snapshot as the portfolio root. Preserve unrelated changes and compare their public pages/assets before and after deployment.
+
+The established workflow is `bun install --frozen-lockfile`, `bun run build`, then authenticated `wrangler pages deploy <complete-out-directory> --project-name hkarlsen06-dev --branch main`. For an isolated build, provide the matching portfolio `--commit-hash` and an explicit `--commit-message` so Wrangler does not try to infer metadata from another repository. Record actual production readback separately from a successful build or upload.

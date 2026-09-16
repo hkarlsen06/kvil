@@ -9,3 +9,5 @@ Use semantic colors and components in `ios/SharedUI`. Use only Xcode-generated `
 Native App Intents metadata is the narrow exception: Xcode's metadata extractor requires static `LocalizedStringResource` initializers for intent titles, descriptions, and shortcut short titles. Use existing catalog keys and their English defaults there. Runtime UI and intent dialogs still use generated symbols; shortcut invocation phrases use Apple's native `AppShortcuts` catalog.
 
 Use the root build/test wrappers. Verify behavior at date boundaries and persistence/sync trust boundaries. Inspect actual simulator/device layouts after visual changes. Report physical-device and App Store checks separately from simulator success. Preserve unrelated work; do not commit, push, upload, or submit unless requested. Never add a Co-Authored-By trailer.
+
+App Store Connect build uploads and App Review submission are owner-managed. Do not upload app builds or submit the app for review. Separately requested metadata changes remain in scope.

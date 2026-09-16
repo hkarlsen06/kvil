@@ -1,0 +1,130 @@
+{
+  "archive": "build/Kvil-FinalAudit.xcarchive",
+  "ipa": "build/AppStore-FinalAudit/KvilApp.ipa",
+  "sha256": "82e4a9246d7789791ae0696a244002c4b7bdd3dbee8764087ee6136ecab9ade8",
+  "bytes": 9366972,
+  "exportedBundles": [
+    {
+      "bundle": "dev.hkarlsen06.kvil",
+      "version": "1.0.0",
+      "build": "2449.6.4",
+      "minimumOS": "27.0",
+      "sdk": "iphoneos27.0",
+      "signatureValid": true,
+      "entitlements": {
+        "application-identifier": "48ZSLD4RMP.dev.hkarlsen06.kvil",
+        "aps-environment": "production",
+        "beta-reports-active": true,
+        "com.apple.developer.healthkit": true,
+        "com.apple.developer.icloud-container-environment": "Production",
+        "com.apple.developer.icloud-container-identifiers": [
+          "iCloud.dev.hkarlsen06.kvil"
+        ],
+        "com.apple.developer.icloud-services": [
+          "CloudKit"
+        ],
+        "com.apple.developer.team-identifier": "48ZSLD4RMP",
+        "com.apple.developer.ubiquity-kvstore-identifier": "48ZSLD4RMP.dev.hkarlsen06.kvil",
+        "com.apple.security.application-groups": [
+          "group.dev.hkarlsen06.kvil"
+        ],
+        "get-task-allow": false
+      },
+      "privacyManifest": true,
+      "accessedAPIs": [
+        {
+          "NSPrivacyAccessedAPIType": "NSPrivacyAccessedAPICategoryUserDefaults",
+          "NSPrivacyAccessedAPITypeReasons": [
+            "CA92.1"
+          ]
+        }
+      ],
+      "localizations": [
+        "en",
+        "nb"
+      ],
+      "profileName": "iOS Team Store Provisioning Profile: dev.hkarlsen06.kvil"
+    },
+    {
+      "bundle": "dev.hkarlsen06.kvil.watchkitapp",
+      "version": "1.0.0",
+      "build": "2449.6.4",
+      "minimumOS": "27.0",
+      "sdk": "watchos27.0",
+      "signatureValid": true,
+      "entitlements": {
+        "application-identifier": "48ZSLD4RMP.dev.hkarlsen06.kvil.watchkitapp",
+        "beta-reports-active": true,
+        "com.apple.developer.team-identifier": "48ZSLD4RMP",
+        "com.apple.security.application-groups": [
+          "group.dev.hkarlsen06.kvil"
+        ],
+        "get-task-allow": false
+      },
+      "privacyManifest": true,
+      "accessedAPIs": [],
+      "localizations": [
+        "en",
+        "nb"
+      ],
+      "profileName": "iOS Team Store Provisioning Profile: dev.hkarlsen06.kvil.watchkitapp"
+    },
+    {
+      "bundle": "dev.hkarlsen06.kvil.widget",
+      "version": "1.0.0",
+      "build": "2449.6.4",
+      "minimumOS": "27.0",
+      "sdk": "iphoneos27.0",
+      "signatureValid": true,
+      "entitlements": {
+        "application-identifier": "48ZSLD4RMP.dev.hkarlsen06.kvil.widget",
+        "beta-reports-active": true,
+        "com.apple.developer.team-identifier": "48ZSLD4RMP",
+        "com.apple.security.application-groups": [
+          "group.dev.hkarlsen06.kvil"
+        ],
+        "get-task-allow": false
+      },
+      "privacyManifest": true,
+      "accessedAPIs": [],
+      "localizations": [
+        "en",
+        "nb"
+      ],
+      "profileName": "iOS Team Store Provisioning Profile: dev.hkarlsen06.kvil.widget"
+    },
+    {
+      "bundle": "dev.hkarlsen06.kvil.watchkitapp.widget",
+      "version": "1.0.0",
+      "build": "2449.6.4",
+      "minimumOS": "27.0",
+      "sdk": "watchos27.0",
+      "signatureValid": true,
+      "entitlements": {
+        "application-identifier": "48ZSLD4RMP.dev.hkarlsen06.kvil.watchkitapp.widget",
+        "beta-reports-active": true,
+        "com.apple.developer.team-identifier": "48ZSLD4RMP",
+        "com.apple.security.application-groups": [
+          "group.dev.hkarlsen06.kvil"
+        ],
+        "get-task-allow": false
+      },
+      "privacyManifest": true,
+      "accessedAPIs": [],
+      "localizations": [
+        "en",
+        "nb"
+      ],
+      "profileName": "iOS Team Store Provisioning Profile: dev.hkarlsen06.kvil.watchkitapp.widget"
+    }
+  ],
+  "debugResourcesAbsent": true,
+  "debugAuditHooksAbsent": true,
+  "uploaded": false,
+  "cloudKit": {
+    "container": "iCloud.dev.hkarlsen06.kvil",
+    "environment": "Production",
+    "productionProfileVerified": true,
+    "backgroundPushConfigured": true
+  }
+}
